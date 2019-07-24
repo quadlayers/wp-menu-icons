@@ -1,0 +1,147 @@
+@import "mixins.less";
+@import "colors.less";
+
+#menu-to-edit {
+
+    > li {
+        .menu-item-bar {
+
+            .menu-item-wpmi_open {
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                line-height: 42px;
+                height: 42px;
+                cursor: pointer;
+
+                > i {
+                    .transition(all 0.4s);
+                    width: 42px;
+                    height: 42px;
+                    line-height: 42px;
+                    vertical-align: middle;
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;                    
+                    opacity: 0.5;
+                    text-align: center;
+                }
+
+                > i.menu-item-wpmi_plus {
+                    font-size: 14px;
+                    vertical-align: bottom;
+                    margin: 2px 0 0 0;
+                }
+
+                > i.menu-item-wpmi_icon + i.menu-item-wpmi_plus {
+                    opacity: 0;
+                    .transform(scale(0.5));
+                }
+
+                &:hover {
+
+                    > i.menu-item-wpmi_icon {
+                        opacity: 0;
+                        .transform(scale(0.1));
+                    }
+
+                    > i.menu-item-wpmi_plus,
+                    > i.menu-item-wpmi_icon + i.menu-item-wpmi_plus {
+                        opacity: 1;
+                        .transform(scale(1));
+                    }
+                }
+            }
+
+            .item-title {
+                margin-left: 24px;
+            }
+        }
+    }
+}
+
+#wpmi_modal {
+
+    .wp-core-ui {
+        .attachment,
+        .attachment-info {
+            .thumbnail {
+                vertical-align: middle;
+                text-align: center;
+
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    width: 0px;
+                    height: 100%;
+                    vertical-align: middle;
+                }
+
+                > i {
+                    text-align: center;
+                    font-size: 3vw;
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: auto;
+                    width: auto;
+                }
+
+            }
+        }
+
+        .attachment-info {
+
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+                background-color: #fff;
+
+                > i {
+                    font-size: 2em;
+                    position: relative;
+                    left: -1px;
+                }
+
+            }
+
+            .wpmi-color-picker {
+
+                .container {
+                    box-sizing: border-box;
+                    width: 100%;
+                    border-bottom: 1px solid #ddd;
+                    padding: 11px 0;
+                }
+
+                #wpmi-input-color {
+                    box-sizing: border-box;
+                    margin: 1px;
+                    width: 65%;
+                    float: right;
+                }
+
+                .wp-picker-container {
+
+                    .wp-color-result {
+                        width: 100%;
+                        margin-top: 5px!important;
+                    }
+
+                    .wp-color-result-text {
+                        z-index: 1;
+                        position: relative;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
