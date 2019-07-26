@@ -90,7 +90,7 @@ if (!class_exists('WPMI_Backend')) {
           $menu_item_wpmi['label'] = absint($_POST['wpmi'][$menu_item_db_id]['label']);
           $menu_item_wpmi['position'] = sanitize_html_class($_POST['wpmi'][$menu_item_db_id]['position']);
           $menu_item_wpmi['align'] = sanitize_html_class($_POST['wpmi'][$menu_item_db_id]['align']);
-          $menu_item_wpmi['size'] = sanitize_html_class($_POST['wpmi'][$menu_item_db_id]['size']);
+          $menu_item_wpmi['size'] = sanitize_text_field($_POST['wpmi'][$menu_item_db_id]['size']);
           $menu_item_wpmi['icon'] = esc_attr($_POST['wpmi'][$menu_item_db_id]['icon']);
           $menu_item_wpmi['color'] = sanitize_text_field($_POST['wpmi'][$menu_item_db_id]['color']);
 

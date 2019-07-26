@@ -4,7 +4,7 @@
  * Plugin Name: WP Menu Icons
  * Plugin URI: http://www.quadmenu.com/
  * Description: Add icons to your menu items.
- * Version: 2.0.1
+ * Version: 2.0.3
  * Author: WP Menu Icons
  * Author URI: http://www.quadmenu.com
  * Copyright: 2018 QuadMenu (http://www.quadmenu.com)
@@ -16,7 +16,7 @@ if (!defined('WPMI_PLUGIN_NAME')) {
   define('WPMI_PLUGIN_NAME', 'WP Menu Icons');
 }
 if (!defined('WPMI_PLUGIN_VERSION')) {
-  define('WPMI_PLUGIN_VERSION', '2.0.1');
+  define('WPMI_PLUGIN_VERSION', '2.0.3');
 }
 if (!defined('WPMI_PLUGIN_FILE')) {
   define('WPMI_PLUGIN_FILE', __FILE__);

@@ -2,8 +2,8 @@
 Contributors: quadlayers
 Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, megamenu, mega menu
 Requires at least: 4.8
-Tested up to: 5.0
-Stable tag: 1.0.0
+Tested up to: 5.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,18 @@ That's the reason why we've created WP Menu Icons, a plugin that doesn't presu
 After installation go to Appearance > Menus and include your wordpress menu icons.
 
 == Changelog ==
+
+= 2.0.3 =
+
+* fixed menu icon version number
+
+= 2.0.2 =
+
+* fixed menu icon size
+
+= 2.0.1 =
+
+* fixed menu icon alignment
 
 = 2.0 =
 
