@@ -1,7 +1,8 @@
 === WP Menu Icons ===
 Contributors: quadlayers
+Donate link: https://quadlayers.com/portfolio/wp-menu-icons/
 Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, megamenu, mega menu
-Requires at least: 4.8
+Requires at least: 5.2.2
 Tested up to: 5.2
 Stable tag: 2.0.3
 License: GPLv2 or later
