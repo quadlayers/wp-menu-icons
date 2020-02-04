@@ -45,8 +45,18 @@
                     this.initialize_templates();
                     this.render(e);
                     this.backdrop(e);
+                    this.tabs(e);
                 },
                 backdrop: function (e) {
+                    'use strict';
+
+                    var plugin = this;
+
+                    $(document).on('click', '.media-modal-backdrop', function (e) {
+                        plugin.Close(e);
+                    });
+                },
+                tabs: function (e) {
                     'use strict';
 
                     var plugin = this;
