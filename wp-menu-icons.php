@@ -2,12 +2,12 @@
 
 /**
  * Plugin Name: WP Menu Icons
- * Plugin URI: http://www.quadmenu.com/
+ * Plugin URI: https://quadlayers.com/portfolio/wp-menu-icons/
  * Description: Add icons to your menu items.
- * Version: 2.0.3
- * Author: WP Menu Icons
- * Author URI: http://www.quadmenu.com
- * Copyright: 2018 QuadMenu (http://www.quadmenu.com)
+ * Version: 2.0.4
+ * Author: QuadLayers
+ * Author URI: https://quadlayers.com
+* License: GPLv3
  */
 if (!defined('ABSPATH')) {
   die('-1');
@@ -16,7 +16,7 @@ if (!defined('WPMI_PLUGIN_NAME')) {
   define('WPMI_PLUGIN_NAME', 'WP Menu Icons');
 }
 if (!defined('WPMI_PLUGIN_VERSION')) {
-  define('WPMI_PLUGIN_VERSION', '2.0.3');
+  define('WPMI_PLUGIN_VERSION', '2.0.4');
 }
 if (!defined('WPMI_PLUGIN_FILE')) {
   define('WPMI_PLUGIN_FILE', __FILE__);
@@ -49,7 +49,7 @@ if (!defined('WPMI_GROUP_URL')) {
   define('WPMI_GROUP_URL', 'https://www.facebook.com/groups/quadlayers');
 }
 if (!defined('WPMI_QUADMENU_URL')) {
-  define('WPMI_QUADMENU_URL', 'https://www.quadmenu.com/?utm_source=wpmi_admin');
+  define('WPMI_QUADMENU_URL', 'https://quadmenu.com/?utm_source=wpmi_admin');
 }
 
 if (!class_exists('WPMI')) {
