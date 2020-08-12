@@ -5,14 +5,16 @@ if (!defined('ABSPATH')) {
 
 if (!class_exists('WPMI_Backend')) {
 
-  class WPMI_Backend extends WPMI {
+  class WPMI_Backend extends WPMI
+  {
 
     private static $instance;
     protected static $fields = array('icon');
 
-    function ajax_dismiss_notice() {
+    function ajax_dismiss_notice()
+    {
 
-      if ($notice_id = ( isset($_POST['notice_id']) ) ? sanitize_key($_POST['notice_id']) : '') {
+      if ($notice_id = (isset($_POST['notice_id'])) ? sanitize_key($_POST['notice_id']) : '') {
 
         update_user_meta(get_current_user_id(), $notice_id, true);
 
@@ -22,10 +24,11 @@ if (!class_exists('WPMI_Backend')) {
       wp_die();
     }
 
-    function add_notices() {
+    function add_notices()
+    {
 
       if (!get_transient('wpmi-first-rating') && !get_user_meta(get_current_user_id(), 'wpmi-user-rating', true)) {
-        ?>
+?>
         <div id="wpmi-admin-rating" class="wpmi-notice notice is-dismissible" data-notice_id="wpmi-user-rating">
           <div class="notice-container" style="padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: left; align-items: center;">
             <div class="notice-image">
@@ -34,7 +37,7 @@ if (!class_exists('WPMI_Backend')) {
             <div class="notice-content" style="margin-left: 15px;">
               <p>
                 <?php printf(esc_html__('Hello! Thank you for choosing the %s plugin!', 'wpmi'), WPMI_PLUGIN_NAME); ?>
-                <br/>
+                <br />
                 <?php esc_html_e('Could you please give it a 5-star rating on WordPress? We know its a big favor, but we\'ve worked very much and very hard to release this great product. Your feedback will boost our motivation and help us promote and continue to improve this product.', 'wpmi'); ?>
               </p>
               <a href="<?php echo esc_url(WPMI_REVIEW_URL); ?>" class="button-primary" target="_blank">
@@ -43,12 +46,12 @@ if (!class_exists('WPMI_Backend')) {
               <a href="<?php echo esc_url(WPMI_SUPPORT_URL); ?>" class="button-secondary" target="_blank">
                 <?php esc_html_e('Report a bug', 'wpmi'); ?>
               </a>
-            </div>				
+            </div>
           </div>
         </div>
         <script>
-          (function ($) {
-            $('.wpmi-notice').on('click', '.notice-dismiss', function (e) {
+          (function($) {
+            $('.wpmi-notice').on('click', '.notice-dismiss', function(e) {
               e.preventDefault();
               var notice_id = $(e.delegateTarget).data('notice_id');
               $.ajax({
@@ -58,18 +61,19 @@ if (!class_exists('WPMI_Backend')) {
                   notice_id: notice_id,
                   action: 'wpmi_dismiss_notice',
                 },
-                success: function (response) {
+                success: function(response) {
                   console.log('Dismiss notice!');
                 },
               });
             });
           })(jQuery);
         </script>
-        <?php
+      <?php
       }
     }
 
-    function add_action_links($links) {
+    function add_action_links($links)
+    {
 
       $links[] = '<a target="_blank" href="' . WPMI_DEMO_URL . '">' . esc_html__('Documentation', 'wpmi') . '</a>';
       $links[] = '<a target="_blank" href="' . WPMI_SUPPORT_URL . '">' . esc_html__('Support', 'wpmi') . '</a>';
@@ -77,7 +81,8 @@ if (!class_exists('WPMI_Backend')) {
       return $links;
     }
 
-    function wp_update_nav_menu_item($menu_id, $menu_item_db_id, $menu_item_args) {
+    function wp_update_nav_menu_item($menu_id, $menu_item_db_id, $menu_item_args)
+    {
 
       if (!wp_doing_ajax()) {
 
@@ -99,7 +104,8 @@ if (!class_exists('WPMI_Backend')) {
       }
     }
 
-    function update($id, $value) {
+    function update($id, $value)
+    {
 
       $value = apply_filters('wp_menu_icons_item_meta_values', $value, $id);
 
@@ -110,7 +116,8 @@ if (!class_exists('WPMI_Backend')) {
       }
     }
 
-    function save_nav_menu() {
+    function save_nav_menu()
+    {
 
       if (check_ajax_referer('wpmi', 'nonce', false)) {
 
@@ -131,7 +138,8 @@ if (!class_exists('WPMI_Backend')) {
       wp_die('Fail!');
     }
 
-    function enqueue() {
+    function enqueue()
+    {
 
       global $pagenow;
 
@@ -148,25 +156,36 @@ if (!class_exists('WPMI_Backend')) {
 
       wp_register_script('wp-color-picker-alpha', plugins_url('assets/js/wp-color-picker-alpha.min.js', WPMI_PLUGIN_FILE), array('jquery', 'wp-color-picker'));
 
+      wp_localize_script('wp-color-picker-alpha', 'wpColorPickerL10n', array(
+        'clear'            => esc_html__('Clear', 'wp-menu-icons'),
+        'clearAriaLabel'   => esc_html__('Clear color', 'wp-menu-icons'),
+        'defaultString'    => esc_html__('Default', 'wp-menu-icons'),
+        'defaultAriaLabel' => esc_html__('Select default color', 'wp-menu-icons'),
+        'pick'             => esc_html__('Select Color', 'wp-menu-icons'),
+        'defaultLabel'     => esc_html__('Color value', 'wp-menu-icons'),
+      ));
+
       wp_enqueue_script('wpmi', plugins_url('assets/js/modal.js', WPMI_PLUGIN_FILE), array(
-          'jquery',
-          'backbone',
-          'underscore',
-          'wp-util',
-          'wp-color-picker-alpha'
+        'jquery',
+        'backbone',
+        'underscore',
+        'wp-util',
+        'wp-color-picker-alpha'
       ));
       wp_localize_script('wpmi', 'wpmi_l10n', array(
-          'legacy_pick' => esc_html__('Select'),
-          'legacy_current' => esc_html__('Color'),
-          'nonce' => wp_create_nonce('wpmi'),
+        'legacy_pick' => esc_html__('Select'),
+        'legacy_current' => esc_html__('Color'),
+        'nonce' => wp_create_nonce('wpmi'),
       ));
     }
 
-    function navmenu() {
+    function navmenu()
+    {
       add_meta_box(WPMI_DOMAIN . '_metabox', WPMI_PLUGIN_NAME, array($this, 'metabox'), 'nav-menus', 'side', 'high');
     }
 
-    public function metabox() {
+    public function metabox()
+    {
 
       $menu_id = $this->nav_menu_selected_id();
 
@@ -176,10 +195,10 @@ if (!class_exists('WPMI_Backend')) {
       ?>
       <div id="posttype-<?php echo esc_attr(WPMI_DOMAIN); ?>-themes" class="posttypediv">
         <div id="tabs-panel-<?php echo esc_attr(WPMI_DOMAIN); ?>-themes" class="tabs-panel tabs-panel-active">
-          <ul id ="<?php echo esc_attr(WPMI_DOMAIN); ?>-themes-checklist" class="categorychecklist form-no-clear">
+          <ul id="<?php echo esc_attr(WPMI_DOMAIN); ?>-themes-checklist" class="categorychecklist form-no-clear">
             <?php
             foreach ($this->registered_icons() as $id => $icon) :
-              ?>
+            ?>
               <li>
                 <label class="menu-item-title">
                   <input type="radio" class="<?php echo esc_attr(WPMI_DOMAIN . '-item-checkbox'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '_font'); ?>" value="<?php echo esc_attr($id); ?>" <?php checked($id, $current); ?>> <?php echo esc_html($icon->name); ?>
@@ -187,14 +206,15 @@ if (!class_exists('WPMI_Backend')) {
               </li>
             <?php endforeach; ?>
           </ul>
-          <?php submit_button(__('Save'), 'button-primary save', false, false); ?>
+          <?php submit_button(esc_html__('Save'), 'button-primary save', false, false); ?>
           <p></p>
         </div>
       </div>
-      <?php
+    <?php
     }
 
-    function walker($walker) {
+    function walker($walker)
+    {
 
       $walker = 'Menu_Item_Custom_Fields_Walker';
 
@@ -205,7 +225,8 @@ if (!class_exists('WPMI_Backend')) {
       return $walker;
     }
 
-    public function print_media_templates() {
+    public function print_media_templates()
+    {
 
       global $pagenow;
 
@@ -213,7 +234,7 @@ if (!class_exists('WPMI_Backend')) {
         return;
 
       $menu_id = $this->nav_menu_selected_id();
-      ?>
+    ?>
       <script type="text/html" id='tmpl-wpmi-modal-backdrop'>
         <div class="media-modal-backdrop">&nbsp;</div>
       </script>
@@ -247,7 +268,7 @@ if (!class_exists('WPMI_Backend')) {
                   <div class="attachments-browser">
                     <div class="media-toolbar">
                       <div class="media-toolbar-secondary">
-                        <p><em><?php printf(__('Search in %s.'), _WPMI()->selected_icons($menu_id)->name); ?></em></p>
+                        <p><em><?php printf(esc_html__('Search in %s.'), _WPMI()->selected_icons($menu_id)->name); ?></em></p>
                       </div>
                       <div class="media-toolbar-primary search-form">
                         <input type="search" placeholder="<?php esc_html_e('Search...'); ?>" id="media-search-input" class="search">
@@ -315,24 +336,24 @@ if (!class_exists('WPMI_Backend')) {
           <form>
             <label class="setting">
               <span><?php esc_html_e('Hide Label'); ?></span>
-              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-label'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[label]'); ?>" >
-                <option <# if ( data.label != 1) { #>selected<# } #> value=""><?php esc_html_e('No'); ?></option>
-                <option <# if ( data.label == 1) { #>selected<# } #> value="1"><?php esc_html_e('Yes'); ?></option>
+              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-label'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[label]'); ?>">
+                <option <# if ( data.label !=1) { #>selected<# } #> value=""><?php esc_html_e('No'); ?></option>
+                <option <# if ( data.label==1) { #>selected<# } #> value="1"><?php esc_html_e('Yes'); ?></option>
               </select>
             </label>
             <label class="setting">
               <span><?php esc_html_e('Position'); ?></span>
-              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-position'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[position]'); ?>" >
-                <option <# if ( data.position == 'before' ) { #>selected<# } #> value="before"><?php esc_html_e('Before'); ?></option>
-                <option <# if ( data.position == 'after' ) { #>selected<# } #> value="after"><?php esc_html_e('After'); ?></option>
+              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-position'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[position]'); ?>">
+                <option <# if ( data.position=='before' ) { #>selected<# } #> value="before"><?php esc_html_e('Before'); ?></option>
+                <option <# if ( data.position=='after' ) { #>selected<# } #> value="after"><?php esc_html_e('After'); ?></option>
               </select>
             </label>
             <label class="setting">
               <span><?php esc_html_e('Vertical Align'); ?></span>
-              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-align'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[align]'); ?>" >
-                <option  <# if ( data.align == 'top' ) { #>selected<# } #> value="top"><?php esc_html_e('Top'); ?></option>
-                <option  <# if ( data.align == 'middle' ) { #>selected<# } #> value="middle"><?php esc_html_e('Middle'); ?></option>
-                <option  <# if ( data.align == 'bottom' ) { #>selected<# } #> value="bottom"><?php esc_html_e('Bottom'); ?></option>
+              <select id="<?php echo esc_attr(WPMI_DOMAIN . '-input-align'); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" name="<?php echo esc_attr(WPMI_DOMAIN . '[align]'); ?>">
+                <option <# if ( data.align=='top' ) { #>selected<# } #> value="top"><?php esc_html_e('Top'); ?></option>
+                <option <# if ( data.align=='middle' ) { #>selected<# } #> value="middle"><?php esc_html_e('Middle'); ?></option>
+                <option <# if ( data.align=='bottom' ) { #>selected<# } #> value="bottom"><?php esc_html_e('Bottom'); ?></option>
               </select>
             </label>
             <label class="setting">
@@ -348,31 +369,34 @@ if (!class_exists('WPMI_Backend')) {
           </form>
         </div>
       </script>
-      <?php
+    <?php
     }
 
-    function icon($menu_item_id, $item, $depth, $args) {
-      ?>
+    function icon($menu_item_id, $item, $depth, $args)
+    {
+    ?>
       <span class="menu-item-wpmi_open">
-        <?php if (!empty($item->wpmi->icon)): ?>
+        <?php if (!empty($item->wpmi->icon)) : ?>
           <i class="menu-item-wpmi_icon <?php echo esc_attr($item->wpmi->icon); ?>"></i>
         <?php endif; ?>
         <i class="menu-item-wpmi_plus dashicons dashicons-plus"></i>
       </span>
-      <?php
+    <?php
     }
 
-    function fields($menu_item_id, $item, $depth, $args) {
-      ?>
+    function fields($menu_item_id, $item, $depth, $args)
+    {
+    ?>
       <?php
       foreach ($this->default_values as $key => $value) {
-        ?>
+      ?>
         <input id="<?php echo esc_attr(WPMI_DOMAIN . '-input-' . $key); ?>" class="<?php echo esc_attr(WPMI_DOMAIN . '-input'); ?>" type="hidden" name="<?php echo esc_attr(WPMI_DOMAIN . '[' . $menu_item_id . '][' . $key . ']'); ?>" value="<?php echo esc_attr($item->wpmi->{$key}); ?>">
-        <?php
+<?php
       }
     }
 
-    function init() {
+    function init()
+    {
       add_action('wp_ajax_wpmi_dismiss_notice', array($this, 'ajax_dismiss_notice'));
       add_action('admin_enqueue_scripts', array($this, 'enqueue'));
       add_action('admin_init', array($this, 'navmenu'));
@@ -386,16 +410,15 @@ if (!class_exists('WPMI_Backend')) {
       add_filter('plugin_action_links_' . plugin_basename(WPMI_PLUGIN_FILE), array($this, 'add_action_links'));
     }
 
-    public static function instance() {
+    public static function instance()
+    {
       if (!isset(self::$instance)) {
         self::$instance = new self();
         self::$instance->init();
       }
       return self::$instance;
     }
-
   }
 
   WPMI_Backend::instance();
 }
-
