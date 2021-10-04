@@ -34,7 +34,7 @@ After installation go to Appearance > Menus and include your wordpress menu icon
 == Changelog ==
 
 = 2.1.1 =
-* Fix. QuadLayers widget cache
+*  QuadLayers widget cache
 
 = 2.1.0 =
 
