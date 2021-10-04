@@ -4,7 +4,7 @@ Donate link: https://quadlayers.com/portfolio/wp-menu-icons/
 Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, megamenu, mega menu
 Requires at least: 4.6
 Tested up to: 5.8
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,6 +32,9 @@ That's the reason why we've created WP Menu Icons, a plugin that doesn't presu
 After installation go to Appearance > Menus and include your wordpress menu icons.
 
 == Changelog ==
+
+= 2.1.1 =
+* Fix. QuadLayers widget cache
 
 = 2.1.0 =
 
