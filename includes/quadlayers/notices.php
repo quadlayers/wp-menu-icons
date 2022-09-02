@@ -33,7 +33,7 @@ class WPMI_Notices {
 		$transient = get_transient( 'wpmi-notice-delay' );
 
 		if ( $transient ) {
-			// return;
+			return;
 		}
 
 		?>
