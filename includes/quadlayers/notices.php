@@ -61,7 +61,7 @@ class WPMI_Notices {
 		</script>
 		<?php
 
-		$plugin_slug = WPMI_CROSS_SELL_SLUG;
+		$plugin_slug = WPMI_PREMIUM_SELL_SLUG;
 
 		$user_rating     = ! get_user_meta( get_current_user_id(), 'wpmi-user-rating', true );
 		$user_premium    = ! get_user_meta( get_current_user_id(), 'wpmi-user-premium', true ) && ! $this->is_installed( "{$plugin_slug}/{$plugin_slug}.php" );
@@ -107,14 +107,14 @@ class WPMI_Notices {
 						<?php
 						printf(
 							esc_html__( 'Today we want to make you a special gift. Using this coupon before the next 48 hours you can get a 20 percent discount on the premium version of the %s plugin.', 'wp-menu-icons' ),
-							esc_html( WPMI_CROSS_SELL_NAME )
+							esc_html( WPMI_PREMIUM_SELL_NAME )
 						)
 						?>
 						</p>
-						<a href="<?php echo esc_url( WPMI_CROSS_SELL_URL ); ?>" class="button-primary" target="_blank">
+						<a href="<?php echo esc_url( WPMI_PREMIUM_SELL_URL ); ?>" class="button-primary" target="_blank">
 							<?php esc_html_e( 'More info', 'wp-menu-icons' ); ?>
 						</a>
-						<input style="width:95px" type="text" value="ADMINPANEL20%"/>
+						<input style="width:130px" type="text" value="ADMINPANEL20%"/>
 					</div>
 				</div>
 			</div>
@@ -140,14 +140,14 @@ class WPMI_Notices {
 					</div>
 					<div class="notice-content" style="margin-left: 15px;">
 						<p>
-						<?php printf( esc_html__( 'Hello! We want to invite you to try our %s plugin!', 'wp-menu-icons' ), WPMI_CROSS_SELL_NAME ); ?>
+						<?php printf( esc_html__( 'Hello! We want to invite you to try our %s plugin!', 'wp-menu-icons' ), esc_html( WPMI_CROSS_INSTALL_NAME ) ); ?>
 							<br/>
-						<?php echo esc_html( WPMI_CROSS_SELL_DESCRIPTION ); ?>
+						<?php echo esc_html( WPMI_CROSS_INSTALL_DESCRIPTION ); ?>
 						</p>
 						<a href="<?php echo esc_url( $action_link ); ?>" class="button-primary">
 						<?php echo esc_html( $action ); ?>
 						</a>
-						<a href="<?php echo esc_url( WPMI_CROSS_SELL_URL ); ?>" class="button-secondary" target="_blank">
+						<a href="<?php echo esc_url( WPMI_CROSS_INSTALL_URL ); ?>" class="button-secondary" target="_blank">
 						<?php esc_html_e( 'More info', 'wp-menu-icons' ); ?>
 						</a>
 					</div>
