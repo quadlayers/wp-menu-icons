@@ -129,7 +129,7 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 		}
 
 		function navmenu() {
-			add_meta_box( WPMI_DOMAIN . '_metabox', WPMI_PLUGIN_NAME, array( $this, 'metabox' ), 'nav-menus', 'side', 'high' );
+			add_meta_box( WPMI_PREFIX . '_metabox', WPMI_PLUGIN_NAME, array( $this, 'metabox' ), 'nav-menus', 'side', 'high' );
 		}
 
 		public function metabox() {
@@ -140,15 +140,15 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 				$current = 'dashicons';
 			}
 			?>
-		<div id="posttype-<?php echo esc_attr( WPMI_DOMAIN ); ?>-themes" class="posttypediv">
-		<div id="tabs-panel-<?php echo esc_attr( WPMI_DOMAIN ); ?>-themes" class="tabs-panel tabs-panel-active">
-			<ul id="<?php echo esc_attr( WPMI_DOMAIN ); ?>-themes-checklist" class="categorychecklist form-no-clear">
+		<div id="posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="posttypediv">
+		<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
+			<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
 			<?php
 			foreach ( $this->registered_icons() as $id => $icon ) :
 				?>
 				<li>
 				<label class="menu-item-title">
-					<input type="radio" class="<?php echo esc_attr( WPMI_DOMAIN . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $icon->name ); ?>
+					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $icon->name ); ?>
 				</label>
 				</li>
 			<?php endforeach; ?>
@@ -185,7 +185,7 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 			<div class="media-modal-backdrop">&nbsp;</div>
 		</script>
 		<script type="text/html" id='tmpl-wpmi-modal-window'>
-			<div id="<?php echo esc_attr( WPMI_DOMAIN . '_modal' ); ?>" class="media-modal wp-core-ui">
+			<div id="<?php echo esc_attr( WPMI_PREFIX . '_modal' ); ?>" class="media-modal wp-core-ui">
 				<button type="button" class="media-modal-close close">
 				<span class="media-modal-icon">
 					<span class="screen-reader-text"><?php esc_html_e( 'Close media panel' ); ?></span>
@@ -281,21 +281,21 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 				<form>
 					<label class="setting">
 						<span><?php esc_html_e( 'Hide Label' ); ?></span>
-						<select id="<?php echo esc_attr( WPMI_DOMAIN . '-input-label' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[label]' ); ?>">
+						<select id="<?php echo esc_attr( WPMI_PREFIX . '-input-label' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[label]' ); ?>">
 						<option <# if ( data.label !=1) { #>selected<# } #> value=""><?php esc_html_e( 'No' ); ?></option>
 						<option <# if ( data.label==1) { #>selected<# } #> value="1"><?php esc_html_e( 'Yes' ); ?></option>
 						</select>
 					</label>
 					<label class="setting">
 						<span><?php esc_html_e( 'Position' ); ?></span>
-						<select id="<?php echo esc_attr( WPMI_DOMAIN . '-input-position' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[position]' ); ?>">
+						<select id="<?php echo esc_attr( WPMI_PREFIX . '-input-position' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[position]' ); ?>">
 						<option <# if ( data.position=='before' ) { #>selected<# } #> value="before"><?php esc_html_e( 'Before' ); ?></option>
 						<option <# if ( data.position=='after' ) { #>selected<# } #> value="after"><?php esc_html_e( 'After' ); ?></option>
 						</select>
 					</label>
 					<label class="setting">
 						<span><?php esc_html_e( 'Vertical Align' ); ?></span>
-						<select id="<?php echo esc_attr( WPMI_DOMAIN . '-input-align' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[align]' ); ?>">
+						<select id="<?php echo esc_attr( WPMI_PREFIX . '-input-align' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[align]' ); ?>">
 						<option <# if ( data.align=='top' ) { #>selected<# } #> value="top"><?php esc_html_e( 'Top' ); ?></option>
 						<option <# if ( data.align=='middle' ) { #>selected<# } #> value="middle"><?php esc_html_e( 'Middle' ); ?></option>
 						<option <# if ( data.align=='bottom' ) { #>selected<# } #> value="bottom"><?php esc_html_e( 'Bottom' ); ?></option>
@@ -303,14 +303,14 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 					</label>
 					<label class="setting">
 						<span><?php esc_html_e( 'Size' ); ?> <em>(em)</em></span>
-						<input id="<?php echo esc_attr( WPMI_DOMAIN . '-input-size' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[size]' ); ?>" type="number" min="0.1" step="0.1" value="{{ data.size }}">
+						<input id="<?php echo esc_attr( WPMI_PREFIX . '-input-size' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[size]' ); ?>" type="number" min="0.1" step="0.1" value="{{ data.size }}">
 					</label>
 					<label class="wpmi-color-picker">
 						<span class="container">
-						<input id="<?php echo esc_attr( WPMI_DOMAIN . '-input-color' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[color]' ); ?>" type="text" value="{{ data.color }}" data-alpha="true">
+						<input id="<?php echo esc_attr( WPMI_PREFIX . '-input-color' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[color]' ); ?>" type="text" value="{{ data.color }}" data-alpha="true">
 						</span>
 					</label>
-					<input id="<?php echo esc_attr( WPMI_DOMAIN . '-input-icon' ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" name="<?php echo esc_attr( WPMI_DOMAIN . '[icon]' ); ?>" type="hidden" value="{{ data.icon }}">
+					<input id="<?php echo esc_attr( WPMI_PREFIX . '-input-icon' ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '[icon]' ); ?>" type="hidden" value="{{ data.icon }}">
 				</form>
 			</div>
 		</script>
@@ -333,7 +333,7 @@ if ( ! class_exists( 'WPMI_Backend' ) ) {
 			<?php
 			foreach ( $this->default_values as $key => $value ) {
 				?>
-				<input id="<?php echo esc_attr( WPMI_DOMAIN . '-input-' . $key ); ?>" class="<?php echo esc_attr( WPMI_DOMAIN . '-input' ); ?>" type="hidden" name="<?php echo esc_attr( WPMI_DOMAIN . '[' . $menu_item_id . '][' . $key . ']' ); ?>" value="<?php echo esc_attr( $item->wpmi->{$key} ); ?>">
+				<input id="<?php echo esc_attr( WPMI_PREFIX . '-input-' . $key ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" type="hidden" name="<?php echo esc_attr( WPMI_PREFIX . '[' . $menu_item_id . '][' . $key . ']' ); ?>" value="<?php echo esc_attr( $item->wpmi->{$key} ); ?>">
 				<?php
 			}
 		}
