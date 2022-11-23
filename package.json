@@ -1,0 +1,31 @@
+{
+  "name": "wp-menu-icons",
+  "version": "1.0.0",
+  "description": "== WP Menu Icons ===\r Contributors: quadlayers\r Donate link: https://quadlayers.com/portfolio/wp-menu-icons/\r Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, megamenu, mega menu\r Requires at least: 4.6\r Tested up to: 6.1\r Stable tag: 2.2.4\r License: GPLv3\r License URI: https://www.gnu.org/licenses/gpl-3.0.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quadlayers/wp-menu-icons.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quadlayers/wp-menu-icons/issues"
+  },
+  "homepage": "https://github.com/quadlayers/wp-menu-icons#readme",
+  "devDependencies": {
+    "@wordpress/prettier-config": "^2.5.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {}
+}
