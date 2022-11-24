@@ -10,11 +10,11 @@ module.exports = [
 	{
 		...defaultConfig,
 		entry: {
-			'index': path.resolve(__dirname, 'src', './frontend-test/style.scss'),
+			'index': path.resolve(__dirname, 'src', './frontend/style.scss'),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, '../build/frontend-test/css/'),
+			path: path.resolve(__dirname, '../build/frontend/css/'),
 		},
 		module: {
 			...defaultConfig.module,
@@ -45,15 +45,15 @@ module.exports = [
 			}),
 		]
 	},
-	// frontend-test/index.js
+	// frontend/index.js
 	{
 		...defaultConfig,
 		entry: {
-			'index': path.resolve(__dirname, 'src', './frontend-test/index.js'),
+			'index': path.resolve(__dirname, 'src', './frontend/index.js'),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, '../build/frontend-test/js/'),
+			path: path.resolve(__dirname, '../build/frontend/js/'),
 		},
 		optimization: {
 			minimize: isProduction,
@@ -66,11 +66,11 @@ module.exports = [
 	{
 		...defaultConfig,
 		entry: {
-			'index': path.resolve(__dirname, 'src', './backend-test/index.js'),
+			'index': path.resolve(__dirname, 'src', './backend/index.js'),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, '../build/backend-test/js/'),
+			path: path.resolve(__dirname, '../build/backend/js/'),
 		},
 		optimization: {
 			minimize: isProduction,
@@ -83,11 +83,11 @@ module.exports = [
 	{
 		...defaultConfig,
 		entry: {
-			'index': path.resolve(__dirname, 'src', './backend-test/style.scss'),
+			'index': path.resolve(__dirname, 'src', './backend/style.scss'),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, '../build/backend-test/css/'),
+			path: path.resolve(__dirname, '../build/backend/css/'),
 		},
 		module: {
 			...defaultConfig.module,
