@@ -9,6 +9,7 @@ class WPMI_Admin_Links {
 	}
 
 	public function add_action_links( $links ) {
+		$links[] = '<a target="_blank" href="' . WPMI_PREMIUM_SELL_URL . '">' . esc_html__( 'Premium', 'wp-menu-icons' ) . '</a>';
 		$links[] = '<a target="_blank" href="' . WPMI_DEMO_URL . '">' . esc_html__( 'Documentation', 'wp-menu-icons' ) . '</a>';
 		$links[] = '<a target="_blank" href="' . WPMI_SUPPORT_URL . '">' . esc_html__( 'Support', 'wp-menu-icons' ) . '</a>';
 		return $links;
