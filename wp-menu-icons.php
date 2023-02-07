@@ -1,20 +1,26 @@
 <?php
 
 /**
- * Plugin Name: WP Menu Icons
- * Plugin URI: https://quadlayers.com/portfolio/wp-menu-icons/
- * Description: Add icons to your menu items.
- * Version: 2.2.5
- * Author: QuadLayers
- * Author URI: https://quadlayers.com
- * License: GPLv3
+ * Plugin Name:             WP Menu Icons
+ * Plugin URI:              https://quadlayers.com/portfolio/wp-menu-icons/
+ * Description:             Add icons to your menu items.
+ * Version:                 2.2.6
+ * Text Domain:             wp-menu-icons
+ * Author:                  QuadLayers
+ * Author URI:              https://quadlayers.com
+ * License:                 GPLv3
+ * Domain Path:             /languages
+ * Request at least:        4.7.0
+ * Tested up to:            6.1
+ * Requires PHP:            5.6
  */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
 define( 'WPMI_PLUGIN_NAME', 'WP Menu Icons' );
-define( 'WPMI_PLUGIN_VERSION', '2.2.5' );
+define( 'WPMI_PLUGIN_VERSION', '2.2.6' );
 define( 'WPMI_PLUGIN_FILE', __FILE__ );
 define( 'WPMI_PLUGIN_DIR', __DIR__ . DIRECTORY_SEPARATOR );
 define( 'WPMI_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
