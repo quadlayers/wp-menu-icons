@@ -5,14 +5,14 @@ Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, 
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 6.1
-Stable tag: 2.2.6
+Stable tag: 3.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 WP Menu Icons allows you to add icons to your items WordPress menu.
 
 == Description ==
-[Documentation](https://quadlayers.com/portfolio/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/)
+[Documentation](https://quadlayers.com/portfolio/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/) | [Github](https://github.com/quadlayers/wp-menu-icons)
 
 The menu of the site can be so simplest as a list of links without indentation or the complex place in a site.
 
@@ -33,6 +33,10 @@ That's the reason why we've created WP Menu Icons, a plugin that doesn't presu
 After installation go to Appearance > Menus and include your wordpress menu icons.
 
 == Changelog ==
+
+= 3.0.0 =
+
+* Refactor
 
 = 2.2.6 =
 
