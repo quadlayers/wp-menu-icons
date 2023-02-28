@@ -5,7 +5,7 @@ Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, 
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 6.1
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,10 @@ That's the reason why we've created WP Menu Icons, a plugin that doesn't presu
 After installation go to Appearance > Menus and include your wordpress menu icons.
 
 == Changelog ==
+
+= 3.0.1 =
+
+* Composer packages update
 
 = 3.0.0 =
 

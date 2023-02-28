@@ -20,6 +20,11 @@ final class Plugin {
 
 	private function __construct() {
 
+		/**
+		 * Load plugin textdomain.
+		 */
+		load_plugin_textdomain( 'wp-menu-icons', false, WPMI_PLUGIN_DIR . '/languages/' );
+		
 		add_filter( 'wp_menu_icons_register_icons', array( $this, 'get_default_icons' ) );
 		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
 		add_action(
@@ -195,10 +200,11 @@ final class Plugin {
 	}
 
 	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
 		}
 		return self::$instance;
 	}
 }
- Plugin::instance();
+
+Plugin::instance();
