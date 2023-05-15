@@ -126,3 +126,4 @@ module.exports.deleteFromPluginFolder = deleteFromPluginFolder;
 module.exports.consoleSuccess = consoleSuccess;
 module.exports.consoleError = consoleError;
 module.exports.consoleInfo = consoleInfo;
+module.exports.copyFileFromTo = copyFileFromTo;
