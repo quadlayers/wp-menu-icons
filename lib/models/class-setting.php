@@ -76,18 +76,26 @@ class Setting extends Models_Base {
 		return true;
 	}
 
-	//TODO: move this outside model settings 
+	//TODO: move this outside model settings
 	public function get_libraries() {
 		return $this->get_all()['available_libraries'];
 	}
 
+	//TODO: move this outside model settings
 	public function get_active_libraries() {
 		$registered_icons_default = json_decode( json_encode( Plugin::registered_icons_default() ), true );
 		$libraries                = $this->get_all();
 
 		$active_libraries = array();
-		
+
+		if( ! isset( $libraries['available_libraries'] ) ) {
+			return $active_libraries;
+		}
+
 		foreach ( $libraries['available_libraries'] as $library ) {
+
+			$library = (array) $library;
+
 			if ( in_array( $library['ID'], $libraries['active_libraries'] ) ) {
 				$active_libraries[ $library['ID'] ] = $library;
 			}

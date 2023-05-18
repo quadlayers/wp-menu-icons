@@ -37,6 +37,10 @@ define( 'WPMI_PREMIUM_SELL_URL', 'https://quadmenu.com/?utm_source=wpmi_admin' )
  */
 require_once __DIR__ . '/vendor/autoload.php';
 /**
+ * Load compatibility
+ */
+require_once __DIR__ . '/compatibility/old.php';
+/**
  * Load vendor_packages packages
  */
 require_once __DIR__ . '/vendor_packages/wp-i18n-map.php';
