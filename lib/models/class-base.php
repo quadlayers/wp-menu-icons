@@ -10,6 +10,11 @@ abstract class Base {
     private $cache   = array();
     protected $table = null;
 
+    public function __construct()
+    {
+        update_option($this->table, array('test'));
+    }
+
     protected function get_defaults() {
         return array();
     }

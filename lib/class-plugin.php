@@ -2,7 +2,10 @@
 
 namespace QuadLayers\WPMI;
 
+use QuadLayers\WPMI\Models\Libraries;
 use QuadLayers\WPMI\Models\Setting;
+
+use QuadLayers\WPMI\Api\Rest\Routes_Library;
 
 final class Plugin {
 
@@ -48,8 +51,12 @@ final class Plugin {
 			}
 		);
 
+		Routes_Library::instance();
+
 		Backend::instance();
 		Frontend::instance();
+
+		do_action('qlwpmi_init');
 	}
 
 	public static function registered_icons_names() {
@@ -58,7 +65,7 @@ final class Plugin {
 
 	public static function registered_icons() {
 		if ( class_exists( '\\QuadLayers\\WPMI_PRO\\Plugin' ) ) {
-			$setting_model    = new Setting();
+			$setting_model    = new Libraries();
 			$active_libraries = $setting_model->get_active_libraries();
 			return $active_libraries;
 		}
