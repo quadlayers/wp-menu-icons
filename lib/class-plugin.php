@@ -2,6 +2,8 @@
 
 namespace QuadLayers\WPMI;
 
+use QuadLayers\WPMI\Models\Setting;
+
 final class Plugin {
 
 	private static $instance;
@@ -24,7 +26,7 @@ final class Plugin {
 		 * Load plugin textdomain.
 		 */
 		load_plugin_textdomain( 'wp-menu-icons', false, WPMI_PLUGIN_DIR . '/languages/' );
-		
+
 		add_filter( 'wp_menu_icons_register_icons', array( $this, 'get_default_icons' ) );
 		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
 		add_action(
@@ -55,6 +57,15 @@ final class Plugin {
 	}
 
 	public static function registered_icons() {
+		if ( class_exists( '\\QuadLayers\\WPMI_PRO\\Plugin' ) ) {
+			$setting_model    = new Setting();
+			$active_libraries = $setting_model->get_active_libraries();
+			return $active_libraries;
+		}
+		return (object) self::$registered_icons;
+	}
+
+	public static function registered_icons_default() {
 		return (object) self::$registered_icons;
 	}
 

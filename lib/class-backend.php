@@ -52,6 +52,7 @@ class Backend {
 	}
 
 	public function save_nav_menu() {
+		error_log( '_REQUEST: ' . json_encode( $_REQUEST, JSON_PRETTY_PRINT ) );
 
 		if ( check_ajax_referer( 'wpmi', 'nonce', false ) ) {
 
