@@ -67,7 +67,7 @@ final class Plugin {
 		if ( class_exists( '\\QuadLayers\\WPMI_PRO\\Plugin' ) ) {
 			$setting_model    = new Libraries();
 			$active_libraries = $setting_model->get_active_libraries();
-			return $active_libraries;
+			return json_decode( json_encode( $active_libraries ), false );
 		}
 		return (object) self::$registered_icons;
 	}
