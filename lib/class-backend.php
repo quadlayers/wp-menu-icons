@@ -2,12 +2,23 @@
 
 namespace QuadLayers\WPMI;
 
+use QuadLayers\WPMI\Models\Libraries;
+
 class Backend {
 
 	private static $instance;
 	protected static $fields = array( 'icon' );
+	public static $default_values = array(
+		'label'    => 0,
+		'position' => 'before',
+		'align'    => 'middle',
+		'size'     => 1,
+		'icon'     => '',
+		'color'    => '',
+	);
 
 	private function __construct() {
+		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'admin_init', array( $this, 'navmenu' ) );
 		add_action( 'wp_ajax_wpmi_save_nav_menu', array( $this, 'save_nav_menu' ) );
@@ -134,7 +145,7 @@ class Backend {
 
 	public function metabox() {
 
-		$menu_id = Plugin::nav_menu_selected_id();
+		$menu_id = self::nav_menu_selected_id();
 
 		if ( ! $current = get_term_meta( $menu_id, WPMI_DB_KEY, true ) ) {
 			$current = 'dashicons';
@@ -144,11 +155,13 @@ class Backend {
 		<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
 			<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
 			<?php
-			foreach ( Plugin::registered_icons() as $id => $icon ) :
+			$library_model    = new Libraries();
+			$active_libraries = $library_model->get_active_libraries();
+			foreach ( $active_libraries as $id => $icon ) :
 				?>
 				<li>
 				<label class="menu-item-title">
-					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $icon->name ); ?>
+					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $icon['name'] ); ?>
 				</label>
 				</li>
 			<?php endforeach; ?>
@@ -179,7 +192,7 @@ class Backend {
 			return;
 		}
 
-		$menu_id = Plugin::nav_menu_selected_id();
+		$menu_id = self::nav_menu_selected_id();
 		?>
 		<script type="text/html" id='tmpl-wpmi-modal-backdrop'>
 			<div class="media-modal-backdrop">&nbsp;</div>
@@ -200,7 +213,7 @@ class Backend {
 				<div class="media-frame-router">
 					<div class="media-router">
 					<a href="<?php echo esc_url( WPMI_PREMIUM_SELL_URL ); ?>" class="media-menu-item" target="_blank"><?php esc_html_e( 'Mega Menu' ); ?></a>
-					<a href="#" class="media-menu-item active"><?php echo Plugin::selected_icons( $menu_id )->name; ?></a>
+					<a href="#" class="media-menu-item active"><?php echo Plugin::selected_icons( $menu_id )['name']; ?></a>
 					</div>
 				</div>
 				<div class="media-modal-content">
@@ -214,14 +227,14 @@ class Backend {
 						<div class="attachments-browser">
 						<div class="media-toolbar">
 							<div class="media-toolbar-secondary">
-							<p><em><?php printf( esc_html__( 'Search in %s.' ), Plugin::selected_icons( $menu_id )->name ); ?></em></p>
+							<p><em><?php printf( esc_html__( 'Search in %s.' ), Plugin::selected_icons( $menu_id )['name'] ); ?></em></p>
 							</div>
 							<div class="media-toolbar-primary search-form">
 							<input type="search" placeholder="<?php esc_html_e( 'Search...' ); ?>" id="media-search-input" class="search">
 							</div>
 						</div>
 						<ul tabindex="-1" class="attachments">
-						<?php foreach ( explode( ',', Plugin::selected_icons( $menu_id )->iconmap ) as $id => $icon ) : ?>
+						<?php foreach ( explode( ',', Plugin::selected_icons( $menu_id )['iconmap'] ) as $id => $icon ) : ?>
 							<li tabindex="0" role="checkbox" aria-label="<?php echo esc_attr( $icon ); ?>" aria-checked="false" data-id="<?php echo esc_attr( $id ); ?>" class="attachment save-ready icon _<?php echo esc_attr( str_replace( ' ', '_', trim( $icon ) ) ); ?>">
 								<div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
 								<div class="thumbnail">
@@ -331,11 +344,73 @@ class Backend {
 	public function fields( $menu_item_id, $item, $depth, $args ) {
 		?>
 		<?php
-		foreach ( Plugin::get_default_values() as $key => $value ) {
+		foreach ( self::get_default_values() as $key => $value ) {
 			?>
 				<input id="<?php echo esc_attr( WPMI_PREFIX . '-input-' . $key ); ?>" class="<?php echo esc_attr( WPMI_PREFIX . '-input' ); ?>" type="hidden" name="<?php echo esc_attr( WPMI_PREFIX . '[' . $menu_item_id . '][' . $key . ']' ); ?>" value="<?php echo esc_attr( $item->wpmi->{$key} ); ?>">
 			<?php
 		}
+	}
+
+	public static function nav_menu_selected_id() {
+
+		$nav_menus = wp_get_nav_menus( array( 'orderby' => 'name' ) );
+
+		$menu_count = count( $nav_menus );
+
+		// Get recently edited nav menu
+		$recently_edited = (int) get_user_option( 'nav_menu_recently_edited' );
+
+		$nav_menu_selected_id = isset( $_REQUEST['menu'] ) ? (int) $_REQUEST['menu'] : 0;
+
+		// Are we on the add new screen?
+		$add_new_screen = ( isset( $_GET['menu'] ) && 0 == $_GET['menu'] ) ? true : false;
+
+		$page_count = wp_count_posts( 'page' );
+
+		$one_theme_location_no_menus = ( 1 == count( get_registered_nav_menus() ) && ! $add_new_screen && empty( $nav_menus ) && ! empty( $page_count->publish ) ) ? true : false;
+
+		if ( empty( $recently_edited ) && is_nav_menu( $nav_menu_selected_id ) ) {
+			$recently_edited = $nav_menu_selected_id;
+		}
+
+		// Use $recently_edited if none are selected.
+		if ( empty( $nav_menu_selected_id ) && ! isset( $_GET['menu'] ) && is_nav_menu( $recently_edited ) ) {
+			$nav_menu_selected_id = $recently_edited;
+		}
+
+		// On deletion of menu, if another menu exists, show it.
+		if ( ! $add_new_screen && 0 < $menu_count && isset( $_GET['action'] ) && 'delete' == $_GET['action'] ) {
+			$nav_menu_selected_id = $nav_menus[0]->term_id;
+		}
+
+		// Set $nav_menu_selected_id to 0 if no menus.
+		if ( $one_theme_location_no_menus ) {
+			$nav_menu_selected_id = 0;
+		} elseif ( empty( $nav_menu_selected_id ) && ! empty( $nav_menus ) && ! $add_new_screen ) {
+			// if we have no selection yet, and we have menus, set to the first one in the list.
+			$nav_menu_selected_id = $nav_menus[0]->term_id;
+		}
+
+		return $nav_menu_selected_id;
+	}
+
+	public function setup_nav_menu_item_icon( $item ) {
+		$item->wpmi = new \stdClass();
+
+		if ( $wpmi = wp_parse_args( (array) get_post_meta( $item->ID, WPMI_DB_KEY, true ), self::get_default_values() ) ) {
+
+			if ( count( $wpmi ) ) {
+				foreach ( $wpmi as $key => $value ) {
+					$item->wpmi->{$key} = $value;
+				}
+			}
+		}
+
+		return $item;
+	}
+
+	public static function get_default_values() {
+		return self::$default_values;
 	}
 
 	public static function instance() {

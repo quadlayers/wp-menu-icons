@@ -24,7 +24,7 @@ class Setting extends Models_Base {
 	 * @return array
 	 */
 	public function get_args() {
-		$default_libraries_names = \QuadLayers\WPMI\Plugin::registered_icons_names();
+		$default_libraries_names = \QuadLayers\WPMI\Models\Libraries::get_libraries_names();
 		$default_libraries_names = array_keys( $default_libraries_names );
 		return array(
 			'active_libraries'    => $default_libraries_names,
