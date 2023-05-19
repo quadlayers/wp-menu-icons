@@ -20,7 +20,6 @@ class Libraries {
 	}
 
 	public function get_libraries() {
-		//return $this->model_settings->get()['available_libraries'];
 
 		$merge_array = wp_parse_args($this->get_default_libraries(), $this->get_custom_libraries());
 
@@ -79,47 +78,10 @@ class Libraries {
 	}
 
 	public function create_library( $library ) {
-		if ( ! isset( $library['name'], $library['type'] ) ) {
-			return false;
-		}
-
-		$name = $library['name'];
-
-		$settings = $this->model_settings->get();
-
-		if ( isset( $settings['available_libraries'][ $name ] ) ) {
-			return false;
-		}
-
-		$settings['available_libraries'][ $name ] = array(
-			'name' => $name,
-			'type' => $library['type'],
-			'ID'   => strtolower( str_replace( ' ', '', $name ) ),
-		);
-
-		$this->model_settings->save( $settings );
-
 		return true;
 	}
 
 	public function delete_library( $name ) {
-		if ( ! isset( $name ) ) {
-			return false;
-		}
-
-		$settings  = $this->model_settings->get();
-		$libraries = $settings['available_libraries'];
-
-		if ( isset( $libraries[ $name ] ) ) {
-			unset( $libraries[ $name ] );
-
-			$settings['available_libraries'] = $libraries;
-
-			$this->model_settings->save( $settings );
-
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 }

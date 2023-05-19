@@ -11,7 +11,7 @@ class Post extends Base {
 	public function callback( \WP_REST_Request $request ) {
 		$body = json_decode( $request->get_body(), true );
 
-		if ( ! isset( $body['current_library'] ) && ! isset( $body['available_libraries'] ) && ! isset( $body['active_libraries'] ) ) {
+		if ( ! isset( $body['active_libraries'] ) ) {
 			return $this->handle_response( false );
 		}
 
