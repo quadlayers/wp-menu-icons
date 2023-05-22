@@ -137,6 +137,12 @@ class Backend {
 			)
 		);
 
+		// wp_localize_script(
+		// 	'wpmi-backend',
+		// 	'wpmi_icons_list',
+		// 	//TODO: icons_list => Libraries_Controller::selected_library( $menu_id )['iconmap']
+		// );
+
 	}
 
 	public function navmenu() {
