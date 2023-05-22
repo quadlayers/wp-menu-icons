@@ -12,7 +12,7 @@ class Frontend {
 	}
 
 	public function enqueue() {
-		Plugin::enqueue_style_icons();
+		Libraries_Controller::enqueue_style_icons();
 		wp_enqueue_style(
 			'wpmi-frontend',
 			plugins_url( '/build/frontend/css/style.css', WPMI_PLUGIN_FILE ),

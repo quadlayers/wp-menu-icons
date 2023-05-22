@@ -27,7 +27,6 @@ class Libraries {
 		$libraries = $self->get_libraries();
 		$names = array();
 		foreach ($libraries as $library) {
-			error_log( 'library: ' . json_encode( $library, JSON_PRETTY_PRINT ) );
 			$names[$library['ID']] = $library['name'];
 		}
 		return $names;
@@ -87,7 +86,6 @@ class Libraries {
 		$libraries = $self->get_default_libraries();
 		$names = array();
 		foreach ($libraries as $library) {
-			error_log( 'library: ' . json_encode( $library, JSON_PRETTY_PRINT ) );
 			$names[$library['ID']] = $library['name'];
 		}
 		return $names;
