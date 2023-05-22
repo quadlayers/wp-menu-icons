@@ -92,7 +92,7 @@ class Backend {
 
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
-		Libraries_Controller::enqueue_style_icons();
+		Libraries_Controller::enqueue_style_library();
 
 		wp_enqueue_media();
 
@@ -157,11 +157,11 @@ class Backend {
 			<?php
 			$library_model    = new Libraries();
 			$active_libraries = $library_model->get_active_libraries();
-			foreach ( $active_libraries as $id => $icon ) :
+			foreach ( $active_libraries as $id => $library ) :
 				?>
 				<li>
 				<label class="menu-item-title">
-					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $icon['name'] ); ?>
+					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $library['name'] ); ?>
 				</label>
 				</li>
 			<?php endforeach; ?>
@@ -213,7 +213,7 @@ class Backend {
 				<div class="media-frame-router">
 					<div class="media-router">
 					<a href="<?php echo esc_url( WPMI_PREMIUM_SELL_URL ); ?>" class="media-menu-item" target="_blank"><?php esc_html_e( 'Mega Menu' ); ?></a>
-					<a href="#" class="media-menu-item active"><?php echo Libraries_Controller::selected_icons( $menu_id )['name']; ?></a>
+					<a href="#" class="media-menu-item active"><?php echo Libraries_Controller::selected_library( $menu_id )['name']; ?></a>
 					</div>
 				</div>
 				<div class="media-modal-content">
@@ -227,14 +227,14 @@ class Backend {
 						<div class="attachments-browser">
 						<div class="media-toolbar">
 							<div class="media-toolbar-secondary">
-							<p><em><?php printf( esc_html__( 'Search in %s.' ), Libraries_Controller::selected_icons( $menu_id )['name'] ); ?></em></p>
+							<p><em><?php printf( esc_html__( 'Search in %s.' ), Libraries_Controller::selected_library( $menu_id )['name'] ); ?></em></p>
 							</div>
 							<div class="media-toolbar-primary search-form">
 							<input type="search" placeholder="<?php esc_html_e( 'Search...' ); ?>" id="media-search-input" class="search">
 							</div>
 						</div>
 						<ul tabindex="-1" class="attachments">
-						<?php foreach ( explode( ',', Libraries_Controller::selected_icons( $menu_id )['iconmap'] ) as $id => $icon ) : ?>
+						<?php foreach ( explode( ',', Libraries_Controller::selected_library( $menu_id )['iconmap'] ) as $id => $icon ) : ?>
 							<li tabindex="0" role="checkbox" aria-label="<?php echo esc_attr( $icon ); ?>" aria-checked="false" data-id="<?php echo esc_attr( $id ); ?>" class="attachment save-ready icon _<?php echo esc_attr( str_replace( ' ', '_', trim( $icon ) ) ); ?>">
 								<div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
 								<div class="thumbnail">

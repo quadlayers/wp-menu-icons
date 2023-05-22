@@ -7,7 +7,7 @@ use QuadLayers\WPMI\Models\Libraries;
 class Libraries_Controller {
 
 	private static $instance;
-	public static $selected_icons;
+	public static $selected_library;
 
 	private function __construct() {
 
@@ -15,8 +15,8 @@ class Libraries_Controller {
 			'init',
 			function () {
 				// TODO: only register active libraries
-				$icons = Libraries::get_default_libraries();
-				foreach ( $icons as $id => $settings ) {
+				$libraries = Libraries::get_default_libraries();
+				foreach ( $libraries as $id => $settings ) {
 
 					wp_register_style( $id, $settings['url'] );
 
@@ -27,28 +27,28 @@ class Libraries_Controller {
 
 	}
 
-	public static function selected_icons( $menu_id = null ) {
+	public static function selected_library( $menu_id = null ) {
 		$library_model    = new Libraries();
 		$active_libraries = $library_model->get_active_libraries();
 
-		$selected_icons = get_term_meta( $menu_id, WPMI_DB_KEY, true );
-		if ( ! $selected_icons ) {
-			$selected_icons = 'dashicons';
+		$selected_library = get_term_meta( $menu_id, WPMI_DB_KEY, true );
+		if ( ! $selected_library ) {
+			$selected_library = 'dashicons';
 		}
 
-		if ( empty( $active_libraries[ $selected_icons ] ) ) {
+		if ( empty( $active_libraries[ $selected_library ] ) ) {
 			return false;
 		}
 
-		return $active_libraries[ $selected_icons ];
+		return $active_libraries[ $selected_library ];
 	}
 
-	public static function enqueue_style_icons() {
+	public static function enqueue_style_library() {
 		$menus_ids = wp_get_nav_menus();
 		foreach ( $menus_ids as $id => $menu ) {
-			$selected_icons = self::selected_icons( $menu->term_id );
-			if ( $selected_icons ) {
-				wp_enqueue_style( $selected_icons['ID'] );
+			$selected_library = self::selected_library( $menu->term_id );
+			if ( $selected_library ) {
+				wp_enqueue_style( $selected_library['ID'] );
 			}
 		}
 	}

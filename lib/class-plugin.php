@@ -2,8 +2,6 @@
 
 namespace QuadLayers\WPMI;
 
-use QuadLayers\WPMI\Models\Setting;
-
 use QuadLayers\WPMI\Api\Rest\Routes_Library;
 
 final class Plugin {
@@ -18,7 +16,9 @@ final class Plugin {
 		load_plugin_textdomain( 'wp-menu-icons', false, WPMI_PLUGIN_DIR . '/languages/' );
 
 		Routes_Library::instance();
+
 		Libraries_Controller::instance();
+		
 		Backend::instance();
 		Frontend::instance();
 

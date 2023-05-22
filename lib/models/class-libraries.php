@@ -3,7 +3,6 @@
 namespace QuadLayers\WPMI\Models;
 
 use QuadLayers\WPMI\Models\Setting as Model_Setting;
-use QuadLayers\WPMI\Plugin;
 /**
  * Models_Setting Class
  */
@@ -34,7 +33,7 @@ class Libraries {
 
 	public static function get_default_libraries() {
 
-		$register_icons = array(
+		$register_libraries = array(
 			'dashicons'    => array(
 				'name'    => 'Dashicons',
 				'url'     => false,
@@ -75,9 +74,9 @@ class Libraries {
 			),
 		);
 
-		$icons = apply_filters( 'wp_menu_icons_register_icons', $register_icons );
+		$libraries = apply_filters( 'wp_menu_icons_register_icons', $register_libraries );
 
-		return $icons;
+		return $libraries;
 	}
 
 	public static function get_default_libraries_names() {
@@ -92,7 +91,7 @@ class Libraries {
 	}
 
 	public static function get_custom_libraries() {
-		$register_icons = array(
+		$register_libraries = array(
 			'test1'    => array(
 				'name'    => 'Test 1',
 				'url'     => false,
@@ -115,7 +114,7 @@ class Libraries {
 			),
 		);
 
-		return $register_icons;
+		return $register_libraries;
 	}
 
 	public static function get_active_libraries() {

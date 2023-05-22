@@ -12,7 +12,7 @@ class Frontend {
 	}
 
 	public function enqueue() {
-		Libraries_Controller::enqueue_style_icons();
+		Libraries_Controller::enqueue_style_library();
 		wp_enqueue_style(
 			'wpmi-frontend',
 			plugins_url( '/build/frontend/css/style.css', WPMI_PLUGIN_FILE ),
@@ -26,7 +26,10 @@ class Frontend {
 
 		$classes = array();
 
-		$wpmi = $style = $size = $color = '';
+		$wpmi = '';
+		$style = '';
+		$size = '';
+		$color = '';
 
 		$new_title = $title;
 

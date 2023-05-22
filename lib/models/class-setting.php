@@ -3,7 +3,6 @@
 namespace QuadLayers\WPMI\Models;
 
 use QuadLayers\WPMI\Models\Base as Models_Base;
-use QuadLayers\WPMI\Plugin;
 /**
  * Models_Setting Class
  */
