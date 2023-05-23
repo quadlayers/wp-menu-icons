@@ -6,6 +6,9 @@ import { render } from "@wordpress/element";
 import App  from "./app";
 import { onDocumentLoaded } from "./helpers";
 
+
+// console.log('wpmi_backend.WPMI_LIBRARIES: ', wpmi_backend.WPMI_LIBRARIES);
+
 onDocumentLoaded(() => {
 	const container = document.createElement('div')
 	const body = document.querySelector('body')
@@ -21,29 +24,28 @@ onDocumentLoaded(() => {
 		if (e.target.classList.contains('save') && menu_font && menu_id) {
 			e.preventDefault()
 
-			const data = {
-				action: 'wpmi_save_nav_menu',
-				menu_font,
-				menu_id,
-				nonce: wpmi_l10n.nonce
-			}
-
 			fetch(ajaxurl, {
 				method: 'POST',
 				headers: {
-				  'Content-Type': 'application/json'
+					'Content-Type': 'application/x-www-form-urlencoded',
 				},
-				body: JSON.stringify(data)
-			})
-			.then(function(response) {
-				return response.json();
-			})
-			.then(function(data) {
-				//location.reload()
-			})
-			.catch(function(error) {
-				alert('Error!')
+				body: new URLSearchParams({
+					action: 'wpmi_save_nav_menu',
+					menu_id: menu_id,
+					menu_font: menu_font,
+					nonce: wpmi_l10n.nonce
+				})
+			}).then(response => {
+				if (!response.ok) {
+					throw new Error("HTTP error " + response.status);
+				}
+				return response.text();
+			}).then(data => {
+				location.reload();
+			}).catch(function() {
+				alert('Error!');
 			});
+
 		}
 	})
 

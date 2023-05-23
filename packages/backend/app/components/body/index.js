@@ -12,7 +12,8 @@ const test = {
 const {
     WPMI_PREFIX,
     WPMI_PLUGIN_NAME,
-    WPMI_PREMIUM_SELL_URL
+    WPMI_PREMIUM_SELL_URL,
+	WPMI_LIBRARIES
 } = wpmi_backend
 
 export default function Body({ idMenu, oldSettings, onClose }) {
@@ -64,7 +65,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 		settingsNode.querySelector('#wpmi-input-size').value = ''
 		settingsNode.querySelector('#wpmi-input-icon').value = ''
 		settingsNode.querySelector('#wpmi-input-color').value = ''
-        
+
         const iconNode = li.querySelector('.menu-item-wpmi_icon')
 
         if (iconNode) iconNode.remove()
@@ -74,9 +75,8 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 
     useEffect(() => {
         setLoading(true)
-
         setTimeout(() => {
-            setLibrary(test)
+            setLibrary(WPMI_LIBRARIES['eleganticons'])
             setLoading(false)
         }, 500);
     }, [idMenu])
@@ -87,7 +87,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                 <span class="screen-reader-text">Close media panel</span>
             </span>
         </button>
-        
+
         <div class="media-frame mode-select wp-core-ui hide-menu">
             <div class="media-frame-title">
                 <h1>
@@ -121,7 +121,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                                     <input
                                         type="search"
                                         placeholder="Search..."
-                                        id="media-search-input" 
+                                        id="media-search-input"
                                         class="search"
                                         onChange={e => setSearch(e.target.value)}
                                     />

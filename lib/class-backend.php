@@ -63,6 +63,7 @@ class Backend {
 	}
 
 	public function save_nav_menu() {
+
 		if ( check_ajax_referer( 'wpmi', 'nonce', false ) ) {
 
 			$menu_id = absint( $_REQUEST['menu_id'] );
@@ -137,6 +138,9 @@ class Backend {
 			)
 		);
 
+		$library_model    = new Libraries();
+		$libraries = $library_model->get_libraries();
+
 		wp_localize_script(
 			'wpmi-backend',
 			'wpmi_backend',
@@ -144,6 +148,7 @@ class Backend {
 				'WPMI_PREFIX'           => WPMI_PREFIX,
 				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
 				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
+				'WPMI_LIBRARIES' => $libraries,
 			)
 		);
 
