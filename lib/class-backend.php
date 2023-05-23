@@ -7,7 +7,7 @@ use QuadLayers\WPMI\Models\Libraries;
 class Backend {
 
 	private static $instance;
-	protected static $fields = array( 'icon' );
+	protected static $fields      = array( 'icon' );
 	public static $default_values = array(
 		'label'    => 0,
 		'position' => 'before',
@@ -137,11 +137,15 @@ class Backend {
 			)
 		);
 
-		// wp_localize_script(
-		// 	'wpmi-backend',
-		// 	'wpmi_icons_list',
-		// 	//TODO: icons_list => Libraries_Controller::selected_library( $menu_id )['iconmap']
-		// );
+		wp_localize_script(
+			'wpmi-backend',
+			'wpmi_backend',
+			array(
+				'WPMI_PREFIX'           => WPMI_PREFIX,
+				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
+				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
+			)
+		);
 
 	}
 

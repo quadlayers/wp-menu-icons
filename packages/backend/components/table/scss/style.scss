@@ -1,0 +1,49 @@
+.insta-gallery__table {
+  thead {
+    margin: 20px 0 0 0;
+
+    tr {
+      border-bottom: 1px solid #c3c4c7;
+    }
+  }
+
+  .button-error {
+    color: white;
+    border-color: rgb(207, 57, 57);
+    background: rgb(207, 57, 57);
+  }
+
+  tr {
+    &.basic {
+      background-color: #fed0d0;
+
+      &:nth-child(odd) {
+        background-color: #ffe1e1;
+      }
+    }
+  }
+
+  td,
+  th {
+    padding: 1em;
+    vertical-align: middle;
+    line-height: 1.75em;
+    width: auto;
+
+    .button {
+      margin: 0 0.5em 0 0;
+    }
+  }
+
+  td img.avatar {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+  }
+
+  .button > i {
+    margin: 6.5px 2px 0 0;
+    font-size: 16px;
+    opacity: 0.8;
+  }
+}

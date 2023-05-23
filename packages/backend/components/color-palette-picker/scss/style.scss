@@ -1,0 +1,11 @@
+.ql-color-palette-picker {
+	display: inline-block;
+
+	.components-h-stack {
+		width: auto !important;
+	}
+}
+
+.components-dropdown__content.components-color-palette__custom-color-dropdown-content .components-popover__content {
+	@extend %scrollbar;
+}

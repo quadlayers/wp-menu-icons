@@ -1,0 +1,298 @@
+.insta-gallery__modal {
+	max-width : 990px;
+	max-height: 560px;
+	margin    : auto;
+
+	.wp-color-result-text {
+		z-index : 1;
+		position: relative;
+	}
+
+	select[readonly],
+	input[type="checkbox"][readonly] {
+		pointer-events: none !important;
+	}
+
+	.insta-gallery__modal__panel {
+		.options_group {
+			overflow     : hidden;
+			border-bottom: 1px solid #eee;
+
+			&:first-child {
+				border-top: 0;
+			}
+		}
+
+		div,
+		p {
+			&.form-field {
+				font-size  : 12px;
+				padding    : 7.5px 15px;
+				line-height: 24px;
+
+				>label {
+					display: inline-block;
+
+					&:first-child {
+						//display: block;
+						width: 120px;
+					}
+				}
+
+				&.form-field--source {
+					>span {
+						>label {
+							margin: 0 1em 0 0;
+						}
+					}
+				}
+
+				>.select2-container {
+					&:nth-of-type(1) {
+						width: 80px !important;
+					}
+
+					&:nth-of-type(2) {
+						//width:  ~"calc(100% - 88px)"!important;
+						width: calc(100% - 171px) !important;
+					}
+
+					&:only-of-type {
+						//width: 100%!important;
+						width: calc(100% - 88px) !important;
+					}
+				}
+			}
+
+			>textarea,
+			>select,
+			>input {
+				width: auto;
+
+				&:not([type="checkbox"]):not([type="radio"]) {
+					min-width: 200px;
+					margin   : 0 1em 0 0;
+				}
+			}
+		}
+
+		ul {
+			&.list-images {
+				display: flex;
+				padding: 0;
+				margin : 1em 0;
+
+				li {
+					display         : inline-block;
+					margin          : 0 10px 0 0;
+					margin-bottom   : 0;
+					vertical-align  : middle;
+					color           : #aaa;
+					position        : relative;
+					border          : 1px solid #f1f1f1;
+					border-radius   : 3px;
+					padding         : 10px;
+					background-color: #fff;
+					cursor          : pointer;
+					box-shadow      : 0 1px 2px rgba(0, 0, 0, 0.07);
+
+					img {
+						width: 89px;
+					}
+
+					&:before {
+						content         : "";
+						position        : absolute;
+						top             : 0;
+						bottom          : 0;
+						left            : 0;
+						right           : 0;
+						background-color: #eee;
+						opacity         : 0.2;
+					}
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&.active,
+					&:hover {
+						&:before {
+							opacity: 0;
+						}
+
+						label {
+							color: #e23565;
+						}
+					}
+				}
+
+				label {
+					pointer-events: none;
+					display       : block;
+					position      : relative;
+					line-height   : 2em;
+					z-index       : 9;
+					cursor        : pointer;
+					transition    : all 0.25s linear;
+					text-align    : center;
+					font-weight   : bold;
+					color         : #23282d;
+				}
+
+				input[type="radio"] {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&.processing {
+		pointer-events: none;
+
+		&:before {
+			content         : "";
+			position        : absolute;
+			top             : 0;
+			bottom          : 0;
+			left            : 0;
+			right           : 0;
+			background-color: #ffffff;
+			z-index         : 999;
+			opacity         : 0.8;
+		}
+	}
+
+	table {
+		padding     : 15px;
+		border-width: 1px 0 0 0;
+		box-shadow  : none;
+		table-layout: fixed;
+
+		th {
+			width: 70px;
+		}
+
+		td {
+			width: calc(50% - 70px);
+		}
+	}
+
+	.edit-attachment-frame {
+		.attachment-media-view-all {
+			width: 100%;
+		}
+
+		.attachment-media-view {
+			width: 100%;
+		}
+
+		/*      .attachment-info  {
+              width:25%;*/
+		/*}*/
+		.attachment-details {
+			overflow: hidden;
+		}
+	}
+
+	input[type="time"] {
+		height: 30px;
+	}
+
+	.disabled-feature {
+		position      : relative;
+		pointer-events: none;
+
+		&:before {
+			content         : "";
+			background-color: #eee;
+			position        : absolute;
+			top             : 0;
+			bottom          : 0;
+			left            : 0;
+			right           : 0;
+			opacity         : 0.5;
+			overflow        : hidden;
+			pointer-events  : none;
+		}
+	}
+
+	.disabled-field {
+		color         : #d5d5d5 !important;
+		cursor        : default;
+		pointer-events: none;
+		opacity       : 0.8;
+
+		input,
+		select,
+		textarea,
+		.wp-picker-container {
+			opacity: 0.5;
+		}
+	}
+
+	ul.insta-gallery-modal__tabs {
+		margin          : 0;
+		width           : 20%;
+		float           : left;
+		line-height     : 1em;
+		padding         : 0 0 10px;
+		position        : relative;
+		background-color: #fafafa;
+		border-right    : 1px solid #eee;
+		box-sizing      : border-box;
+
+		&:after {
+			content         : "";
+			display         : block;
+			width           : 100%;
+			height          : 9999em;
+			position        : absolute;
+			bottom          : -9999em;
+			left            : 0;
+			background-color: #fafafa;
+			border-right    : 1px solid #eee;
+		}
+
+		li {
+			margin  : 0;
+			padding : 0;
+			display : block;
+			position: relative;
+
+			a {
+				margin         : 0;
+				padding        : 10px;
+				display        : block;
+				box-shadow     : none;
+				text-decoration: none;
+				line-height    : 20px !important;
+				border-bottom  : 1px solid #eee;
+
+				span {
+					margin-left : 0.618em;
+					margin-right: 0.618em;
+				}
+
+				&:before {
+					content               : "\f107";
+					font-family           : Dashicons;
+					speak                 : none;
+					font-weight           : 400;
+					text-transform        : none;
+					line-height           : 1;
+					-webkit-font-smoothing: antialiased;
+					font-variant          : normal;
+					text-decoration       : none;
+				}
+			}
+
+			&.active {
+				a {
+					background-color: #eee;
+				}
+			}
+		}
+	}
+
+}
