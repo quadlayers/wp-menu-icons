@@ -18,7 +18,8 @@ class Backend {
 	);
 
 	private function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'navmenu' ) );
 		add_action( 'wp_ajax_wpmi_save_nav_menu', array( $this, 'save_nav_menu' ) );
 		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
@@ -50,7 +51,7 @@ class Backend {
 		}
 	}
 
-	public function update( $id, $value ) {
+	protected function update( $id, $value ) {
 
 		$value = apply_filters( 'wp_menu_icons_item_meta_values', $value, $id );
 
@@ -82,44 +83,14 @@ class Backend {
 		wp_die( 'Fail!' );
 	}
 
-	public function enqueue() {
-
-		global $pagenow;
-
-		if ( $pagenow != 'nav-menus.php' ) {
-			return;
-		}
+	public function register_scripts() {
 
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
-		Libraries::enqueue_style_library();
+		$library_model    = new Models_Libraries();
+		$libraries = $library_model->get_libraries();
 
-		wp_enqueue_media();
-
-		wp_register_script( 'wp-color-picker-alpha', plugins_url( 'assets/backend/rgba/wp-color-picker-alpha.min.js', WPMI_PLUGIN_FILE ), array( 'jquery', 'wp-color-picker' ) );
-
-		wp_localize_script(
-			'wp-color-picker-alpha',
-			'wpColorPickerL10n',
-			array(
-				'clear'            => esc_html__( 'Clear', 'wp-menu-icons' ),
-				'clearAriaLabel'   => esc_html__( 'Clear color', 'wp-menu-icons' ),
-				'defaultString'    => esc_html__( 'Default', 'wp-menu-icons' ),
-				'defaultAriaLabel' => esc_html__( 'Select default color', 'wp-menu-icons' ),
-				'pick'             => esc_html__( 'Select Color', 'wp-menu-icons' ),
-				'defaultLabel'     => esc_html__( 'Color value', 'wp-menu-icons' ),
-			)
-		);
-
-		wp_enqueue_style(
-			'wpmi-backend',
-			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
-			array( 'wp-color-picker' ),
-			WPMI_PLUGIN_VERSION,
-			'all'
-		);
-
-		wp_enqueue_script(
+		wp_register_script(
 			'wpmi-backend',
 			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
 			$backend['dependencies'],
@@ -129,27 +100,46 @@ class Backend {
 
 		wp_localize_script(
 			'wpmi-backend',
-			'wpmi_l10n',
-			array(
-				'legacy_pick'    => esc_html__( 'Select' ),
-				'legacy_current' => esc_html__( 'Color' ),
-				'nonce'          => wp_create_nonce( 'wpmi' ),
-			)
-		);
-
-		$library_model    = new Models_Libraries();
-		$libraries = $library_model->get_libraries();
-
-		wp_localize_script(
-			'wpmi-backend',
 			'wpmi_backend',
 			array(
 				'WPMI_PREFIX'           => WPMI_PREFIX,
 				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
 				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
 				'WPMI_LIBRARIES' => $libraries,
+				'nonce'          => wp_create_nonce( 'wpmi' ),
 			)
 		);
+
+		wp_register_style(
+			'wpmi-backend',
+			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
+			array(
+				'wp-color-picker',
+				'media-views',
+				'wp-components',
+				'wp-editor',
+			),
+			WPMI_PLUGIN_VERSION,
+			'all'
+		);
+
+	}
+
+	public function enqueue_scripts() {
+
+		global $pagenow;
+
+		if ( $pagenow != 'nav-menus.php' ) {
+			return;
+		}
+
+		Libraries::enqueue_style_library();
+
+		wp_enqueue_media();
+
+		wp_enqueue_style('wpmi-backend');
+
+		wp_enqueue_script('wpmi-backend');
 
 	}
 
@@ -165,26 +155,26 @@ class Backend {
 			$current = 'dashicons';
 		}
 		?>
-			<div id="posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="posttypediv">
-				<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
-					<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
-					<?php
-					$library_model    = new Models_Libraries();
-					$active_libraries = $library_model->get_active_libraries();
-					foreach ( $active_libraries as $id => $library ) :
-						?>
-						<li>
+		<div id="posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="posttypediv">
+			<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
+				<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
+				<?php
+				$library_model    = new Models_Libraries();
+				$active_libraries = $library_model->get_active_libraries();
+				foreach ( $active_libraries as $id => $library ) :
+					?>
+					<li>
 						<label class="menu-item-title">
 							<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $library['name'] ); ?>
 						</label>
-						</li>
-					<?php endforeach; ?>
-					</ul>
-						<?php submit_button( esc_html__( 'Save' ), 'button-primary save', false, false ); ?>
-					<p></p>
-				</div>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+				<?php submit_button( esc_html__( 'Save' ), 'button-primary save', false, false ); ?>
+				<p></p>
 			</div>
-			<?php
+		</div>
+		<?php
 	}
 
 	public function walker( $walker ) {
@@ -200,13 +190,13 @@ class Backend {
 
 	public function icon( $menu_item_id, $item, $depth, $args ) {
 		?>
-				<span class="menu-item-wpmi_open">
-				<?php if ( ! empty( $item->wpmi->icon ) ) : ?>
-						<i class="menu-item-wpmi_icon <?php echo esc_attr( $item->wpmi->icon ); ?>"></i>
-					<?php endif; ?>
-					<i class="menu-item-wpmi_plus dashicons dashicons-plus"></i>
-				</span>
-			<?php
+		<span class="menu-item-wpmi_open">
+			<?php if ( ! empty( $item->wpmi->icon ) ) : ?>
+					<i class="menu-item-wpmi_icon <?php echo esc_attr( $item->wpmi->icon ); ?>"></i>
+			<?php endif; ?>
+			<i class="menu-item-wpmi_plus dashicons dashicons-plus"></i>
+		</span>
+		<?php
 	}
 
 	public function fields( $menu_item_id, $item, $depth, $args ) {

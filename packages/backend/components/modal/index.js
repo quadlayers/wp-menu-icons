@@ -48,7 +48,7 @@ const Modal = ({
 			onRequestClose={onClose}
 			shouldCloseOnClickOutside={false}
 			className={classnames(
-				"media-modal wp-core-ui upload-php",
+				"wpmi__modal media-modal wp-core-ui upload-php",
 				className
 			)}
 			__experimentalHideHeader={__experimentalHideHeader}

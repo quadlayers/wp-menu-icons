@@ -75,7 +75,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
         }, 500);
     }, [idMenu])
 
-    return <div id={ WPMI_PREFIX + '_modal' } class="media-modal wp-core-ui">
+    return <div id={ WPMI_PREFIX + '_modal' }>
         <button
             type="button"
             class="media-modal-close close"
@@ -89,7 +89,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
         <div class="media-frame mode-select wp-core-ui hide-menu">
             <div class="media-frame-title">
                 <h1>
-                    { WPMI_PLUGIN_NAME }<span class="dashicons dashicons-arrow-down"></span>
+                    { WPMI_PLUGIN_NAME }
                 </h1>
             </div>
 

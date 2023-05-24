@@ -3,6 +3,10 @@
 	max-height: 560px;
 	margin    : auto;
 
+	&.components-modal__frame {
+		max-height: 100%!important;
+	}
+
 	.wp-color-result-text {
 		z-index : 1;
 		position: relative;

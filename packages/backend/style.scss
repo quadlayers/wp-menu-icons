@@ -1,6 +1,13 @@
 @import ".scss/mixins.scss";
 @import ".scss/colors.scss";
 
+
+.wpmi__modal {
+	&.components-modal__frame {
+		max-height: 100%!important;
+	}
+}
+
 #menu-to-edit {
 
 	>li {
@@ -105,38 +112,6 @@
 					font-size: 2em;
 					position : relative;
 					left     : -1px;
-				}
-
-			}
-
-			.wpmi-color-picker {
-
-				.container {
-					box-sizing   : border-box;
-					width        : 100%;
-					border-bottom: 1px solid #ddd;
-					padding      : 11px 0;
-				}
-
-				#wpmi-input-color {
-					box-sizing: border-box;
-					margin    : 1px;
-					width     : 65%;
-					float     : right;
-				}
-
-				.wp-picker-container {
-
-					.wp-color-result {
-						width     : 100%;
-						margin-top: 5px !important;
-					}
-
-					.wp-color-result-text {
-						z-index : 1;
-						position: relative;
-					}
-
 				}
 
 			}

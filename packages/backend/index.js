@@ -30,7 +30,7 @@ onDocumentLoaded(() => {
 					action: 'wpmi_save_nav_menu',
 					menu_id: menu_id,
 					menu_font: menu_font,
-					nonce: wpmi_l10n.nonce
+					nonce: wpmi_backend.nonce
 				})
 			}).then(response => {
 				if (!response.ok) {
