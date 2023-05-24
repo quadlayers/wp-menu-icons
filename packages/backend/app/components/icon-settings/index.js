@@ -27,7 +27,7 @@ export default function IconSettings({ settings, setSettings }) {
                     id={ WPMI_PREFIX + '-input-label' }
                     class={ WPMI_PREFIX + '-input'}
                     name="label"
-                    onChange={changeSetting}
+                    onChange={ changeSetting }
                     value={ settings.label }
                 >
                     <option value="">No</option>
@@ -42,7 +42,7 @@ export default function IconSettings({ settings, setSettings }) {
                     id={ WPMI_PREFIX + '-input-position' }
                     class={ WPMI_PREFIX + '-input' }
                     name="position"
-                    onChange={changeSetting}
+                    onChange={ changeSetting }
                     value={ settings.position }
                 >
                     <option value="before">Before</option>
@@ -57,7 +57,7 @@ export default function IconSettings({ settings, setSettings }) {
                     id={ WPMI_PREFIX + '-input-align' }
                     class={ WPMI_PREFIX + '-input' }
                     name="align"
-                    onChange={changeSetting}
+                    onChange={ changeSetting }
                     value={ settings.align }
                 >
                     <option value="top">Top</option>
@@ -76,8 +76,8 @@ export default function IconSettings({ settings, setSettings }) {
                     type="number"
                     min="0.1"
                     step="0.1"
+                    onChange={ changeSetting }
                     value={ settings.size }
-                    onChange={changeSetting}
                 />
             </label>
             

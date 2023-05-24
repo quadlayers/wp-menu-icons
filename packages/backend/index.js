@@ -6,9 +6,6 @@ import { render } from "@wordpress/element";
 import App  from "./app";
 import { onDocumentLoaded } from "./helpers";
 
-
-// console.log('wpmi_backend.WPMI_LIBRARIES: ', wpmi_backend.WPMI_LIBRARIES);
-
 onDocumentLoaded(() => {
 	const container = document.createElement('div')
 	const body = document.querySelector('body')
