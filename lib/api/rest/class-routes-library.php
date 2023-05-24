@@ -4,6 +4,7 @@ namespace QuadLayers\WPMI\Api\Rest;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as Settings_Get;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Post as Settings_Post;
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Delete as Settings_Delete;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as Libraries_Get;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Post as Libraries_Post;
@@ -41,6 +42,7 @@ class Routes_Library {
     public function _rest_init() {
         new Settings_Get();
         new Settings_Post();
+        new Settings_Delete();
 
         new Libraries_Get();
         new Libraries_Post();
