@@ -17,10 +17,9 @@ final class Plugin {
 
 		Routes_Library::instance();
 
-		Libraries_Controller::instance();
-
-		Backend::instance();
-		Frontend::instance();
+		Controllers\Libraries::instance();
+		Controllers\Backend::instance();
+		Controllers\Frontend::instance();
 
 		do_action( 'qlwpmi_init' );
 	}

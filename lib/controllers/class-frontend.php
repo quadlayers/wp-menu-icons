@@ -1,6 +1,6 @@
 <?php
 
-namespace QuadLayers\WPMI;
+namespace QuadLayers\WPMI\Controllers;
 
 class Frontend {
 

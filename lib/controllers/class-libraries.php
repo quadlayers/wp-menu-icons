@@ -1,10 +1,10 @@
 <?php
 
-namespace QuadLayers\WPMI;
+namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Libraries;
+use QuadLayers\WPMI\Models\Libraries as Model_Libraries;
 
-class Libraries_Controller {
+class Libraries {
 
 	private static $instance;
 	public static $selected_library;
@@ -15,7 +15,7 @@ class Libraries_Controller {
 			'init',
 			function () {
 				// TODO: only register active libraries
-				$libraries = Libraries::get_default_libraries();
+				$libraries = Model_Libraries::get_default_libraries();
 				foreach ( $libraries as $id => $settings ) {
 
 					wp_register_style( $id, $settings['url'] );
@@ -28,7 +28,7 @@ class Libraries_Controller {
 	}
 
 	public static function selected_library( $menu_id = null ) {
-		$library_model    = new Libraries();
+		$library_model    = new Model_Libraries();
 		$active_libraries = $library_model->get_active_libraries();
 
 		$selected_library = get_term_meta( $menu_id, WPMI_DB_KEY, true );

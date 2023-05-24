@@ -79,17 +79,6 @@ class Libraries {
 		return $libraries;
 	}
 
-	public static function get_default_libraries_names() {
-
-		$self = new self();
-		$libraries = $self->get_default_libraries();
-		$names = array();
-		foreach ($libraries as $library) {
-			$names[$library['ID']] = $library['name'];
-		}
-		return $names;
-	}
-
 	public static function get_custom_libraries() {
 		$register_libraries = array(
 			'test1'    => array(
