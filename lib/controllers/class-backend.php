@@ -86,18 +86,24 @@ class Backend {
 	public function register_scripts() {
 
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
-		$store = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
+		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 
-		$library_model    = new Models_Libraries();
-		$libraries = $library_model->get_libraries();
+		$library_model = new Models_Libraries();
+		$libraries     = $library_model->get_libraries();
+
+		wp_register_script(
+			'wpmi-store',
+			plugins_url( '/build/store/js/index.js', WPMI_PLUGIN_FILE ),
+			$store['dependencies'],
+			$store['version'],
+			true
+		);
 
 		wp_register_script(
 			'wpmi-backend',
 			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
 			$backend['dependencies'],
 			$backend['version'],
-			$store['dependencies'],
-			$store['version'],
 			true
 		);
 
@@ -108,8 +114,16 @@ class Backend {
 				'WPMI_PREFIX'           => WPMI_PREFIX,
 				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
 				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
-				'WPMI_LIBRARIES' => $libraries,
-				'nonce'          => wp_create_nonce( 'wpmi' ),
+				'nonce'                 => wp_create_nonce( 'wpmi' ),
+			)
+		);
+
+		wp_localize_script(
+			'wpmi-store',
+			'wpmi_store',
+			array(
+				'WPMI_REST_ROUTES' => array(),
+				'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
 
@@ -125,7 +139,7 @@ class Backend {
 			WPMI_PLUGIN_VERSION,
 			'all'
 		);
-		
+
 	}
 
 	public function enqueue_scripts() {
@@ -140,9 +154,9 @@ class Backend {
 
 		wp_enqueue_media();
 
-		wp_enqueue_style('wpmi-backend');
+		wp_enqueue_style( 'wpmi-backend' );
 
-		wp_enqueue_script('wpmi-backend');
+		wp_enqueue_script( 'wpmi-backend' );
 
 	}
 
