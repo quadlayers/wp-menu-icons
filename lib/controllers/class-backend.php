@@ -114,7 +114,7 @@ class Backend {
 			'wpmi-backend',
 			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
 			array(
-				'wp-color-picker',
+				// 'wp-color-picker',
 				'media-views',
 				'wp-components',
 				'wp-editor',
