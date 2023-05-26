@@ -6,30 +6,31 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const globImporter = require('node-sass-glob-importer');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
-
 const config = {
 	...defaultConfig,
 	plugins: [
 		/**
 		 * Remove previous instance
 		 */
-		...defaultConfig.plugins.filter((plugin) => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'),
+		...defaultConfig.plugins.filter(
+			(plugin) =>
+				plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'
+		),
 		new DependencyExtractionWebpackPlugin({
 			requestToExternal: (request, external) => {
-
 				const externals = {
-					'underscore': ['_', '.'],
-					'backbone': ['window', 'Backbone'],
+					underscore: ['_', '.'],
+					backbone: ['window', 'Backbone'],
 					'jquery-serializejson': ['window', 'serializeJSON'],
 					'jquery-ui-sortable': ['window', 'sortable'],
 					'wp-color-picker': ['wp', 'wpColorPicker'],
 					'wp-color-picker-alpha': ['wp', 'wpColorPickerAlpha'],
 					'wp-util': ['wp', 'util'],
-					'qlwapp-select2': ['jQuery', 'select2']
-				}
+					'qlwapp-select2': ['jQuery', 'select2'],
+				};
 
 				return externals[request] || external;
-			}
+			},
 		}),
 	],
 };
@@ -88,6 +89,32 @@ module.exports = [
 		optimization: {
 			minimize: isProduction,
 		},
+		plugins: [
+			/**
+			 * Remove previous instance
+			 */
+			...defaultConfig.plugins.filter(
+				(plugin) =>
+					plugin.constructor.name !==
+					'DependencyExtractionWebpackPlugin'
+			),
+			new DependencyExtractionWebpackPlugin({
+				requestToExternal: (request, external) => {
+					if ('@wpmi/store' === request) {
+						return ['wpmi', 'store'];
+					}
+					// Return the default value for other requests
+					return external;
+				},
+				requestToHandle: (request, external) => {
+					if ('@wpmi/store' === request) {
+						return 'wpmi-store';
+					}
+					// Return the default value for other requests
+					return external;
+				},
+			}),
+		],
 	},
 	{
 		...config,
@@ -125,43 +152,19 @@ module.exports = [
 			new MiniCssExtractPlugin({
 				filename: 'style.css',
 			}),
-            /**
-             * Remove previous instance
-             */
-            ...defaultConfig.plugins.filter(
-                (plugin) =>
-                    plugin.constructor.name !==
-                    'DependencyExtractionWebpackPlugin'
-            ),
-            new DependencyExtractionWebpackPlugin({
-                requestToExternal: (request, external) => {
-                    if ('@wpmi/store' === request) {
-                        return ['wpmi', 'store'];
-                    }
-                    // Return the default value for other requests
-                    return external;
-                },
-                requestToHandle: (request, external) => {
-                    if ('@wpmi/store' === request) {
-                        return 'wpmi-store';
-                    }
-                    // Return the default value for other requests
-                    return external;
-                },
-            }),
 		],
 	},
 	//Store
 	{
 		...defaultConfig,
 		entry: {
-			index: path.resolve(__dirname, "packages", "./store/index.js"),
+			index: path.resolve(__dirname, 'packages', './store/index.js'),
 		},
 		output: {
-			filename: "[name].js",
-			path: path.resolve(__dirname, "build/store/js/"),
-			library: ["wpmi", "store"],
-			libraryTarget: "window",
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/store/js/'),
+			library: ['wpmi', 'store'],
+			libraryTarget: 'window',
 		},
 		optimization: {
 			minimize: isProduction,
