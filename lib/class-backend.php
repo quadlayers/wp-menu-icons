@@ -167,23 +167,24 @@ class Backend {
 		}
 		?>
 		<div id="posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="posttypediv">
-		<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
-			<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
-			<?php
-			$library_model    = new Libraries();
-			$active_libraries = $library_model->get_active_libraries();
-			foreach ( $active_libraries as $id => $library ) :
-				?>
-				<li>
-				<label class="menu-item-title">
-					<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $library['name'] ); ?>
-				</label>
-				</li>
-			<?php endforeach; ?>
-			</ul>
-				<?php submit_button( esc_html__( 'Save' ), 'button-primary save', false, false ); ?>
-			<p></p>
-		</div>
+			<!-- TODO: move to react and make render in "posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes"-->
+			<div id="tabs-panel-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="tabs-panel tabs-panel-active">
+				<ul id="<?php echo esc_attr( WPMI_PREFIX ); ?>-themes-checklist" class="categorychecklist form-no-clear">
+				<?php
+				$library_model    = new Libraries();
+				$active_libraries = $library_model->get_active_libraries();
+				foreach ( $active_libraries as $id => $library ) :
+					?>
+					<li>
+					<label class="menu-item-title">
+						<input type="radio" class="<?php echo esc_attr( WPMI_PREFIX . '-item-checkbox' ); ?>" name="<?php echo esc_attr( WPMI_PREFIX . '_font' ); ?>" value="<?php echo esc_attr( $id ); ?>" <?php checked( $id, $current ); ?>> <?php echo esc_html( $library['name'] ); ?>
+					</label>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+					<?php submit_button( esc_html__( 'Save' ), 'button-primary save', false, false ); ?>
+				<p></p>
+			</div>
 		</div>
 			<?php
 	}
