@@ -2,7 +2,7 @@ import wpApiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { WPMI_STORE_NAME } from '.';
 
-const { WPMI_REST_ROUTES } = wpmi_store;
+// const { WPMI_REST_ROUTES } = wpmi_store;
 
 /**
  * Handle the response from the apiFetch
@@ -16,56 +16,57 @@ export async function apiFetch(args) {
 			if (response.code) {
 				throw new Error(
 					`${response.code}: ${response?.message || 'Unknown'}`
-				)
+				);
 			}
 			return response;
 		})
 		.catch((error) => {
 			throw new Error(error);
-		})
+		});
 }
 
 export const fetchRestApiLibraries = ({ method, data } = {}) => {
 	return apiFetch({
-		path: WPMI_REST_ROUTES.libraries,
+		path: '',
 		method,
 		data,
-	})
-}
+	});
+};
 
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {
-			const { getLibraries, isResolving, hasFinishedResolution } = select(WPMI_STORE_NAME)
+			const { getLibraries, isResolving, hasFinishedResolution } =
+				select(WPMI_STORE_NAME);
 
 			return {
 				libraries: getLibraries(),
 				isResolvingLibraries: isResolving('getLibraries'),
-				hasResolvedLibraries: hasFinishedResolution('getLibraries')
-			}
+				hasResolvedLibraries: hasFinishedResolution('getLibraries'),
+			};
 		},
 		[]
-	)
+	);
 
 	return {
 		libraries,
 		isResolvingLibraries,
 		hasResolvedLibraries,
-		hasLibraries: !!(hasResolvedLibraries && libraries?.length)
-	}
-}
+		hasLibraries: !!(hasResolvedLibraries && libraries?.length),
+	};
+};
 
 export const useCurrentLibrary = () => {
 	const {
 		currentLibrary,
 		currentLibraryName,
-		isResolving,
-		hasResolvedCurrentLibraryName,
+		isResolvingCurrentLibrary,
+		hasResolvedCurrentLibrary,
 	} = useSelect((select) => {
 		const {
 			getCurrentLibraryName,
 			getLibraries,
-			isResolving,
+			isResolvingCurrentLibrary,
 			hasFinishedResolution,
 		} = select(WPMI_STORE_NAME);
 
@@ -79,7 +80,7 @@ export const useCurrentLibrary = () => {
 		return {
 			currentLibrary,
 			currentLibraryName,
-			isResolving,
+			isResolvingCurrentLibrary,
 			hasResolvedCurrentLibraryName: hasFinishedResolution(
 				'getCurrentLibraryName'
 			),
@@ -92,7 +93,7 @@ export const useCurrentLibrary = () => {
 		currentLibrary,
 		currentLibraryName,
 		setCurrentLibraryName,
-		isResolving,
-		hasResolvedCurrentLibraryName,
+		isResolvingCurrentLibrary,
+		hasResolvedCurrentLibrary,
 	};
 };
