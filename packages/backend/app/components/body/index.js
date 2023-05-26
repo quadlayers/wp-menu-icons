@@ -13,11 +13,11 @@ const {
 } = wpmi_backend
 
 export default function Body({ idMenu, oldSettings, onClose }) {
-    // const [library, setLibrary] = useState({
-    //     name: '',
-    //     iconmap: '',
-    //     ID: ''
-    // })
+    const [library, setLibrary] = useState({
+        name: '',
+        iconmap: '',
+        ID: ''
+    })
 
     const [icon, setIcon] = useState(oldSettings.icon)
     const [search, setSearch] = useState('')
