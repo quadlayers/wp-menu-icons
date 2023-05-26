@@ -125,6 +125,50 @@ module.exports = [
 			new MiniCssExtractPlugin({
 				filename: 'style.css',
 			}),
+            /**
+             * Remove previous instance
+             */
+            ...defaultConfig.plugins.filter(
+                (plugin) =>
+                    plugin.constructor.name !==
+                    'DependencyExtractionWebpackPlugin'
+            ),
+            new DependencyExtractionWebpackPlugin({
+                requestToExternal: (request, external) => {
+                    if ('@wpmi/store' === request) {
+                        return ['wpmi', 'store'];
+                    }
+                    // Return the default value for other requests
+                    return external;
+                },
+                requestToHandle: (request, external) => {
+                    if ('@wpmi/store' === request) {
+                        return 'wpmi-store';
+                    }
+                    // Return the default value for other requests
+                    return external;
+                },
+            }),
 		],
+	},
+	//Store
+	{
+		...defaultConfig,
+		entry: {
+			index: path.resolve(__dirname, "packages", "./store/index.js"),
+		},
+		output: {
+			filename: "[name].js",
+			path: path.resolve(__dirname, "build/store/js/"),
+			library: ["wpmi", "store"],
+			libraryTarget: "window",
+		},
+		optimization: {
+			minimize: isProduction,
+		},
+		// plugins: [
+		// 	...defaultConfig.plugins,
+		// 	new DependencyExtractionWebpackPlugin(),
+		// ],
 	},
 ];

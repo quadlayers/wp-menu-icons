@@ -1,9 +1,16 @@
 import { INITIAL_STATE } from "./constants"
 
-export function library(state = INITIAL_STATE, action) {
+export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case "SET_LIBRARY":
-            return action.payload;
+        case "SET_LIBRARIES":
+            return action.payload
+
+        case "SET_CURRENT_LIBRARY_NAME":
+            return action.payload
+
+        // case "SET_ACTIVE_LIBRERIES":
+        //     return action.payload
     }
-    return state;
+
+    return state
 }

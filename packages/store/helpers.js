@@ -16,45 +16,44 @@ export async function apiFetch(args) {
 			if (response.code) {
 				throw new Error(
 					`${response.code}: ${response?.message || 'Unknown'}`
-				);
+				)
 			}
 			return response;
 		})
 		.catch((error) => {
 			throw new Error(error);
-		});
+		})
 }
 
-export const fetchRestApiLibrary = ({ method, data } = {}) => {
+export const fetchRestApiLibraries = ({ method, data } = {}) => {
 	return apiFetch({
-		path: WPMI_REST_ROUTES.library,
+		path: WPMI_REST_ROUTES.libraries,
 		method,
 		data,
-	});
-};
+	})
+}
 
-export const useLibrary = (libraryName) => {
-	const { library, isResolvingLibrary, hasResolvedLibrary } = useSelect(
+export const useLibraries = () => {
+	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {
-			const { getLibrary, isResolving, hasFinishedResolution } =
-				select(WPMI_STORE_NAME);
+			const { getLibraries, isResolving, hasFinishedResolution } = select(WPMI_STORE_NAME)
 
 			return {
-				library: getLibrary(libraryName),
-				isResolvingLibrary: isResolving('getLibrary'),
-				hasResolvedLibrary: hasFinishedResolution('getLibrary'),
-			};
+				libraries: getLibraries(),
+				isResolvingLibraries: isResolving('getLibraries'),
+				hasResolvedLibraries: hasFinishedResolution('getLibraries')
+			}
 		},
 		[]
-	);
+	)
 
 	return {
-		library,
-		isResolvingLibrary,
-		hasResolvedLibrary,
-		hasLibrary: !!(hasResolvedLibrary && library?.length),
-	};
-};
+		libraries,
+		isResolvingLibraries,
+		hasResolvedLibraries,
+		hasLibraries: !!(hasResolvedLibraries && libraries?.length)
+	}
+}
 
 export const useCurrentLibrary = () => {
 	const {

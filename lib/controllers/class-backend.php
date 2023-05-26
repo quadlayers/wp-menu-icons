@@ -86,6 +86,7 @@ class Backend {
 	public function register_scripts() {
 
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
+		$store = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 
 		$library_model    = new Models_Libraries();
 		$libraries = $library_model->get_libraries();
@@ -95,6 +96,8 @@ class Backend {
 			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
 			$backend['dependencies'],
 			$backend['version'],
+			$store['dependencies'],
+			$store['version'],
 			true
 		);
 
@@ -122,7 +125,7 @@ class Backend {
 			WPMI_PLUGIN_VERSION,
 			'all'
 		);
-
+		
 	}
 
 	public function enqueue_scripts() {

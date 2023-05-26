@@ -1,14 +1,15 @@
 /**
  * Internal dependencies
  */
-import { fetchRestApiLibrary } from "./helpers"
+import { fetchRestApiLibraries } from "./helpers"
+import * as actions from "./actions"
 
-export const getLibrary = async () => {
+export const getLibraries = async () => {
 	try {
-		const responseApiFetch = await fetchRestApiLibrary()
-
-		return actions.setLibrary(responseApiFetch);
+		const response = await fetchRestApiLibraries();
+		return actions.setLibraries(response)
 	} catch (error) {
-		console.error(error);
+		console.error(error)
 	}
 };
+	

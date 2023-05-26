@@ -1,7 +1,9 @@
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element"
 
-import { IconPreview, IconSettings, IconMap } from "../";
-import { Spinner } from "../../../components/";
+import { IconPreview, IconSettings, IconMap } from "../"
+import { Spinner } from "../../../components/"
+
+import { useCurrentLibrary } from "@wpmi/store"
 
 const {
     WPMI_PREFIX,
@@ -11,11 +13,12 @@ const {
 } = wpmi_backend
 
 export default function Body({ idMenu, oldSettings, onClose }) {
-    const [library, setLibrary] = useState({
-        name: '',
-        iconmap: '',
-        ID: ''
-    })
+    // const [library, setLibrary] = useState({
+    //     name: '',
+    //     iconmap: '',
+    //     ID: ''
+    // })
+
     const [icon, setIcon] = useState(oldSettings.icon)
     const [search, setSearch] = useState('')
     const [settings, setSettings] = useState(oldSettings)
