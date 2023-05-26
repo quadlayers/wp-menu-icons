@@ -2,7 +2,7 @@ import wpApiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { WPMI_STORE_NAME } from '.';
 
-const { WPMI_REST_ROUTES } = wpmi_backend;
+const { WPMI_REST_ROUTES } = wpmi_store;
 
 /**
  * Handle the response from the apiFetch

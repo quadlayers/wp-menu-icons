@@ -6,8 +6,6 @@ import { Body } from './components/';
 const { WPMI_PLUGIN_NAME } = wpmi_backend;
 
 const App = () => {
-	alert('test')
-	/*
 	const [show, setShow] = useState(false);
 	const [idMenu, setIdMenu] = useState(null);
 	const [oldSettings, setOldSettings] = useState({});
@@ -58,18 +56,17 @@ const App = () => {
 			})
 		);
 	}, []);
-*/
 
-	//return (
-	//	<Modal
-	//		title={WPMI_PLUGIN_NAME}
-	//		show={show}
-	//		onClose={onClose}
-	//		__experimentalHideHeader
-	//	>
-	//		<Body idMenu={idMenu} oldSettings={oldSettings} onClose={onClose} />
-	//	</Modal>
-	//);
+	return (
+		<Modal
+			title={WPMI_PLUGIN_NAME}
+			show={show}
+			onClose={onClose}
+			__experimentalHideHeader
+		>
+			<Body idMenu={idMenu} oldSettings={oldSettings} onClose={onClose} />
+		</Modal>
+	);
 };
 
 export default App;

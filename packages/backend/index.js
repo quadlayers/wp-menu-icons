@@ -15,8 +15,6 @@ onDocumentLoaded(() => {
 	const container = document.createElement('div')
 	const body = document.querySelector('body')
 
-	alert('test')
-
 	body.append(container)
 
 	const metabox = document.getElementById('wpmi_metabox')
