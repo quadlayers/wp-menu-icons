@@ -1,7 +1,7 @@
-export const getLibraries = state => {
-    return state
-}
+export const getLibraries = (state) => {
+	return state.libraries;
+};
 
-export const getCurrentLibraryName = state => {
-    return state
-}
+export const getCurrentLibraryName = (state) => {
+	return state.libraryName;
+};
