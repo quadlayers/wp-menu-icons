@@ -1,9 +1,8 @@
 import wpApiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { STORE_NAME } from './constants';
-
-// const { WPMI_REST_ROUTES } = wpmi_store;
-
+// eslint-disable-next-line no-undef
+const { WPMI_REST_ROUTES } = wpmi_store;
 /**
  * Handle the response from the apiFetch
  *
@@ -27,7 +26,7 @@ export async function apiFetch(args) {
 
 export const fetchRestApiLibraries = ({ method, data } = {}) => {
 	return apiFetch({
-		path: '',
+		path: WPMI_REST_ROUTES.libraries,
 		method,
 		data,
 	});
@@ -96,3 +95,7 @@ export const useCurrentLibrary = () => {
 		hasResolvedCurrentLibrary,
 	};
 };
+
+// removeActiveLibrary
+
+// addActiveLibrary

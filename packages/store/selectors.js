@@ -5,3 +5,7 @@ export const getLibraries = (state) => {
 export const getCurrentLibraryName = (state) => {
 	return state.currentLibraryName;
 };
+
+export const getActiveLibraries = (state) => {
+	return state.activeLibraries;
+};

@@ -3,6 +3,8 @@
 namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
+// use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\settings\Get as API_Rest_Libraries;
 
 class Backend {
 
@@ -122,7 +124,10 @@ class Backend {
 			'wpmi-store',
 			'wpmi_store',
 			array(
-				'WPMI_REST_ROUTES' => array(),
+				'WPMI_REST_ROUTES' => array(
+					'libraries' => API_Rest_Libraries::get_rest_path(),
+					// 'settings' => API_Rest_Libraries::get_rest_path()
+				),
 				'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
