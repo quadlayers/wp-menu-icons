@@ -1,6 +1,6 @@
 import wpApiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
-import { WPMI_STORE_NAME } from '.';
+import { STORE_NAME } from './constants';
 
 // const { WPMI_REST_ROUTES } = wpmi_store;
 
@@ -37,7 +37,7 @@ export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {
 			const { getLibraries, isResolving, hasFinishedResolution } =
-				select(WPMI_STORE_NAME);
+				select(STORE_NAME);
 
 			return {
 				libraries: getLibraries(),
@@ -68,10 +68,10 @@ export const useCurrentLibrary = () => {
 			getLibraries,
 			isResolvingCurrentLibrary,
 			hasFinishedResolution,
-		} = select(WPMI_STORE_NAME);
+		} = select(STORE_NAME);
 
 		const currentLibraryName = getCurrentLibraryName();
-		const libraries = getLibraries();
+		const libraries = Object.values(getLibraries() || {});
 
 		const currentLibrary = libraries.find(
 			(library) => library.name === currentLibraryName
@@ -87,7 +87,7 @@ export const useCurrentLibrary = () => {
 		};
 	}, []);
 
-	const { setCurrentLibraryName } = useDispatch(WPMI_STORE_NAME);
+	const { setCurrentLibraryName } = useDispatch(STORE_NAME);
 
 	return {
 		currentLibrary,
