@@ -73,7 +73,7 @@ export const useCurrentLibrary = () => {
 		const currentLibraryName = getCurrentLibraryName();
 		const libraries = getLibraries();
 		const currentLibrary = libraries.find(
-			(library) => library.ID == currentLibraryName
+			(library) => library.name == currentLibraryName
 		);
 
 		return {

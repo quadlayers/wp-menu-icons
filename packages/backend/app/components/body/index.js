@@ -12,7 +12,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 	const [library, setLibrary] = useState({
 		name: '',
 		iconmap: '',
-		ID: '',
+		label: '',
 	});
 
 	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
@@ -134,7 +134,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 							Mega Menu
 						</a>
 						<a href="#" class="media-menu-item active">
-							{library.name}
+							{library.label}
 						</a>
 					</div>
 				</div>
@@ -154,7 +154,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 								<div class="media-toolbar">
 									<div class="media-toolbar-secondary">
 										<p>
-											<em>Search in {library.name}.</em>
+											<em>Search in {library.label}.</em>
 										</p>
 									</div>
 

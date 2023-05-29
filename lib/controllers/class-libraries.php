@@ -16,11 +16,11 @@ class Libraries {
 			function () {
 				// TODO: only register active libraries
 				$libraries = Model_Libraries::get_default_libraries();
-				foreach ( $libraries as $id => $settings ) {
+				foreach ( $libraries as $name => $library ) {
 
-					wp_register_style( $id, $settings['stylesheet_file'] );
+					wp_register_style( $name, $library['stylesheet_file'] );
 
-					$settings['ID'] = $id;
+					// $library['name'] = $id;
 				}
 			}
 		);
@@ -48,7 +48,7 @@ class Libraries {
 		foreach ( $menus_ids as $id => $menu ) {
 			$selected_library = self::selected_library( $menu->term_id );
 			if ( $selected_library ) {
-				wp_enqueue_style( $selected_library['ID'] );
+				wp_enqueue_style( $selected_library['name'] );
 			}
 		}
 	}

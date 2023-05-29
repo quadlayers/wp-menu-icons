@@ -24,11 +24,11 @@ export default function MetaBox() {
                             type="radio"
                             class={ WPMI_PREFIX + '-item-checkbox' }
                             name={ WPMI_PREFIX + '_font' }
-                            value={ library.ID }
-                            checked={ library.ID === currentLibraryName }
+                            value={ library.name }
+                            checked={ library.name === currentLibraryName }
                             onChange={ handleOptionChange }
                         />
-                        { library.name }
+                        { library.label }
                     </label>
                 </li>
             )}
