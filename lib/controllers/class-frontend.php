@@ -2,6 +2,8 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
+use QuadLayers\WPMI\Controllers\Libraries as Libraries_Controller;
+
 class Frontend {
 
 	private static $instance;
