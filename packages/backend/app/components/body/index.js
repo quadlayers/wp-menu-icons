@@ -9,8 +9,11 @@ const {
     WPMI_PREFIX,
     WPMI_PLUGIN_NAME,
     WPMI_PREMIUM_SELL_URL,
-	WPMI_LIBRARIES
 } = wpmi_backend
+
+const {
+	WPMI_LIBRARIES
+} = wpmi_store
 
 export default function Body({ idMenu, oldSettings, onClose }) {
     const [library, setLibrary] = useState({

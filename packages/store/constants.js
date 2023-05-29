@@ -5,5 +5,5 @@ const { WPMI_LIBRARIES } = wpmi_store
 export const INITIAL_STATE = {
 	currentLibraryName: null,
 	activeLibraries: [],
-	libraries: WPMI_LIBRARIES
+	libraries: Object.keys(WPMI_LIBRARIES).map(id => WPMI_LIBRARIES[id])
 }

@@ -1,7 +1,7 @@
 export const getLibraries = state => {
-    return state
+    return state.libraries
 }
 
 export const getCurrentLibraryName = state => {
-    return state
+    return state.currentLibraryName
 }

@@ -6,7 +6,7 @@ export default function reducer(state = INITIAL_STATE, action) {
             return action.payload
 
         case "SET_CURRENT_LIBRARY_NAME":
-            return action.payload
+            return { ...state, currentLibraryName: action.payload }
 
         // case "SET_ACTIVE_LIBRERIES":
         //     return action.payload

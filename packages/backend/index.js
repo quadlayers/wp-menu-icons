@@ -17,6 +17,7 @@ onDocumentLoaded(() => {
 
 	body.append(container)
 
+	/*
 	const metabox = document.getElementById('wpmi_metabox')
 
 	metabox.addEventListener('click', e => {
@@ -50,9 +51,10 @@ onDocumentLoaded(() => {
 
 		}
 	})
+	*/
 
-	//const metabox_container = document.getElementById(`posttype-${WPMI_PREFIX}-themes`)
+	const metabox_container = document.getElementById(`posttype-${WPMI_PREFIX}-themes`)
 
 	render(<App />, container);
-	//render(<MetaBox />, metabox_container)
+	render(<MetaBox />, metabox_container)
 });

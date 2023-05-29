@@ -17,7 +17,7 @@ export default function MetaBox() {
 
     return <div id={ `tabs-panel-${WPMI_PREFIX}-themes` } class="tabs-panel tabs-panel-active">
         <ul id={ WPMI_PREFIX + '-themes-checklist' } class="categorychecklist form-no-clear">
-            {libraries.map(library => {
+            {libraries.map(library =>
                 <li>
                     <label class="menu-item-title">
                         <input
@@ -31,7 +31,7 @@ export default function MetaBox() {
                         { library.name }
                     </label>
                 </li>
-            })}
+            )}
         </ul>
     </div>
 }
