@@ -71,10 +71,11 @@ export const useCurrentLibrary = () => {
 		} = select(STORE_NAME);
 
 		const currentLibraryName = getCurrentLibraryName();
-		const libraries = Object.values(getLibraries() || {});
-
+		const libraries = getLibraries();
+		// console.log(libraries);
+		console.log(currentLibraryName);
 		const currentLibrary = libraries.find(
-			(library) => library.name === currentLibraryName
+			(library) => library.ID == currentLibraryName
 		);
 
 		return {

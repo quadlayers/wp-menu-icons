@@ -4,11 +4,9 @@ import { IconPreview, IconSettings, IconMap } from '../';
 import { Spinner } from '../../../components/';
 
 //TODO: check why @wpmi/store is not working
-import { useCurrentLibrary } from '../../../../store/helpers';
+import { useCurrentLibrary } from '@wpmi/store';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_backend;
-
-const { WPMI_LIBRARIES } = wpmi_store;
 
 export default function Body({ idMenu, oldSettings, onClose }) {
 	const [library, setLibrary] = useState({
@@ -17,8 +15,9 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 		ID: '',
 	});
 
-	// const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
+	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
+	console.log(currentLibrary);
 	const [icon, setIcon] = useState(oldSettings.icon);
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);
@@ -100,7 +99,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 	useEffect(() => {
 		setLoading(true);
 		setTimeout(() => {
-			setLibrary(WPMI_LIBRARIES['eleganticons']);
+			setLibrary(currentLibrary);
 			setLoading(false);
 		}, 500);
 	}, [idMenu]);
