@@ -18,7 +18,7 @@ class Libraries {
 				$libraries = Model_Libraries::get_default_libraries();
 				foreach ( $libraries as $id => $settings ) {
 
-					wp_register_style( $id, $settings['url'] );
+					wp_register_style( $id, $settings['stylesheet_file'] );
 
 					$settings['ID'] = $id;
 				}
