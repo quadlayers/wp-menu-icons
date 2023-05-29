@@ -17,7 +17,6 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 
 	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
-	console.log(currentLibrary);
 	const [icon, setIcon] = useState(oldSettings.icon);
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);

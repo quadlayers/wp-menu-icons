@@ -72,8 +72,6 @@ export const useCurrentLibrary = () => {
 
 		const currentLibraryName = getCurrentLibraryName();
 		const libraries = getLibraries();
-		// console.log(libraries);
-		console.log(currentLibraryName);
 		const currentLibrary = libraries.find(
 			(library) => library.ID == currentLibraryName
 		);
