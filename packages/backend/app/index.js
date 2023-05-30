@@ -11,13 +11,17 @@ const App = () => {
 
 	const onClose = () => setShow(false);
 
-	const openModal = node => {
+	const openModal = (node) => {
 		const id = node.id.split('-')[2];
 
-		const settingsNode = document.getElementById('menu-item-settings-' + id);
+		const settingsNode = document.getElementById(
+			'menu-item-settings-' + id
+		);
 
 		const label = settingsNode.querySelector('#wpmi-input-label').value;
-		const position = settingsNode.querySelector('#wpmi-input-position').value;
+		const position = settingsNode.querySelector(
+			'#wpmi-input-position'
+		).value;
 		const align = settingsNode.querySelector('#wpmi-input-align').value;
 		const size = settingsNode.querySelector('#wpmi-input-size').value;
 		const icon = settingsNode.querySelector('#wpmi-input-icon').value;
@@ -30,10 +34,10 @@ const App = () => {
 			size,
 			icon,
 			color,
-			id
+			id,
 		});
 		setShow(true);
-	}
+	};
 
 	useEffect(() => {
 		const nodes = document.querySelectorAll('.menu-item-wpmi_open');
@@ -44,7 +48,7 @@ const App = () => {
 
 				const li = e.target.closest('li');
 
-				if (li) openModal(li)
+				if (li) openModal(li);
 			})
 		);
 
@@ -55,13 +59,15 @@ const App = () => {
 				for (let mutation of mutationsList) {
 					if (mutation.type === 'childList') {
 						for (let node of mutation.addedNodes) {
-							const iconNode = node.querySelector('.menu-item-wpmi_open')
+							const iconNode = node.querySelector(
+								'.menu-item-wpmi_open'
+							);
 
-							iconNode.addEventListener('click', e => {
+							iconNode.addEventListener('click', (e) => {
 								e.preventDefault();
 
-								openModal(node)
-							})
+								openModal(node);
+							});
 						}
 					}
 				}
@@ -73,15 +79,12 @@ const App = () => {
 
 	return (
 		<Modal
-			title={ WPMI_PLUGIN_NAME }
-			show={ show }
-			onClose={ onClose }
+			title={WPMI_PLUGIN_NAME}
+			show={show}
+			onClose={onClose}
 			__experimentalHideHeader
 		>
-			<Body
-				oldSettings={ oldSettings }
-				onClose={ onClose }
-			/>
+			<Body oldSettings={oldSettings} onClose={onClose} />
 		</Modal>
 	);
 };
