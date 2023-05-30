@@ -3,7 +3,7 @@ import { ColorPicker } from '@wordpress/components';
 const { WPMI_PREFIX } = wpmi_backend;
 
 export default function IconSettings({ settings, setSettings }) {
-	const changeSetting = (e) => {
+	const handleSettingsChange = (e) => {
 		const { name, value } = e.target;
 
 		const newSettings = {
@@ -23,11 +23,11 @@ export default function IconSettings({ settings, setSettings }) {
 					<span>Hide Label</span>
 
 					<select
-						id={WPMI_PREFIX + '-input-label'}
-						class={WPMI_PREFIX + '-input'}
+						id={ WPMI_PREFIX + '-input-label' }
+						class={ WPMI_PREFIX + '-input' }
 						name="label"
-						onChange={changeSetting}
-						value={settings.label}
+						onChange={ handleSettingsChange }
+						value={ settings.label }
 					>
 						<option value="">No</option>
 						<option value="1">Yes</option>
@@ -41,8 +41,8 @@ export default function IconSettings({ settings, setSettings }) {
 						id={WPMI_PREFIX + '-input-position'}
 						class={WPMI_PREFIX + '-input'}
 						name="position"
-						onChange={changeSetting}
-						value={settings.position}
+						onChange={ handleSettingsChange }
+						value={ settings.position }
 					>
 						<option value="before">Before</option>
 						<option value="after">After</option>
@@ -56,8 +56,8 @@ export default function IconSettings({ settings, setSettings }) {
 						id={WPMI_PREFIX + '-input-align'}
 						class={WPMI_PREFIX + '-input'}
 						name="align"
-						onChange={changeSetting}
-						value={settings.align}
+						onChange={ handleSettingsChange }
+						value={ settings.align }
 					>
 						<option value="top">Top</option>
 						<option value="middle">Middle</option>
@@ -77,14 +77,16 @@ export default function IconSettings({ settings, setSettings }) {
 						type="number"
 						min="0.1"
 						step="0.1"
-						onChange={changeSetting}
-						value={settings.size}
+						onChange={ handleSettingsChange }
+						value={ settings.size }
 					/>
 				</label>
+
 				<ColorPicker
-					value={settings.color}
-					onChangeComplete={setColor}
+					value={ settings.color }
+					onChangeComplete={ setColor }
 				/>
+
 				<label class="wpmi-color-picker">
 					<span class="container"></span>
 				</label>

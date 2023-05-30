@@ -1,15 +1,17 @@
 export default function IconMap({ iconMap, search, setIcon }) {
     const filterIcons = () => iconMap.split(',').filter(icon => icon.includes(search))
 
+    const formatClassIcon = icon => icon.trim().replace(/ /g, '_')
+
     return <ul tabindex="-1" class="attachments">
         {filterIcons().map((icon, i) =>
                 <li
-                    tabindex="0"
+                    tabindex={ i }
                     role="checkbox"
                     aria-label={ icon }
                     aria-checked="false"
                     data-id={ i }
-                    class={ "attachment save-ready icon _" + icon.trim().replace(/ /g, '_') }
+                    class={ "attachment save-ready icon _" + formatClassIcon(icon) }
                     onClick={() => setIcon(icon)}
                 >
                     <div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
