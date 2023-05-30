@@ -15,24 +15,28 @@ const {
 	WPMI_LIBRARIES
 } = wpmi_store
 
-export default function Body({ idMenu, oldSettings, onClose }) {
+export default function Body({ oldSettings, onClose }) {
     const [library, setLibrary] = useState({
         name: '',
         iconmap: '',
-        ID: ''
+        label: ''
     })
 
     const [search, setSearch] = useState('')
     const [settings, setSettings] = useState(oldSettings)
+
+    // TODO: quitar y usar hasResolved de useLibrary
     const [loading, setLoading] = useState(true)
 
     const setIcon = icon => setSettings({ ...settings, icon })
 
+    const handleSearchChange = e => setSearch(e.target.value)
+
     const save = e => {
         e.preventDefault()
 
-        const li = document.getElementById('menu-item-' + idMenu)
-        const settingsNode = document.getElementById('menu-item-settings-' + idMenu)
+        const li = document.getElementById('menu-item-' + settings.id)
+        const settingsNode = document.getElementById('menu-item-settings-' + settings.id)
 
 		settingsNode.querySelectorAll('#wpmi-input-label').forEach(node => node.value = settings.label)
 		settingsNode.querySelectorAll('#wpmi-input-position').forEach(node => node.value = settings.position)
@@ -56,9 +60,10 @@ export default function Body({ idMenu, oldSettings, onClose }) {
     }
 
     const remove = e => {
+        e.preventDefault()
 
-        const li = document.getElementById('menu-item-' + idMenu)
-        const settingsNode = document.getElementById('menu-item-settings-' + idMenu)
+        const li = document.getElementById('menu-item-' + settings.id)
+        const settingsNode = document.getElementById('menu-item-settings-' + settings.id)
 
 		settingsNode.querySelectorAll('#wpmi-input-label').forEach(node => node.value = '')
 		settingsNode.querySelectorAll('#wpmi-input-position').forEach(node => node.value = '')
@@ -103,7 +108,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
             <div class="media-frame-router">
                 <div class="media-router">
                     <a href={ WPMI_PREMIUM_SELL_URL } class="media-menu-item" target="_blank">Mega Menu</a>
-                    <a href="#" class="media-menu-item active">{ library.name }</a>
+                    <a href="#" class="media-menu-item active">{ library.label }</a>
                 </div>
             </div>
 
@@ -119,7 +124,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                         <div class="attachments-browser">
                             <div class="media-toolbar">
                                 <div class="media-toolbar-secondary">
-                                    <p><em>Search in { library.name }.</em></p>
+                                    <p><em>Search in { library.label }.</em></p>
                                 </div>
 
                                 <div class="media-toolbar-primary search-form">
@@ -128,7 +133,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                                         placeholder="Search..."
                                         id="media-search-input"
                                         class="search"
-                                        onChange={ e => setSearch(e.target.value) }
+                                        onChange={ handleSearchChange }
                                     />
                                 </div>
                             </div>
@@ -178,7 +183,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                                 <button
                                     type="button"
                                     class="button media-button button-large button-primary media-button-select save"
-                                    onClick={save}
+                                    onClick={ save }
                                 >
                                     Save
                                 </button>
@@ -186,7 +191,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                                 <button
                                     type="button"
                                     class="button media-button button-large button-secondary remove"
-                                    onClick={remove}
+                                    onClick={ remove }
                                 >
                                     Remove
                                 </button>
