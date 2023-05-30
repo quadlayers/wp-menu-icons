@@ -1,5 +1,6 @@
 import { Spinner } from '../';
 import { useLibraries, useCurrentLibrary } from '../../../store/helpers';
+import { __ } from '@wordpress/i18n';
 
 const { WPMI_PREFIX } = wpmi_backend;
 
@@ -13,10 +14,13 @@ export default function MetaBox() {
 	const { currentLibraryName, setCurrentLibraryName } = useCurrentLibrary();
 
 	const handleOptionChange = (e) => setCurrentLibraryName(e.target.value);
+
 	if (isResolvingLibraries && !hasResolvedLibraries) {
 		return <Spinner />;
 	} else if (!hasLibraries) {
-		return 'There are no active libraries.';
+		return (
+			<div>{__('There are no active libraries.', 'wp-menu-icons')};</div>
+		);
 	}
 
 	return (

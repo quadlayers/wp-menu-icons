@@ -1,4 +1,5 @@
 import { ColorPicker } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 const { WPMI_PREFIX } = wpmi_backend;
 
@@ -20,7 +21,7 @@ export default function IconSettings({ settings, setSettings }) {
 		<div class="attachment-info">
 			<form>
 				<label class="setting">
-					<span>Hide Label</span>
+					<span>{__('Hide Label', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-label'}
@@ -29,13 +30,13 @@ export default function IconSettings({ settings, setSettings }) {
 						onChange={changeSetting}
 						value={settings.label}
 					>
-						<option value="">No</option>
-						<option value="1">Yes</option>
+						<option value="">{__('No', 'wp-menu-icons')}</option>
+						<option value="1">{__('Yes', 'wp-menu-icons')}</option>
 					</select>
 				</label>
 
 				<label class="setting">
-					<span>Position</span>
+					<span>{__('Position', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-position'}
@@ -44,13 +45,17 @@ export default function IconSettings({ settings, setSettings }) {
 						onChange={changeSetting}
 						value={settings.position}
 					>
-						<option value="before">Before</option>
-						<option value="after">After</option>
+						<option value="before">
+							{__('Before', 'wp-menu-icons')}
+						</option>
+						<option value="after">
+							{__('After', 'wp-menu-icons')}
+						</option>
 					</select>
 				</label>
 
 				<label class="setting">
-					<span>Vertical Align</span>
+					<span>{__('Vertical Align', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-align'}
@@ -67,7 +72,7 @@ export default function IconSettings({ settings, setSettings }) {
 
 				<label class="setting">
 					<span>
-						Size <em>(em)</em>
+						{__('Size', 'wp-menu-icons')} <em>(em)</em>
 					</span>
 
 					<input
