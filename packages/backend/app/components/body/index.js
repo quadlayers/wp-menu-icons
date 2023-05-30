@@ -1,205 +1,237 @@
-import { useState, useEffect } from "@wordpress/element"
+import { useState } from '@wordpress/element';
+import { __, sprintf } from '@wordpress/i18n';
 
-import { IconPreview, IconSettings, IconMap } from "../"
-import { Spinner } from "../../../components/"
+import { IconPreview, IconSettings, IconMap } from '../';
+import { Spinner } from '../../../components/';
 
-import { useCurrentLibrary } from "@wpmi/store"
+import { useCurrentLibrary } from '@wpmi/store';
 
-const {
-    WPMI_PREFIX,
-    WPMI_PLUGIN_NAME,
-    WPMI_PREMIUM_SELL_URL,
-} = wpmi_backend
+const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_backend;
 
-const {
-	WPMI_LIBRARIES
-} = wpmi_store
+export default function Body({ idMenu, oldSettings, onClose }) {
+	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
-export default function Body({ oldSettings, onClose }) {
-    const [library, setLibrary] = useState({
-        name: '',
-        iconmap: '',
-        label: ''
-    })
+	const [icon, setIcon] = useState(oldSettings.icon);
+	const [search, setSearch] = useState('');
+	const [settings, setSettings] = useState(oldSettings);
 
-    const [search, setSearch] = useState('')
-    const [settings, setSettings] = useState(oldSettings)
+	const save = (e) => {
+		e.preventDefault();
 
-    // TODO: quitar y usar hasResolved de useLibrary
-    const [loading, setLoading] = useState(true)
+		const li = document.getElementById('menu-item-' + idMenu);
+		const settingsNode = document.getElementById(
+			'menu-item-settings-' + idMenu
+		);
 
-    const setIcon = icon => setSettings({ ...settings, icon })
+		settingsNode
+			.querySelectorAll('#wpmi-input-label')
+			.forEach((node) => (node.value = settings.label));
+		settingsNode
+			.querySelectorAll('#wpmi-input-position')
+			.forEach((node) => (node.value = settings.position));
+		settingsNode
+			.querySelectorAll('#wpmi-input-align')
+			.forEach((node) => (node.value = settings.align));
+		settingsNode
+			.querySelectorAll('#wpmi-input-size')
+			.forEach((node) => (node.value = settings.size));
+		settingsNode
+			.querySelectorAll('#wpmi-input-icon')
+			.forEach((node) => (node.value = icon));
+		settingsNode
+			.querySelectorAll('#wpmi-input-color')
+			.forEach((node) => (node.value = settings.color));
 
-    const handleSearchChange = e => setSearch(e.target.value)
+		const iconNode = li.querySelector('.menu-item-wpmi_icon');
+		const plus = li.querySelector('.menu-item-wpmi_plus');
 
-    const save = e => {
-        e.preventDefault()
+		if (iconNode) iconNode.remove();
 
-        const li = document.getElementById('menu-item-' + settings.id)
-        const settingsNode = document.getElementById('menu-item-settings-' + settings.id)
+		const i = document.createElement('i');
 
-		settingsNode.querySelectorAll('#wpmi-input-label').forEach(node => node.value = settings.label)
-		settingsNode.querySelectorAll('#wpmi-input-position').forEach(node => node.value = settings.position)
-		settingsNode.querySelectorAll('#wpmi-input-align').forEach(node => node.value = settings.align)
-		settingsNode.querySelectorAll('#wpmi-input-size').forEach(node => node.value = settings.size)
-		settingsNode.querySelectorAll('#wpmi-input-icon').forEach(node => node.value = settings.icon)
-		settingsNode.querySelectorAll('#wpmi-input-color').forEach(node => node.value = settings.color)
+		i.className = 'menu-item-wpmi_icon ' + icon;
 
-        const iconNode = li.querySelector('.menu-item-wpmi_icon')
-        const plus = li.querySelector('.menu-item-wpmi_plus')
+		plus.before(i);
 
-        if (iconNode) iconNode.remove()
+		onClose();
+	};
 
-        const i = document.createElement('i')
+	const remove = (e) => {
+		const li = document.getElementById('menu-item-' + idMenu);
+		const settingsNode = document.getElementById(
+			'menu-item-settings-' + idMenu
+		);
 
-        i.className = 'menu-item-wpmi_icon ' + settings.icon
+		settingsNode
+			.querySelectorAll('#wpmi-input-label')
+			.forEach((node) => (node.value = ''));
+		settingsNode
+			.querySelectorAll('#wpmi-input-position')
+			.forEach((node) => (node.value = ''));
+		settingsNode
+			.querySelectorAll('#wpmi-input-align')
+			.forEach((node) => (node.value = ''));
+		settingsNode
+			.querySelectorAll('#wpmi-input-size')
+			.forEach((node) => (node.value = ''));
+		settingsNode
+			.querySelectorAll('#wpmi-input-icon')
+			.forEach((node) => (node.value = ''));
+		settingsNode
+			.querySelectorAll('#wpmi-input-color')
+			.forEach((node) => (node.value = ''));
 
-        plus.before(i)
+		const iconNode = li.querySelector('.menu-item-wpmi_icon');
 
-        onClose()
-    }
+		if (iconNode) iconNode.remove();
 
-    const remove = e => {
-        e.preventDefault()
+		onClose();
+	};
 
-        const li = document.getElementById('menu-item-' + settings.id)
-        const settingsNode = document.getElementById('menu-item-settings-' + settings.id)
+	return (
+		<div id={WPMI_PREFIX + '_modal'}>
+			<button
+				type="button"
+				class="media-modal-close close"
+				onClick={onClose}
+			>
+				<span class="media-modal-icon">
+					<span class="screen-reader-text">
+						{__('Close media panel', 'wp-menu-icons')}
+					</span>
+				</span>
+			</button>
 
-		settingsNode.querySelectorAll('#wpmi-input-label').forEach(node => node.value = '')
-		settingsNode.querySelectorAll('#wpmi-input-position').forEach(node => node.value = '')
-		settingsNode.querySelectorAll('#wpmi-input-align').forEach(node => node.value = '')
-		settingsNode.querySelectorAll('#wpmi-input-size').forEach(node => node.value = '')
-		settingsNode.querySelectorAll('#wpmi-input-icon').forEach(node => node.value = '')
-		settingsNode.querySelectorAll('#wpmi-input-color').forEach(node => node.value = '')
+			<div class="media-frame mode-select wp-core-ui hide-menu">
+				<div class="media-frame-title">
+					<h1>{WPMI_PLUGIN_NAME}</h1>
+				</div>
 
-        const iconNode = li.querySelector('.menu-item-wpmi_icon')
+				<div class="media-frame-router">
+					<div class="media-router">
+						<a
+							href={WPMI_PREMIUM_SELL_URL}
+							class="media-menu-item"
+							target="_blank"
+						>
+							{__('Mega Menu', 'wp-menu-icons')}
+						</a>
+						<a href="#" class="media-menu-item active">
+							{currentLibrary.label}
+						</a>
+					</div>
+				</div>
 
-        if (iconNode) iconNode.remove()
+				<div class="media-modal-content">
+					<div class="media-frame mode-select wp-core-ui">
+						<div class="media-frame-menu">
+							<div class="media-menu">
+								<a href="#" class="media-menu-item active">
+									{__('Featured Image', 'wp-menu-icons')}
+								</a>
+							</div>
+						</div>
 
-        onClose()
-    }
+						<div class="media-frame-content" data-columns="8">
+							<div class="attachments-browser">
+								<div class="media-toolbar">
+									<div class="media-toolbar-secondary">
+										<p>
+											<em>
+												{sprintf(
+													__(
+														'Search in %s',
+														'wp-menu-icons'
+													),
+													currentLibrary.label
+												)}
+											</em>
+										</p>
+									</div>
 
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLibrary(WPMI_LIBRARIES['eleganticons'])
-            setLoading(false)
-        }, 500);
-    }, [])
+									<div class="media-toolbar-primary search-form">
+										<input
+											type="search"
+											placeholder="Search..."
+											id="media-search-input"
+											class="search"
+											onChange={(e) =>
+												setSearch(e.target.value)
+											}
+										/>
+									</div>
+								</div>
 
-    return <div id={ WPMI_PREFIX + '_modal' }>
-        <button
-            type="button"
-            class="media-modal-close close"
-            onClick={ onClose }
-        >
-            <span class="media-modal-icon">
-                <span class="screen-reader-text">Close media panel</span>
-            </span>
-        </button>
+								{isResolvingCurrentLibrary ? (
+									<div class="attachments">
+										<Spinner />
+									</div>
+								) : (
+									<IconMap
+										iconMap={currentLibrary.iconmap}
+										search={search}
+										setIcon={setIcon}
+									/>
+								)}
 
-        <div class="media-frame mode-select wp-core-ui hide-menu">
-            <div class="media-frame-title">
-                <h1>
-                    { WPMI_PLUGIN_NAME }
-                </h1>
-            </div>
+								<div class="media-sidebar">
+									<div
+										tabindex="0"
+										class="attachment-details save-ready"
+									>
+										<h2>
+											{__('Icon', 'wp-menu-icons')}
+											<span class="settings-save-status">
+												<span class="spinner"></span>
 
-            <div class="media-frame-router">
-                <div class="media-router">
-                    <a href={ WPMI_PREMIUM_SELL_URL } class="media-menu-item" target="_blank">Mega Menu</a>
-                    <a href="#" class="media-menu-item active">{ library.label }</a>
-                </div>
-            </div>
+												<span class="saved">
+													{__(
+														'Saved',
+														'wp-menu-icons'
+													)}
+												</span>
+											</span>
+										</h2>
+									</div>
 
-            <div class="media-modal-content">
-                <div class="media-frame mode-select wp-core-ui">
-                    <div class="media-frame-menu">
-                        <div class="media-menu">
-                            <a href="#" class="media-menu-item active">Featured Image</a>
-                        </div>
-                    </div>
+									<IconPreview
+										icon={icon}
+										settings={oldSettings}
+									/>
 
-                    <div class="media-frame-content" data-columns="8">
-                        <div class="attachments-browser">
-                            <div class="media-toolbar">
-                                <div class="media-toolbar-secondary">
-                                    <p><em>Search in { library.label }.</em></p>
-                                </div>
+									<IconSettings
+										settings={settings}
+										setSettings={setSettings}
+									/>
+								</div>
+							</div>
+						</div>
+						<div class="media-frame-toolbar">
+							<div class="media-toolbar">
+								<div class="media-toolbar-secondary"></div>
 
-                                <div class="media-toolbar-primary search-form">
-                                    <input
-                                        type="search"
-                                        placeholder="Search..."
-                                        id="media-search-input"
-                                        class="search"
-                                        onChange={ handleSearchChange }
-                                    />
-                                </div>
-                            </div>
+								<div class="media-toolbar-primary search-form">
+									<button
+										type="button"
+										class="button media-button button-large button-primary media-button-select save"
+										onClick={save}
+									>
+										{__('Save', 'wp-menu-icons')}
+									</button>
 
-                            {loading
-                                ? <div class="attachments">
-                                    <Spinner />
-                                </div>
-                                : <IconMap
-                                    iconMap={ library.iconmap }
-                                    search={ search }
-                                    setIcon={ setIcon }
-                                />
-                            }
-
-                            <div class="media-sidebar">
-                                <div tabindex="0" class="attachment-details save-ready">
-                                    <h2>
-                                        Icon
-                                        <span class="settings-save-status">
-                                            <span class="spinner"></span>
-
-                                            <span class="saved">
-                                                Saved
-                                            </span>
-                                        </span>
-                                    </h2>
-                                </div>
-
-                                <IconPreview
-                                    icon={ settings.icon }
-                                    settings={ oldSettings }
-                                />
-
-                                <IconSettings
-                                    settings={ settings }
-                                    setSettings={ setSettings }
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media-frame-toolbar">
-                        <div class="media-toolbar">
-                            <div class="media-toolbar-secondary"></div>
-
-                            <div class="media-toolbar-primary search-form">
-                                <button
-                                    type="button"
-                                    class="button media-button button-large button-primary media-button-select save"
-                                    onClick={ save }
-                                >
-                                    Save
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="button media-button button-large button-secondary remove"
-                                    onClick={ remove }
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+									<button
+										type="button"
+										class="button media-button button-large button-secondary remove"
+										onClick={remove}
+									>
+										{__('Remove', 'wp-menu-icons')}
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }

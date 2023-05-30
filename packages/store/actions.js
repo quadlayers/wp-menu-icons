@@ -12,9 +12,9 @@ export const setCurrentLibraryName = (libraryName) => {
 	};
 };
 
-// export const setActiveLibreries = libreries => {
-//     return {
-//         type: "SET_ACTIVE_LIBRERIES",
-//         payload: libreries
-//     }
-// }
+export const setActiveLibraries = (activeLibraries) => {
+	return {
+		type: 'SET_ACTIVE_LIBRARIES',
+		payload: activeLibraries,
+	};
+};

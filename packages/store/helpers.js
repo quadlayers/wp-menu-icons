@@ -32,6 +32,14 @@ export const fetchRestApiLibraries = ({ method, data } = {}) => {
 	});
 };
 
+export const fetchRestApiSettings = ({ method, data } = {}) => {
+	return apiFetch({
+		path: WPMI_REST_ROUTES.settings,
+		method,
+		data,
+	});
+};
+
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {
@@ -96,6 +104,32 @@ export const useCurrentLibrary = () => {
 	};
 };
 
-// removeActiveLibrary
+export function useActiveLibraries() {
+	const { setActiveLibraries } = useDispatch(STORE_NAME);
 
-// addActiveLibrary
+	const {
+		activelibraries,
+		isResolvingActiveLibraries,
+		hasResolvedActiveLibraries,
+	} = useSelect((select) => {
+		const { isResolving, hasFinishedResolution, getActiveLibraries } =
+			select(STORE_NAME);
+
+		return {
+			activelibraries: getActiveLibraries(),
+			isResolvingActiveLibraries: isResolving('getActiveLibraries'),
+			hasResolvedActiveLibraries:
+				hasFinishedResolution('getActiveLibraries'),
+		};
+	}, []);
+
+	return {
+		activelibraries,
+		isResolvingActiveLibraries,
+		hasResolvedActiveLibraries,
+		hasActiveLibraries: !!(
+			hasResolvedActiveLibraries && Object.keys(activelibraries)?.length
+		),
+		setActiveLibraries,
+	};
+}
