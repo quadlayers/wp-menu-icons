@@ -20,17 +20,13 @@ export default function MetaBox() {
 		hasResolvedLibraries,
 		hasLibraries,
 	} = useLibraries();
-	const { currentLibraryName, setCurrentLibraryName } = useCurrentLibrary();
+	const { currentLibrary, currentLibraryName, setCurrentLibraryName } = useCurrentLibrary();
 
 	const handleOptionChange = (e) => setCurrentLibraryName(e.target.value);
 
     useEffect(() => {
-        if (hasLibraries && currentLibraryName) {
-            const library = libraries.find(item => item.name === currentLibraryName)
-            
-            link.href = library.stylesheet_file || ''
-        }
-    }, [currentLibraryName, hasLibraries])
+			link.href = currentLibrary?.stylesheet_file || ''
+    }, [currentLibraryName])
 
 	if (isResolvingLibraries && !hasResolvedLibraries) {
 		return <Spinner />;
