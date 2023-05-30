@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Backend\Icons_Library;
 
-class Icons_Library {
+class Load {
 
 	protected static $_instance;
 
@@ -17,9 +17,6 @@ class Icons_Library {
 	public function load() {
 
 		new Libraries\Defaults();
-
-		error_log( 'this->libraries: ' . json_encode( $this->libraries, JSON_PRETTY_PRINT ) );
-
 	}
 
 	/*

@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Backend\Icons_Library\Libraries;
 
-use QuadLayers\WPMI\Backend\Icons_Library\Icons_Library;
+use QuadLayers\WPMI\Backend\Icons_Library\Load;
 
 abstract class Base {
 
@@ -202,6 +202,6 @@ abstract class Base {
 	}
 
 	protected function register( $block ) {
-		Icons_Library::instance()->register( $block );
+		Load::instance()->register( $block );
 	}
 }
