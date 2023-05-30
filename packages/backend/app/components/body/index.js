@@ -8,19 +8,22 @@ import { useCurrentLibrary } from '@wpmi/store';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_backend;
 
-export default function Body({ idMenu, oldSettings, onClose }) {
+export default function Body({ oldSettings, onClose }) {
 	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
-	const [icon, setIcon] = useState(oldSettings.icon);
+	console.log('currentLibrary: ', currentLibrary);
+
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);
+	const setIcon = (icon) => setSettings({ ...settings, icon });
+	const handleSearchChange = (e) => setSearch(e.target.value);
 
 	const save = (e) => {
 		e.preventDefault();
 
-		const li = document.getElementById('menu-item-' + idMenu);
+		const li = document.getElementById('menu-item-' + settings.id);
 		const settingsNode = document.getElementById(
-			'menu-item-settings-' + idMenu
+			'menu-item-settings-' + settings.id
 		);
 
 		settingsNode
@@ -37,7 +40,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 			.forEach((node) => (node.value = settings.size));
 		settingsNode
 			.querySelectorAll('#wpmi-input-icon')
-			.forEach((node) => (node.value = icon));
+			.forEach((node) => (node.value = settings.icon));
 		settingsNode
 			.querySelectorAll('#wpmi-input-color')
 			.forEach((node) => (node.value = settings.color));
@@ -49,7 +52,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 
 		const i = document.createElement('i');
 
-		i.className = 'menu-item-wpmi_icon ' + icon;
+		i.className = 'menu-item-wpmi_icon ' + settings.icon;
 
 		plus.before(i);
 
@@ -57,9 +60,11 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 	};
 
 	const remove = (e) => {
-		const li = document.getElementById('menu-item-' + idMenu);
+		e.preventDefault();
+
+		const li = document.getElementById('menu-item-' + settings.id);
 		const settingsNode = document.getElementById(
-			'menu-item-settings-' + idMenu
+			'menu-item-settings-' + settings.id
 		);
 
 		settingsNode
@@ -155,9 +160,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 											placeholder="Search..."
 											id="media-search-input"
 											class="search"
-											onChange={(e) =>
-												setSearch(e.target.value)
-											}
+											onChange={handleSearchChange}
 										/>
 									</div>
 								</div>
@@ -195,7 +198,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 									</div>
 
 									<IconPreview
-										icon={icon}
+										icon={settings.icon}
 										settings={oldSettings}
 									/>
 
