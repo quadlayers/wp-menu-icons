@@ -13,9 +13,13 @@ abstract class Base {
 	public $name            = null;
 	public $label           = null;
 	public $version         = null;
-	public $prefix          = '';
-	public $stylesheet_file = '';
-	public $json_file       = '';
+	public $prefix          ;
+	public $stylesheet_file ;
+	public $json_file       ;
+	public $stylesheet_file_path ;
+	public $json_file_path;
+	public $stylesheet_file_url;
+	public $json_file_url;
 
 	public function __construct() {
 
@@ -24,11 +28,17 @@ abstract class Base {
 		$this->baseurl = "{$wp_upload_dir['baseurl']}/{$this->folder_path}/";
 		$this->basedir = "{$wp_upload_dir['basedir']}/{$this->folder_path}/";
 
+		$this->stylesheet_file_path = $this->get_file_path( $this->stylesheet_file );
+		$this->json_file_path       = $this->get_file_path( $this->json_file );
+
+		$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
+		$this->json_file_url       = $this->get_file_url( $this->json_file );
+
 		$this->register( $this );
 
 		add_action( 'wp_loaded', array( $this, 'register_assets' ) );
 		/*
-			enqueue_block_assets 
+			enqueue_block_assets
 			Is not working on Gutenberg 13.8 because this filter extecuted before block_editor_settings_all
 			Therefore it is not loaded in EditorStyles
 		*/

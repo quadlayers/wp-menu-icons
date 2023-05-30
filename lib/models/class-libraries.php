@@ -84,6 +84,8 @@ class Libraries {
 
 		$registered_custom_libraries = $icons_library->get_libraries();
 
+		error_log( 'registered_custom_libraries: ' . json_encode( $registered_custom_libraries, JSON_PRETTY_PRINT ) );
+
 		return $registered_custom_libraries;
 	}
 

@@ -17,6 +17,9 @@ class Icons_Library {
 	public function load() {
 
 		new Libraries\Defaults();
+
+		error_log( 'this->libraries: ' . json_encode( $this->libraries, JSON_PRETTY_PRINT ) );
+
 	}
 
 	/*
