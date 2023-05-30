@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Models;
 
 use QuadLayers\WPMI\Models\Setting as Model_Setting;
-use \QuadLayers\WPMI_PRO\Backend\Icons_Library\Icons_Library;
+use \QuadLayers\WPMI\Backend\Icons_Library\Icons_Library;
 /**
  * Models_Setting Class
  */
@@ -11,7 +11,7 @@ class Libraries {
 	protected $model_settings;
 
 	public function __construct() {
-		 $this->model_settings = new Model_Setting();
+		$this->model_settings = new Model_Setting();
 	}
 
 	public function get_libraries() {
