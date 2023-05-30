@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { fetchRestApiLibraries } from './helpers';
+import { fetchRestApiLibraries, fetchRestApiSettings } from './helpers';
 import * as actions from './actions';
 
 export const getLibraries = async () => {
@@ -15,7 +15,8 @@ export const getLibraries = async () => {
 
 export const getActiveLibraries = async () => {
 	try {
-		// TODO: support
+		const response = await fetchRestApiSettings();
+		return actions.setActiveLibraries(Object.values(response));
 	} catch (error) {
 		console.error(error);
 	}
