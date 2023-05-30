@@ -8,8 +8,8 @@ export default function reducer(state = INITIAL_STATE, action) {
 		case 'SET_CURRENT_LIBRARY_NAME':
 			return { ...state, currentLibraryName: action.payload };
 
-		// case "SET_ACTIVE_LIBRERIES":
-		//    return { ...state, activeLibrary: action.payload };
+		case 'SET_ACTIVE_LIBRARIES':
+			return { ...state, activeLibraries: action.payload };
 	}
 
 	return state;

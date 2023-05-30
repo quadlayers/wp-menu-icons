@@ -104,7 +104,7 @@ export const useCurrentLibrary = () => {
 	};
 };
 
-export function useActiveLibrary() {
+export function useActiveLibraries() {
 	const { setActiveLibraries } = useDispatch(STORE_NAME);
 
 	const {
