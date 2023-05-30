@@ -22,10 +22,11 @@ export default function Body({ idMenu, oldSettings, onClose }) {
         ID: ''
     })
 
-    const [icon, setIcon] = useState(oldSettings.icon)
     const [search, setSearch] = useState('')
     const [settings, setSettings] = useState(oldSettings)
     const [loading, setLoading] = useState(true)
+
+    const setIcon = icon => setSettings({ ...settings, icon })
 
     const save = e => {
         e.preventDefault()
@@ -37,7 +38,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 		settingsNode.querySelectorAll('#wpmi-input-position').forEach(node => node.value = settings.position)
 		settingsNode.querySelectorAll('#wpmi-input-align').forEach(node => node.value = settings.align)
 		settingsNode.querySelectorAll('#wpmi-input-size').forEach(node => node.value = settings.size)
-		settingsNode.querySelectorAll('#wpmi-input-icon').forEach(node => node.value = icon)
+		settingsNode.querySelectorAll('#wpmi-input-icon').forEach(node => node.value = settings.icon)
 		settingsNode.querySelectorAll('#wpmi-input-color').forEach(node => node.value = settings.color)
 
         const iconNode = li.querySelector('.menu-item-wpmi_icon')
@@ -47,7 +48,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 
         const i = document.createElement('i')
 
-        i.className = 'menu-item-wpmi_icon ' + icon
+        i.className = 'menu-item-wpmi_icon ' + settings.icon
 
         plus.before(i)
 
@@ -79,7 +80,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
             setLibrary(WPMI_LIBRARIES['eleganticons'])
             setLoading(false)
         }, 500);
-    }, [idMenu])
+    }, [])
 
     return <div id={ WPMI_PREFIX + '_modal' }>
         <button
@@ -158,7 +159,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
                                 </div>
 
                                 <IconPreview
-                                    icon={ icon }
+                                    icon={ settings.icon }
                                     settings={ oldSettings }
                                 />
 

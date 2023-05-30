@@ -64,7 +64,11 @@ const App = () => {
 			onClose={onClose}
 			__experimentalHideHeader
 		>
-			<Body idMenu={idMenu} oldSettings={oldSettings} onClose={onClose} />
+			<Body
+				idMenu={idMenu}
+				oldSettings={oldSettings}
+				onClose={onClose}
+			/>
 		</Modal>
 	);
 };
