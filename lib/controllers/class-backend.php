@@ -2,6 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
+use QuadLayers\WPMI\Backend\Icons_Library\Icons_Library;
 use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
 // use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\settings\Get as API_Rest_Libraries;
@@ -29,6 +30,7 @@ class Backend {
 		add_action( 'wp_nav_menu_item_custom_fields', array( $this, 'fields' ), 10, 4 );
 		add_action( 'wp_nav_menu_item_custom_title', array( $this, 'icon' ), 10, 4 );
 		add_action( 'wp_update_nav_menu_item', array( $this, 'wp_update_nav_menu_item' ), 10, 3 );
+		Icons_Library::instance();
 	}
 
 	public function wp_update_nav_menu_item( $menu_id, $menu_item_db_id, $menu_item_args ) {
