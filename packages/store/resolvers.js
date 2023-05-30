@@ -13,6 +13,27 @@ export const getLibraries = async () => {
 	}
 };
 
+export const uploadLibrary = async () => {
+	try {
+		const response = await fetchRestApiLibraries();
+
+		//TODO: check if the response is ok and include library in libraries
+		// return actions.setLibraries(Object.values(response));
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const deleteLibraries = async () => {
+	try {
+		const response = await fetchRestApiLibraries();
+		//TODO: check if the response is ok and remove library from libraries
+		// return actions.setLibraries(Object.values(response));
+	} catch (error) {
+		console.error(error);
+	}
+};
+
 export const getActiveLibraries = async () => {
 	try {
 		const response = await fetchRestApiSettings();
