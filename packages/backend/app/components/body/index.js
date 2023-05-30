@@ -1,26 +1,19 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState } from '@wordpress/element';
+import { __, sprintf } from '@wordpress/i18n';
 
 import { IconPreview, IconSettings, IconMap } from '../';
 import { Spinner } from '../../../components/';
 
-//TODO: check why @wpmi/store is not working
 import { useCurrentLibrary } from '@wpmi/store';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_backend;
 
 export default function Body({ idMenu, oldSettings, onClose }) {
-	const [library, setLibrary] = useState({
-		name: '',
-		iconmap: '',
-		label: '',
-	});
-
 	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
 	const [icon, setIcon] = useState(oldSettings.icon);
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);
-	const [loading, setLoading] = useState(true);
 
 	const save = (e) => {
 		e.preventDefault();
@@ -95,18 +88,6 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 		onClose();
 	};
 
-	useEffect(() => {
-		setLoading(true);
-		setTimeout(() => {
-			setLibrary(currentLibrary);
-			setLoading(false);
-		}, 500);
-	}, [idMenu]);
-
-	// if (isResolvingCurrentLibrary) {
-	// 	return <div>loading...</div>;
-	// }
-
 	return (
 		<div id={WPMI_PREFIX + '_modal'}>
 			<button
@@ -115,7 +96,9 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 				onClick={onClose}
 			>
 				<span class="media-modal-icon">
-					<span class="screen-reader-text">Close media panel</span>
+					<span class="screen-reader-text">
+						{__('Close media panel', 'wp-menu-icons')}
+					</span>
 				</span>
 			</button>
 
@@ -131,10 +114,10 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 							class="media-menu-item"
 							target="_blank"
 						>
-							Mega Menu
+							{__('Mega Menu', 'wp-menu-icons')}
 						</a>
 						<a href="#" class="media-menu-item active">
-							{library.label}
+							{currentLibrary.label}
 						</a>
 					</div>
 				</div>
@@ -144,7 +127,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 						<div class="media-frame-menu">
 							<div class="media-menu">
 								<a href="#" class="media-menu-item active">
-									Featured Image
+									{__('Featured Image', 'wp-menu-icons')}
 								</a>
 							</div>
 						</div>
@@ -154,7 +137,15 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 								<div class="media-toolbar">
 									<div class="media-toolbar-secondary">
 										<p>
-											<em>Search in {library.label}.</em>
+											<em>
+												{sprintf(
+													__(
+														'Search in %s',
+														'wp-menu-icons'
+													),
+													currentLibrary.label
+												)}
+											</em>
 										</p>
 									</div>
 
@@ -171,13 +162,13 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 									</div>
 								</div>
 
-								{loading ? (
+								{isResolvingCurrentLibrary ? (
 									<div class="attachments">
 										<Spinner />
 									</div>
 								) : (
 									<IconMap
-										iconMap={library.iconmap}
+										iconMap={currentLibrary.iconmap}
 										search={search}
 										setIcon={setIcon}
 									/>
@@ -189,11 +180,16 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 										class="attachment-details save-ready"
 									>
 										<h2>
-											Icon
+											{__('Icon', 'wp-menu-icons')}
 											<span class="settings-save-status">
 												<span class="spinner"></span>
 
-												<span class="saved">Saved</span>
+												<span class="saved">
+													{__(
+														'Saved',
+														'wp-menu-icons'
+													)}
+												</span>
 											</span>
 										</h2>
 									</div>
@@ -220,7 +216,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 										class="button media-button button-large button-primary media-button-select save"
 										onClick={save}
 									>
-										Save
+										{__('Save', 'wp-menu-icons')}
 									</button>
 
 									<button
@@ -228,7 +224,7 @@ export default function Body({ idMenu, oldSettings, onClose }) {
 										class="button media-button button-large button-secondary remove"
 										onClick={remove}
 									>
-										Remove
+										{__('Remove', 'wp-menu-icons')}
 									</button>
 								</div>
 							</div>
