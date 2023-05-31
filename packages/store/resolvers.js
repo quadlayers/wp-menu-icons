@@ -42,3 +42,13 @@ export const getActiveLibraries = async () => {
 		console.error(error);
 	}
 };
+
+export const getCurrentLibraryName = async (menu_id) => {
+	try {
+		//TODO: implement resolver
+		// const response = await fetchRestApiMenu(menu_id);
+		// return actions.setCurrentLibraryName(...);
+	} catch (error) {
+		console.error(error);
+	}
+};

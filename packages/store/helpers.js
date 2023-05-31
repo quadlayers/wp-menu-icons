@@ -40,6 +40,15 @@ export const fetchRestApiSettings = ({ method, data } = {}) => {
 	});
 };
 
+//TODO: implement
+// export const fetchRestApiMenu = ({ method, data, menu_id } = {}) => {
+// 	return apiFetch({
+// 		path: WPMI_REST_ROUTES.menu,
+// 		method,
+// 		data,
+// 	});
+// };
+
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {

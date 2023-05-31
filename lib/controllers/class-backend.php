@@ -53,12 +53,12 @@ class Backend {
 				$this->update( $menu_item_db_id, $menu_item_wpmi );
 			}
 
-			$menu_id = absint( $_POST['menu'] );
+			if ( isset( $_POST['wpmi_font'] ) ) {
 
-			$menu_font = sanitize_key( $_POST['wpmi_font'] );
+				$menu_font = sanitize_key( $_POST['wpmi_font'] );
 
-			if ( $menu_id > 0 ) {
-				if ( isset( $_POST['wpmi_font'] ) ) {
+				if ( $menu_id > 0 ) {
+					//TODO: implement $menu_model = new QuadLayers\WPMI\Models\Menu(); $menu_model->save( $menu_id, $menu_font );
 					update_term_meta( $menu_id, WPMI_DB_KEY, $menu_font, false );
 				}
 			}
@@ -139,6 +139,8 @@ class Backend {
 				'WPMI_REST_ROUTES' => array(
 					'libraries' => API_Rest_Libraries::get_rest_path(),
 					'settings'  => API_Rest_Settings::get_rest_path(),
+					//TODO: menu rest api
+					// 'menu'  => API_Rest_Menu::get_rest_path(),
 				),
 				'WPMI_LIBRARIES'   => $libraries,
 			)
