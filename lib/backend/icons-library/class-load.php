@@ -16,7 +16,12 @@ class Load {
 
 	public function load() {
 
-		new Libraries\Defaults();
+		new Libraries\Default_Icons();
+		new Libraries\Elegant_Icons();
+		new Libraries\Elusive_icons();
+		new Libraries\Fontawesome_Icons();
+		new Libraries\Foundation_Icons();
+		new Libraries\Themify_Icons();
 	}
 
 	/*
