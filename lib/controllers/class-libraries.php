@@ -4,6 +4,7 @@ namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Models\Libraries as Model_Libraries;
 
+
 class Libraries {
 
 	private static $instance;
@@ -15,10 +16,14 @@ class Libraries {
 			'init',
 			function () {
 				// TODO: only register active libraries
-				$libraries = Model_Libraries::get_default_libraries();
+
+				$libraries_model = new Model_Libraries();
+
+				$libraries = $libraries_model->get_libraries();
+
 				foreach ( $libraries as $name => $library ) {
 
-					wp_register_style( $name, $library['stylesheet_file'] );
+					wp_register_style( $name, $library->stylesheet_file );
 
 					// $library['name'] = $id;
 				}
