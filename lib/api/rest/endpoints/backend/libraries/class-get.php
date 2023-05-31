@@ -29,7 +29,7 @@ class Get extends Base {
 			return $this->handle_response( $error );
 		}
 
-		return $this->handle_response( (array) $libraries[ $required_library ] );
+		return $this->handle_response( (array) get_object_vars( $libraries[ $required_library ] ) );
 	}
 
 	public static function get_rest_method() {
