@@ -23,6 +23,10 @@ class Get extends Base {
 	}
 
 	public static function get_rest_args() {
-		return array();
+		return array(
+			'id' => array(
+				'required' => true,
+			),
+		);
 	}
 }
