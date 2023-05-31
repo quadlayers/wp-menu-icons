@@ -13,7 +13,7 @@ import { AppProvider } from './provider';
 import { AppStructure } from './structure';
 import { useAppSlotContext } from './structure/provider';
 
-export const AppMenu = () => {
+const BackendMenu = () => {
 	return (
 		<>
 			<AppProvider>
@@ -26,6 +26,7 @@ export const AppMenu = () => {
 	);
 };
 
+export default BackendMenu;
 export { AppTabSwitcher, AppProvider, AppStructure, useAppSlotContext };
 
 export * from './components';

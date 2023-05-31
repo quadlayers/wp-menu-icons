@@ -1,11 +1,11 @@
 import { useState, useEffect } from '@wordpress/element';
 
-import { Modal } from '../components/';
-import { Body } from './components/';
+import { Modal } from '../components';
+import { Body } from './components';
 
 const { WPMI_PLUGIN_NAME } = wpmi_backend;
 
-const App = () => {
+const NavMenu = () => {
 	const [show, setShow] = useState(false);
 	const [oldSettings, setOldSettings] = useState({});
 
@@ -89,4 +89,4 @@ const App = () => {
 	);
 };
 
-export default App;
+export default NavMenu;
