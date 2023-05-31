@@ -20,6 +20,7 @@ abstract class Base {
 	public $json_file_path;
 	public $stylesheet_file_url;
 	public $json_file_url;
+	public $type;
 
 	public function __construct() {
 
