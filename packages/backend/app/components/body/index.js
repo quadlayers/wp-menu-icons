@@ -1,21 +1,22 @@
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
+
+import { useCurrentLibrary } from '@wpmi/store';
 
 import { IconPreview, IconSettings, IconMap } from '../';
 import { Spinner } from '../../../components/';
-
-import { useCurrentLibrary } from '@wpmi/store';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_backend;
 
 export default function Body({ oldSettings, onClose }) {
 	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
 
-	console.log('currentLibrary: ', currentLibrary);
-
+	const [iconMap, setIconMap] = useState('');
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);
+
 	const setIcon = (icon) => setSettings({ ...settings, icon });
+	
 	const handleSearchChange = (e) => setSearch(e.target.value);
 
 	const save = (e) => {
@@ -93,6 +94,25 @@ export default function Body({ oldSettings, onClose }) {
 		onClose();
 	};
 
+	useEffect(() => {
+		if (!isResolvingCurrentLibrary) {
+			if (currentLibrary.iconmap) {
+				setIconMap(currentLibrary.iconmap)
+			} else {
+				fetch(currentLibrary.json_file).then(response => {
+					if (!response.ok) {
+						throw new Error("HTTP error " + response.status);
+					}
+					return response.text();
+				}).then(data => {
+					setIconMap(data.iconmap)
+				}).catch(function() {
+					alert('Error!');
+				});
+			}
+		}
+	}, [isResolvingCurrentLibrary])
+
 	return (
 		<div id={WPMI_PREFIX + '_modal'}>
 			<button
@@ -165,13 +185,13 @@ export default function Body({ oldSettings, onClose }) {
 									</div>
 								</div>
 
-								{isResolvingCurrentLibrary ? (
+								{isResolvingCurrentLibrary || !iconMap ? (
 									<div class="attachments">
 										<Spinner />
 									</div>
 								) : (
 									<IconMap
-										iconMap={currentLibrary.iconmap}
+										iconMap={iconMap}
 										search={search}
 										setIcon={setIcon}
 									/>
