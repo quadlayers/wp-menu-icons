@@ -4,19 +4,25 @@
 
 import { render } from '@wordpress/element';
 
+//TODO: rename to AppNavmenu
 import App from './app';
-import { AppMenu } from './app/Menu';
 import MetaBox from './components/metabox';
+//TODO: rename to AppBackendMenu
+import { AppMenu } from './app/Menu';
 
 import { onDocumentLoaded } from './helpers';
 
 const { WPMI_PREFIX } = wpmi_backend;
 
 onDocumentLoaded(() => {
+
 	const container = document.createElement('div');
 	const target = document.getElementById('wpbody-content');
 
 	const body = document.querySelector('body');
+
+	const isNavmenu = body.classList.contains('nav-menus-php');
+	const isBackend = body.classList.contains('toplevel_page_wp-menu-icons');
 
 	body.append(container);
 
@@ -60,7 +66,15 @@ onDocumentLoaded(() => {
 		`posttype-${WPMI_PREFIX}-themes`
 	);
 
-	render(<App />, container);
-	render(<AppMenu />, target);
-	render(<MetaBox />, metabox_container);
+	if (isBackend) {
+		render(<AppMenu />, target);
+	}
+
+	if (isNavmenu) {
+		render(<App />, container);
+		render(<MetaBox />, metabox_container);
+	}
 });
+
+//import '/backend/menu'; => isBackend
+//import '/backend/navmenu'; => isNavmenu

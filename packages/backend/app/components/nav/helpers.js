@@ -6,8 +6,7 @@
 
 export const activeSubmenuItems = (currentTab) => {
 	const menu = Array.from(
-		document.querySelector("#toplevel_page_wp-menu-icons-pro .wp-submenu")
-			.children
+		document.querySelector("#toplevel_page_wp-menu-icons-pro .wp-submenu")?.children || []
 	);
 	// capitalize the first letter of the string
 	const CapitalizedFirstLetterString =

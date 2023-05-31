@@ -177,15 +177,12 @@ class Backend
 
 	public function enqueue_scripts()
 	{
-		if (!isset($_GET['page']) || $_GET['page'] !== self::get_menu_slug()) {
-			return;
-		}
 
 		global $pagenow;
 
-		// if ($pagenow != 'nav-menus.php') {
-		// 	return;
-		// }
+		if ((!isset($_GET['page']) || $_GET['page'] !== self::get_menu_slug()) && $pagenow != 'nav-menus.php') {
+			return;
+		}
 
 		Libraries::enqueue_style_library();
 
