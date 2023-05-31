@@ -1,16 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
 export default function IconMap({ iconMap, search, setIcon }) {
-
 	//TODO: implement fetch json_file if iconMap is empty
 	const filterIcons = () =>
-		iconMap.split(',').filter((icon) => icon.includes(search));
+		iconMap?.split(',').filter((icon) => icon.includes(search));
 
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 
 	return (
 		<ul tabindex="-1" class="attachments">
-			{filterIcons().map((icon, i) => (
+			{filterIcons()?.map((icon, i) => (
 				<li
 					tabindex={i}
 					role="checkbox"
