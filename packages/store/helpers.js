@@ -105,7 +105,7 @@ export const useCurrentLibrary = () => {
 };
 
 export function useActiveLibraries() {
-	const { setActiveLibraries } = useDispatch(STORE_NAME);
+	const { saveSettings, setActiveLibraries } = useDispatch(STORE_NAME);
 
 	const {
 		activelibraries,
@@ -131,5 +131,6 @@ export function useActiveLibraries() {
 			hasResolvedActiveLibraries && Object.keys(activelibraries)?.length
 		),
 		setActiveLibraries,
+		saveSettings,
 	};
 }

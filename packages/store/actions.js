@@ -1,3 +1,5 @@
+import { fetchRestApiSettings } from './helpers';
+
 export const setLibraries = (libraries) => {
 	return {
 		type: 'SET_LIBRARIES',
@@ -18,3 +20,18 @@ export const setActiveLibraries = (activeLibraries) => {
 		payload: activeLibraries,
 	};
 };
+
+export const saveSettings =
+	(settings) =>
+	async ({ dispatch }) => {
+		await fetchRestApiSettings({
+			method: 'POST',
+			data: settings,
+		});
+
+		dispatch.setActiveLibraries({
+			...settings,
+		});
+
+		return true;
+	};

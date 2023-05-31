@@ -1,11 +1,11 @@
-import classnames from "classnames";
+import classnames from 'classnames';
 
 const Button = ({
 	isSecondary,
 	href,
 	title,
-	target = "_self",
-	tagName = "a",
+	target = '_self',
+	tagName = 'a',
 	className,
 	children,
 }) => {
@@ -14,8 +14,8 @@ const Button = ({
 	return (
 		<TagName
 			className={classnames(
-				"insta-gallery__button",
-				isSecondary && "insta-gallery__button--secondary",
+				'wp-menu-icons__button',
+				isSecondary && 'wp-menu-icons__button--secondary',
 				className
 			)}
 			href={href}

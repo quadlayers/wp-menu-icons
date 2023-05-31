@@ -1,6 +1,6 @@
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
-import { AppSlotConsumer, AppSlotProvider } from "./provider";
+import { AppSlotConsumer, AppSlotProvider } from './provider';
 
 export const AppStructure = ({ children }) => {
 	/* TODO: implement condition and fix position issue */
@@ -19,7 +19,7 @@ export const AppStructure = ({ children }) => {
 										<div
 											className="notice welcome-tab wrap about-wrap full-width-layout"
 											style={{
-												display: "block!important",
+												display: 'block!important',
 											}}
 										>
 											<div
@@ -27,9 +27,9 @@ export const AppStructure = ({ children }) => {
 												style={{
 													paddingTop: 10,
 													paddingBottom: 10,
-													display: "flex",
-													justifyContent: "left",
-													alignItems: "center",
+													display: 'flex',
+													justifyContent: 'left',
+													alignItems: 'center',
 												}}
 											>
 												<div className="notice-image"></div>
@@ -42,31 +42,31 @@ export const AppStructure = ({ children }) => {
 													<p>
 														<b>
 															{__(
-																"Action Required Within 7 Days:",
-																"insta-gallery"
+																'Action Required Within 7 Days:',
+																'wp-menu-icons'
 															)}
 														</b>
 														<br />
 														{__(
-															"Your Instagram feed has been not viewed in the last 14 days. Due to Instagram data privacy rules, all data for this feed will be deleted in 7 days time. To avoid automated data deletion, simply view the Instagram feed on your website within the next 7 days.",
-															"insta-gallery"
+															'Your Instagram feed has been not viewed in the last 14 days. Due to Instagram data privacy rules, all data for this feed will be deleted in 7 days time. To avoid automated data deletion, simply view the Instagram feed on your website within the next 7 days.',
+															'wp-menu-icons'
 														)}
 														<br />
 														{__(
 															'Or you can simply press the "Fix Usage" button to fix this issue.',
-															"insta-gallery"
+															'wp-menu-icons'
 														)}
 													</p>
 													<a
 														onClick={() =>
-															alert("clicked")
+															alert('clicked')
 														}
 														className="button-primary"
 														target="_blank"
 													>
 														{__(
-															"Fix Usage",
-															"insta-gallery"
+															'Fix Usage',
+															'wp-menu-icons'
 														)}
 													</a>
 												</div>

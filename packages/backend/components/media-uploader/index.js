@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 
-import { Component } from "@wordpress/element";
+import { Component } from '@wordpress/element';
 
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
-import { Button } from "@wordpress/components";
+import { Button } from '@wordpress/components';
 
 class ImageUploader extends Component {
 	constructor() {
@@ -37,18 +37,18 @@ class ImageUploader extends Component {
 	 * Create a media modal select frame, and store it so the instance can be reused when needed.
 	 */
 	initFrame() {
-		const buttonClose = document.querySelector(".media-modal-close");
+		const buttonClose = document.querySelector('.media-modal-close');
 
 		this.frame = wp.media({
 			button: {
-				text: __("Select", "insta-gallery"),
+				text: __('Select', 'wp-menu-icons'),
 				close: false,
 			},
 			states: [
 				new wp.media.controller.Library({
-					title: __("Select logo", "insta-gallery"),
+					title: __('Select logo', 'wp-menu-icons'),
 					library: wp.media.query({
-						type: this.props.allowedTypes || ["image"],
+						type: this.props.allowedTypes || ['image'],
 					}),
 					multiple: false,
 					date: false,
@@ -68,13 +68,13 @@ class ImageUploader extends Component {
 					  ]),
 			],
 		});
-		this.frame.on("select", this.onSelect, this);
-		this.frame.on("close", () => {
+		this.frame.on('select', this.onSelect, this);
+		this.frame.on('close', () => {
 			this.props.onFrameClose && this.props.onFrameClose();
 			// console.log(this.frame)
 		});
-		this.frame.on("cropped", this.onCropped, this);
-		this.frame.on("skippedcrop", this.onSkippedCrop, this);
+		this.frame.on('cropped', this.onCropped, this);
+		this.frame.on('skippedcrop', this.onSkippedCrop, this);
 		//subscribe to delete event and trigger onChange({}) if current selected image is value image
 		//this.frame.on('delete', () => alert('delete!'), this)
 	}
@@ -84,7 +84,7 @@ class ImageUploader extends Component {
 	 */
 	openFrame() {
 		this.initFrame();
-		this.frame.setState("library").open();
+		this.frame.setState('library').open();
 		this.props.onFrameOpen && this.props.onFrameOpen();
 	}
 
@@ -93,7 +93,7 @@ class ImageUploader extends Component {
 	 * state if the image isn't the right size.
 	 */
 	onSelect() {
-		const attachment = this.frame.state().get("selection").first().toJSON();
+		const attachment = this.frame.state().get('selection').first().toJSON();
 
 		if (
 			((this.props.logo || {}).width === attachment.width &&
@@ -106,7 +106,7 @@ class ImageUploader extends Component {
 			this.setImageFromAttachment(attachment);
 			this.frame.close();
 		} else {
-			this.frame.setState("cropper");
+			this.frame.setState('cropper');
 		}
 	}
 
@@ -129,14 +129,14 @@ class ImageUploader extends Component {
 	 * @returns {Object} Options
 	 */
 	calculateImageSelectOptions(attachment, controller) {
-		const control = controller.get("control");
+		const control = controller.get('control');
 		const flexWidth = !!parseInt((control.props.logo || {}).flex_width, 10);
 		const flexHeight = !!parseInt(
 			(control.props.logo || {}).flex_height,
 			10
 		);
-		const realWidth = attachment.get("width");
-		const realHeight = attachment.get("height");
+		const realWidth = attachment.get('width');
+		const realHeight = attachment.get('height');
 		let xInit = parseInt((control.props.logo || {}).width, 10);
 		let yInit = parseInt((control.props.logo || {}).height, 10);
 		const ratio = xInit / yInit;
@@ -147,7 +147,7 @@ class ImageUploader extends Component {
 		let imgSelectOptions;
 
 		controller.set(
-			"canSkipCrop",
+			'canSkipCrop',
 			!control.mustBeCropped(
 				flexWidth,
 				flexHeight,
@@ -185,7 +185,7 @@ class ImageUploader extends Component {
 		};
 
 		if (flexHeight === false && flexWidth === false) {
-			imgSelectOptions.aspectRatio = xInit + ":" + yInit;
+			imgSelectOptions.aspectRatio = xInit + ':' + yInit;
 		}
 
 		if (true === flexHeight) {
@@ -240,7 +240,7 @@ class ImageUploader extends Component {
 	 * If cropping was skipped, apply the image data directly to the setting.
 	 */
 	onSkippedCrop() {
-		const attachment = this.frame.state().get("selection").first().toJSON();
+		const attachment = this.frame.state().get('selection').first().toJSON();
 
 		this.setImageFromAttachment(attachment);
 	}
@@ -260,7 +260,7 @@ class ImageUploader extends Component {
 		if (!id) return;
 
 		this.detachListener();
-		wp.media.attachment(id).on("change", this.updateAttachmentInfo);
+		wp.media.attachment(id).on('change', this.updateAttachmentInfo);
 	}
 
 	detachListener() {
@@ -268,7 +268,7 @@ class ImageUploader extends Component {
 
 		wp.media
 			.attachment(this.props.value.attachment_id)
-			.off("change", this.updateAttachmentInfo);
+			.off('change', this.updateAttachmentInfo);
 	}
 
 	componentDidMount() {
@@ -283,10 +283,10 @@ class ImageUploader extends Component {
 		return (
 			<div
 				className={classnames(
-					"insta-gallery-control-media-upload__attachment",
+					'wp-menu-icons-control-media-upload__attachment',
 					this.props.value?.attachment_id &&
 						this.props.value &&
-						"is-active"
+						'is-active'
 				)}
 				{...(this.props.attr || {})}
 			>
@@ -300,14 +300,14 @@ class ImageUploader extends Component {
 						{!this.props.allowPositionPicker && (
 							<img
 								className="attachment-thumb"
-								src={this.props.value?.url || ""}
+								src={this.props.value?.url || ''}
 								draggable="false"
 								alt=""
 							/>
 						)}
 					</div>
 				)}
-				<div className="insta-gallery-control-media-upload__attachment__actions">
+				<div className="wp-menu-icons-control-media-upload__attachment__actions">
 					{this.props.value?.attachment_id ||
 					this.props.value?.url ? (
 						<>
@@ -318,12 +318,12 @@ class ImageUploader extends Component {
 											this.props.value?.attachment_id
 										) > 1
 									) &&
-									typeof this.props.onRemove !== "function"
+									typeof this.props.onRemove !== 'function'
 								}
 								onClick={() => {
 									if (
 										typeof this.props.onRemove ===
-										"function"
+										'function'
 									) {
 										this.props.onRemove();
 										return;
@@ -331,24 +331,24 @@ class ImageUploader extends Component {
 									this.props.onChange();
 								}}
 							>
-								{__("Remove", "insta-gallery")}
+								{__('Remove', 'wp-menu-icons')}
 							</Button>
 							<Button isBordered onClick={() => this.openFrame()}>
 								{this.props.filledLabel ||
-									__("Change", "insta-gallery")}
+									__('Change', 'wp-menu-icons')}
 							</Button>
 						</>
 					) : (
 						<Button
 							className={classnames(
-								"insta-gallery-control-media-upload__attachment__upload",
-								"upload_image_button button"
+								'wp-menu-icons-control-media-upload__attachment__upload',
+								'upload_image_button button'
 							)}
 							onClick={() => this.openFrame()}
-							style={{ display: "inline-block" }}
+							style={{ display: 'inline-block' }}
 						>
 							{this.props.emptyLabel ||
-								__("Select image", "insta-gallery")}
+								__('Select image', 'wp-menu-icons')}
 						</Button>
 					)}
 				</div>

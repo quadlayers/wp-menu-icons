@@ -1,5 +1,5 @@
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 
 export default {
-	label: __("Upload Media", "insta-gallery"),
+	label: __('Upload Media', 'wp-menu-icons'),
 };

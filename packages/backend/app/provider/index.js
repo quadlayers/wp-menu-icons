@@ -1,35 +1,35 @@
 /**
  * WordPress dependencies
  */
-import { __ } from "@wordpress/i18n";
-import { applyFilters } from "@wordpress/hooks";
+import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 
 import {
 	createContext,
 	useReducer,
 	useContext,
 	useEffect,
-} from "@wordpress/element";
+} from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
 
-import Welcome from "../components/tabs/welcome";
-import Settings from "../components/tabs/settings";
+import Welcome from '../components/tabs/welcome';
+import Settings from '../components/tabs/settings';
 //import Accounts from "../components/tabs/accounts";
 //import Feeds from "../components/tabs/feeds";
 //import Premium from "../components/tabs/premium";
 //import Suggestions from "../components/tabs/suggestions";
 
-import { useBrowserParams } from "./helpers";
+import { useBrowserParams } from './helpers';
 
 const { tabParam, setBrowserTabParam } = useBrowserParams();
 
 const getDefaultState = ({ defaultTab }) => {
 	return {
 		currentTab: tabParam ? tabParam : defaultTab,
-		currentTabSection: "",
+		currentTabSection: '',
 		prevTab: null,
 		prevSubTab: null,
 		user: false,
@@ -44,7 +44,7 @@ const useAppContext = () => {
 
 const reducer = (state, action) => {
 	switch (action.type) {
-		case "SET_CURRENT_TAB": {
+		case 'SET_CURRENT_TAB': {
 			return {
 				...state,
 				...action.payload,
@@ -56,35 +56,35 @@ const reducer = (state, action) => {
 };
 
 const AppProvider = ({ children }) => {
-	const TABS = applyFilters("insta-gallery.app.tabs", [
+	const TABS = applyFilters('wp-menu-icons.app.tabs', [
 		{
-			label: __("Welcome", "insta-gallery"),
-			name: "welcome",
+			label: __('Welcome', 'wp-menu-icons'),
+			name: 'welcome',
 			content: Welcome,
 		},
 		//{
-		//	label: __("Accounts", "insta-gallery"),
+		//	label: __("Accounts", "wp-menu-icons"),
 		//	name: "accounts",
 		//	content: Accounts,
 		//},
 		//{
-		//	label: __("Feeds", "insta-gallery"),
+		//	label: __("Feeds", "wp-menu-icons"),
 		//	name: "feeds",
 		//	content: Feeds,
 		//},
 		{
-			label: __("Settings", "insta-gallery"),
-			name: "settings",
-			href: "settings",
+			label: __('Settings', 'wp-menu-icons'),
+			name: 'settings',
+			href: 'settings',
 			content: Settings,
 		},
 		//{
-		//	label: __("Premium", "insta-gallery"),
+		//	label: __("Premium", "wp-menu-icons"),
 		//	name: "premium",
 		//	content: Premium,
 		//},
 		//{
-		//	label: __("Suggestions", "insta-gallery"),
+		//	label: __("Suggestions", "wp-menu-icons"),
 		//	name: "suggestions",
 		//	content: Suggestions,
 		//},
@@ -103,7 +103,7 @@ const AppProvider = ({ children }) => {
 		setBrowserTabParam(currentTab);
 
 		dispatch({
-			type: "SET_CURRENT_TAB",
+			type: 'SET_CURRENT_TAB',
 			payload: {
 				currentTab,
 			},
@@ -112,16 +112,16 @@ const AppProvider = ({ children }) => {
 
 	useEffect(() => {
 		const wp_nav = Array.from(
-			document.querySelectorAll("#toplevel_page_qligg > ul > li")
+			document.querySelectorAll('#toplevel_page_qligg > ul > li')
 		);
 		const currentTab =
 			state.currentTab[0].toUpperCase() +
 			state.currentTab.slice(1).toLowerCase();
 		wp_nav.map((e) => {
 			if (e.innerText === currentTab) {
-				return e?.classList.add("current");
+				return e?.classList.add('current');
 			}
-			return e?.classList.remove("current");
+			return e?.classList.remove('current');
 		});
 	}, [state.currentTab]);
 
