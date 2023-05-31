@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { fetchRestApiLibraries, fetchRestApiSettings } from './helpers';
+import { fetchRestApiLibraries, fetchRestApiSettings, fetchRestApiMenu } from './helpers';
 import * as actions from './actions';
 
 export const getLibraries = async () => {
@@ -43,11 +43,10 @@ export const getActiveLibraries = async () => {
 	}
 };
 
-export const getCurrentLibraryName = async (menu_id) => {
+export const getCurrentLibraryName = async (idMenu) => {
 	try {
-		//TODO: implement resolver
-		// const response = await fetchRestApiMenu(menu_id);
-		// return actions.setCurrentLibraryName(...);
+		const response = await fetchRestApiMenu(idMenu);
+		return actions.setCurrentLibraryName(response);
 	} catch (error) {
 		console.error(error);
 	}

@@ -30,12 +30,14 @@ class Menu {
 	 *
 	 * @return array
 	 */
-	public function get($menu_id) {
-		$data = get_term_meta( $menu_id, WPMI_DB_KEY );
+	public function get( $menu_id ) {
+		$data = get_term_meta( $menu_id, $this->table, true );
 
-		if(!$data) {
+		if ( ! $data ) {
 			return $this->get_args();
 		}
+
+		return $data;
 	}
 
 	/**
@@ -45,7 +47,7 @@ class Menu {
 	 * @return boolean
 	 */
 	public function save( $menu_id, $menu_font ) {
-		return update_term_meta( $menu_id, WPMI_DB_KEY, $menu_font, false );
+		return update_term_meta( $menu_id, $this->table, $menu_font, false );
 	}
 
 	/**
@@ -53,7 +55,7 @@ class Menu {
 	 *
 	 * @return void
 	 */
-	public function delete_table($menu_id) {
-		return delete_term_meta( $menu_id, WPMI_DB_KEY );
+	public function delete_table( $menu_id ) {
+		return delete_term_meta( $menu_id, $this->table );
 	}
 }

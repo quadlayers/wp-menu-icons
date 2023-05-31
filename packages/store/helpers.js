@@ -40,14 +40,11 @@ export const fetchRestApiSettings = ({ method, data } = {}) => {
 	});
 };
 
-//TODO: implement
-// export const fetchRestApiMenu = ({ method, data, menu_id } = {}) => {
-// 	return apiFetch({
-// 		path: WPMI_REST_ROUTES.menu,
-// 		method,
-// 		data,
-// 	});
-// };
+export const fetchRestApiMenu = (idMenu) => {
+	return apiFetch({
+		path: WPMI_REST_ROUTES.menu + '?id=' +idMenu
+	});
+};
 
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
@@ -86,7 +83,9 @@ export const useCurrentLibrary = () => {
 			hasFinishedResolution,
 		} = select(STORE_NAME);
 
-		const currentLibraryName = getCurrentLibraryName();
+		const idMenu = document.getElementById('menu').value
+
+		const currentLibraryName = getCurrentLibraryName(idMenu);
 		const libraries = getLibraries();
 		const currentLibrary = libraries.find(
 			(library) => library.name == currentLibraryName
