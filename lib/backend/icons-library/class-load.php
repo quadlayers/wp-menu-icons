@@ -16,7 +16,7 @@ class Load {
 
 	public function load() {
 
-		new Libraries\Default_Icons();
+		new Libraries\DashIcons();
 		new Libraries\Elegant_Icons();
 		new Libraries\Elusive_icons();
 		new Libraries\Fontawesome_Icons();

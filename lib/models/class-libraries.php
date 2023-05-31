@@ -30,8 +30,7 @@ class Libraries {
 		$libraries = $self->get_libraries();
 		$names     = array();
 		foreach ( $libraries as $library ) {
-			$library = (array) $library;
-			$names[ $library['name'] ] = $library['label'];
+			$names[ $library->name ] = $library->name;
 		}
 		return $names;
 	}

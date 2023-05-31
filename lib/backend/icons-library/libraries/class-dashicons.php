@@ -4,10 +4,10 @@ namespace QuadLayers\WPMI\Backend\Icons_Library\Libraries;
 
 use QuadLayers\WPMI\Backend\Icons_Library\Libraries\Base;
 
-class Default_Icons extends Base {
+class DashIcons extends Base {
 
-	public $name            = 'defaults';
-	public $label           = 'Default Icons';
+	public $name            = 'dashicons';
+	public $label           = 'Dashicons';
 	public $version         = '1.0.0';
 	public $prefix          = '';
 	public $stylesheet_file = '';
@@ -24,8 +24,8 @@ class Default_Icons extends Base {
 		return true;
 	}
 
-	public function get_folder_path() {
-		return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
-	}
+	// public function get_folder_path() {
+	// 	return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
+	// }
 
 }

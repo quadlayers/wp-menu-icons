@@ -22,10 +22,7 @@ class Libraries {
 				$libraries = $libraries_model->get_libraries();
 
 				foreach ( $libraries as $name => $library ) {
-
 					wp_register_style( $name, $library->stylesheet_file );
-
-					// $library['name'] = $id;
 				}
 			}
 		);
@@ -52,8 +49,9 @@ class Libraries {
 		$menus_ids = wp_get_nav_menus();
 		foreach ( $menus_ids as $id => $menu ) {
 			$selected_library = self::selected_library( $menu->term_id );
+
 			if ( $selected_library ) {
-				wp_enqueue_style( $selected_library['name'] );
+				wp_enqueue_style( $selected_library->name );
 			}
 		}
 	}
