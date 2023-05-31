@@ -6,7 +6,7 @@ use QuadLayers\WPMI\Backend\Icons_Library\Libraries\Base;
 
 class Defaults extends Base {
 
-	protected static $_instance;
+	// protected static $_instance;
 
 	public $name            = 'defaults';
 	public $label           = 'Default';
@@ -23,14 +23,14 @@ class Defaults extends Base {
 		return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
 	}
 
-	public function get_folder_url() {
-		return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
-	}
+	// public function get_folder_url() {
+	// 	return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
+	// }
 
-	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
+	// public static function instance() {
+	// 	if ( is_null( self::$_instance ) ) {
+	// 		self::$_instance = new self();
+	// 	}
+	// 	return self::$_instance;
+	// }
 }

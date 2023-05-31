@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Backend\Icons_Library;
 
-class Icons_Library {
+class Load {
 
 	protected static $_instance;
 

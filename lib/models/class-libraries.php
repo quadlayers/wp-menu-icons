@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Models;
 
 use QuadLayers\WPMI\Models\Setting as Model_Setting;
-use \QuadLayers\WPMI\Backend\Icons_Library\Icons_Library;
+use QuadLayers\WPMI\Backend\Icons_Library\Load;
 /**
  * Models_Setting Class
  */
@@ -80,7 +80,7 @@ class Libraries {
 	}
 
 	public static function get_custom_libraries() {
-		$icons_library = Icons_Library::instance();
+		$icons_library = Load::instance();
 
 		$registered_custom_libraries = $icons_library->get_libraries();
 
