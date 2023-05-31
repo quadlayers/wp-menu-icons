@@ -52,6 +52,16 @@ class Backend {
 
 				$this->update( $menu_item_db_id, $menu_item_wpmi );
 			}
+
+			$menu_id = absint( $_POST['menu'] );
+
+			$menu_font = sanitize_key( $_POST['wpmi_font'] );
+
+			if ( $menu_id > 0 ) {
+				if ( isset( $_POST['wpmi_font'] ) ) {
+					update_term_meta( $menu_id, WPMI_DB_KEY, $menu_font, false );
+				}
+			}
 		}
 	}
 

@@ -13,6 +13,13 @@ link.href = ''
 
 document.head.appendChild(link)
 
+const inputMenuFont = document.createElement('input')
+inputMenuFont.type = 'hidden'
+inputMenuFont.id = 'wpmi_font'
+inputMenuFont.name = 'wpmi_font'
+
+document.querySelector('.menu-edit').append(inputMenuFont)
+
 export default function MetaBox() {
 	const {
 		libraries,
@@ -26,6 +33,8 @@ export default function MetaBox() {
 
     useEffect(() => {
 			link.href = currentLibrary?.stylesheet_file || ''
+
+			inputMenuFont.value = currentLibraryName 
     }, [currentLibraryName])
 
 	if (isResolvingLibraries && !hasResolvedLibraries) {
