@@ -2,6 +2,8 @@
 
 namespace QuadLayers\WPMI\Api\Rest;
 
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as Menu_Get;
+
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as Settings_Get;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Post as Settings_Post;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Delete as Settings_Delete;
@@ -47,6 +49,8 @@ class Routes_Library {
         new Libraries_Get();
         new Libraries_Post();
         new Libraries_Delete();
+
+        new Menu_Get();
     }
 
 	public static function instance() {

@@ -4,8 +4,10 @@ namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Backend\Icons_Library\Load;
 use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
+use QuadLayers\WPMI\Models\Menu as Models_Menu;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Settings;
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as API_Rest_Menu;
 
 class Backend {
 
@@ -53,13 +55,13 @@ class Backend {
 				$this->update( $menu_item_db_id, $menu_item_wpmi );
 			}
 
-			$menu_id = absint( $_POST['menu'] );
+			if ( isset( $_POST['wpmi_font'] ) ) {
+				$menu_font = sanitize_key( $_POST['wpmi_font'] );
 
-			$menu_font = sanitize_key( $_POST['wpmi_font'] );
+				if ( $menu_id > 0 ) {
+					$menu_model = new Models_Menu();
 
-			if ( $menu_id > 0 ) {
-				if ( isset( $_POST['wpmi_font'] ) ) {
-					update_term_meta( $menu_id, WPMI_DB_KEY, $menu_font, false );
+					$menu_model->save( $menu_id, $menu_font );
 				}
 			}
 		}
@@ -139,6 +141,7 @@ class Backend {
 				'WPMI_REST_ROUTES' => array(
 					'libraries' => API_Rest_Libraries::get_rest_path(),
 					'settings'  => API_Rest_Settings::get_rest_path(),
+					'menu'      => API_Rest_Menu::get_rest_path(),
 				),
 				'WPMI_LIBRARIES'   => $libraries,
 			)
