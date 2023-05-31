@@ -1,63 +1,64 @@
 @import ".scss/mixins.scss";
 @import ".scss/colors.scss";
-
+@import "./.scss/extend.scss";
+@import "./.scss/style.scss";
+@import "./app/**/scss/style.scss";
+@import "./components/**/scss/style.scss";
+@import "./components/**/scss/wordpress5x.scss";
 
 .wpmi__modal {
 	&.components-modal__frame {
-		max-height: 100%!important;
+		max-height: 100% !important;
 	}
 }
 
 #menu-to-edit {
-
-	>li {
+	> li {
 		.menu-item-bar {
-
 			.menu-item-wpmi_open {
-				position   : absolute;
-				z-index    : 1;
-				top        : 0;
-				bottom     : 0;
-				left       : 0;
+				position: absolute;
+				z-index: 1;
+				top: 0;
+				bottom: 0;
+				left: 0;
 				line-height: 42px;
-				height     : 42px;
-				cursor     : pointer;
+				height: 42px;
+				cursor: pointer;
 
-				>i {
+				> i {
 					@include transition(all 0.4s);
-					width         : 42px;
-					height        : 42px;
-					line-height   : 42px;
+					width: 42px;
+					height: 42px;
+					line-height: 42px;
 					vertical-align: middle;
-					display       : inline-block;
-					position      : absolute;
-					top           : 0;
-					bottom        : 0;
-					left          : 0;
-					opacity       : 0.5;
-					text-align    : center;
+					display: inline-block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					opacity: 0.5;
+					text-align: center;
 				}
 
-				>i.menu-item-wpmi_plus {
-					font-size     : 14px;
+				> i.menu-item-wpmi_plus {
+					font-size: 14px;
 					vertical-align: bottom;
-					margin        : 2px 0 0 0;
+					margin: 2px 0 0 0;
 				}
 
-				>i.menu-item-wpmi_icon+i.menu-item-wpmi_plus {
+				> i.menu-item-wpmi_icon + i.menu-item-wpmi_plus {
 					opacity: 0;
 					@include transform(scale(0.5));
 				}
 
 				&:hover {
-
-					>i.menu-item-wpmi_icon {
+					> i.menu-item-wpmi_icon {
 						opacity: 0;
 						@include transform(scale(0.1));
 					}
 
-					>i.menu-item-wpmi_plus,
-					>i.menu-item-wpmi_icon+i.menu-item-wpmi_plus {
+					> i.menu-item-wpmi_plus,
+					> i.menu-item-wpmi_icon + i.menu-item-wpmi_plus {
 						opacity: 1;
 						@include transform(scale(1));
 					}
@@ -72,52 +73,57 @@
 }
 
 #wpmi_modal {
-
 	.wp-core-ui {
-
 		.attachment,
 		.attachment-info {
 			.thumbnail {
 				vertical-align: middle;
-				text-align    : center;
+				text-align: center;
 
 				&:before {
-					content       : '';
-					display       : inline-block;
-					width         : 0px;
-					height        : 100%;
+					content: "";
+					display: inline-block;
+					width: 0px;
+					height: 100%;
 					vertical-align: middle;
 				}
 
-				>i {
-					text-align    : center;
-					font-size     : 3vw;
-					display       : inline-block;
+				> i {
+					text-align: center;
+					font-size: 3vw;
+					display: inline-block;
 					vertical-align: middle;
-					height        : auto;
-					width         : auto;
+					height: auto;
+					width: auto;
 				}
-
 			}
 		}
 
 		.attachment-info {
-
 			.thumbnail {
-				width           : 60px;
-				height          : 60px;
+				width: 60px;
+				height: 60px;
 				background-color: #fff;
 
-				>i {
+				> i {
 					font-size: 2em;
-					position : relative;
-					left     : -1px;
+					position: relative;
+					left: -1px;
 				}
-
 			}
-
 		}
-
 	}
+}
 
+.is-wider-left {
+	max-width: 100% !important;
+}
+
+.feature-section {
+	margin: 15px 0;
+}
+
+.about-text {
+	display: flex;
+	gap: 0.5em;
 }
