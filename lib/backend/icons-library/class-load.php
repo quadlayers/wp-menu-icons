@@ -7,21 +7,23 @@ class Load {
 	protected static $_instance;
 
 	protected $libraries = array();
+	public Library_Builder $builder;
 
 	public function __construct() {
-		add_action( 'after_setup_theme', array( $this, 'load' ) ); // before init
+
+		$this->builder = new Library_Builder();
+
+		$this->add_library( new Libraries\DashIcons() );
+		$this->add_library( new Libraries\Elegant_Icons() );
+		$this->add_library( new Libraries\Fontawesome_Icons() );
+		$this->add_library( new Libraries\Foundation_Icons() );
+		$this->add_library( new Libraries\Themify_Icons() );
+
 		add_filter( 'upload_mimes', array( $this, 'upload_mimes' ), 99 );
 	}
 
-
-	public function load() {
-
-		new Libraries\DashIcons();
-		new Libraries\Elegant_Icons();
-		new Libraries\Elusive_icons();
-		new Libraries\Fontawesome_Icons();
-		new Libraries\Foundation_Icons();
-		new Libraries\Themify_Icons();
+	public function add_library( $library ) {
+		$this->builder->add_library( $library );
 	}
 
 	/*
@@ -39,17 +41,11 @@ class Load {
 	public function get_libraries( $name = null ) {
 
 		if ( ! $name ) {
-			return $this->libraries;
+			return $this->builder->get_libraries();
 		}
 
-		if ( isset( $this->libraries[ $name ] ) ) {
-			return $this->libraries[ $name ];
-		}
-	}
-
-	public function register( $instance ) {
-		if ( ! isset( $this->libraries[ $instance->get_name() ] ) ) {
-			$this->libraries[ $instance->get_name() ] = $instance;
+		if ( isset( $this->builder->get_libraries()[ $name ] ) ) {
+			return $this->builder->get_libraries()[ $name ];
 		}
 	}
 

@@ -35,8 +35,6 @@ abstract class Base {
 		$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
 		$this->json_file_url       = $this->get_file_url( $this->json_file );
 
-		$this->register( $this );
-
 		add_action( 'wp_loaded', array( $this, 'register_assets' ) );
 		/*
 			enqueue_block_assets
