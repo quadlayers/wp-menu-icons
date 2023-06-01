@@ -1,2 +1,2 @@
-export { default as Modal } from "./Modal";
+export { Table } from "./table";
 export { Spinner } from "./spinner";

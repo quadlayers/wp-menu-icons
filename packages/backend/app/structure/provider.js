@@ -7,11 +7,11 @@ import {
 	createContext,
 	useRef,
 	useCallback,
-} from "@wordpress/element";
+} from '@wordpress/element';
 
-import { SlotFillProvider, createSlotFill } from "@wordpress/components";
+import { SlotFillProvider, createSlotFill } from '@wordpress/components';
 
-import { useInstanceId } from "@wordpress/compose";
+import { useInstanceId } from '@wordpress/compose';
 
 const AppSlotContext = createContext({
 	Slot: {
@@ -39,7 +39,7 @@ const AppSlotProvider = (props) => {
 	const { children } = props;
 
 	const instanceId = useInstanceId(AppSlotProvider);
-	const slotName = `insta-gallery.admin.Control.Slot.${instanceId}`;
+	const slotName = `wp-menu-icons.admin.Control.Slot.${instanceId}`;
 
 	const Slot = {};
 	const Fill = {};

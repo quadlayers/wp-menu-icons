@@ -3,22 +3,22 @@ import { useEffect } from '@wordpress/element';
 
 import { Spinner } from '../';
 
-import { useLibraries, useCurrentLibrary } from '../../../store/helpers';
+import { useLibraries, useCurrentLibrary } from '@wpmi/store';
 
-const { WPMI_PREFIX } = wpmi_backend;
+const { WPMI_PREFIX } = wpmi_navmenu;
 
-const link = document.createElement('link')
-link.rel = 'stylesheet'
-link.href = ''
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = '';
 
-document.head.appendChild(link)
+document.head.appendChild(link);
 
-const inputMenuFont = document.createElement('input')
-inputMenuFont.type = 'hidden'
-inputMenuFont.id = 'wpmi_font'
-inputMenuFont.name = 'wpmi_font'
+const inputMenuFont = document.createElement('input');
+inputMenuFont.type = 'hidden';
+inputMenuFont.id = 'wpmi_font';
+inputMenuFont.name = 'wpmi_font';
 
-document.querySelector('.menu-edit').append(inputMenuFont)
+document.querySelector('.menu-edit').append(inputMenuFont);
 
 export default function MetaBox() {
 	const {
@@ -27,15 +27,16 @@ export default function MetaBox() {
 		hasResolvedLibraries,
 		hasLibraries,
 	} = useLibraries();
-	const { currentLibrary, currentLibraryName, setCurrentLibraryName } = useCurrentLibrary();
+	const { currentLibrary, currentLibraryName, setCurrentLibraryName } =
+		useCurrentLibrary();
 
 	const handleOptionChange = (e) => setCurrentLibraryName(e.target.value);
 
-    useEffect(() => {
-			link.href = currentLibrary?.stylesheet_file || ''
+	useEffect(() => {
+		link.href = currentLibrary?.stylesheet_file || '';
 
-			inputMenuFont.value = currentLibraryName 
-    }, [currentLibraryName])
+		inputMenuFont.value = currentLibraryName;
+	}, [currentLibraryName]);
 
 	if (isResolvingLibraries && !hasResolvedLibraries) {
 		return <Spinner />;

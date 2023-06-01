@@ -83,8 +83,8 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/backend/js/'),
-			library: ['tiktok', 'backend'],
-			libraryTarget: 'window',
+			// library: ['tiktok', 'backend'],
+			// libraryTarget: 'window',
 		},
 		optimization: {
 			minimize: isProduction,
@@ -100,15 +100,15 @@ module.exports = [
 			),
 			new DependencyExtractionWebpackPlugin({
 				requestToExternal: (request, external) => {
-					if ('@wpmi/store' === request) {
-						return ['wpmi', 'store'];
+					if ('@qlwpmi/store' === request) {
+						return ['qlwpmi', 'store'];
 					}
 					// Return the default value for other requests
 					return external;
 				},
 				requestToHandle: (request, external) => {
-					if ('@wpmi/store' === request) {
-						return 'wpmi-store';
+					if ('@qlwpmi/store' === request) {
+						return 'qlwpmi-store';
 					}
 					// Return the default value for other requests
 					return external;
@@ -154,15 +154,124 @@ module.exports = [
 			}),
 		],
 	},
-	//Store
+	//backend-store
 	{
 		...defaultConfig,
 		entry: {
-			index: path.resolve(__dirname, 'packages', './store/index.js'),
+			index: path.resolve(
+				__dirname,
+				'packages',
+				'./backend-store/index.js'
+			),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, 'build/store/js/'),
+			path: path.resolve(__dirname, 'build/backend-store/js/'),
+			library: ['qlwpmi', 'store'],
+			libraryTarget: 'window',
+		},
+		optimization: {
+			minimize: isProduction,
+		},
+		// plugins: [
+		// 	...defaultConfig.plugins,
+		// 	new DependencyExtractionWebpackPlugin(),
+		// ],
+	},
+
+	//navmenu
+	{
+		...config,
+		entry: {
+			index: path.resolve(__dirname, 'packages', './navmenu/index.js'),
+		},
+		output: {
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/navmenu/js/'),
+			// library: ['tiktok', 'navmenu'],
+			// libraryTarget: 'window',
+		},
+		optimization: {
+			minimize: isProduction,
+		},
+		plugins: [
+			/**
+			 * Remove previous instance
+			 */
+			...defaultConfig.plugins.filter(
+				(plugin) =>
+					plugin.constructor.name !==
+					'DependencyExtractionWebpackPlugin'
+			),
+			new DependencyExtractionWebpackPlugin({
+				requestToExternal: (request, external) => {
+					if ('@wpmi/store' === request) {
+						return ['wpmi', 'store'];
+					}
+					// Return the default value for other requests
+					return external;
+				},
+				requestToHandle: (request, external) => {
+					if ('@wpmi/store' === request) {
+						return 'wpmi-store';
+					}
+					// Return the default value for other requests
+					return external;
+				},
+			}),
+		],
+	},
+	{
+		...config,
+		entry: {
+			index: path.resolve(__dirname, 'packages', './navmenu/style.scss'),
+		},
+		output: {
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/navmenu/css/'),
+		},
+		module: {
+			...config.module,
+			rules: [
+				{
+					test: /\.scss$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						{
+							loader: 'css-loader',
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sassOptions: {
+									importer: globImporter(),
+								},
+							},
+						},
+					],
+				},
+			],
+		},
+		plugins: [
+			new RemoveEmptyScriptsPlugin(),
+			new MiniCssExtractPlugin({
+				filename: 'style.css',
+			}),
+		],
+	},
+	//navmenu-store
+	{
+		...defaultConfig,
+		entry: {
+			index: path.resolve(
+				__dirname,
+				'packages',
+				'./navmenu-store/index.js'
+			),
+		},
+		output: {
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/navmenu-store/js/'),
 			library: ['wpmi', 'store'],
 			libraryTarget: 'window',
 		},
