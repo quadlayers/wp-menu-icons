@@ -7,7 +7,7 @@ import { isEqual } from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { usePrevious } from '@wordpress/compose';
-import { useSettingsEntities } from '@qlwpmi/store';
+import { useSettingsEntities } from '@wpmi/store';
 /**
  * Internal dependencies
  */
