@@ -1,3 +1,7 @@
+import { __, sprintf } from '@wordpress/i18n';
+import { store as noticesStore } from '@wordpress/notices';
+import { fetchRestApiSettings } from './helpers';
+
 export const setLibraries = (libraries) => {
 	return {
 		type: 'SET_LIBRARIES',
