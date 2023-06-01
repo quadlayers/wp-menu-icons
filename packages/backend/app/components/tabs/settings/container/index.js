@@ -41,16 +41,15 @@ const Settings = () => {
 	}
 
 	const togleActiveLibraries = (libraryName) => {
-		const isIncluded =
-			activelibraries.active_libraries?.includes(libraryName);
+		const isIncluded = activelibraries?.includes(libraryName);
 		let newArray = [];
 
 		if (isIncluded) {
-			newArray = activelibraries.active_libraries?.filter(
+			newArray = activelibraries?.filter(
 				(library) => library !== libraryName
 			);
 		} else {
-			newArray = [...activelibraries.active_libraries, libraryName];
+			newArray = [...activelibraries, libraryName];
 		}
 
 		setActiveLibraries({
@@ -69,6 +68,7 @@ const Settings = () => {
 		setIsLoading(false);
 	};
 
+	console.log('activeLibraries: ', activelibraries);
 	return (
 		<Container>
 			{__('Enable Libraries', 'wp-menu-icons')}
@@ -78,11 +78,7 @@ const Settings = () => {
 					<OptionLibrary
 						key={library.name}
 						label={library.label}
-						checked={
-							!!activelibraries.active_libraries?.includes(
-								library.name
-							)
-						}
+						checked={!!activelibraries?.includes(library.name)}
 						onChange={() => togleActiveLibraries(library.name)}
 					/>
 				))}
@@ -97,7 +93,7 @@ const Settings = () => {
 											key={library.name}
 											label={library.label}
 											checked={
-												!!activelibraries.active_libraries?.includes(
+												!!activelibraries?.includes(
 													library.name
 												)
 											}
