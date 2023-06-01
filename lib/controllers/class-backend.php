@@ -2,54 +2,66 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Setting_Get;
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Settings;
 use QuadLayers\WPMI\Models\Setting as Models_Setting;
 use QuadLayers\WPMI\Models\Libraries as Libraries_Controller;
 
-class Backend {
+class Backend
+{
 	protected static $instance;
 	protected static $menu_slug = 'wp-menu-icons';
 
-	private function __construct() {
+	private function __construct()
+	{
 		/**
 		 * Admin
 		 */
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_menu', array( $this, 'add_menu' ) );
+		add_action('admin_enqueue_scripts', array($this, 'register_scripts'));
+		add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
+		add_action('admin_menu', array($this, 'add_menu'));
 	}
 
-	public function register_scripts() {
-		$backend_store   = include WPMI_PLUGIN_DIR . 'build/backend-store/js/index.asset.php';
+	public function register_scripts()
+	{
+		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
 		// $models_feed     = new Models_Feed();
 		$models_settings  = new Models_Setting();
 		$models_libraries = new Libraries_Controller();
 
+		// wp_register_script(
+		// 	'qlwpmi-store',
+		// 	plugins_url('/build/backend-store/js/index.js', WPMI_PLUGIN_FILE),
+		// 	$backend_store['dependencies'],
+		// 	$backend_store['version'],
+		// 	true
+		// );
+
 		wp_register_script(
-			'qlwpmi-store',
-			plugins_url( '/build/backend-store/js/index.js', WPMI_PLUGIN_FILE ),
-			$backend_store['dependencies'],
-			$backend_store['version'],
+			'wpmi-store',
+			plugins_url('/build/store/js/index.js', WPMI_PLUGIN_FILE),
+			$store['dependencies'],
+			$store['version'],
 			true
 		);
 
 		wp_localize_script(
-			'qlwpmi-store',
-			'qlwpmi_store_routes',
+			'wpmi-store',
+			'wpmi_store',
 			array(
-				// 'userProfile' => API_Rest_User_Profile::get_rest_path(),
-				// 'accounts'    => API_Rest_Accounts_Get::get_rest_path(),
-				// 'feeds'       => API_Rest_Feeds_Get::get_rest_path(),
-				'settings' => API_Rest_Setting_Get::get_rest_path(),
-				// 'cache'       => API_Rest_Feeds_Clear_Cache::get_rest_path(),
+				'WPMI_REST_ROUTES' => array(
+					// 'libraries' => API_Rest_Libraries::get_rest_path(),
+					'settings'  => API_Rest_Settings::get_rest_path(),
+					// 'menu'      => API_Rest_Menu::get_rest_path(),
+				),
+				// 'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
 
 		wp_register_style(
 			'qlwpmi-backend',
-			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
+			plugins_url('/build/backend/css/style.css', WPMI_PLUGIN_FILE),
 			array(
 				'media-views',
 				'wp-components',
@@ -60,7 +72,7 @@ class Backend {
 
 		wp_register_script(
 			'qlwpmi-backend',
-			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
+			plugins_url('/build/backend/js/index.js', WPMI_PLUGIN_FILE),
 			$backend['dependencies'],
 			$backend['version'],
 			true
@@ -70,7 +82,7 @@ class Backend {
 			'qlwpmi-backend',
 			'qlwpmi_backend',
 			array(
-				'plugin_url'                   => plugins_url( '/', WPMI_PLUGIN_FILE ),
+				'plugin_url'                   => plugins_url('/', WPMI_PLUGIN_FILE),
 				'WPMI_PLUGIN_NAME'       => WPMI_PLUGIN_NAME,
 				'WPMI_PLUGIN_VERSION'    => WPMI_PLUGIN_VERSION,
 				'WPMI_PLUGIN_FILE'       => WPMI_PLUGIN_FILE,
@@ -91,18 +103,20 @@ class Backend {
 		);
 	}
 
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
-		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== self::get_menu_slug() ) {
+		if (!isset($_GET['page']) || $_GET['page'] !== self::get_menu_slug()) {
 			return;
 		}
 
 		wp_enqueue_media();
-		wp_enqueue_script( 'qlwpmi-backend' );
-		wp_enqueue_style( 'qlwpmi-backend' );
+		wp_enqueue_script('qlwpmi-backend');
+		wp_enqueue_style('qlwpmi-backend');
 	}
 
-	function add_menu() {
+	function add_menu()
+	{
 		$menu_slug = self::get_menu_slug();
 		add_menu_page(
 			WPMI_PLUGIN_NAME,
@@ -114,28 +128,30 @@ class Backend {
 		);
 		add_submenu_page(
 			$menu_slug,
-			esc_html__( 'Welcome', 'wp-menu-icons' ),
-			esc_html__( 'Welcome', 'wp-menu-icons' ),
+			esc_html__('Welcome', 'wp-menu-icons'),
+			esc_html__('Welcome', 'wp-menu-icons'),
 			'edit_posts',
 			$menu_slug,
 			'__return_null'
 		);
 		add_submenu_page(
 			$menu_slug,
-			esc_html__( 'Settings', 'wp-menu-icons' ),
-			esc_html__( 'Settings', 'wp-menu-icons' ),
+			esc_html__('Settings', 'wp-menu-icons'),
+			esc_html__('Settings', 'wp-menu-icons'),
 			'manage_options',
 			"{$menu_slug}&tab=settings",
 			'__return_null'
 		);
 	}
 
-	public static function get_menu_slug() {
+	public static function get_menu_slug()
+	{
 		return self::$menu_slug;
 	}
 
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
+	public static function instance()
+	{
+		if (is_null(self::$instance)) {
 			self::$instance = new self();
 		}
 		return self::$instance;
