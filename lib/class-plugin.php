@@ -19,6 +19,7 @@ final class Plugin {
 
 		Controllers\Libraries::instance();
 		Controllers\Backend::instance();
+		Controllers\Navmenu::instance();
 		Controllers\Frontend::instance();
 
 		do_action( 'qlwpmi_init' );
