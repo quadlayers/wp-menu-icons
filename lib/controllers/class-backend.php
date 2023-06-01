@@ -16,19 +16,7 @@ class Backend {
 		 */
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
-	}
-
-	public function admin_scripts() {
-
-		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== self::get_menu_slug() ) {
-			return;
-		}
-
-		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
-		// wp_enqueue_script( 'wp-menu-icons-pro-backend', plugins_url( 'build/backend/js/index.js', WPMI_PLUGIN_FILE ), $backend['dependencies'], $backend['version'] );
-		// wp_enqueue_style( 'wp-menu-icons-pro-backend', plugins_url( 'build/backend/css/style.css', WPMI_PLUGIN_FILE ), array(), WPMI_PLUGIN_VERSION );
 	}
 
 	public function register_scripts() {
@@ -104,6 +92,7 @@ class Backend {
 	}
 
 	public function enqueue_scripts() {
+
 		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== self::get_menu_slug() ) {
 			return;
 		}
@@ -144,8 +133,6 @@ class Backend {
 	public static function get_menu_slug() {
 		return self::$menu_slug;
 	}
-
-
 
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
