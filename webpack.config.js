@@ -100,15 +100,15 @@ module.exports = [
 			),
 			new DependencyExtractionWebpackPlugin({
 				requestToExternal: (request, external) => {
-					if ('@qlwpmi/store' === request) {
-						return ['qlwpmi', 'store'];
+					if ('@wpmi/store' === request) {
+						return ['wpmi', 'store'];
 					}
 					// Return the default value for other requests
 					return external;
 				},
 				requestToHandle: (request, external) => {
-					if ('@qlwpmi/store' === request) {
-						return 'qlwpmi-store';
+					if ('@wpmi/store' === request) {
+						return 'wpmi-store';
 					}
 					// Return the default value for other requests
 					return external;
@@ -154,31 +154,6 @@ module.exports = [
 			}),
 		],
 	},
-	//backend-store
-	{
-		...defaultConfig,
-		entry: {
-			index: path.resolve(
-				__dirname,
-				'packages',
-				'./backend-store/index.js'
-			),
-		},
-		output: {
-			filename: '[name].js',
-			path: path.resolve(__dirname, 'build/backend-store/js/'),
-			library: ['qlwpmi', 'store'],
-			libraryTarget: 'window',
-		},
-		optimization: {
-			minimize: isProduction,
-		},
-		// plugins: [
-		// 	...defaultConfig.plugins,
-		// 	new DependencyExtractionWebpackPlugin(),
-		// ],
-	},
-
 	//navmenu
 	{
 		...config,
@@ -259,19 +234,15 @@ module.exports = [
 			}),
 		],
 	},
-	//navmenu-store
+	//store
 	{
 		...defaultConfig,
 		entry: {
-			index: path.resolve(
-				__dirname,
-				'packages',
-				'./navmenu-store/index.js'
-			),
+			index: path.resolve(__dirname, 'packages', './store/index.js'),
 		},
 		output: {
 			filename: '[name].js',
-			path: path.resolve(__dirname, 'build/navmenu-store/js/'),
+			path: path.resolve(__dirname, 'build/store/js/'),
 			library: ['wpmi', 'store'],
 			libraryTarget: 'window',
 		},
