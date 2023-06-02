@@ -2,6 +2,7 @@
 
 namespace QuadLayers\WPMI\Backend\Icons_Library;
 
+use QuadLayers\WPMI\Controllers\Library_Builder;
 class Load {
 
 	protected static $_instance;
@@ -13,11 +14,11 @@ class Load {
 
 		$this->builder = new Library_Builder();
 
-		$this->add_library( new Libraries\DashIcons() );
-		$this->add_library( new Libraries\Elegant_Icons() );
-		$this->add_library( new Libraries\Fontawesome_Icons() );
-		$this->add_library( new Libraries\Foundation_Icons() );
-		$this->add_library( new Libraries\Themify_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\DashIcons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Elegant_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Fontawesome_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Foundation_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Themify_Icons() );
 
 		add_filter( 'upload_mimes', array( $this, 'upload_mimes' ), 99 );
 	}

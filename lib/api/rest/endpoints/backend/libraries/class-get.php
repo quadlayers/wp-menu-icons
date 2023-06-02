@@ -6,7 +6,7 @@ use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
 use QuadLayers\WPMI\Models\Libraries;
 
 class Get extends Base {
-	protected static $route_path = 'libraries/get';
+	protected static $route_path = 'libraries';
 
 	public function callback( \WP_REST_Request $request ) {
 

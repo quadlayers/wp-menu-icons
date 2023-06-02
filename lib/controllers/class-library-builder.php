@@ -1,11 +1,13 @@
 <?php
 
-namespace QuadLayers\WPMI\Backend\Icons_Library;
+namespace QuadLayers\WPMI\Controllers;
+
+use QuadLayers\WPMI\Entities\Entity_Interface;
 
 class Library_Builder {
 	protected $libraries = [];
 
-	public function add_library( /* LibraryInterface */ $library ) {
+	public function add_library( Entity_Interface $library ) {
 		$this->libraries[ $library->get_name() ] = $library;
 		return $this;
 	}

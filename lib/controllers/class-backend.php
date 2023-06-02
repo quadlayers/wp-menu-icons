@@ -20,8 +20,8 @@ class Backend {
 	}
 
 	public function register_scripts() {
-		$backend_store   = include WPMI_PLUGIN_DIR . 'build/backend-store/js/index.asset.php';
-		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
+		$backend_store = include WPMI_PLUGIN_DIR . 'build/backend-store/js/index.asset.php';
+		$backend       = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
 		// $models_feed     = new Models_Feed();
 		$models_settings  = new Models_Setting();
@@ -70,7 +70,7 @@ class Backend {
 			'qlwpmi-backend',
 			'qlwpmi_backend',
 			array(
-				'plugin_url'                   => plugins_url( '/', WPMI_PLUGIN_FILE ),
+				'plugin_url'             => plugins_url( '/', WPMI_PLUGIN_FILE ),
 				'WPMI_PLUGIN_NAME'       => WPMI_PLUGIN_NAME,
 				'WPMI_PLUGIN_VERSION'    => WPMI_PLUGIN_VERSION,
 				'WPMI_PLUGIN_FILE'       => WPMI_PLUGIN_FILE,
