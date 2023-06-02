@@ -1,0 +1,60 @@
+.display-flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.container-drop-zone {
+	position: relative;
+	width: 50%;
+	height: 70%;
+	background-color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.options-libraries {
+	width: 100%;
+	height: 15%;
+	display: flex;
+}
+
+.options-libraries div {
+	margin: 0 auto;
+	width: 48%;
+	border-style: dashed;
+	border-color: skyblue;
+	color: skyblue;
+	font-weight: bold;
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+.drop-zone {
+	height: 85%;
+	font-weight: bold;
+	flex-direction: column;
+	color: grey;
+}
+
+.drop-zone .icon {
+	font-size: 124px;
+	width: auto;
+	height: auto;
+	margin-bottom: 15px;
+}
+
+.drop-zone span {
+	font-size: 16px;
+}
+
+.drop-zone button {
+	width: 70%;
+	margin-top: 25px !important;
+	color: white;
+}
+
+.drop-zone input {
+	display: none;
+}

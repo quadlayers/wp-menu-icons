@@ -16,22 +16,20 @@ import { Container } from '../../../../../components/container';
 // import ImageUploader from "../../../../../components/media-uploader";
 import { OptionLibrary } from '../../../../../components/option-library';
 import { WPMI_LIBRARIES } from '../../../../../helpers';
+import { Modal } from '../../../../../../navmenu/components';
+import NewLibrary from '../../../new-library'
 
 const Settings = () => {
 	const { settings, hasResolvedSettings, saveSettings, setSettings } =
 		useSettingsEntities();
 
-	console.log('settings: ', settings);
+	const [show, setShow] = useState(false)
 
 	const [isLoading, setIsLoading] = useState(false);
 
 	const prevSettings = usePrevious(settings);
 
 	const isModified = !isEqual(settings, prevSettings);
-
-	if (!hasResolvedSettings) {
-		return <Spinner />;
-	}
 
 	const togleActiveLibraries = (libraryName) => {
 		const isIncluded = settings.active_libraries?.includes(libraryName);
@@ -61,12 +59,18 @@ const Settings = () => {
 		setIsLoading(false);
 	};
 
+	const onClose = () => setShow(false)
+
+	if (!hasResolvedSettings) {
+		return <Spinner />;
+	}
+
 	return (
 		<Container>
 			{__('Enable Libraries', 'wp-menu-icons')}
 			<form onSubmit={submitSettings}>
 				{__('Default', 'wp-menu-icons')}
-				{Object.values(WPMI_LIBRARIES).map((library) => {
+				{Object.values(WPMI_LIBRARIES || []).map((library) => {
 					if (library.type === 'default') {
 						return (
 							<OptionLibrary
@@ -84,7 +88,7 @@ const Settings = () => {
 						);
 					}
 				})}
-				{WPMI_LIBRARIES && Object.keys(WPMI_LIBRARIES).length !== 0 && (
+				{WPMI_LIBRARIES && Object.keys((WPMI_LIBRARIES || [])).length !== 0 && (
 					<>
 						{__('Customize', 'wp-menu-icons')}
 						{Object.values(WPMI_LIBRARIES).map((library) => {
@@ -123,6 +127,25 @@ const Settings = () => {
 					/>
 				)}
 			</form>
+
+			<button
+				type="submit"
+				className="button button-primary secondary"
+				onClick={() => setShow(true)}
+			>
+				{__('Add New Library', 'wp-menu-icons')}
+			</button>
+
+			<Modal
+				title='Add New Library'
+				show={ show }
+				onClose={ onClose }
+				__experimentalHideHeader
+			>
+				<NewLibrary
+					onClose={ onClose }
+				/>
+			</Modal>
 		</Container>
 	);
 };

@@ -6,6 +6,7 @@ use QuadLayers\WPMI\Backend\Icons_Library\Load;
 use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 use QuadLayers\WPMI\Models\Menu as Models_Menu;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
+use \QuadLayers\WPMI_PRO\Api\Rest\Endpoints\Backend\Libraries\Upload as API_Rest_Library_Upload;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Settings;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as API_Rest_Menu;
 
@@ -124,6 +125,7 @@ class Navmenu
 					'libraries' => API_Rest_Libraries::get_rest_path(),
 					'settings'  => API_Rest_Settings::get_rest_path(),
 					'menu'      => API_Rest_Menu::get_rest_path(),
+					'upload'	=> API_Rest_Library_Upload::get_rest_path()
 				),
 				'WPMI_LIBRARIES'   => $libraries,
 			)
