@@ -3,7 +3,7 @@ import { useEffect } from '@wordpress/element';
 
 import { Spinner } from '../';
 
-import { useLibraries, useCurrentLibrary } from '@wpmi/store';
+import { useLibraries, useCurrentLibrary, useSettingsEntities } from '@wpmi/store';
 
 const { WPMI_PREFIX } = wpmi_navmenu;
 
@@ -30,7 +30,11 @@ export default function MetaBox() {
 	const { currentLibrary, currentLibraryName, setCurrentLibraryName } =
 		useCurrentLibrary();
 
+	const { settings, hasResolvedSettings } = useSettingsEntities();
+
 	const handleOptionChange = (e) => setCurrentLibraryName(e.target.value);
+
+	const activeLibraries = () => libraries.filter(library => settings.active_libraries.includes(library.name))
 
 	useEffect(() => {
 		link.href = currentLibrary?.stylesheet_file || '';
@@ -38,7 +42,7 @@ export default function MetaBox() {
 		inputMenuFont.value = currentLibraryName;
 	}, [currentLibraryName]);
 
-	if (isResolvingLibraries && !hasResolvedLibraries) {
+	if (isResolvingLibraries && !hasResolvedLibraries && !hasResolvedSettings) {
 		return <Spinner />;
 	} else if (!hasLibraries) {
 		return (
@@ -55,7 +59,7 @@ export default function MetaBox() {
 				id={WPMI_PREFIX + '-themes-checklist'}
 				class="categorychecklist form-no-clear"
 			>
-				{libraries.map((library) => (
+				{activeLibraries().map((library) => (
 					<li>
 						<label class="menu-item-title">
 							<input
