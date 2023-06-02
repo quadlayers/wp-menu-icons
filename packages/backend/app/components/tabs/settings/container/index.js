@@ -15,6 +15,7 @@ import { Spinner } from '../../../../../components/spinner';
 import { Container } from '../../../../../components/container';
 // import ImageUploader from "../../../../../components/media-uploader";
 import { OptionLibrary } from '../../../../../components/option-library';
+//TODO: replace with useLibraries
 import { WPMI_LIBRARIES } from '../../../../../helpers';
 import { Modal } from '../../../../../../navmenu/components';
 import NewLibrary from '../../../new-library'

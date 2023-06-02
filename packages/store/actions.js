@@ -1,6 +1,10 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { store as noticesStore } from '@wordpress/notices';
-import { fetchRestApiLibraries, fetchRestApiSettings } from './helpers';
+import {
+	fetchRestApiLibraries,
+	fetchRestApiLibrariesUpload,
+	fetchRestApiSettings,
+} from './helpers';
 
 export const setLibraries = (libraries) => {
 	return {
@@ -9,17 +13,15 @@ export const setLibraries = (libraries) => {
 	};
 };
 
-export const createLibrary =
-	({data, headers}) =>
+export const uploadLibrary =
+	({ body, headers }) =>
 	async ({ registry, dispatch, select, resolveSelect }) => {
 		const libraries = select.getLibraries();
 
-		const response = await fetchRestApiLibraries({
+		const response = await fetchRestApiLibrariesUpload({
 			method: 'POST',
-			//TODO: replace with file
-			data,
-			//TODO: check if headers is neccesary
-			headers
+			body,
+			headers,
 		});
 
 		if (response?.code) {
@@ -32,8 +34,6 @@ export const createLibrary =
 			return false;
 		}
 
-		//TODO: valida if is a valida library {name,label,...}
-
 		libraries.push(response);
 
 		dispatch.setLibraries([...libraries]);
@@ -41,7 +41,10 @@ export const createLibrary =
 		registry
 			.dispatch(noticesStore)
 			.createSuccessNotice(
-				__('The library has been created successfully.', 'wp-menu-icons'),
+				__(
+					'The library has been created successfully.',
+					'wp-menu-icons'
+				),
 				{ type: 'snackbar' }
 			);
 

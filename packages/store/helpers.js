@@ -29,7 +29,16 @@ export const fetchRestApiLibraries = ({ method, data, headers } = {}) => {
 		path: WPMI_REST_ROUTES.libraries,
 		method,
 		data,
-		headers
+		headers,
+	});
+};
+
+export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
+	return apiFetch({
+		path: WPMI_REST_ROUTES.upload,
+		method,
+		body,
+		headers,
 	});
 };
 
@@ -62,11 +71,15 @@ export const useLibraries = () => {
 		[]
 	);
 
+	const { uploadLibrary, deleteLibrary } = useDispatch(STORE_NAME);
+
 	return {
 		libraries,
 		isResolvingLibraries,
 		hasResolvedLibraries,
 		hasLibraries: !!(hasResolvedLibraries && libraries?.length),
+		uploadLibrary,
+		deleteLibrary,
 	};
 };
 

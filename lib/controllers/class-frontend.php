@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Controllers\Libraries as Libraries_Controller;
+use QuadLayers\WPMI\Controllers\Libraries as Models_Libraries;
 
 class Frontend {
 
@@ -14,7 +14,7 @@ class Frontend {
 	}
 
 	public function enqueue() {
-		Libraries_Controller::enqueue_style_library();
+		Models_Libraries::enqueue_style_library();
 		wp_enqueue_style(
 			'wpmi-frontend',
 			plugins_url( '/build/frontend/css/style.css', WPMI_PLUGIN_FILE ),

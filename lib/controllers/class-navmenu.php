@@ -3,12 +3,7 @@
 namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Backend\Icons_Library\Load;
-use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 use QuadLayers\WPMI\Models\Menu as Models_Menu;
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
-use \QuadLayers\WPMI_PRO\Api\Rest\Endpoints\Backend\Libraries\Upload as API_Rest_Library_Upload;
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Settings;
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as API_Rest_Menu;
 
 class Navmenu
 {
@@ -87,9 +82,6 @@ class Navmenu
 		$navmenu = include WPMI_PLUGIN_DIR . 'build/navmenu/js/index.asset.php';
 		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 
-		$library_model = new Models_Libraries();
-		$libraries     = $library_model->get_libraries();
-
 		wp_register_script(
 			'wpmi-store',
 			plugins_url('/build/store/js/index.js', WPMI_PLUGIN_FILE),
@@ -114,20 +106,6 @@ class Navmenu
 				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
 				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
 				'nonce'                 => wp_create_nonce('wpmi'),
-			)
-		);
-
-		wp_localize_script(
-			'wpmi-store',
-			'wpmi_store',
-			array(
-				'WPMI_REST_ROUTES' => array(
-					'libraries' => API_Rest_Libraries::get_rest_path(),
-					'settings'  => API_Rest_Settings::get_rest_path(),
-					'menu'      => API_Rest_Menu::get_rest_path(),
-					'upload'	=> API_Rest_Library_Upload::get_rest_path()
-				),
-				'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
 
