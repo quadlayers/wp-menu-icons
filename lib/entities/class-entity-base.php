@@ -1,26 +1,25 @@
 <?php
 
-namespace QuadLayers\WPMI\Backend\Icons_Library\Libraries;
+namespace QuadLayers\WPMI\Entities;
 
-use QuadLayers\WPMI\Backend\Icons_Library\Load;
-
-abstract class Base {
+abstract class Entity_Base {
 
 	protected $path        = null;
 	protected $folder_path = 'wp-menu-icons-pro/icons-library';
 	protected $baseurl;
 	protected $basedir;
-	public $name            = null;
-	public $label           = null;
-	public $version         = null;
-	public $prefix          ;
-	public $stylesheet_file ;
-	public $json_file       ;
-	public $stylesheet_file_path ;
+	public $name    = null;
+	public $label   = null;
+	public $version = null;
+	public $prefix;
+	public $stylesheet_file;
+	public $json_file;
+	public $stylesheet_file_path;
 	public $json_file_path;
 	public $stylesheet_file_url;
 	public $json_file_url;
-	public $type;
+	public $type = 'default';
+	public $iconmap;
 
 	public function __construct() {
 
@@ -35,8 +34,6 @@ abstract class Base {
 		$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
 		$this->json_file_url       = $this->get_file_url( $this->json_file );
 
-		$this->register( $this );
-
 		add_action( 'wp_loaded', array( $this, 'register_assets' ) );
 		/*
 			enqueue_block_assets
@@ -47,6 +44,9 @@ abstract class Base {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_assets' ) );
 	}
 
+	/**
+	 * Actions
+	 */
 	public function register_assets() {
 
 		if ( ! $this->is_library_loaded() ) {
@@ -73,6 +73,9 @@ abstract class Base {
 
 	}
 
+	/**
+	 * Getters
+	 */
 	public function get_prefix() {
 
 		if ( ! $this->prefix ) {
@@ -135,23 +138,6 @@ abstract class Base {
 		return $this->get_folder_url() . '/' . $filename;
 	}
 
-	public function is_library_available_frontend() {
-		return $this->is_library_loaded();
-	}
-
-	public function is_library_available_admin() {
-		return $this->is_library_loaded();
-	}
-
-	public function is_library_loaded() {
-
-		if ( $this->get_json_url() && $this->get_stylesheet_url() ) {
-			return true;
-		}
-
-		return false;
-	}
-
 	public function get_library_assets() {
 		return array(
 			'name'           => $this->get_name(),
@@ -192,8 +178,9 @@ abstract class Base {
 		return $this->get_file_path( $this->stylesheet_file );
 	}
 
-	public function on_create() {   }
-
+	/**
+	 * Change prefix css
+	 */
 	public function change_prefix_css( $stylesheet_content, $replace = array( 'icon-' ) ) {
 		$prefix_class       = '.wp-block-wowmall-icon [class^="' . $this->get_prefix() . '"]:before, ';
 		$prefix_class      .= '.wp-block-wowmall-icon [class*="' . $this->get_prefix() . '"]:before,';
@@ -202,7 +189,27 @@ abstract class Base {
 		return $stylesheet_content;
 	}
 
-	protected function register( $block ) {
-		Load::instance()->register( $block );
+	/**
+	 * Is_ functions
+	 */
+	public function is_library_available_frontend() {
+		return $this->is_library_loaded();
 	}
+
+	public function is_library_available_admin() {
+		return $this->is_library_loaded();
+	}
+
+	public function is_library_loaded() {
+
+		if ( $this->get_json_url() && $this->get_stylesheet_url() ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	// protected function register( $block ) {
+	// Load::instance()->register( $block );
+	// }
 }

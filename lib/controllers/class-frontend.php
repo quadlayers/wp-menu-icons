@@ -28,9 +28,9 @@ class Frontend {
 
 		$classes = array();
 
-		$wpmi = '';
+		$wpmi  = '';
 		$style = '';
-		$size = '';
+		$size  = '';
 		$color = '';
 
 		$new_title = $title;

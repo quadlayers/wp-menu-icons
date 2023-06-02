@@ -26,7 +26,7 @@ class Setting extends Models_Base {
 		$default_libraries_names = \QuadLayers\WPMI\Models\Libraries::get_libraries_names();
 		$default_libraries_names = array_keys( $default_libraries_names );
 		return array(
-			'active_libraries'    => $default_libraries_names,
+			'active_libraries' => $default_libraries_names,
 		);
 	}
 

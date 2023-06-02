@@ -92,7 +92,7 @@ const Settings = () => {
 					<>
 						{__('Customize', 'wp-menu-icons')}
 						{Object.values(WPMI_LIBRARIES).map((library) => {
-							if (library.type === 'upload') {
+							if (library.type === 'uploaded') {
 								return (
 									<OptionLibrary
 										key={library.name}
