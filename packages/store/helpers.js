@@ -24,11 +24,12 @@ export async function apiFetch(args) {
 		});
 }
 
-export const fetchRestApiLibraries = ({ method, data } = {}) => {
+export const fetchRestApiLibraries = ({ method, data, headers } = {}) => {
 	return apiFetch({
 		path: WPMI_REST_ROUTES.libraries,
 		method,
 		data,
+		headers
 	});
 };
 

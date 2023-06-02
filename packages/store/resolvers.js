@@ -17,20 +17,26 @@ export const getLibraries = async () => {
 	}
 };
 
-export const uploadLibrary = async () => {
+export const createLibrary = async ({ data, headers }) => {
 	try {
-		const response = await fetchRestApiLibraries();
-
+		const response = await fetchRestApiLibraries({
+			method: 'POST',
+			data,
+			headers,
+		});
 		//TODO: check if the response is ok and include library in libraries
-		// return actions.setLibraries(Object.values(response));
+		return actions.setLibraries();
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-export const deleteLibraries = async () => {
+export const deleteLibrary = async () => {
 	try {
-		const response = await fetchRestApiLibraries();
+		const response = await fetchRestApiLibraries({
+			method: 'DELETE',
+			data: { name: 'test' },
+		});
 		//TODO: check if the response is ok and remove library from libraries
 		// return actions.setLibraries(Object.values(response));
 	} catch (error) {
