@@ -52,7 +52,6 @@ class Backend {
 					'menu'      => API_Rest_Menu::get_rest_path(),
 					'upload'    => API_Rest_Library_Upload::get_rest_path(),
 				),
-				'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
 
@@ -95,7 +94,6 @@ class Backend {
 				'WPMI_GROUP_URL'         => WPMI_GROUP_URL,
 				'WPMI_DEVELOPER'         => WPMI_DEVELOPER,
 				'WPMI_SETTING_MODEL'     => $models_settings->get_args(),
-				'WPMI_LIBRARIES'         => $models_libraries->get_libraries(),
 			)
 		);
 	}

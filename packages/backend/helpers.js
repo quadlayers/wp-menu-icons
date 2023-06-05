@@ -20,7 +20,6 @@ export const WPMI_DOCUMENTATION_URL = qlwpmi_backend.WPMI_DOCUMENTATION_URL;
 export const WPMI_GROUP_URL = qlwpmi_backend.WPMI_GROUP_URL;
 export const WPMI_DEVELOPER = qlwpmi_backend.WPMI_DEVELOPER;
 export const WPMI_SETTING_MODEL = qlwpmi_backend.WPMI_SETTING_MODEL;
-export const WPMI_LIBRARIES = wpmi_store.WPMI_LIBRARIES;
 
 /**
  * Handle the response from the apiFetch
