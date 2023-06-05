@@ -21,7 +21,7 @@ class Get extends Base {
 				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons-pro' ), $required_library ), 404 );
 			}
 
-			return $this->handle_response( (array) $response );
+			return $this->handle_response( isset( $response->name ) ? (array) get_object_vars( $response ) : (array) $response );
 		} catch ( \Throwable $error ) {
 			$response = array(
 				'code'    => $error->getCode(),

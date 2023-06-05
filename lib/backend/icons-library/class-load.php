@@ -46,7 +46,7 @@ class Load {
 		}
 
 		if ( isset( $this->builder->get_libraries()[ $name ] ) ) {
-			return get_object_vars( $this->builder->get_libraries()[ $name ] );
+			return $this->builder->get_libraries()[ $name ];
 		}
 	}
 
