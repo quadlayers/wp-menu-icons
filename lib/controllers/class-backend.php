@@ -26,7 +26,6 @@ class Backend {
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
 		$models_settings  = new Models_Setting();
-		$models_libraries = new Models_Libraries();
 
 		wp_register_script(
 			'wpmi-store',
@@ -124,7 +123,6 @@ class Backend {
 			'edit_posts',
 			$menu_slug,
 			'__return_null'
-			// plugins_url( '/assets/backend/img/tiktok-white.svg', WPMI_PLUGIN_FILE )
 		);
 		add_submenu_page(
 			$menu_slug,

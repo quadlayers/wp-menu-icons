@@ -7,9 +7,10 @@ use QuadLayers\WPMI\Models\Navmenu as Models_Navmenu;
 
 class Navmenu {
 
-
 	private static $instance;
+	//TODO: delete
 	protected static $fields      = array( 'icon' );
+	//TODO: protected
 	public static $default_values = array(
 		'label'    => 0,
 		'position' => 'before',
@@ -24,10 +25,10 @@ class Navmenu {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'add_meta_box' ) );
 		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
-		add_filter( 'wp_edit_nav_menu_walker', array( $this, 'walker' ), 99 );
-		add_action( 'wp_nav_menu_item_custom_fields', array( $this, 'fields' ), 10, 4 );
-		add_action( 'wp_nav_menu_item_custom_title', array( $this, 'icon' ), 10, 4 );
-		add_action( 'wp_update_nav_menu_item', array( $this, 'wp_update_nav_menu_item' ), 10, 3 );
+		add_filter( 'wp_edit_nav_menu_walker', array( $this, 'walker' ), 99 );//TODO: rename walker to edit_nav_menu_walker
+		add_action( 'wp_nav_menu_item_custom_fields', array( $this, 'fields' ), 10, 4 );//TODO: rename walker to nav_menu_item_custom_fields
+		add_action( 'wp_nav_menu_item_custom_title', array( $this, 'icon' ), 10, 4 );//TODO: rename walker to nav_menu_item_custom_title
+		add_action( 'wp_update_nav_menu_item', array( $this, 'wp_update_nav_menu_item' ), 10, 3 );//TODO: rename walker to update_nav_menu_item
 		Models_Libraries::instance();
 	}
 
@@ -126,6 +127,7 @@ class Navmenu {
 			return;
 		}
 
+		// TODO: replace with $current_library = XXX:get_current_library(); wp_enqueue_style( $current_library->name );
 		Libraries::enqueue_style_library();
 
 		wp_enqueue_media();

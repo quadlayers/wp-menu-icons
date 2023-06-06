@@ -20,7 +20,7 @@ class Library_Builder {
 		return $this->libraries;
 	}
 
-		/*
+	/*
 	Allow SVG file upload
 	*/
 	function upload_mimes( $mimes = array() ) {

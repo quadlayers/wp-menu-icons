@@ -83,7 +83,7 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/backend/js/'),
-			// library: ['tiktok', 'backend'],
+			// library: ['qlwpmi', 'backend'],
 			// libraryTarget: 'window',
 		},
 		optimization: {
@@ -163,7 +163,7 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/navmenu/js/'),
-			// library: ['tiktok', 'navmenu'],
+			// library: ['qlwpmi', 'navmenu'],
 			// libraryTarget: 'window',
 		},
 		optimization: {

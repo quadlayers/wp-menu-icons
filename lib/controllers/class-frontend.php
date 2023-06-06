@@ -9,11 +9,13 @@ class Frontend {
 	private static $instance;
 
 	private function __construct() {
+		//TODO: rename to enqueue_scripts
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_filter( 'the_title', array( $this, 'nav_menu_item_title' ), 999, 2 );
 	}
 
 	public function enqueue() {
+		//TODO: replace with $current_library = XXX:get_current_library(); wp_enqueue_style( $current_library->name );
 		Models_Libraries::enqueue_style_library();
 		wp_enqueue_style(
 			'wpmi-frontend',
