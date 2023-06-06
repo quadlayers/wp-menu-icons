@@ -2,16 +2,15 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
-use QuadLayers\WPMI\Models\Navmenu as Models_Navmenu;
+use QuadLayers\WPMI\Models\Models_Libraries as Models_Libraries;
+use QuadLayers\WPMI\Controllers\Libraries;
+use QuadLayers\WPMI\Models\Models_Navmenu;
 
 class Navmenu {
 
 	private static $instance;
-	//TODO: delete
-	protected static $fields      = array( 'icon' );
-	//TODO: protected
-	public static $default_values = array(
+
+	protected static $default_values = array(
 		'label'    => 0,
 		'position' => 'before',
 		'align'    => 'middle',
@@ -25,14 +24,14 @@ class Navmenu {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'add_meta_box' ) );
 		add_filter( 'wp_setup_nav_menu_item', array( $this, 'setup_nav_menu_item_icon' ) );
-		add_filter( 'wp_edit_nav_menu_walker', array( $this, 'walker' ), 99 );//TODO: rename walker to edit_nav_menu_walker
-		add_action( 'wp_nav_menu_item_custom_fields', array( $this, 'fields' ), 10, 4 );//TODO: rename walker to nav_menu_item_custom_fields
-		add_action( 'wp_nav_menu_item_custom_title', array( $this, 'icon' ), 10, 4 );//TODO: rename walker to nav_menu_item_custom_title
-		add_action( 'wp_update_nav_menu_item', array( $this, 'wp_update_nav_menu_item' ), 10, 3 );//TODO: rename walker to update_nav_menu_item
+		add_filter( 'wp_edit_nav_menu_walker', array( $this, 'edit_nav_menu_walker' ), 99 );
+		add_action( 'wp_nav_menu_item_custom_fields', array( $this, 'nav_menu_item_custom_fields' ), 10, 4 );
+		add_action( 'wp_nav_menu_item_custom_title', array( $this, 'nav_menu_item_custom_title' ), 10, 4 );
+		add_action( 'wp_update_nav_menu_item', array( $this, 'update_nav_menu_item' ), 10, 3 );
 		Models_Libraries::instance();
 	}
 
-	public function wp_update_nav_menu_item( $menu_id, $menu_item_db_id, $menu_item_args ) {
+	public function update_nav_menu_item( $menu_id, $menu_item_db_id, $menu_item_args ) {
 
 		if ( ! wp_doing_ajax() ) {
 
@@ -49,7 +48,7 @@ class Navmenu {
 				$menu_item_wpmi['icon']     = esc_attr( $_POST['wpmi'][ $menu_item_db_id ]['icon'] );
 				$menu_item_wpmi['color']    = sanitize_text_field( $_POST['wpmi'][ $menu_item_db_id ]['color'] );
 
-				$this->update_nav_menu_item( $menu_item_db_id, $menu_item_wpmi );
+				$this->edit_update_nav_menu_item( $menu_item_db_id, $menu_item_wpmi );
 			}
 
 			if ( isset( $_POST['wpmi_font'] ) ) {
@@ -64,7 +63,7 @@ class Navmenu {
 		}
 	}
 
-	protected function update_nav_menu_item( $id, $value ) {
+	protected function edit_update_nav_menu_item( $id, $value ) {
 
 		$value = apply_filters( 'wp_menu_icons_item_meta_values', $value, $id );
 
@@ -121,14 +120,16 @@ class Navmenu {
 	}
 
 	public function enqueue_scripts() {
-		 global $pagenow;
+		global $pagenow;
 
 		if ( $pagenow != 'nav-menus.php' ) {
 			return;
 		}
 
-		// TODO: replace with $current_library = XXX:get_current_library(); wp_enqueue_style( $current_library->name );
-		Libraries::enqueue_style_library();
+		$current_library = Libraries::get_current_library();
+		if ( isset( $current_library->name ) ) {
+			wp_enqueue_style( $current_library->name );
+		}
 
 		wp_enqueue_media();
 
@@ -147,7 +148,7 @@ class Navmenu {
 	<?php
 	}
 
-	public function walker( $walker ) {
+	public function edit_nav_menu_walker( $walker ) {
 
 		$walker = 'QuadLayers\WPMI\Menu_Item_Custom_Fields_Walker';
 
@@ -158,7 +159,7 @@ class Navmenu {
 		return $walker;
 	}
 
-	public function icon( $menu_item_id, $item, $depth, $args ) {
+	public function nav_menu_item_custom_title( $menu_item_id, $item, $depth, $args ) {
 		?>
 		<span class="menu-item-wpmi_open">
 			<?php if ( ! empty( $item->wpmi->icon ) ) : ?>
@@ -169,7 +170,7 @@ class Navmenu {
 	<?php
 	}
 
-	public function fields( $menu_item_id, $item, $depth, $args ) {
+	public function nav_menu_item_custom_fields( $menu_item_id, $item, $depth, $args ) {
 		?>
 		<?php
 		foreach ( self::get_default_values() as $key => $value ) {

@@ -5,7 +5,7 @@ namespace QuadLayers\WPMI\Models;
 /**
  * Models_Setting Class
  */
-class Navmenu {
+class Models_Navmenu {
 
 	/**
 	 * Table name

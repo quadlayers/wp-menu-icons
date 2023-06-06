@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Entities\Entity_Interface;
+use QuadLayers\WPMI\Entities\Libraries\Entity_Interface;
 
 class Library_Builder {
 	protected $libraries = [];

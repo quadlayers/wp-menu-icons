@@ -2,8 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Setting as Models_Setting;
-use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
+use QuadLayers\WPMI\Models\Models_Settings;
 
 use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
@@ -25,7 +24,7 @@ class Backend {
 		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
-		$models_settings  = new Models_Setting();
+		$models_settings  = new Models_Settings();
 
 		wp_register_script(
 			'wpmi-store',

@@ -5,7 +5,7 @@ namespace QuadLayers\WPMI\Models;
 /**
  * Model Class
  */
-abstract class Base {
+abstract class Models_Base {
 
 	private $cache   = array();
 	protected $table = null;

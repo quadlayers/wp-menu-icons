@@ -1,6 +1,6 @@
 <?php
 
-namespace QuadLayers\WPMI\Entities;
+namespace QuadLayers\WPMI\Entities\Libraries;
 
 abstract class Entity_Base {
 

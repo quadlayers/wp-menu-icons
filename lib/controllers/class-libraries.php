@@ -2,8 +2,8 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Libraries as Model_Libraries;
-use QuadLayers\WPMI\Models\Setting as Model_Setting;
+use QuadLayers\WPMI\Models\Models_Libraries as Model_Libraries;
+use QuadLayers\WPMI\Models\Models_Settings;
 
 class Libraries {
 
@@ -34,7 +34,7 @@ class Libraries {
 		$model_libraries = Model_Libraries::instance();
 		$libraries = (array) $model_libraries->get_libraries();
 
-		$model_settings = new Model_Setting();
+		$model_settings = new Models_Settings();
 
 		$settings = $model_settings->get();
 
@@ -53,37 +53,23 @@ class Libraries {
 		return $active_libraries;
 	}
 
-	//TODO: rename to get_current_library
-	public static function selected_library( $menu_id = null ) {
-		$active_libraries = self::get_active_libraries();
+	public static function get_current_library() {
 
-		$selected_library = get_term_meta( $menu_id, WPMI_DB_KEY, true );
-		if ( ! $selected_library ) {
-			$selected_library = 'dashicons';
-		}
-
-		if ( empty( $active_libraries[ $selected_library ] ) ) {
-			return false;
-		}
-
-		// $menus_ids = wp_get_nav_menus();
-		// foreach ( $menus_ids as $id => $menu ) {
-
-		// }
-
-		return $active_libraries[ $selected_library ];
-	}
-
-	//TODO: delete
-	public static function enqueue_style_library() {
 		$menus_ids = wp_get_nav_menus();
-		foreach ( $menus_ids as $id => $menu ) {
-			$selected_library = self::selected_library( $menu->term_id );
 
-			if ( $selected_library ) {
-				wp_enqueue_style( $selected_library->name );
+		foreach ( $menus_ids as $id => $menu ) {
+			$active_libraries = self::get_active_libraries();
+			$selected_library = get_term_meta( $menu->term_id, WPMI_DB_KEY, true );
+			if ( ! $selected_library ) {
+				$selected_library = 'dashicons';
+			}
+
+			if ( empty( $active_libraries[ $selected_library ] ) ) {
+				return false;
 			}
 		}
+
+		return $active_libraries[ $selected_library ];
 	}
 
 	public static function instance() {

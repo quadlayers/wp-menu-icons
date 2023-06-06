@@ -2,28 +2,29 @@
 
 namespace QuadLayers\WPMI\Models;
 
-use QuadLayers\WPMI\Models\Setting as Model_Setting;
+use QuadLayers\WPMI\Models\Models_Settings;
 use QuadLayers\WPMI\Controllers\Library_Builder;
 
 /**
  * Models_Libraries Class
  */
-class Libraries {
+class Models_Libraries {
 	protected static $_instance;
 
-	protected $model_settings;
+	protected $models_settings;
 	protected $libraries = array();
 	public Library_Builder $builder;
 
 	public function __construct() {
-		$this->model_settings = new Model_Setting();
+		$this->models_settings = new Models_Settings();
 		$this->builder        = new Library_Builder();
 
-		$this->add_library( new \QuadLayers\WPMI\Entities\DashIcons() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Elegant_Icons() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Fontawesome_Icons() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Foundation_Icons() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Themify_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\DashIcons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elegant_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elusive() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontawesome() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Foundation() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Themify() );
 	}
 
 	public function add_library( $library ) {

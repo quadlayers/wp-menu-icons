@@ -2,11 +2,11 @@
 
 namespace QuadLayers\WPMI\Models;
 
-use QuadLayers\WPMI\Models\Base as Models_Base;
+use QuadLayers\WPMI\Models\Models_Base as Models_Base;
 /**
  * Models_Setting Class
  */
-class Setting extends Models_Base {
+class Models_Settings extends Models_Base {
 
 	/**
 	 * Table name
@@ -23,7 +23,7 @@ class Setting extends Models_Base {
 	 * @return array
 	 */
 	public function get_args() {
-		$default_libraries_names = \QuadLayers\WPMI\Models\Libraries::get_libraries_names();
+		$default_libraries_names = \QuadLayers\WPMI\Models\Models_Libraries::get_libraries_names();
 		$default_libraries_names = array_keys( $default_libraries_names );
 		return array(
 			'active_libraries' => $default_libraries_names,
