@@ -1,6 +1,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { store as noticesStore } from '@wordpress/notices';
 import {
+	fetchRestApiDeleteLibrary,
 	fetchRestApiLibraries,
 	fetchRestApiLibrariesUpload,
 	fetchRestApiSettings,
@@ -34,9 +35,14 @@ export const uploadLibrary =
 			return false;
 		}
 
-		libraries.push(response);
+		const newLibrary = response.data.library
+
+		const i = libraries.findIndex(library => library.name === newLibrary.name)
+
+		libraries[i] = { ...libraries[i], ...newLibrary }
 
 		dispatch.setLibraries([...libraries]);
+		dispatch.setCurrentLibraryName(newLibrary.name)
 
 		registry
 			.dispatch(noticesStore)
@@ -51,7 +57,41 @@ export const uploadLibrary =
 		return true;
 	};
 
-//TODO: deleteLibrary
+export const deleteLibrary = (libraryName) => async ({ registry, dispatch, select, resolveSelect }) => {
+	const libraries = select.getLibraries();
+
+	const response = await fetchRestApiDeleteLibrary(libraryName);
+
+	if (response?.code) {
+		registry
+			.dispatch(noticesStore)
+			.createSuccessNotice(
+				sprintf(__('%s: %s'), response.code, response.message),
+				{ type: 'snackbar' }
+			);
+		return false;
+	}
+
+	const i = libraries.findIndex(library => library.name === libraryName)
+
+	libraries[i] = {
+		...libraries[i],
+		stylesheet_url: false,
+		stylesheet_file: false,
+		json_url: false
+	}
+
+	dispatch.setLibraries([ ...libraries ]);
+
+	registry
+		.dispatch(noticesStore)
+		.createSuccessNotice(
+			sprintf(__('%s succesfully deleted!'), libraries[i].label),
+			{ type: 'snackbar' }
+		);
+
+	return true;
+};
 
 export const setCurrentLibraryName = (libraryName) => {
 	return {

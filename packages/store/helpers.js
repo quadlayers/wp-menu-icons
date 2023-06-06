@@ -42,6 +42,13 @@ export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
 	});
 };
 
+export const fetchRestApiDeleteLibrary = (libraryName) => {
+	return apiFetch({
+		path: WPMI_REST_ROUTES.delete + `?library_name=${libraryName}`,
+		method: 'DELETE'
+	});
+};
+
 export const fetchRestApiSettings = ({ method, data } = {}) => {
 	return apiFetch({
 		path: WPMI_REST_ROUTES.settings,
@@ -97,7 +104,7 @@ export const useCurrentLibrary = () => {
 			hasFinishedResolution,
 		} = select(STORE_NAME);
 
-		const idMenu = document.getElementById('menu').value;
+		const idMenu = document.getElementById('menu')?.value;
 
 		const currentLibraryName = getCurrentLibraryName(idMenu);
 		const libraries = getLibraries();

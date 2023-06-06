@@ -1,38 +1,17 @@
-.display-flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-}
+
 
 .container-drop-zone {
 	position: relative;
 	width: 50%;
-	height: 70%;
-	background-color: white;
+	height: 100%;
 	border-radius: 5px;
 	cursor: pointer;
-}
-
-.options-libraries {
-	width: 100%;
-	height: 15%;
-	display: flex;
-}
-
-.options-libraries div {
 	margin: 0 auto;
-	width: 48%;
-	border-style: dashed;
-	border-color: skyblue;
-	color: skyblue;
-	font-weight: bold;
-	font-size: 16px;
-	border-radius: 5px;
+	background-color: white;
 }
 
 .drop-zone {
-	height: 85%;
+	height: 100%;
 	font-weight: bold;
 	flex-direction: column;
 	color: grey;
@@ -43,6 +22,7 @@
 	width: auto;
 	height: auto;
 	margin-bottom: 15px;
+	margin-top: 25px;
 }
 
 .drop-zone span {
@@ -57,4 +37,18 @@
 
 .drop-zone input {
 	display: none;
+}
+
+.library-title {
+	position: absolute;
+	top: 0;
+	border: solid;
+	border-style: dashed;
+	border-color: skyblue;
+	border-radius: 5px;
+	color: skyblue;
+    font-weight: bold;
+    width: 100%;
+    height: 60px;
+    font-size: 22px;
 }

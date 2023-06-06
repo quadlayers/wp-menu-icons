@@ -3,8 +3,6 @@
 namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Models\Setting as Models_Setting;
-use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
-
 use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
 class Backend {
