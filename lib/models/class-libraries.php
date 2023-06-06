@@ -3,23 +3,54 @@
 namespace QuadLayers\WPMI\Models;
 
 use QuadLayers\WPMI\Models\Setting as Model_Setting;
-use QuadLayers\WPMI\Backend\Icons_Library\Load;
+use QuadLayers\WPMI\Controllers\Library_Builder;
+
 /**
- * Models_Setting Class
+ * Models_Libraries Class
  */
 class Libraries {
+	protected static $_instance;
+
 	protected $model_settings;
+	protected $libraries = array();
+	public Library_Builder $builder;
 
 	public function __construct() {
 		$this->model_settings = new Model_Setting();
+		$this->builder        = new Library_Builder();
+
+		$this->add_library( new \QuadLayers\WPMI\Entities\DashIcons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Elegant_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Fontawesome_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Foundation_Icons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Themify_Icons() );
 	}
 
-	public function get_libraries() {
+	public function add_library( $library ) {
+		$this->builder->add_library( $library );
+	}
 
-		$icons_library = Load::instance();
+	public function get_builder_libraries( $name = null ) {
 
-		$registered_libraries = $icons_library->get_libraries();
+		if ( ! $name ) {
+			return $this->builder->get_libraries();
+		}
 
+		if ( isset( $this->builder->get_libraries()[ $name ] ) ) {
+			return $this->builder->get_libraries()[ $name ];
+		}
+	}
+
+
+	public function get_libraries( $library = null ) {
+
+		$registered_libraries = $this->get_builder_libraries( $library );
+
+		if ( isset( $registered_libraries->name ) ) {
+			return $registered_libraries;
+		}
+
+		// TODO: make compatibility
 		$registered_libraries = apply_filters( 'wp_menu_icons_register_icons', $registered_libraries );
 
 		return $registered_libraries;
@@ -35,36 +66,10 @@ class Libraries {
 		return $names;
 	}
 
-	public static function get_active_libraries() {
-
-		$self      = new self();
-		$libraries = (array) $self->get_libraries();
-
-		$model_settings = new Model_Setting();
-
-		$settings = $model_settings->get();
-
-		$active_libraries_names = isset( $settings['active_libraries'] ) ? $settings['active_libraries'] : array();
-
-		$active_libraries = array();
-
-		// Loop through all libraries
-		foreach ( $libraries as $key => $library ) {
-			// Check if library keyName is in active libraries
-			if ( in_array( $key, $active_libraries_names ) ) {
-				$active_libraries[ $key ] = $library;
-			}
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self();
 		}
-
-		return $active_libraries;
-
-	}
-
-	public function create_library( $library ) {
-		return true;
-	}
-
-	public function delete_library( $name ) {
-		return true;
+		return self::$_instance;
 	}
 }

@@ -35,7 +35,7 @@ export const fetchRestApiLibraries = ({ method, data, headers } = {}) => {
 
 export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
 	return apiFetch({
-		path: WPMI_REST_ROUTES.upload,
+		path: WPMI_REST_ROUTES.libraries_upload,
 		method,
 		body,
 		headers,
@@ -59,7 +59,7 @@ export const fetchRestApiSettings = ({ method, data } = {}) => {
 
 export const fetchRestApiMenu = (idMenu) => {
 	return apiFetch({
-		path: WPMI_REST_ROUTES.menu + '?id=' + idMenu,
+		path: WPMI_REST_ROUTES.navmenu + '?id=' + idMenu,
 	});
 };
 

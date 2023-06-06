@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Api\Rest;
 
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as Menu_Get;
+use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Navmenu\Get as Navmenu_Get;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as Settings_Get;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Post as Settings_Post;
@@ -18,7 +18,7 @@ class Routes_Library {
 	protected static $instance;
 
 	private function __construct() {
-		add_action( 'rest_api_init', array( $this, '_rest_init' ) );
+		add_action( 'init', array( $this, '_rest_init' ) );
 	}
 
 	public static function get_namespace() {
@@ -46,7 +46,7 @@ class Routes_Library {
 
 		new Libraries_Get();
 
-		new Menu_Get();
+		new Navmenu_Get();
 	}
 
 	public static function instance() {

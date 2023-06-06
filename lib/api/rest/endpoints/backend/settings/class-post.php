@@ -9,17 +9,26 @@ class Post extends Base {
 	protected static $route_path = 'settings';
 
 	public function callback( \WP_REST_Request $request ) {
-		$body = json_decode( $request->get_body(), true );
+		try {
 
-		if ( ! isset( $body['active_libraries'] ) ) {
-			return $this->handle_response( false );
+			$body = json_decode( $request->get_body(), true );
+
+			if ( ! isset( $body['active_libraries'] ) ) {
+				throw new \Exception( esc_html__( 'Body is not setted', 'wp-menu-icons-pro' ), 400 );
+			}
+
+			$setting_model = new Setting();
+
+			$status = $setting_model->save( $body );
+
+			return $this->handle_response( $status );
+		} catch ( \Throwable $error ) {
+			$response = array(
+				'code'    => $error->getCode(),
+				'message' => $error->getMessage(),
+			);
+			return $this->handle_response( $response );
 		}
-
-		$setting_model = new Setting();
-
-		$status = $setting_model->save( $body );
-
-		return $this->handle_response( $status );
 	}
 
 	public static function get_rest_method() {
