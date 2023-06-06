@@ -12,11 +12,11 @@ const { WPMI_REST_ROUTES } = wpmi_store;
 export async function apiFetch(args) {
 	return await wpApiFetch(args)
 		.then((response) => {
-			if (response.code) {
-				throw new Error(
-					`${response.code}: ${response?.message || 'Unknown'}`
-				);
-			}
+			// if (response.code) {
+			// 	throw new Error(
+			// 		`${response.code}: ${response?.message || 'Unknown'}`
+			// 	);
+			// }
 			return response;
 		})
 		.catch((error) => {
@@ -44,8 +44,8 @@ export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
 
 export const fetchRestApiDeleteLibrary = (libraryName) => {
 	return apiFetch({
-		path: WPMI_REST_ROUTES.delete + `?library_name=${libraryName}`,
-		method: 'DELETE'
+		path: WPMI_REST_ROUTES.libraries + `?library_name=${libraryName}`,
+		method: 'DELETE',
 	});
 };
 

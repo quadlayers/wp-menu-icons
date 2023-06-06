@@ -35,14 +35,18 @@ export const uploadLibrary =
 			return false;
 		}
 
-		const newLibrary = response.data.library
+		const newLibrary = response;
 
-		const i = libraries.findIndex(library => library.name === newLibrary.name)
+		console.log('newLibrary: ', newLibrary);
 
-		libraries[i] = { ...libraries[i], ...newLibrary }
+		const i = libraries.findIndex(
+			(library) => library.name === newLibrary.name
+		);
+
+		libraries[i] = { ...libraries[i], ...newLibrary };
 
 		dispatch.setLibraries([...libraries]);
-		dispatch.setCurrentLibraryName(newLibrary.name)
+		dispatch.setCurrentLibraryName(newLibrary.name);
 
 		registry
 			.dispatch(noticesStore)
@@ -57,41 +61,45 @@ export const uploadLibrary =
 		return true;
 	};
 
-export const deleteLibrary = (libraryName) => async ({ registry, dispatch, select, resolveSelect }) => {
-	const libraries = select.getLibraries();
+export const deleteLibrary =
+	(libraryName) =>
+	async ({ registry, dispatch, select, resolveSelect }) => {
+		const libraries = select.getLibraries();
 
-	const response = await fetchRestApiDeleteLibrary(libraryName);
+		const response = await fetchRestApiDeleteLibrary(libraryName);
 
-	if (response?.code) {
+		if (response?.code) {
+			registry
+				.dispatch(noticesStore)
+				.createSuccessNotice(
+					sprintf(__('%s: %s'), response.code, response.message),
+					{ type: 'snackbar' }
+				);
+			return false;
+		}
+
+		const i = libraries.findIndex(
+			(library) => library.name === libraryName
+		);
+
+		libraries[i] = {
+			...libraries[i],
+			stylesheet_url: false,
+			stylesheet_file: false,
+			json_url: false,
+		};
+
+		dispatch.setLibraries([...libraries]);
+
 		registry
 			.dispatch(noticesStore)
 			.createSuccessNotice(
-				sprintf(__('%s: %s'), response.code, response.message),
+				sprintf(__('%s succesfully deleted!'), libraries[i].label),
 				{ type: 'snackbar' }
 			);
-		return false;
-	}
 
-	const i = libraries.findIndex(library => library.name === libraryName)
-
-	libraries[i] = {
-		...libraries[i],
-		stylesheet_url: false,
-		stylesheet_file: false,
-		json_url: false
-	}
-
-	dispatch.setLibraries([ ...libraries ]);
-
-	registry
-		.dispatch(noticesStore)
-		.createSuccessNotice(
-			sprintf(__('%s succesfully deleted!'), libraries[i].label),
-			{ type: 'snackbar' }
-		);
-
-	return true;
-};
+		return true;
+	};
 
 export const setCurrentLibraryName = (libraryName) => {
 	return {
