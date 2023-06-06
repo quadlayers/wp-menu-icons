@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use QuadLayers\WPMI\Backend\Icons_Library\Load;
+use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 
 class Get extends Base {
 	protected static $route_path = 'libraries';
@@ -13,7 +13,7 @@ class Get extends Base {
 		try {
 			$required_library = $request->get_param( 'library' );
 
-			$libraries_controller = Load::instance();
+			$libraries_controller = Models_Libraries::instance();
 
 			$response = $libraries_controller->get_libraries( $required_library );
 

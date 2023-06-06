@@ -2,13 +2,10 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings\Get as API_Rest_Settings;
 use QuadLayers\WPMI\Models\Setting as Models_Setting;
 use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
-use QuadLayers\WPMI_PRO\Api\Rest\Endpoints\Backend\Libraries\Upload as API_Rest_Library_Upload;
-use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as API_Rest_Menu;
+use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
 class Backend {
 
@@ -41,17 +38,11 @@ class Backend {
 
 		$library_model = new Models_Libraries();
 		$libraries     = $library_model->get_libraries();
-
 		wp_localize_script(
 			'wpmi-store',
 			'wpmi_store',
 			array(
-				'WPMI_REST_ROUTES' => array(
-					'libraries' => API_Rest_Libraries::get_rest_path(),
-					'settings'  => API_Rest_Settings::get_rest_path(),
-					'menu'      => API_Rest_Menu::get_rest_path(),
-					'upload'    => API_Rest_Library_Upload::get_rest_path(),
-				),
+				'WPMI_REST_ROUTES' => $this->get_endpoints(),
 				'WPMI_LIBRARIES'   => $libraries,
 			)
 		);
@@ -100,6 +91,25 @@ class Backend {
 		);
 	}
 
+	public function get_endpoints() {
+		$route_library   = Routes_Library::instance();
+		$endpoints       = $route_library->get_routes();
+		$endpoints_array = array();
+
+		foreach ( $endpoints as $endpoint ) {
+
+			$endpoint_key = str_replace( '/', '_', $endpoint::get_rest_route() );
+
+			if ( ! isset( $endpoints_array[ $endpoint_key ] ) ) {
+
+				$endpoints_array[ $endpoint_key ] = $endpoint::get_rest_path();
+
+			}
+		}
+
+		return $endpoints_array;
+	}
+
 	public function enqueue_scripts() {
 		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== self::get_menu_slug() ) {
 			return;
@@ -111,7 +121,7 @@ class Backend {
 	}
 
 	function add_menu() {
-	   $menu_slug = self::get_menu_slug();
+		$menu_slug = self::get_menu_slug();
 		add_menu_page(
 			WPMI_PLUGIN_NAME,
 			WPMI_PLUGIN_NAME,
