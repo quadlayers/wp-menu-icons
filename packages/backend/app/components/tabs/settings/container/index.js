@@ -16,7 +16,7 @@ import { Container } from '../../../../../components/container';
 // import ImageUploader from "../../../../../components/media-uploader";
 import { OptionLibrary } from '../../../../../components/option-library';
 import { Modal } from '../../../../../../navmenu/components';
-import NewLibrary from '../../../new-library'
+import ManagerLibraries from '../../../manager-libraries';
 
 const Settings = () => {
 	const { settings, hasResolvedSettings, saveSettings, setSettings } =
@@ -125,16 +125,16 @@ const Settings = () => {
 				className="button button-primary secondary"
 				onClick={() => setShow(true)}
 			>
-				{__('Add New Library', 'wp-menu-icons')}
+				{__('Manager Libraries', 'wp-menu-icons')}
 			</button>
 
 			<Modal
-				title='Add New Library'
+				title='Manager Libraries'
 				show={ show }
 				onClose={ onClose }
 				__experimentalHideHeader
 			>
-				<NewLibrary
+				<ManagerLibraries
 					onClose={ onClose }
 				/>
 			</Modal>

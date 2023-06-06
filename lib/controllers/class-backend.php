@@ -8,6 +8,7 @@ use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries\Get as API_Rest_Libraries;
 use QuadLayers\WPMI_PRO\Api\Rest\Endpoints\Backend\Libraries\Upload as API_Rest_Library_Upload;
+use QuadLayers\WPMI_PRO\Api\Rest\Endpoints\Backend\Libraries\Delete as API_Rest_Library_Delete;
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu\Get as API_Rest_Menu;
 
 class Backend {
@@ -51,6 +52,7 @@ class Backend {
 					'settings'  => API_Rest_Settings::get_rest_path(),
 					'menu'      => API_Rest_Menu::get_rest_path(),
 					'upload'    => API_Rest_Library_Upload::get_rest_path(),
+					'delete'    => API_Rest_Library_Delete::get_rest_path(),
 				),
 			)
 		);

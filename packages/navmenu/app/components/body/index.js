@@ -99,7 +99,7 @@ export default function Body({ oldSettings, onClose }) {
 			if (currentLibrary.iconmap) {
 				setIconMap(currentLibrary.iconmap);
 			} else {
-				fetch(currentLibrary.json_file)
+				fetch(currentLibrary.json_url)
 					.then((response) => {
 						if (!response.ok) {
 							throw new Error('HTTP error ' + response.status);
