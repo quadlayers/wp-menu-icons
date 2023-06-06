@@ -1,17 +1,17 @@
 <?php
 
-namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Menu;
+namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Navmenu;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use QuadLayers\WPMI\Models\Menu;
+use QuadLayers\WPMI\Models\Navmenu;
 
 class Get extends Base {
-	protected static $route_path = 'menu/get';
+	protected static $route_path = 'navmenu';
 
 	public function callback( \WP_REST_Request $request ) {
 		$menu_id = $request->get_param( 'id' );
 
-		$menu_model = new Menu();
+		$menu_model = new Navmenu();
 
 		$library_name = $menu_model->get( $menu_id );
 

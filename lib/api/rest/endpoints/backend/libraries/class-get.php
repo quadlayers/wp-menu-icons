@@ -3,33 +3,32 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use QuadLayers\WPMI\Models\Libraries;
+use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 
 class Get extends Base {
 	protected static $route_path = 'libraries';
 
 	public function callback( \WP_REST_Request $request ) {
 
-		$required_library = $request->get_param( 'library' );
+		try {
+			$required_library = $request->get_param( 'library' );
 
-		$libraries_model = new Libraries();
+			$libraries_controller = Models_Libraries::instance();
 
-		$libraries = $libraries_model->get_libraries();
+			$response = $libraries_controller->get_libraries( $required_library );
 
-		if ( ! $required_library ) {
-			return $this->handle_response( (array) $libraries );
-		}
+			if ( ! $response ) {
+				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons-pro' ), $required_library ), 404 );
+			}
 
-		if ( ! isset( $libraries[ $required_library ] ) ) {
-			$error = array(
-				'code'    => 404,
-				'message' => sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons-pro' ), $required_library ),
+			return $this->handle_response( isset( $response->name ) ? (array) get_object_vars( $response ) : (array) $response );
+		} catch ( \Throwable $error ) {
+			$response = array(
+				'code'    => $error->getCode(),
+				'message' => $error->getMessage(),
 			);
-
-			return $this->handle_response( $error );
+			return $this->handle_response( $response );
 		}
-
-		return $this->handle_response( (array) get_object_vars( $libraries[ $required_library ] ) );
 	}
 
 	public static function get_rest_method() {
