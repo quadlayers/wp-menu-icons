@@ -1,6 +1,6 @@
 <?php
 
-namespace QuadLayers\WPMI\Entities;
+namespace QuadLayers\WPMI\Entities\Libraries;
 
 interface Entity_Interface {
 	public function get_prefix();

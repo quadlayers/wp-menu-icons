@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Libraries;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
+use QuadLayers\WPMI\Models\Models_Libraries as Models_Libraries;
 
 class Get extends Base {
 	protected static $route_path = 'libraries';

@@ -1,9 +1,9 @@
 <?php
 
-namespace QuadLayers\WPMI\Entities;
+namespace QuadLayers\WPMI\Entities\Libraries;
 
-use QuadLayers\WPMI\Entities\Entity_Base;
-use QuadLayers\WPMI\Entities\Entity_Interface;
+use QuadLayers\WPMI\Entities\Libraries\Entity_Base;
+use QuadLayers\WPMI\Entities\Libraries\Entity_Interface;
 
 class Elegant_Icons extends Entity_Base implements Entity_Interface {
 
