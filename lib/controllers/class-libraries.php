@@ -53,6 +53,7 @@ class Libraries {
 		return $active_libraries;
 	}
 
+	//TODO: rename to get_current_library
 	public static function selected_library( $menu_id = null ) {
 		$active_libraries = self::get_active_libraries();
 
@@ -65,9 +66,15 @@ class Libraries {
 			return false;
 		}
 
+		// $menus_ids = wp_get_nav_menus();
+		// foreach ( $menus_ids as $id => $menu ) {
+
+		// }
+
 		return $active_libraries[ $selected_library ];
 	}
 
+	//TODO: delete
 	public static function enqueue_style_library() {
 		$menus_ids = wp_get_nav_menus();
 		foreach ( $menus_ids as $id => $menu ) {
