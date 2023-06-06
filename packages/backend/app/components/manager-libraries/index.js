@@ -26,7 +26,6 @@ export default function ManagerLibraries({ onClose }) {
 		const { stylesheet_url, stylesheet_file } = currentLibrary
 
 		link.href = (stylesheet_url && stylesheet_url.replace(/\/\//g, '/')) || stylesheet_file || '';
-		console.log(link.href)
 
 		if (currentLibrary.iconmap) {
 			const icons = currentLibrary.iconmap.split(',')
@@ -51,10 +50,7 @@ export default function ManagerLibraries({ onClose }) {
 					setIconList(icons);
 					setLoading(false)
 				})
-				.catch(e => {
-					console.log(e)
-					alert('Error!');
-				});
+				.catch(e => alert('Error!'));
 		} else {
 			setIconList([])
 		}
