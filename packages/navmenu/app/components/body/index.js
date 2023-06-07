@@ -174,17 +174,21 @@ export default function Body({ oldSettings, onClose }) {
 									</div>
 								</div>
 
-								{isResolvingCurrentLibrary || iconMap.length === 0 ? (
-									<div class="attachments">
+								{isResolvingCurrentLibrary
+									? <div class="attachments">
 										<Spinner />
 									</div>
-								) : (
-									<IconMap
-										iconMap={iconMap}
-										search={search}
-										setIcon={setIcon}
-									/>
-								)}
+									: (iconMap.length > 0
+										? <IconMap
+											iconMap={iconMap}
+											search={search}
+											setIcon={setIcon}
+										/>
+										: <div class="attachments">
+											{__('The library does not contain icons', 'wp-menu-icons')}
+										</div>
+									)
+								}
 
 								<div class="media-sidebar">
 									<div

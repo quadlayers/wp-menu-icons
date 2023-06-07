@@ -37,9 +37,15 @@ export default function MetaBox() {
 	const activeLibraries = () => libraries.filter(library => settings.active_libraries.includes(library.name))
 
 	useEffect(() => {
-		link.href = currentLibrary?.stylesheet_file || '';
+		if (currentLibrary) {
+			const { stylesheet_file_url, stylesheet_file, type } = currentLibrary		
 
-		inputMenuFont.value = currentLibraryName;
+			link.href = type === 'default'
+				? stylesheet_file
+				: stylesheet_file_url
+
+			inputMenuFont.value = currentLibraryName;
+		}
 	}, [currentLibraryName]);
 
 	if (isResolvingLibraries && !hasResolvedLibraries && !hasResolvedSettings) {
