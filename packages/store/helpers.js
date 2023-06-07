@@ -45,7 +45,7 @@ export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
 export const fetchRestApiDeleteLibrary = (libraryName) => {
 	return apiFetch({
 		path: WPMI_REST_ROUTES.libraries + `?library_name=${libraryName}`,
-		method: 'DELETE',
+		method: 'DELETE'
 	});
 };
 
@@ -122,12 +122,13 @@ export const useCurrentLibrary = () => {
 		};
 	}, []);
 
-	const { setCurrentLibraryName } = useDispatch(STORE_NAME);
+	const { setCurrentLibraryName, getIcons } = useDispatch(STORE_NAME);
 
 	return {
 		currentLibrary,
 		currentLibraryName,
 		setCurrentLibraryName,
+		getIcons,
 		isResolvingCurrentLibrary,
 		hasResolvedCurrentLibrary,
 	};

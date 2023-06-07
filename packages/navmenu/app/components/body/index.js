@@ -9,7 +9,7 @@ import { Spinner } from '../../../components/';
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 
 export default function Body({ oldSettings, onClose }) {
-	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
+	const { currentLibrary, isResolvingCurrentLibrary, getIcons } = useCurrentLibrary();
 
 	const [iconMap, setIconMap] = useState('');
 	const [search, setSearch] = useState('');
@@ -96,23 +96,9 @@ export default function Body({ oldSettings, onClose }) {
 
 	useEffect(() => {
 		if (!isResolvingCurrentLibrary) {
-			if (currentLibrary.iconmap) {
-				setIconMap(currentLibrary.iconmap);
-			} else {
-				fetch(currentLibrary.json_url)
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error('HTTP error ' + response.status);
-						}
-						return response.text();
-					})
-					.then((data) => {
-						setIconMap(data.iconmap);
-					})
-					.catch(function () {
-						alert('Error!');
-					});
-			}
+			getIcons(currentLibrary).then(icons => {
+				setIconMap(icons)
+			})
 		}
 	}, [isResolvingCurrentLibrary]);
 
@@ -188,7 +174,7 @@ export default function Body({ oldSettings, onClose }) {
 									</div>
 								</div>
 
-								{isResolvingCurrentLibrary || !iconMap ? (
+								{isResolvingCurrentLibrary || iconMap.length === 0 ? (
 									<div class="attachments">
 										<Spinner />
 									</div>

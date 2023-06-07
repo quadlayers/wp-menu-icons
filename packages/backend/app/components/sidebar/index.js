@@ -4,39 +4,15 @@ import { useEffect } from '@wordpress/element';
 import { useCurrentLibrary, useLibraries } from "../../../../store/helpers"
 import { Spinner } from "../../../components/spinner"
 
+import LibraryList from '../library-list';
+
 export default function Sidebar() {
-	const { currentLibrary, setCurrentLibraryName } = useCurrentLibrary()
-    const { libraries, hasLibraries, deleteLibrary } = useLibraries()
-
-    const filterLibraries = type => libraries.filter(library => library.type === type)
-
-    const isSelected = name => name === currentLibrary?.name
-
-    const handleDelete = async (e, libraryName) => {
-        e.stopPropagation()
-
-        const response = await deleteLibrary(libraryName)
-
-        if (response) setCurrentLibraryName(libraryName)
-    }
-
-    const libraryList = type => filterLibraries(type).map(library =>
-        <li
-            class={isSelected(library.name) && 'active'}
-            onClick={() => setCurrentLibraryName(library.name)}
-        >
-            <span class="dashicons dashicons-star-filled" /> {library.label}
-
-            {type === 'uploaded' && <div
-                class="dashicons dashicons-trash"
-                onClick={e => handleDelete(e, library.name)}
-            />}
-        </li>
-    )
+	const { setCurrentLibraryName } = useCurrentLibrary()
+    const { libraries, hasLibraries } = useLibraries()
 
     useEffect(() => {
         if (hasLibraries) {
-            const library = filterLibraries('default')[0]
+            const library = libraries[0]
 
             setCurrentLibraryName(library.name)
         }
@@ -52,13 +28,13 @@ export default function Sidebar() {
         <div class='title'>{__('Default', 'wp-menu-icons')}</div>
 
         <ul>
-            {libraryList('default')}
+            <LibraryList type='default' />
         </ul>
 
         <div class='title'>{__('Uploaded', 'wp-menu-icons')}</div>
 
         <ul>
-            {libraryList('uploaded')}
+            <LibraryList type='uploaded' />
         </ul>
     </div>
 }

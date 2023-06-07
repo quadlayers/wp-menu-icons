@@ -1,9 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
 export default function IconMap({ iconMap, search, setIcon }) {
-	//TODO: implement fetch json_file if iconMap is empty
-	const filterIcons = () =>
-		iconMap?.split(',').filter((icon) => icon.includes(search));
+	const filterIcons = () => iconMap.filter((icon) => icon.includes(search));
 
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 

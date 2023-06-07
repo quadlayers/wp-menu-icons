@@ -30,7 +30,11 @@
 
 .container-sidebar li .dashicons-trash {
     color: red !important;
-    margin-right: 15px;
+}
+
+.container-sidebar li .dashicons-trash,
+.container-sidebar li .dashicons-upload {
+    margin-right: 45px;
     margin-left: auto;
 }
 
