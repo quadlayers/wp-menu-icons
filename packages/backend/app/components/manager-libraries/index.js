@@ -16,44 +16,23 @@ link.href = '';
 document.head.appendChild(link);
 
 export default function ManagerLibraries({ onClose }) {
-	const { currentLibrary } = useCurrentLibrary()
+	const { currentLibrary, getIcons } = useCurrentLibrary()
 	const [iconList, setIconList] = useState([])
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		if (!currentLibrary) return
 
-		const { stylesheet_url, stylesheet_file } = currentLibrary
+		const { stylesheet_file_url, stylesheet_file, type } = currentLibrary		
 
-		link.href = (stylesheet_url && stylesheet_url.replace(/\/\//g, '/')) || stylesheet_file || '';
+		link.href = type === 'default' ? stylesheet_file : stylesheet_file_url
 
-		if (currentLibrary.iconmap) {
-			const icons = currentLibrary.iconmap.split(',')
+		setLoading(true)
 
+		getIcons(currentLibrary).then(icons => {
+			setLoading(false)
 			setIconList(icons)
-		} else if (currentLibrary.json_url) {
-			setLoading(true)
-
-			fetch(currentLibrary.json_url)
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error('HTTP error ' + response.status);
-					}
-					return response.json();
-				})
-				.then((data) => {
-					console.log('data: ', data);
-					
-					const { css_prefix_text } = data
-					const icons = data.glyphs.map(item => css_prefix_text + item.css)
-					
-					setIconList(icons);
-					setLoading(false)
-				})
-				.catch(e => alert('Error!'));
-		} else {
-			setIconList([])
-		}
+		})
 	}, [currentLibrary])
 
 	return (

@@ -14,6 +14,34 @@ export const setLibraries = (libraries) => {
 	};
 };
 
+export const getIcons = library => async ({ registry, dispatch, select, resolveSelect }) => {
+	if (library.iconmap) {
+		return library.iconmap.split(',')
+	} else if (library.json_file_url) {
+		const response = await fetch(new Request(library.json_file_url, { cache: 'no-store' }))
+		
+		if (!response.ok) {
+			return []
+		}
+
+		const data = await response.json()
+
+		if (data.IcoMoonType) {
+			const prefix = 'icomoon-'
+			const icons = data.icons.map(icon => prefix + icon.properties.name)
+
+			return icons
+		} else {
+			const prefix = 'fontello-icon-'
+			const icons = data.glyphs.map(item => prefix + item.css)
+	
+			return icons
+		}
+	} else {
+		return []
+	}
+};
+
 export const uploadLibrary =
 	({ body, headers }) =>
 	async ({ registry, dispatch, select, resolveSelect }) => {
@@ -34,12 +62,16 @@ export const uploadLibrary =
 				);
 			return false;
 		}
-
-		const newLibrary = response.data.library
+		
+		const newLibrary = response
 
 		const i = libraries.findIndex(library => library.name === newLibrary.name)
 
-		libraries[i] = { ...libraries[i], ...newLibrary }
+		libraries[i] = {
+			...libraries[i],
+			json_file_url: newLibrary.json_url,
+			stylesheet_file_url: newLibrary.stylesheet_url
+		}
 
 		dispatch.setLibraries([...libraries]);
 		dispatch.setCurrentLibraryName(newLibrary.name)
@@ -76,12 +108,14 @@ export const deleteLibrary = (libraryName) => async ({ registry, dispatch, selec
 
 	libraries[i] = {
 		...libraries[i],
-		stylesheet_url: false,
-		stylesheet_file: false,
-		json_url: false
+		stylesheet_file_path: false,
+		stylesheet_file_url: false,
+		json_file_path: false,
+		json_file_url: false
 	}
 
 	dispatch.setLibraries([ ...libraries ]);
+	dispatch.setCurrentLibraryName(libraryName)
 
 	registry
 		.dispatch(noticesStore)

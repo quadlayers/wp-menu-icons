@@ -5,7 +5,6 @@ import { DropZone } from '@wordpress/components';
 import { useLibraries, useCurrentLibrary } from '../../../../store/helpers';
 
 export default function UploadZone({ selectedLibrary }) {
-	const { currentLibrary } = useCurrentLibrary()
 	const inputRef = useRef(null);
 
 	const dropZoneOnClick = () => inputRef.current?.click();
@@ -31,10 +30,6 @@ export default function UploadZone({ selectedLibrary }) {
         <DropZone onFilesDrop={handleUpload} />
 
         <div class="drop-zone display-flex-center">
-            <div class="display-flex-center library-title">
-                {currentLibrary?.label}
-            </div>
-
             <div class="dashicons dashicons-upload icon"></div>
 
             <span>
