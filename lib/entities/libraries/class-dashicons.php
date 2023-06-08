@@ -19,5 +19,8 @@ class Dashicons extends Entity_Base implements Entity_Interface {
 	public function is_library_loaded() {
 		return true;
 	}
+	public function get_style_name() {
+		return $this->name;
+	}
 
 }

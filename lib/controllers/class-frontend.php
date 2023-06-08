@@ -9,22 +9,37 @@ class Frontend {
 	private static $instance;
 
 	private function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ) );
+		add_action( 'wp_nav_menu', array( $this, 'enqueue_scripts' ), 10, 2 );
 		add_filter( 'the_title', array( $this, 'nav_menu_item_title' ), 999, 2 );
 	}
 
-	public function enqueue_scripts() {
-		$current_library = Controllers_Libraries::get_current_library();
-		if ( isset( $current_library->name ) ) {
-			wp_enqueue_style( $current_library->name );
-		}
-		wp_enqueue_style(
+	public function register_scripts() {
+		wp_register_style(
 			'wpmi-frontend',
 			plugins_url( '/build/frontend/css/style.css', WPMI_PLUGIN_FILE ),
 			array(),
 			WPMI_PLUGIN_VERSION,
 			'all'
 		);
+	}
+
+	public function enqueue_scripts( $menu, $args ) {
+
+		if ( ! isset( $args->menu->term_id ) ) {
+			return $menu;
+		}
+
+		$menu_library = Controllers_Libraries::get_current_library( $args->menu->term_id );
+
+		if ( ! $menu_library ) {
+			return $menu;
+		}
+
+		wp_enqueue_style( 'wpmi-frontend' );
+		wp_enqueue_style( $menu_library->get_style_name() );
+
+		return $menu;
 	}
 
 	public function nav_menu_item_title( $title, $menu_item_id ) {

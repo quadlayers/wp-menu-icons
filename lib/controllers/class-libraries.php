@@ -32,7 +32,7 @@ class Libraries {
 	public static function get_active_libraries() {
 
 		$model_libraries = Model_Libraries::instance();
-		$libraries       = (array) $model_libraries->get_libraries();
+		$libraries       = $model_libraries->get_libraries();
 
 		$model_settings = new Models_Settings();
 
@@ -55,23 +55,27 @@ class Libraries {
 		return $active_libraries;
 	}
 
-	public static function get_current_library() {
+	public static function get_current_library( $menu_id ) {
 
-		$menus_ids = wp_get_nav_menus();
+		if ( ! $menu_id ) {
+			return false;
+		}
 
-		foreach ( $menus_ids as $id => $menu ) {
-			$active_libraries = self::get_active_libraries();
-			$selected_library = get_term_meta( $menu->term_id, WPMI_DB_KEY, true );
-			if ( ! $selected_library ) {
-				$selected_library = 'dashicons';
-			}
+		$menu_library = get_term_meta( $menu_id, WPMI_DB_KEY, true );
 
-			if ( empty( $active_libraries[ $selected_library ] ) ) {
-				return false;
+		if ( ! $menu_library ) {
+			return false;
+		}
+
+		$active_libraries = self::get_active_libraries();
+
+		foreach ( $active_libraries as $key => $library ) {
+			if ( $key === $menu_library ) {
+				return $library;
 			}
 		}
 
-		return $active_libraries[ $selected_library ];
+		return false;
 	}
 
 	public static function instance() {

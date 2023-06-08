@@ -40,15 +40,6 @@ abstract class Entity_Base {
 		$this->is_loaded = $this->is_library_loaded();
 
 		add_action( 'wp_loaded', array( $this, 'register_assets' ) );
-
-		/*
-			enqueue_block_assets
-			Is not working on Gutenberg 13.8 because this filter extecuted before block_editor_settings_all
-			Therefore it is not loaded in EditorStyles
-		*/
-
-		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'block_assets' ) );
 	}
 
 	/**
@@ -60,40 +51,52 @@ abstract class Entity_Base {
 			return;
 		}
 
-		wp_register_style(
-			"wp-menu-icons-pro-icons-{$this->get_name()}",
-			$this->get_stylesheet_url(),
-			'',
-			$this->get_version()
-		);
+		if ( ! wp_style_is( $this->get_style_name(), 'registered' ) ) {
 
-	}
-
-	public function block_assets() {
-
-		/**
-		 * Allways load library in admin panel to allow icons in the editor via enqueue_block_editor_assets
-		 */
-		if ( $this->is_library_available_frontend() || is_admin() ) {
-			wp_enqueue_style( "wp-menu-icons-pro-icons-{$this->get_name()}" );
+			error_log( 'get_style_name: ' . json_encode( $this->get_style_name(), JSON_PRETTY_PRINT ) );
+			error_log( 'get_stylesheet_url: ' . json_encode( $this->get_stylesheet_url(), JSON_PRETTY_PRINT ) );
+			error_log( 'get_version: ' . json_encode( $this->get_version(), JSON_PRETTY_PRINT ) );
+			wp_register_style(
+				$this->get_style_name(),
+				$this->get_stylesheet_url(),
+				'',
+				$this->get_version()
+			);
 		}
 
+		// wp_register_style(
+		// $this->get_style_name(),
+		// $this->get_stylesheet_url(),
+		// '',
+		// $this->get_version()
+		// );
 	}
+
+	// public function register_scripts() {
+
+	// **
+	// * Allways load library in admin panel to allow icons in the editor via enqueue_block_editor_assets
+	// */
+	// if ( $this->is_library_available_frontend() || is_admin() ) {
+	// wp_enqueue_style( "wp-menu-icons-{$this->get_name()}" );
+	// }
+
+	// }
 
 	/**
 	 * Getters
 	 */
-	public function get_prefix() {
 
-		if ( ! $this->prefix ) {
-			return "{$this->name}-icon-";
-		}
-
-		return $this->prefix;
+	public function get_type() {
+		return $this->type;
 	}
 
 	public function get_name() {
 		return $this->name;
+	}
+
+	public function get_style_name() {
+		return "wp-menu-icons-{$this->get_name()}";
 	}
 
 	public function get_label() {
@@ -103,6 +106,15 @@ abstract class Entity_Base {
 		}
 
 		return $this->name;
+	}
+
+	public function get_prefix() {
+
+		if ( ! $this->prefix ) {
+			return "{$this->name}-icon-";
+		}
+
+		return $this->prefix;
 	}
 
 	public function get_base_dir() {
