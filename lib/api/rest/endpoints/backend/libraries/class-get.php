@@ -13,12 +13,12 @@ class Get extends Base {
 		try {
 			$required_library = $request->get_param( 'library' );
 
-			$libraries_controller = Models_Libraries::instance();
+			$models_libraries = Models_Libraries::instance();
 
-			$response = $libraries_controller->get_libraries( $required_library );
+			$response = $models_libraries->get_libraries( $required_library );
 
 			if ( ! $response ) {
-				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons-pro' ), $required_library ), 404 );
+				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons' ), $required_library ), 404 );
 			}
 
 			return $this->handle_response( isset( $response->name ) ? (array) get_object_vars( $response ) : (array) $response );

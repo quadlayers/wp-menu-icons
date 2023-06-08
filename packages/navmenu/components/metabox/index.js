@@ -58,6 +58,7 @@ export default function MetaBox() {
 								type="radio"
 								class={WPMI_PREFIX + '-item-checkbox'}
 								name={WPMI_PREFIX + '_font'}
+								disabled={!library.is_loaded}
 								value={library.name}
 								checked={library.name === currentLibraryName}
 								onChange={handleOptionChange}

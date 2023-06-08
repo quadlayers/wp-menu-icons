@@ -44,7 +44,7 @@ export const uploadLibrary =
 		libraries[i] = {
 			...libraries[i],
 			json_file_url: newLibrary.json_url,
-			stylesheet_file_url: newLibrary.stylesheet_url,
+			stylesheet_file_url: newLibrary.stylesheet_file_url,
 			is_loaded: true
 		};
 
@@ -87,8 +87,8 @@ export const deleteLibrary =
 
 		libraries[i] = {
 			...libraries[i],
-			stylesheet_url: false,
-			stylesheet_file: false,
+			// stylesheet_file_url: false,
+			stylesheet_file_url: false,
 			json_url: false,
 			is_loaded: false
 		};

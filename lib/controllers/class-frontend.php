@@ -2,8 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Controllers\Libraries as Models_Libraries;
-use QuadLayers\WPMI\Controllers\Libraries;
+use QuadLayers\WPMI\Controllers\Libraries as Controllers_Libraries;
 
 class Frontend {
 
@@ -15,7 +14,7 @@ class Frontend {
 	}
 
 	public function enqueue_scripts() {
-		$current_library = Libraries::get_current_library();
+		$current_library = Controllers_Libraries::get_current_library();
 		if ( isset( $current_library->name ) ) {
 			wp_enqueue_style( $current_library->name );
 		}

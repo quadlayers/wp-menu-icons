@@ -17,9 +17,9 @@ class Libraries {
 			function () {
 				// TODO: only register active libraries
 
-				$libraries_model = new Model_Libraries();
+				$models_libraries = Model_Libraries::instance();
 
-				$libraries = $libraries_model->get_libraries();
+				$libraries = $models_libraries->get_libraries();
 
 				foreach ( $libraries as $name => $library ) {
 					wp_register_style( $name, $library->stylesheet_file );
@@ -32,7 +32,7 @@ class Libraries {
 	public static function get_active_libraries() {
 
 		$model_libraries = Model_Libraries::instance();
-		$libraries = (array) $model_libraries->get_libraries();
+		$libraries       = (array) $model_libraries->get_libraries();
 
 		$model_settings = new Models_Settings();
 
@@ -70,11 +70,6 @@ class Libraries {
 				return false;
 			}
 		}
-
-		// $menus_ids = wp_get_nav_menus();
-		// foreach ( $menus_ids as $id => $menu ) {
-
-		// }
 
 		return $active_libraries[ $selected_library ];
 	}

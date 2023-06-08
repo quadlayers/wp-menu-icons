@@ -61,7 +61,7 @@ const Settings = () => {
 
 	const onClose = () => setShow(false)
 
-	const isActive= library => !!settings.active_libraries?.includes(library.name) && library.is_loaded
+	const isActive= library => !!settings.active_libraries?.includes(library.name)
 
 	if (!hasResolvedSettings && !hasResolvedLibraries) {
 		return <Spinner />;
@@ -72,7 +72,7 @@ const Settings = () => {
 			{__('Enable Libraries', 'wp-menu-icons')}
 			<form onSubmit={submitSettings}>
 				{__('Default', 'wp-menu-icons')}
-				{filterLibraries('default').map((library) => 
+				{filterLibraries('default').map((library) =>
 					<OptionLibrary
 						key={library.name}
 						label={library.label}
@@ -83,10 +83,10 @@ const Settings = () => {
 						}
 					/>
 				)}
-				{filterLibraries('uploaded').length !== 0 && 
+				{filterLibraries('uploaded').length !== 0 &&
 					<>
 						{__('Customize', 'wp-menu-icons')}
-						{filterLibraries('uploaded').map((library) => 
+						{filterLibraries('uploaded').map((library) =>
 							<OptionLibrary
 								key={library.name}
 								label={library.label}

@@ -46,7 +46,7 @@ export const fetchRestApiLibrariesUpload = ({ method, body, headers } = {}) => {
 export const fetchRestApiDeleteLibrary = (libraryName) => {
 	return apiFetch({
 		path: WPMI_REST_ROUTES.libraries + `?library_name=${libraryName}`,
-		method: 'DELETE'
+		method: 'DELETE',
 	});
 };
 
@@ -65,20 +65,20 @@ export const fetchRestApiMenu = (idMenu) => {
 };
 
 const LinkStyleSheet = (() => {
-	const link = document.createElement('link')
-	link.rel = 'stylesheet'
-	link.href = ''
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = '';
 
-	document.head.append(link)
-  
-	const setHref = url => link.href = url
+	document.head.append(link);
+
+	const setHref = (url) => (link.href = url);
 
 	return {
-		setHref
-	}
-})()
+		setHref,
+	};
+})();
 
-export const getIcons = async library => {
+export const getIcons = async (library) => {
 	if (library.iconmap) {
 		return library.iconmap.split(',');
 	} else if (library.json_file_url) {
@@ -108,36 +108,36 @@ export const getIcons = async library => {
 	} else {
 		return [];
 	}
-}
+};
 
 export const useCurrentLibraryIconMap = () => {
 	const [iconMap, setIconMap] = useState([]);
-	const [isLoadingIconMap, setIsLoadingIconMap] = useState(false)
-  
-	const currentLibrary = useSelect((select) => {
-		const { getCurrentLibrary } = select(STORE_NAME)
+	const [isLoadingIconMap, setIsLoadingIconMap] = useState(false);
 
-		return getCurrentLibrary()
-	}, [])
-  
+	const currentLibrary = useSelect((select) => {
+		const { getCurrentLibrary } = select(STORE_NAME);
+
+		return getCurrentLibrary();
+	}, []);
+
 	useEffect(() => {
 		if (currentLibrary) {
-			setIsLoadingIconMap(true)
+			setIsLoadingIconMap(true);
 
-			getIcons(currentLibrary).then(r => {
-				setIconMap(r)
-				setIsLoadingIconMap(false)
-			})
+			getIcons(currentLibrary).then((r) => {
+				setIconMap(r);
+				setIsLoadingIconMap(false);
+			});
 		} else {
-			setIconMap([])
+			setIconMap([]);
 		}
-	}, [currentLibrary])
-  
+	}, [currentLibrary]);
+
 	return {
 		iconMap,
-		isLoadingIconMap
-	}
-}
+		isLoadingIconMap,
+	};
+};
 
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
@@ -187,14 +187,13 @@ export const useCurrentLibrary = () => {
 		const currentLibrary = libraries.find(
 			(library) => library.name == currentLibraryName
 		);
-		
-		if (currentLibrary) {
-			const { stylesheet_file_url, stylesheet_file, type } = currentLibrary		
-			const url = type === 'default'
-				? stylesheet_file
-				: stylesheet_file_url
 
-			LinkStyleSheet.setHref(url)
+		if (currentLibrary) {
+			const { stylesheet_file_url } = currentLibrary;
+
+			const url = stylesheet_file_url || '';
+
+			LinkStyleSheet.setHref(url);
 		}
 
 		return {

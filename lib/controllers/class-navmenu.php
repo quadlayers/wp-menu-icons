@@ -126,11 +126,6 @@ class Navmenu {
 			return;
 		}
 
-		$current_library = Libraries::get_current_library();
-		if ( isset( $current_library->name ) ) {
-			wp_enqueue_style( $current_library->name );
-		}
-
 		wp_enqueue_media();
 
 		wp_enqueue_style( 'wpmi-navmenu' );

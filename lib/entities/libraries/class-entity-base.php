@@ -32,8 +32,10 @@ abstract class Entity_Base {
 		$this->stylesheet_file_path = $this->get_file_path( $this->stylesheet_file );
 		$this->json_file_path       = $this->get_file_path( $this->json_file );
 
-		$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
-		$this->json_file_url       = $this->get_file_url( $this->json_file );
+		if ( ! $this->stylesheet_file_url ) {
+			$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
+		}
+		$this->json_file_url = $this->get_file_url( $this->json_file );
 
 		$this->is_loaded = $this->is_library_loaded();
 
@@ -145,11 +147,11 @@ abstract class Entity_Base {
 
 	public function get_library_assets() {
 		return array(
-			'name'           => $this->get_name(),
-			'label'          => $this->get_label(),
-			'prefix'         => $this->get_prefix(),
-			'json_url'       => $this->get_json_url(),
-			'stylesheet_url' => $this->get_stylesheet_url(),
+			'name'                => $this->get_name(),
+			'label'               => $this->get_label(),
+			'prefix'              => $this->get_prefix(),
+			'json_url'            => $this->get_json_url(),
+			'stylesheet_file_url' => $this->get_stylesheet_url(),
 		);
 	}
 

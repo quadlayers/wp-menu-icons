@@ -13,11 +13,14 @@ class Models_Libraries {
 
 	protected $models_settings;
 	protected $libraries = array();
-	public Library_Builder $builder;
+	/**
+	 * @var Library_Builder
+	 */
+	public $builder;
 
-	public function __construct() {
+	private function __construct() {
 		$this->models_settings = new Models_Settings();
-		$this->builder        = new Library_Builder();
+		$this->builder         = new Library_Builder();
 
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\DashIcons() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elegant_Icons() );
