@@ -7,11 +7,11 @@ import { Spinner } from "../../../components/spinner"
 import LibraryList from '../library-list';
 
 export default function Sidebar() {
-	const { setCurrentLibraryName } = useCurrentLibrary()
+	const { currentLibrary, setCurrentLibraryName } = useCurrentLibrary()
     const { libraries, hasLibraries } = useLibraries()
 
     useEffect(() => {
-        if (hasLibraries) {
+        if (hasLibraries && !currentLibrary) {
             const library = libraries[0]
 
             setCurrentLibraryName(library.name)

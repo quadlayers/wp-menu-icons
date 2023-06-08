@@ -1,5 +1,6 @@
 import wpApiFetch from '@wordpress/api-fetch';
 import { useSelect, useDispatch } from '@wordpress/data';
+import { useState, useEffect } from '@wordpress/element';
 import { STORE_NAME } from './constants';
 // eslint-disable-next-line no-undef
 const { WPMI_REST_ROUTES } = wpmi_store;
@@ -63,6 +64,81 @@ export const fetchRestApiMenu = (idMenu) => {
 	});
 };
 
+const LinkStyleSheet = (() => {
+	const link = document.createElement('link')
+	link.rel = 'stylesheet'
+	link.href = ''
+
+	document.head.append(link)
+  
+	const setHref = url => link.href = url
+
+	return {
+		setHref
+	}
+})()
+
+export const getIcons = async library => {
+	if (library.iconmap) {
+		return library.iconmap.split(',');
+	} else if (library.json_file_url) {
+		const response = await fetch(
+			new Request(library.json_file_url, { cache: 'no-store' })
+		);
+
+		if (!response.ok) {
+			return [];
+		}
+
+		const data = await response.json();
+
+		if (data.IcoMoonType) {
+			const prefix = 'icomoon-';
+			const icons = data.icons.map(
+				(icon) => prefix + icon.properties.name
+			);
+
+			return icons;
+		} else {
+			const prefix = 'fontello-icon-';
+			const icons = data.glyphs.map((item) => prefix + item.css);
+
+			return icons;
+		}
+	} else {
+		return [];
+	}
+}
+
+export const useCurrentLibraryIconMap = () => {
+	const [iconMap, setIconMap] = useState([]);
+	const [isLoadingIconMap, setIsLoadingIconMap] = useState(false)
+  
+	const currentLibrary = useSelect((select) => {
+		const { getCurrentLibrary } = select(STORE_NAME)
+
+		return getCurrentLibrary()
+	}, [])
+  
+	useEffect(() => {
+		if (currentLibrary) {
+			setIsLoadingIconMap(true)
+
+			getIcons(currentLibrary).then(r => {
+				setIconMap(r)
+				setIsLoadingIconMap(false)
+			})
+		} else {
+			setIconMap([])
+		}
+	}, [currentLibrary])
+  
+	return {
+		iconMap,
+		isLoadingIconMap
+	}
+}
+
 export const useLibraries = () => {
 	const { libraries, isResolvingLibraries, hasResolvedLibraries } = useSelect(
 		(select) => {
@@ -111,6 +187,15 @@ export const useCurrentLibrary = () => {
 		const currentLibrary = libraries.find(
 			(library) => library.name == currentLibraryName
 		);
+		
+		if (currentLibrary) {
+			const { stylesheet_file_url, stylesheet_file, type } = currentLibrary		
+			const url = type === 'default'
+				? stylesheet_file
+				: stylesheet_file_url
+
+			LinkStyleSheet.setHref(url)
+		}
 
 		return {
 			currentLibrary,
@@ -122,13 +207,12 @@ export const useCurrentLibrary = () => {
 		};
 	}, []);
 
-	const { setCurrentLibraryName, getIcons } = useDispatch(STORE_NAME);
+	const { setCurrentLibraryName } = useDispatch(STORE_NAME);
 
 	return {
 		currentLibrary,
 		currentLibraryName,
 		setCurrentLibraryName,
-		getIcons,
 		isResolvingCurrentLibrary,
 		hasResolvedCurrentLibrary,
 	};

@@ -1,7 +1,7 @@
 import { useState, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
-import { useCurrentLibrary } from '@wpmi/store';
+import { useCurrentLibrary, useCurrentLibraryIconMap } from '@wpmi/store';
 
 import { IconPreview, IconSettings, IconMap } from '../';
 import { Spinner } from '../../../components/';
@@ -9,9 +9,9 @@ import { Spinner } from '../../../components/';
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 
 export default function Body({ oldSettings, onClose }) {
-	const { currentLibrary, isResolvingCurrentLibrary, getIcons } = useCurrentLibrary();
+	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
+	const { iconMap, isLoadingIconMap } = useCurrentLibraryIconMap()
 
-	const [iconMap, setIconMap] = useState('');
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState(oldSettings);
 
@@ -94,14 +94,6 @@ export default function Body({ oldSettings, onClose }) {
 		onClose();
 	};
 
-	useEffect(() => {
-		if (!isResolvingCurrentLibrary) {
-			getIcons(currentLibrary).then(icons => {
-				setIconMap(icons)
-			})
-		}
-	}, [isResolvingCurrentLibrary]);
-
 	return (
 		<div id={WPMI_PREFIX + '_modal'}>
 			<button
@@ -174,7 +166,7 @@ export default function Body({ oldSettings, onClose }) {
 									</div>
 								</div>
 
-								{isResolvingCurrentLibrary
+								{isResolvingCurrentLibrary && isLoadingIconMap
 									? <div class="attachments">
 										<Spinner />
 									</div>
