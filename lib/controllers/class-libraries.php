@@ -44,8 +44,10 @@ class Libraries {
 
 		// Loop through all libraries
 		foreach ( $libraries as $key => $library ) {
+			$is_loaded = $model_libraries->get_libraries( $key )->is_library_loaded();
+
 			// Check if library keyName is in active libraries
-			if ( in_array( $key, $active_libraries_names ) ) {
+			if ( in_array( $key, $active_libraries_names ) && $is_loaded ) {
 				$active_libraries[ $key ] = $library;
 			}
 		}

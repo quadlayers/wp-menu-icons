@@ -1,13 +1,12 @@
 import { __ } from "@wordpress/i18n";
 
-export function OptionLibrary (props) {
-    const { label, onChange, checked } = props
-
-    return <div className="option-library">
+export function OptionLibrary ({ label, onChange, checked, disabled }) {
+    return <div className={"option-library " + (disabled && 'disabled')}>
         <input
             type="checkbox"
             checked={checked}
             onChange={onChange}
+            disabled={disabled}
         />
         <span className="description">
             {__(

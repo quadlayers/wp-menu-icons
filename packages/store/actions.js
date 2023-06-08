@@ -79,6 +79,7 @@ export const uploadLibrary =
 			...libraries[i],
 			json_file_url: newLibrary.json_url,
 			stylesheet_file_url: newLibrary.stylesheet_url,
+			is_loaded: true
 		};
 
 		dispatch.setLibraries([...libraries]);
@@ -123,6 +124,7 @@ export const deleteLibrary =
 			stylesheet_url: false,
 			stylesheet_file: false,
 			json_url: false,
+			is_loaded: false
 		};
 
 		dispatch.setLibraries([...libraries]);

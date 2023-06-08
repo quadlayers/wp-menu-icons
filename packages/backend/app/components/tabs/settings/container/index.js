@@ -23,6 +23,8 @@ const Settings = () => {
 		useSettingsEntities();
 
 	const { libraries, hasResolvedLibraries } = useLibraries()
+	console.log('libraries: ', libraries);
+	
 
 	const [show, setShow] = useState(false)
 
@@ -61,6 +63,8 @@ const Settings = () => {
 
 	const onClose = () => setShow(false)
 
+	const isActive= library => !!settings.active_libraries?.includes(library.name) && library.is_loaded
+
 	if (!hasResolvedSettings && !hasResolvedLibraries) {
 		return <Spinner />;
 	}
@@ -74,11 +78,8 @@ const Settings = () => {
 					<OptionLibrary
 						key={library.name}
 						label={library.label}
-						checked={
-							!!settings.active_libraries?.includes(
-								library.name
-							)
-						}
+						disabled={!library.is_loaded}
+						checked={isActive(library)}
 						onChange={() =>
 							togleActiveLibraries(library.name)
 						}
@@ -91,11 +92,8 @@ const Settings = () => {
 							<OptionLibrary
 								key={library.name}
 								label={library.label}
-								checked={
-									!!settings.active_libraries?.includes(
-										library.name
-									)
-								}
+								disabled={!library.is_loaded}
+								checked={isActive(library)}
 								onChange={() =>
 									togleActiveLibraries(library.name)
 								}

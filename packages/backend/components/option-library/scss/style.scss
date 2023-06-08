@@ -2,3 +2,8 @@
     margin: 15px;
     font-weight: bold !important;
 }
+
+.option-library.disabled {
+    color: grey;
+    pointer-events: none;
+}

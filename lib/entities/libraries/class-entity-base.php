@@ -20,6 +20,7 @@ abstract class Entity_Base {
 	public $json_file_url;
 	public $type = 'default';
 	public $iconmap;
+	public $is_loaded;
 
 	public function __construct() {
 
@@ -34,12 +35,16 @@ abstract class Entity_Base {
 		$this->stylesheet_file_url = $this->get_file_url( $this->stylesheet_file );
 		$this->json_file_url       = $this->get_file_url( $this->json_file );
 
+		$this->is_loaded = $this->is_library_loaded();
+
 		add_action( 'wp_loaded', array( $this, 'register_assets' ) );
+
 		/*
 			enqueue_block_assets
 			Is not working on Gutenberg 13.8 because this filter extecuted before block_editor_settings_all
 			Therefore it is not loaded in EditorStyles
 		*/
+
 		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_assets' ) );
 	}
