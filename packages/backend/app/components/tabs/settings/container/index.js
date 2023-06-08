@@ -23,8 +23,6 @@ const Settings = () => {
 		useSettingsEntities();
 
 	const { libraries, hasResolvedLibraries } = useLibraries()
-	console.log('libraries: ', libraries);
-	
 
 	const [show, setShow] = useState(false)
 
