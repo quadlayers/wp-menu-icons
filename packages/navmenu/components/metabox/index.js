@@ -7,6 +7,12 @@ import { useLibraries, useCurrentLibrary, useSettingsEntities } from '@wpmi/stor
 
 const { WPMI_PREFIX } = wpmi_navmenu;
 
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = '';
+
+document.head.appendChild(link);
+
 const inputMenuFont = document.createElement('input');
 inputMenuFont.type = 'hidden';
 inputMenuFont.id = 'wpmi_font';
@@ -31,7 +37,15 @@ export default function MetaBox() {
 	const activeLibraries = () => libraries.filter(library => settings.active_libraries.includes(library.name))
 
 	useEffect(() => {
-		if (currentLibrary) inputMenuFont.value = currentLibraryName;
+		if (currentLibrary) {
+			const { stylesheet_file_url, stylesheet_file, type } = currentLibrary		
+
+			link.href = type === 'default'
+				? stylesheet_file
+				: stylesheet_file_url
+
+			inputMenuFont.value = currentLibraryName;
+		}
 	}, [currentLibraryName]);
 
 	if (isResolvingLibraries && !hasResolvedLibraries && !hasResolvedSettings) {

@@ -1,8 +1,8 @@
-export default function IconMap({ iconMap }) {
+export default function IconList({ iconList }) {
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 
     return <ul tabindex="-1" class="attachments icon-list">
-        {iconMap.map((icon, i) => (
+        {iconList.map((icon, i) => (
             <li
                 tabindex={i}
                 aria-label={icon}
