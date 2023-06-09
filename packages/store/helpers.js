@@ -79,6 +79,8 @@ const LinkStyleSheet = (() => {
 })();
 
 export const getIcons = async (library) => {
+	console.log('library: ', library);
+	
 
 	if (!library.is_loaded) {
 		return [];
@@ -96,17 +98,15 @@ export const getIcons = async (library) => {
 		}
 
 		const data = await response.json();
-		
+		const { prefix } = library
 
 		if (data.IcoMoonType) {
-			const prefix = 'icomoon-';
 			const icons = data.icons.map(
 				(icon) => prefix + icon.properties.name
 			);
 
 			return icons;
 		} else {
-			const prefix = 'fontello-';
 			const icons = data.glyphs.map((item) => prefix + item.css);
 
 			return icons;
