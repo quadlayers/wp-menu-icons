@@ -12,7 +12,7 @@ class Library_Builder {
 	}
 
 	public function add_library( Entity_Interface $library ) {
-		$this->libraries[ $library->get_name() ] = $library;
+		$this->libraries[ $library->name ] = $library;
 		return $this;
 	}
 

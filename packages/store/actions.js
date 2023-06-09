@@ -43,7 +43,7 @@ export const uploadLibrary =
 
 		libraries[i] = {
 			...libraries[i],
-			json_file_url: newLibrary.json_url,
+			json_file_url: newLibrary.json_file_url,
 			stylesheet_file_url: newLibrary.stylesheet_file_url,
 			is_loaded: true
 		};

@@ -79,9 +79,14 @@ const LinkStyleSheet = (() => {
 })();
 
 export const getIcons = async (library) => {
+
+	if (!library.is_loaded) {
+		return [];
+	}
 	if (library.iconmap) {
 		return library.iconmap.split(',');
-	} else if (library.json_file_url) {
+	}
+	if (library.json_file_url) {
 		const response = await fetch(
 			new Request(library.json_file_url, { cache: 'no-store' })
 		);
@@ -173,6 +178,7 @@ export const useCurrentLibrary = () => {
 		isResolvingCurrentLibrary,
 		hasResolvedCurrentLibrary,
 	} = useSelect((select) => {
+
 		const {
 			getCurrentLibraryName,
 			getLibraries,
@@ -182,8 +188,10 @@ export const useCurrentLibrary = () => {
 
 		const idMenu = document.getElementById('menu')?.value;
 
-		const currentLibraryName = getCurrentLibraryName(idMenu);
 		const libraries = getLibraries();
+
+		const currentLibraryName = getCurrentLibraryName(idMenu);
+
 		const currentLibrary = libraries.find(
 			(library) => library.name == currentLibraryName
 		);

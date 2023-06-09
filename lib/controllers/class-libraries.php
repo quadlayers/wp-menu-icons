@@ -43,12 +43,15 @@ class Libraries {
 		$active_libraries = array();
 
 		// Loop through all libraries
-		foreach ( $libraries as $key => $library ) {
-			$is_loaded = $model_libraries->get_libraries( $key )->is_library_loaded();
+		foreach ( $libraries as $name => $library ) {
+
+			$library = $model_libraries->get_libraries( $name );
+
+			$is_loaded = $library->is_loaded;
 
 			// Check if library keyName is in active libraries
-			if ( in_array( $key, $active_libraries_names ) && $is_loaded ) {
-				$active_libraries[ $key ] = $library;
+			if ( in_array( $name, $active_libraries_names ) && $is_loaded ) {
+				$active_libraries[ $name ] = $library;
 			}
 		}
 
@@ -69,8 +72,8 @@ class Libraries {
 
 		$active_libraries = self::get_active_libraries();
 
-		foreach ( $active_libraries as $key => $library ) {
-			if ( $key === $menu_library ) {
+		foreach ( $active_libraries as $name => $library ) {
+			if ( $name === $menu_library ) {
 				return $library;
 			}
 		}

@@ -11,23 +11,29 @@ class Get extends Base {
 	public function callback( \WP_REST_Request $request ) {
 
 		try {
-			$required_library = $request->get_param( 'library' );
+			$name = $request->get_param( 'library' );
 
 			$models_libraries = Models_Libraries::instance();
 
-			$response = $models_libraries->get_libraries( $required_library );
-
-			if ( ! $response ) {
-				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons' ), $required_library ), 404 );
+			if ( ! $name ) {
+				$libraries = $models_libraries->get_libraries();
+				if ( ! $libraries ) {
+					throw new \Exception( esc_html__( 'Libraries not found.', 'wp-menu-icons' ), 404 );
+				}
+				return $this->handle_response( (array) $libraries );
 			}
 
-			return $this->handle_response( isset( $response->name ) ? (array) get_object_vars( $response ) : (array) $response );
+			$library = $models_libraries->get_libraries( $name );
+			if ( ! $library ) {
+				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons' ), $name ), 404 );
+			}
+			return $this->handle_response( get_object_vars( $library ) );
 		} catch ( \Throwable $error ) {
-			$response = array(
+			$libraries = array(
 				'code'    => $error->getCode(),
 				'message' => $error->getMessage(),
 			);
-			return $this->handle_response( $response );
+			return $this->handle_response( $libraries );
 		}
 	}
 
