@@ -7,15 +7,15 @@ import { isEqual } from 'lodash';
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { usePrevious } from '@wordpress/compose';
-import { useSettingsEntities, useLibraries } from '@wpmi/store';
+
 /**
  * Internal dependencies
  */
-import { Spinner } from '../../../../../components/spinner';
+import { useSettingsEntities, useLibraries } from '@wpmi/store';
+import { Modal, Spinner } from '@wpmi/components';
+
 import { Container } from '../../../../../components/container';
-// import ImageUploader from "../../../../../components/media-uploader";
 import { OptionLibrary } from '../../../../../components/option-library';
-import { Modal } from '../../../../../../navmenu/components';
 import ManagerLibraries from '../../../manager-libraries';
 
 const Settings = () => {

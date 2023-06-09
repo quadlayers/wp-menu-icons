@@ -1,23 +1,13 @@
-.display-flex-center {
+.manager-libraries-content {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-}
-
-.manager-libraries-content {
 	background-color: #f5f7f9;
 }
 
-.manager-libraries-content .container-icons {
-	width: 80%;
-}
-
-.manager-libraries-content .container-sidebar {
-	width: 20%;
-}
-
 .container-icons {
+	width: 80%;
 	height: calc(100% - 100px);
 	overflow-y: auto;
 	overflow-x: hidden;

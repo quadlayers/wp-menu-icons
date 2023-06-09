@@ -79,15 +79,14 @@ const LinkStyleSheet = (() => {
 })();
 
 export const getIcons = async (library) => {
-	console.log('library: ', library);
-	
-
 	if (!library.is_loaded) {
 		return [];
 	}
+
 	if (library.iconmap) {
 		return library.iconmap.split(',');
 	}
+	
 	if (library.json_file_url) {
 		const response = await fetch(
 			new Request(library.json_file_url, { cache: 'no-store' })

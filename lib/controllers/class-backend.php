@@ -21,10 +21,19 @@ class Backend {
 	}
 
 	public function register_scripts() {
+		$components   = include WPMI_PLUGIN_DIR . 'build/components/js/index.asset.php';
 		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
 		$models_settings  = new Models_Settings();
+
+		wp_register_script(
+			'wpmi-components',
+			plugins_url( '/build/components/js/index.js', WPMI_PLUGIN_FILE ),
+			$components['dependencies'],
+			$components['version'],
+			true
+		);
 
 		wp_register_script(
 			'wpmi-store',

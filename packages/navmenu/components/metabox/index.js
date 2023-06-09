@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 
-import { Spinner } from '../';
+import { Spinner } from '@wpmi/components';
 
 import { useLibraries, useCurrentLibrary, useSettingsEntities } from '@wpmi/store';
 

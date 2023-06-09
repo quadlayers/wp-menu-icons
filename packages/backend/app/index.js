@@ -1,10 +1,4 @@
 /**
- * WordPress dependencies
- */
-
-import { EditorSnackbars, EditorNotices } from "@wordpress/editor";
-
-/**
  * Internal dependencies
  */
 
@@ -21,7 +15,6 @@ export const App = () => {
 					<AppTabSwitcher />
 				</AppStructure>
 			</AppProvider>
-			{EditorSnackbars ? <EditorSnackbars /> : <EditorNotices />}
 		</>
 	);
 };

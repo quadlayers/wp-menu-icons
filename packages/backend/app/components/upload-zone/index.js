@@ -29,10 +29,10 @@ export default function UploadZone({ selectedLibrary }) {
     >
         <DropZone onFilesDrop={handleUpload} />
 
-        <div class="drop-zone display-flex-center">
-            <div class="dashicons dashicons-upload icon"></div>
+        <div class="drop-zone">
+            <div class="dashicons dashicons-upload drop-zone__icon"></div>
 
-            <span>
+            <span class="drop-zone__info">
                 {__(
                     'Drag & Drop to Upload File',
                     'wp-menu-icons'
@@ -47,9 +47,10 @@ export default function UploadZone({ selectedLibrary }) {
                     handleUpload(e.target.files)
                 }
                 multiple={false}
+                style={{ display: 'none' }}
             />
 
-            <button className="button button-primary">
+            <button className="button button-primary drop-zone__button">
                 {__('Select archive', 'wp-menu-icons')}
             </button>
         </div>

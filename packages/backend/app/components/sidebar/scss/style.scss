@@ -1,4 +1,5 @@
 .container-sidebar {
+    width: 20%;
     height: calc(100% - 100px);
     padding: 10px;
     text-align: left;
@@ -6,7 +7,7 @@
     overflow-x: hidden;
 }
 
-.container-sidebar li {
+.container-sidebar__item {
     padding-left: 20%;
     height: 40px;
     margin: 5px 0;
@@ -19,26 +20,26 @@
     align-items: center;
 }
 
-.container-sidebar li span {
+.container-sidebar__item span {
     margin-right: 10px;
 }
 
-.container-sidebar li.active {
+.container-sidebar__item--active {
     color: #5396ff;
     background-color: #ebf2ff;
 }
 
-.container-sidebar li .dashicons-trash {
+.container-sidebar__item .dashicons-trash {
     color: red !important;
 }
 
-.container-sidebar li .dashicons-trash,
-.container-sidebar li .dashicons-upload {
+.container-sidebar__item .dashicons-trash,
+.container-sidebar__item .dashicons-upload {
     margin-right: 45px;
     margin-left: auto;
 }
 
-.container-sidebar .title {
+.container-sidebar__title {
     color: grey;
     font-weight: bold;
     margin-top: 10px;

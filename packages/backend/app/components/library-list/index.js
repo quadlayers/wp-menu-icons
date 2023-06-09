@@ -22,13 +22,13 @@ export default function LibraryList({ type }) {
 
     return filterLibraries().map(library =>
         <li
-            class={isSelected(library.name) && 'active'}
+            class={`container-sidebar__item ${isSelected(library.name) && 'container-sidebar__item--active'}`}
             onClick={() => setCurrentLibraryName(library.name)}
         >
             <span class="dashicons dashicons-star-filled" /> {library.label}
 
             {type === 'uploaded' && <div
-                class={"dashicons dashicons-" + iconAction(library)}
+                class={`dashicons dashicons-${iconAction(library)}`}
                 onClick={e => handleDelete(e, library)}
             />}
         </li>

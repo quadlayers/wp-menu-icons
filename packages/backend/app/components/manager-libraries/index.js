@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 
 import UploadZone from '../upload-zone';
 import Sidebar from '../sidebar';
-import { Spinner } from '../../../components/spinner';
+import { Spinner } from '@wpmi/components';
 import IconMap from '../icon-map';
 import { useCurrentLibraryIconMap } from '../../../../store/helpers';
 
@@ -33,7 +33,7 @@ export default function ManagerLibraries({ onClose }) {
 
 				<div class="media-modal-content">
 					<div
-						class="media-frame mode-select wp-core-ui display-flex-center manager-libraries-content"
+						class="media-frame mode-select wp-core-ui manager-libraries-content"
 					>
 						<Sidebar />
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from '@wordpress/element';
 
-import { Modal } from '../components/';
+import { Modal } from '@wpmi/components';
 import { Body } from './components/';
 
 const { WPMI_PLUGIN_NAME } = wpmi_navmenu;

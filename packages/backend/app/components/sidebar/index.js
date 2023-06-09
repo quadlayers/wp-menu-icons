@@ -1,8 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 
+import { Spinner } from "@wpmi/components"
 import { useCurrentLibrary, useLibraries } from "../../../../store/helpers"
-import { Spinner } from "../../../components/spinner"
 
 import LibraryList from '../library-list';
 
@@ -25,13 +25,13 @@ export default function Sidebar() {
     }
 
     return <div class="container-sidebar">
-        <div class='title'>{__('Default', 'wp-menu-icons')}</div>
+        <div class='container-sidebar__title'>{__('Default', 'wp-menu-icons')}</div>
 
         <ul>
             <LibraryList type='default' />
         </ul>
 
-        <div class='title'>{__('Uploaded', 'wp-menu-icons')}</div>
+        <div class='container-sidebar__title'>{__('Uploaded', 'wp-menu-icons')}</div>
 
         <ul>
             <LibraryList type='uploaded' />

@@ -2,9 +2,9 @@ import { useState, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
 import { useCurrentLibrary, useCurrentLibraryIconMap } from '@wpmi/store';
+import { Spinner } from '@wpmi/components';
 
 import { IconPreview, IconSettings, IconMap } from '../';
-import { Spinner } from '../../../components/';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 

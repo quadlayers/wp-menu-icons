@@ -100,6 +100,9 @@ module.exports = [
 			),
 			new DependencyExtractionWebpackPlugin({
 				requestToExternal: (request, external) => {
+					if ('@wpmi/components' === request) {
+						return ['wpmi', 'components'];
+					}
 					if ('@wpmi/store' === request) {
 						return ['wpmi', 'store'];
 					}
@@ -107,6 +110,9 @@ module.exports = [
 					return external;
 				},
 				requestToHandle: (request, external) => {
+					if ('@wpmi/components' === request) {
+						return 'wpmi-components';
+					}
 					if ('@wpmi/store' === request) {
 						return 'wpmi-store';
 					}
@@ -180,6 +186,9 @@ module.exports = [
 			),
 			new DependencyExtractionWebpackPlugin({
 				requestToExternal: (request, external) => {
+					if ('@wpmi/components' === request) {
+						return ['wpmi', 'components'];
+					}
 					if ('@wpmi/store' === request) {
 						return ['wpmi', 'store'];
 					}
@@ -187,6 +196,9 @@ module.exports = [
 					return external;
 				},
 				requestToHandle: (request, external) => {
+					if ('@wpmi/components' === request) {
+						return 'wpmi-components';
+					}
 					if ('@wpmi/store' === request) {
 						return 'wpmi-store';
 					}
@@ -244,6 +256,26 @@ module.exports = [
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/store/js/'),
 			library: ['wpmi', 'store'],
+			libraryTarget: 'window',
+		},
+		optimization: {
+			minimize: isProduction,
+		},
+		// plugins: [
+		// 	...defaultConfig.plugins,
+		// 	new DependencyExtractionWebpackPlugin(),
+		// ],
+	},
+	//components
+	{
+		...defaultConfig,
+		entry: {
+			index: path.resolve(__dirname, 'packages', './components/index.js'),
+		},
+		output: {
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/components/js/'),
+			library: ['wpmi', 'components'],
 			libraryTarget: 'window',
 		},
 		optimization: {
