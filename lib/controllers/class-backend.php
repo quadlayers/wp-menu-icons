@@ -21,11 +21,11 @@ class Backend {
 	}
 
 	public function register_scripts() {
-		$components   = include WPMI_PLUGIN_DIR . 'build/components/js/index.asset.php';
-		$store   = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
-		$backend = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
+		$components = include WPMI_PLUGIN_DIR . 'build/components/js/index.asset.php';
+		$store      = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
+		$backend    = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 
-		$models_settings  = new Models_Settings();
+		$models_settings = new Models_Settings();
 
 		wp_register_script(
 			'wpmi-components',
@@ -51,8 +51,20 @@ class Backend {
 			)
 		);
 
+		//TODO: components
+		// wp_register_style(
+		// 	'wpmi-components',
+		// 	plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
+		// 	array(
+		// 		'media-views',
+		// 		'wp-components',
+		// 		'wp-editor',
+		// 	),
+		// 	WPMI_PLUGIN_VERSION
+		// );
+
 		wp_register_style(
-			'qlwpmi-backend',
+			'qlwpmi-backend', //TODO: unificar el criterio y registrar todos los estilos como wpmi-xxxx
 			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
 			array(
 				'media-views',
@@ -63,7 +75,7 @@ class Backend {
 		);
 
 		wp_register_script(
-			'qlwpmi-backend',
+			'qlwpmi-backend', //TODO: unificar el criterio y registrar todos los scripts como wpmi-xxxx
 			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
 			$backend['dependencies'],
 			$backend['version'],
@@ -119,6 +131,7 @@ class Backend {
 		}
 
 		wp_enqueue_media();
+		// TODO: wp_enqueue_style( 'wpmi-components' );
 		wp_enqueue_script( 'qlwpmi-backend' );
 		wp_enqueue_style( 'qlwpmi-backend' );
 	}

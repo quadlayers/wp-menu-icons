@@ -1,5 +1,6 @@
 import { __ } from "@wordpress/i18n";
 
+//TODO: mover a components
 export function OptionLibrary (props) {
     const { label, onChange, checked } = props
 

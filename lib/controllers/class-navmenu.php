@@ -128,6 +128,8 @@ class Navmenu {
 
 		wp_enqueue_media();
 
+		//TODO: wp_enqueue_style( 'wpmi-components' );
+
 		wp_enqueue_style( 'wpmi-navmenu' );
 
 		wp_enqueue_script( 'wpmi-navmenu' );
