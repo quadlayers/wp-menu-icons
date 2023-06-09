@@ -96,6 +96,7 @@ export const getIcons = async (library) => {
 		}
 
 		const data = await response.json();
+		
 
 		if (data.IcoMoonType) {
 			const prefix = 'icomoon-';
@@ -105,7 +106,7 @@ export const getIcons = async (library) => {
 
 			return icons;
 		} else {
-			const prefix = 'fontello-icon-';
+			const prefix = 'fontello-';
 			const icons = data.glyphs.map((item) => prefix + item.css);
 
 			return icons;

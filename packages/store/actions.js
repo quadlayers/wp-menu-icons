@@ -24,8 +24,8 @@ export const uploadLibrary =
 			body,
 			headers,
 		});
-
-		if (response?.code) {
+		
+		if (response?.code || response?.code === 0) {
 			registry
 				.dispatch(noticesStore)
 				.createSuccessNotice(
