@@ -1,45 +1,24 @@
+import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 
-import { Modal } from '@wpmi/components';
-import { Body } from './components/';
+//import { Modal } from '@wpmi/components';
+import Modal from '../../components/components/modal';
+import { useCurrentLibrary, useCurrentLibraryIconMap } from '../../store/helpers';
+import Sidebar from './components/sidebar';
+import IconMap from '../../components/components/icon-map';
+import Footer from './components/footer';
 
-const { WPMI_PLUGIN_NAME } = wpmi_navmenu;
+const { WPMI_PLUGIN_NAME, WPMI_PREFIX, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 
 const App = () => {
+	const { currentLibrary, isResolvingCurrentLibrary } = useCurrentLibrary();
+	const { iconMap, isLoadingIconMap, filterIcons } = useCurrentLibraryIconMap()
+
 	const [show, setShow] = useState(false);
-	const [oldSettings, setOldSettings] = useState({});
+	const [search, setSearch] = useState('');
+	const [settings, setSettings] = useState({});
 
-	const onClose = () => setShow(false);
-
-	const openModal = (node) => {
-		const id = node.id.split('-')[2];
-
-		const settingsNode = document.getElementById(
-			'menu-item-settings-' + id
-		);
-
-		const label = settingsNode.querySelector('#wpmi-input-label').value;
-		const position = settingsNode.querySelector(
-			'#wpmi-input-position'
-		).value;
-		const align = settingsNode.querySelector('#wpmi-input-align').value;
-		const size = settingsNode.querySelector('#wpmi-input-size').value;
-		const icon = settingsNode.querySelector('#wpmi-input-icon').value;
-		const color = settingsNode.querySelector('#wpmi-input-color').value;
-
-		setOldSettings({
-			label,
-			position,
-			align,
-			size,
-			icon,
-			color,
-			id,
-		});
-		setShow(true);
-	};
-
-	useEffect(() => {
+	const setup = () => {
 		const nodes = document.querySelectorAll('.menu-item-wpmi_open');
 
 		nodes.forEach((node) =>
@@ -75,16 +54,82 @@ const App = () => {
 
 			observer.observe(ul, { childList: true });
 		}
-	}, []);
+	}
+
+	const setIcon = (icon) => setSettings({ ...settings, icon });
+
+	const onClose = () => setShow(false);
+
+	const openModal = (node) => {
+		const id = node.id.split('-')[2];
+
+		const settingsNode = document.getElementById(
+			'menu-item-settings-' + id
+		);
+
+		const label = settingsNode.querySelector('#wpmi-input-label').value;
+		const position = settingsNode.querySelector(
+			'#wpmi-input-position'
+		).value;
+		const align = settingsNode.querySelector('#wpmi-input-align').value;
+		const size = settingsNode.querySelector('#wpmi-input-size').value;
+		const icon = settingsNode.querySelector('#wpmi-input-icon').value;
+		const color = settingsNode.querySelector('#wpmi-input-color').value;
+		
+		const _settings = {
+			label,
+			position,
+			align,
+			size,
+			icon,
+			color,
+			id
+		}
+
+		setSettings(_settings)
+		setShow(true);
+	};
+
+	const sidebarProps = {
+		settings,
+		onChangeSettings: setSettings
+	}
+
+	const footerProps = {
+		settings,
+		onSave: onClose,
+		onRemove: onClose
+	}
+
+	useEffect(setup, []);
 
 	return (
 		<Modal
+			domain='wp-menu-icons'
 			title={WPMI_PLUGIN_NAME}
+			pluginPrefix={WPMI_PREFIX}
 			show={show}
 			onClose={onClose}
+			premiumSelURL={WPMI_PREMIUM_SELL_URL}
+			premiumTitle="Mega Menu"
+			tabTitle={currentLibrary?.label}
+			toolbar
+			toolbarSearchIn={currentLibrary?.label}
+			onChangeToolbar={setSearch}
+			sidebarContent={<Sidebar { ...sidebarProps } />}
+			footerContent={<Footer { ...footerProps } />}
 			__experimentalHideHeader
 		>
-			<Body oldSettings={oldSettings} onClose={onClose} />
+			{isResolvingCurrentLibrary && isLoadingIconMap
+				? <Spinner />
+				: (iconMap.length > 0
+					? <IconMap
+						iconMap={filterIcons(search)}
+						onChangeIcon={setIcon}
+					/>
+					: __('The library does not contain icons', 'wp-menu-icons')
+				)
+			}
 		</Modal>
 	);
 };
