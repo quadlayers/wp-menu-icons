@@ -147,7 +147,6 @@ class Backend {
 		}
 
 		wp_enqueue_media();
-		wp_enqueue_script( 'wpmi-components' );
 		wp_enqueue_style( 'wpmi-components' );
 		wp_enqueue_script( 'wpmi-backend' );
 		wp_enqueue_style( 'wpmi-backend' );
