@@ -5,38 +5,6 @@
     overflow-x: hidden;
 }
 
-.container-sidebar__item {
-    padding-left: 20%;
-    height: 40px;
-    margin: 5px 0;
-    font-weight: bold;
-    color: grey;
-    cursor: pointer;
-    width: 90%;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.container-sidebar__item span {
-    margin-right: 10px;
-}
-
-.container-sidebar__item--active {
-    color: #5396ff;
-    background-color: #ebf2ff;
-}
-
-.container-sidebar__item .dashicons-trash {
-    color: red !important;
-}
-
-.container-sidebar__item .dashicons-trash,
-.container-sidebar__item .dashicons-upload {
-    margin-right: 45px;
-    margin-left: auto;
-}
-
 .container-sidebar__title {
     color: grey;
     font-weight: bold;
