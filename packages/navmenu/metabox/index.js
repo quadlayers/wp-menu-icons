@@ -5,14 +5,16 @@ import { Spinner } from '@wpmi/components';
 
 import { useLibraries, useCurrentLibrary, useSettingsEntities } from '@wpmi/store';
 
-const { WPMI_PREFIX } = wpmi_navmenu;
+const { WPMI_PREFIX } = wpmi_navmenu
+
+const menuEdit = document.querySelector('.menu-edit')
 
 const inputMenuFont = document.createElement('input');
 inputMenuFont.type = 'hidden';
 inputMenuFont.id = 'wpmi_font';
 inputMenuFont.name = 'wpmi_font';
 
-document.querySelector('.menu-edit').append(inputMenuFont);
+if (menuEdit) menuEdit.append(inputMenuFont)
 
 export default function MetaBox() {
 	const {

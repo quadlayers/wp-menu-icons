@@ -1,10 +1,11 @@
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
+
+import { IconMap } from '@wpmi/components'
+//import IconMap from '../../../../components/icon-map';
 
 import UploadZone from '../upload-zone';
 import Sidebar from '../sidebar';
 import { Spinner } from '@wpmi/components';
-import IconMap from '../icon-map';
 import { useCurrentLibraryIconMap } from '../../../../store/helpers';
 
 const WPMI_PREFIX = '';
@@ -33,20 +34,22 @@ export default function ManagerLibraries({ onClose }) {
 
 				<div class="media-modal-content">
 					<div
-						class="media-frame mode-select wp-core-ui manager-libraries-content"
+						class="media-frame mode-select wp-core-ui"
 					>
-						<Sidebar />
+						<div class="media-frame-content manager-libraries-content" data-columns="8">
+							<Sidebar />
 
-						<div class='container-icons'>
-							{isLoadingIconMap
-								? <Spinner />
-								: (iconMap.length > 0
-									? <IconMap
-										iconMap={iconMap}
-									/>
-									: <UploadZone />
-								)
-							}
+							<div class='container-icons'>
+								{isLoadingIconMap
+									? <Spinner />
+									: (iconMap.length > 0
+										? <IconMap
+											iconMap={iconMap}
+										/>
+										: <UploadZone />
+									)
+								}
+							</div>
 						</div>
 					</div>
 				</div>

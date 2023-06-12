@@ -1,14 +1,11 @@
 .manager-libraries-content {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	text-align: center;
 	background-color: #f5f7f9;
 }
 
 .container-icons {
 	width: 80%;
-	height: calc(100% - 100px);
 	overflow-y: auto;
 	overflow-x: hidden;
 }

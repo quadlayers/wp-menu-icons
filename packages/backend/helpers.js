@@ -5,21 +5,21 @@ import { reduce, isObject } from 'lodash';
  */
 import wpApiFetch from '@wordpress/api-fetch';
 
-export const WPMI_PLUGIN_NAME = qlwpmi_backend.WPMI_PLUGIN_NAME;
-export const WPMI_PLUGIN_VERSION = qlwpmi_backend.WPMI_PLUGIN_VERSION;
-export const WPMI_PLUGIN_FILE = qlwpmi_backend.WPMI_PLUGIN_FILE;
-export const WPMI_PLUGIN_DIR = qlwpmi_backend.WPMI_PLUGIN_DIR;
-export const WPMI_DOMAIN = qlwpmi_backend.WPMI_DOMAIN;
-export const WPMI_PREFIX = qlwpmi_backend.WPMI_PREFIX;
-export const WPMI_WORDPRESS_URL = qlwpmi_backend.WPMI_WORDPRESS_URL;
-export const WPMI_REVIEW_URL = qlwpmi_backend.WPMI_REVIEW_URL;
-export const WPMI_DEMO_URL = qlwpmi_backend.WPMI_DEMO_URL;
-export const WPMI_PREMIUM_SELL_URL = qlwpmi_backend.WPMI_PREMIUM_SELL_URL;
-export const WPMI_SUPPORT_URL = qlwpmi_backend.WPMI_SUPPORT_URL;
-export const WPMI_DOCUMENTATION_URL = qlwpmi_backend.WPMI_DOCUMENTATION_URL;
-export const WPMI_GROUP_URL = qlwpmi_backend.WPMI_GROUP_URL;
-export const WPMI_DEVELOPER = qlwpmi_backend.WPMI_DEVELOPER;
-export const WPMI_SETTING_MODEL = qlwpmi_backend.WPMI_SETTING_MODEL;
+export const WPMI_PLUGIN_NAME = wpmi_backend.WPMI_PLUGIN_NAME;
+export const WPMI_PLUGIN_VERSION = wpmi_backend.WPMI_PLUGIN_VERSION;
+export const WPMI_PLUGIN_FILE = wpmi_backend.WPMI_PLUGIN_FILE;
+export const WPMI_PLUGIN_DIR = wpmi_backend.WPMI_PLUGIN_DIR;
+export const WPMI_DOMAIN = wpmi_backend.WPMI_DOMAIN;
+export const WPMI_PREFIX = wpmi_backend.WPMI_PREFIX;
+export const WPMI_WORDPRESS_URL = wpmi_backend.WPMI_WORDPRESS_URL;
+export const WPMI_REVIEW_URL = wpmi_backend.WPMI_REVIEW_URL;
+export const WPMI_DEMO_URL = wpmi_backend.WPMI_DEMO_URL;
+export const WPMI_PREMIUM_SELL_URL = wpmi_backend.WPMI_PREMIUM_SELL_URL;
+export const WPMI_SUPPORT_URL = wpmi_backend.WPMI_SUPPORT_URL;
+export const WPMI_DOCUMENTATION_URL = wpmi_backend.WPMI_DOCUMENTATION_URL;
+export const WPMI_GROUP_URL = wpmi_backend.WPMI_GROUP_URL;
+export const WPMI_DEVELOPER = wpmi_backend.WPMI_DEVELOPER;
+export const WPMI_SETTING_MODEL = wpmi_backend.WPMI_SETTING_MODEL;
 
 /**
  * Handle the response from the apiFetch
@@ -43,7 +43,7 @@ export async function apiFetch(args) {
 }
 
 export function getPluginURL(url) {
-	return qlwpmi_backend.plugin_url + url;
+	return wpmi_backend.plugin_url + url;
 }
 
 export const onDocumentLoaded = (cb) => {

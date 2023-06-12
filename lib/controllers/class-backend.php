@@ -24,6 +24,7 @@ class Backend {
 		$components = include WPMI_PLUGIN_DIR . 'build/components/js/index.asset.php';
 		$store      = include WPMI_PLUGIN_DIR . 'build/store/js/index.asset.php';
 		$backend    = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
+		$navmenu    = include WPMI_PLUGIN_DIR . 'build/navmenu/js/index.asset.php';
 
 		$models_settings = new Models_Settings();
 
@@ -51,20 +52,17 @@ class Backend {
 			)
 		);
 
-		//TODO: components
-		// wp_register_style(
-		// 	'wpmi-components',
-		// 	plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
-		// 	array(
-		// 		'media-views',
-		// 		'wp-components',
-		// 		'wp-editor',
-		// 	),
-		// 	WPMI_PLUGIN_VERSION
-		// );
+		wp_register_style(
+			'wpmi-components',
+			plugins_url( '/build/components/css/style.css', WPMI_PLUGIN_FILE ),
+			array(
+				'wp-components',
+			),
+			WPMI_PLUGIN_VERSION
+		);
 
 		wp_register_style(
-			'qlwpmi-backend', //TODO: unificar el criterio y registrar todos los estilos como wpmi-xxxx
+			'wpmi-backend',
 			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
 			array(
 				'media-views',
@@ -75,7 +73,7 @@ class Backend {
 		);
 
 		wp_register_script(
-			'qlwpmi-backend', //TODO: unificar el criterio y registrar todos los scripts como wpmi-xxxx
+			'wpmi-backend',
 			plugins_url( '/build/backend/js/index.js', WPMI_PLUGIN_FILE ),
 			$backend['dependencies'],
 			$backend['version'],
@@ -83,8 +81,8 @@ class Backend {
 		);
 
 		wp_localize_script(
-			'qlwpmi-backend',
-			'qlwpmi_backend',
+			'wpmi-backend',
+			'wpmi_backend',
 			array(
 				'plugin_url'             => plugins_url( '/', WPMI_PLUGIN_FILE ),
 				'WPMI_PLUGIN_NAME'       => WPMI_PLUGIN_NAME,
@@ -103,6 +101,24 @@ class Backend {
 				'WPMI_DEVELOPER'         => WPMI_DEVELOPER,
 				'WPMI_SETTING_MODEL'     => $models_settings->get_args(),
 			)
+		);
+
+		wp_register_style(
+			'wpmi-navmenu',
+			plugins_url( '/build/navmenu/css/style.css', WPMI_PLUGIN_FILE ),
+			array(
+				'wpmi-components',
+				'wp-components',
+			),
+			WPMI_PLUGIN_VERSION
+		);
+
+		wp_register_script(
+			'wpmi-navmenu',
+			plugins_url( '/build/navmenu/js/index.js', WPMI_PLUGIN_FILE ),
+			$navmenu['dependencies'],
+			$navmenu['version'],
+			true
 		);
 	}
 
@@ -131,9 +147,12 @@ class Backend {
 		}
 
 		wp_enqueue_media();
-		// TODO: wp_enqueue_style( 'wpmi-components' );
-		wp_enqueue_script( 'qlwpmi-backend' );
-		wp_enqueue_style( 'qlwpmi-backend' );
+		wp_enqueue_script( 'wpmi-components' );
+		wp_enqueue_style( 'wpmi-components' );
+		wp_enqueue_script( 'wpmi-backend' );
+		wp_enqueue_style( 'wpmi-backend' );
+		wp_enqueue_script( 'wpmi-navmenu' );
+		wp_enqueue_style( 'wpmi-navmenu' );
 	}
 
 	function add_menu() {

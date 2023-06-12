@@ -83,7 +83,7 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/backend/js/'),
-			// library: ['qlwpmi', 'backend'],
+			// library: ['wpmi', 'backend'],
 			// libraryTarget: 'window',
 		},
 		optimization: {
@@ -169,7 +169,7 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/navmenu/js/'),
-			// library: ['qlwpmi', 'navmenu'],
+			// library: ['wpmi', 'navmenu'],
 			// libraryTarget: 'window',
 		},
 		optimization: {
@@ -285,5 +285,43 @@ module.exports = [
 		// 	...defaultConfig.plugins,
 		// 	new DependencyExtractionWebpackPlugin(),
 		// ],
+	},
+	{
+		...config,
+		entry: {
+			index: path.resolve(__dirname, 'packages', './components/style.scss'),
+		},
+		output: {
+			filename: '[name].js',
+			path: path.resolve(__dirname, 'build/components/css/'),
+		},
+		module: {
+			...config.module,
+			rules: [
+				{
+					test: /\.scss$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						{
+							loader: 'css-loader',
+						},
+						{
+							loader: 'sass-loader',
+							options: {
+								sassOptions: {
+									importer: globImporter(),
+								},
+							},
+						},
+					],
+				},
+			],
+		},
+		plugins: [
+			new RemoveEmptyScriptsPlugin(),
+			new MiniCssExtractPlugin({
+				filename: 'style.css',
+			}),
+		],
 	},
 ];

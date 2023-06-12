@@ -1,13 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
-export default function IconMap({ iconMap, search, setIcon }) {
-	const filterIcons = () => iconMap.filter((icon) => icon.includes(search));
-
+export default function IconMap({ iconMap, setIcon }) {
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 
-	return (
+	const handleClick = icon => {
+		if (setIcon) setIcon(icon)
+	}
+
+	return <div class='icon-map'>
 		<ul tabindex="-1" class="attachments">
-			{filterIcons()?.map((icon, i) => (
+			{iconMap.map((icon, i) => (
 				<li
 					tabindex={i}
 					role="checkbox"
@@ -17,7 +19,7 @@ export default function IconMap({ iconMap, search, setIcon }) {
 					class={
 						'attachment save-ready icon _' + formatClassIcon(icon)
 					}
-					onClick={() => setIcon(icon)}
+					onClick={() => handleClick(icon)}
 				>
 					<div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
 						<div class="thumbnail">
@@ -34,5 +36,5 @@ export default function IconMap({ iconMap, search, setIcon }) {
 				</li>
 			))}
 		</ul>
-	);
+	</div>
 }

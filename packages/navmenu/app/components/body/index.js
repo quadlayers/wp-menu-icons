@@ -2,9 +2,9 @@ import { useState, useEffect } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 
 import { useCurrentLibrary, useCurrentLibraryIconMap } from '@wpmi/store';
-import { Spinner } from '@wpmi/components';
+import { Spinner, IconMap } from '@wpmi/components';
 
-import { IconPreview, IconSettings, IconMap } from '../';
+import { IconPreview, IconSettings } from '../';
 
 const { WPMI_PREFIX, WPMI_PLUGIN_NAME, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 
@@ -17,6 +17,8 @@ export default function Body({ oldSettings, onClose }) {
 
 	const setIcon = (icon) => setSettings({ ...settings, icon });
 
+	const filterIcons = () => iconMap.filter((icon) => icon.includes(search));
+	
 	const handleSearchChange = (e) => setSearch(e.target.value);
 
 	const save = (e) => {
@@ -172,8 +174,7 @@ export default function Body({ oldSettings, onClose }) {
 									</div>
 									: (iconMap.length > 0
 										? <IconMap
-											iconMap={iconMap}
-											search={search}
+											iconMap={filterIcons()}
 											setIcon={setIcon}
 										/>
 										: <div class="attachments">

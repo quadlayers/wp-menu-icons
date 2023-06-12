@@ -1,13 +1,6 @@
 @import ".scss/mixins.scss";
 @import ".scss/colors.scss";
 
-
-.wpmi__modal {
-	&.components-modal__frame {
-		max-height: 100%!important;
-	}
-}
-
 #menu-to-edit {
 
 	>li {
@@ -69,55 +62,4 @@
 			}
 		}
 	}
-}
-
-#wpmi_modal {
-
-	.wp-core-ui {
-
-		.attachment,
-		.attachment-info {
-			.thumbnail {
-				vertical-align: middle;
-				text-align    : center;
-
-				&:before {
-					content       : '';
-					display       : inline-block;
-					width         : 0px;
-					height        : 100%;
-					vertical-align: middle;
-				}
-
-				>i {
-					text-align    : center;
-					font-size     : 3vw;
-					display       : inline-block;
-					vertical-align: middle;
-					height        : auto;
-					width         : auto;
-				}
-
-			}
-		}
-
-		.attachment-info {
-
-			.thumbnail {
-				width           : 60px;
-				height          : 60px;
-				background-color: #fff;
-
-				>i {
-					font-size: 2em;
-					position : relative;
-					left     : -1px;
-				}
-
-			}
-
-		}
-
-	}
-
 }

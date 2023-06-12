@@ -22,7 +22,7 @@ final class Plugin {
 		Controllers\Navmenu::instance();
 		Controllers\Frontend::instance();
 
-		do_action( 'qlwpmi_init' );
+		do_action( 'wpmi_init' );
 	}
 
 	public static function instance() {

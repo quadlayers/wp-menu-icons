@@ -5,7 +5,7 @@
 import { render } from '@wordpress/element';
 
 import App from './app';
-import MetaBox from './components/metabox';
+import MetaBox from './metabox';
 
 import { onDocumentLoaded } from './helpers';
 
@@ -22,5 +22,6 @@ onDocumentLoaded(() => {
 	);
 
 	render(<App />, container);
-	render(<MetaBox />, metabox_container);
+
+	if (metabox_container) render(<MetaBox />, metabox_container);
 });
