@@ -65,9 +65,10 @@ class Backend {
 			'wpmi-backend',
 			plugins_url( '/build/backend/css/style.css', WPMI_PLUGIN_FILE ),
 			array(
-				'media-views',
+				'wpmi-components',
 				'wp-components',
 				'wp-editor',
+				'media-views',
 			),
 			WPMI_PLUGIN_VERSION
 		);
