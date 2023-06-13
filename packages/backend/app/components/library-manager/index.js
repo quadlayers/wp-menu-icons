@@ -17,7 +17,6 @@ export default function LibraryManager({ show, onClose }) {
 	const [search, setSearch] = useState('')
 
 	return <Modal
-		domain='wp-menu-icons'
 		pluginPrefix={WPMI_PREFIX}
 		show={show}
 		title='Library Manager'

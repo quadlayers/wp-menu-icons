@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-export default function IconMap({ iconMap, onChangeIcon, domain }) {
+export default function IconMap({ iconMap, onChangeIcon }) {
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 
 	const handleClick = icon => {
@@ -30,7 +30,7 @@ export default function IconMap({ iconMap, onChangeIcon, domain }) {
 					<button type="button" class="check" tabindex="-1">
 						<span class="media-modal-icon"></span>
 						<span class="screen-reader-text">
-							{__('Deselect', domain)}
+							{__('Deselect', 'wp-menu-icons')}
 						</span>
 					</button>
 				</li>

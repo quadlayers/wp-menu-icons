@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-export default function Toolbar({ searchIn, onChange, domain }) {
+export default function Toolbar({ searchIn, onChange }) {
 	const handleSearchChange = e => onChange(e.target.value)
 
     return <div class="media-toolbar">
@@ -10,7 +10,7 @@ export default function Toolbar({ searchIn, onChange, domain }) {
                     {sprintf(
                         __(
                             'Search in %s',
-                            domain
+                            'wp-menu-icons'
                         ),
                         searchIn
                     )}

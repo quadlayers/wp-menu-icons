@@ -13,7 +13,6 @@ import Body from "./body";
 
 const Modal = ({
 	children,
-	domain,
 	pluginPrefix,
 	show,
 	title,
@@ -74,14 +73,13 @@ const Modal = ({
 				>
 					<span class="media-modal-icon">
 						<span class="screen-reader-text">
-							{__('Close media panel', domain)}
+							{__('Close media panel', 'wp-menu-icons')}
 						</span>
 					</span>
 				</button>
 
 				<div class="media-frame mode-select wp-core-ui hide-menu">
 					<Header
-						domain={domain}
 						title={title}
 						tabTitle={tabTitle}
 						premiumSelURL={premiumSelURL}
@@ -89,7 +87,6 @@ const Modal = ({
 					/>
 
 					<Body
-						domain={domain}
 						toolbar={toolbar}
 						onChangeToolbar={onChangeToolbar}
 						toolbarSearchIn={toolbarSearchIn}

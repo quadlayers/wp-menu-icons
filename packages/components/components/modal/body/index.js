@@ -3,13 +3,13 @@ import { __ } from '@wordpress/i18n';
 import Sidebar from "../sidebar";
 import Toolbar from "../toolbar";
 
-export default function Body({ children, toolbar, onChangeToolbar, toolbarSearchIn, sidebarContent, domain }) {
+export default function Body({ children, toolbar, onChangeToolbar, toolbarSearchIn, sidebarContent }) {
     return <div class="media-modal-content">
         <div class="media-frame mode-select wp-core-ui">
             <div class="media-frame-menu">
                 <div class="media-menu">
                     <a href="#" class="media-menu-item active">
-                        {__('Featured Image', domain)}
+                        {__('Featured Image', 'wp-menu-icons')}
                     </a>
                 </div>
             </div>
@@ -18,7 +18,6 @@ export default function Body({ children, toolbar, onChangeToolbar, toolbarSearch
                 <div class="attachments-browser">
                     {toolbar &&
                         <Toolbar
-                            domain={domain}
                             onChange={onChangeToolbar}
                             searchIn={toolbarSearchIn}
                         />

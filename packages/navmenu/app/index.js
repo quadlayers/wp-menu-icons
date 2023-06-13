@@ -105,7 +105,6 @@ const App = () => {
 
 	return (
 		<Modal
-			domain='wp-menu-icons'
 			title={WPMI_PLUGIN_NAME}
 			pluginPrefix={WPMI_PREFIX}
 			show={show}
