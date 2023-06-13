@@ -54,7 +54,9 @@ export default function MetaBox() {
 				class="categorychecklist form-no-clear"
 			>
 				{activeLibraries().map((library) => (
-					<li>
+					<li
+						key={library.name}
+					>
 						<label class="menu-item-title">
 							<input
 								type="radio"

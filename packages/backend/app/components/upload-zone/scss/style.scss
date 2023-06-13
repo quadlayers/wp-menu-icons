@@ -1,11 +1,11 @@
-.upload-zone {
+.wpmi__upload-zone {
 	border-radius: 25px;
 	cursor: pointer;
 	background-color: white;
 	top: 0
 }
 
-.upload-zone__drop-zone {
+.wpmi__upload-zone__drop-zone {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -16,22 +16,22 @@
 	color: grey;
 }
 
-.upload-zone__icon {
+.wpmi__upload-zone__icon {
 	font-size: 124px;
 	width: auto;
 	height: auto;
 	margin-bottom: 15px;
 }
 
-.upload-zone__info {
+.wpmi__upload-zone__info {
 	font-size: 16px;
 }
 
-.upload-zone__input {
+.wpmi__upload-zone__input {
 	display: none;
 }
 
-.upload-zone__button {
+.wpmi__upload-zone__button {
 	width: 70%;
 	margin-top: 25px !important;
 	color: white;

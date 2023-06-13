@@ -1,28 +1,28 @@
 i {
-	&.wpmi-icon {
+	&.wpmi__icon {
 		display: inline-block;
 
-		&:not(.wpmi-label-1) {
+		&:not(.wpmi__label-1) {
 
-			&.wpmi-position-before {
+			&.wpmi__position-before {
 				margin-right: 0.5em;
 			}
 
-			&.wpmi-position-after {
+			&.wpmi__position-after {
 				margin-left: 0.5em;
 			}
 
 		}
 
-		&.wpmi-align-top {
+		&.wpmi__align-top {
 			vertical-align: top;
 		}
 
-		&.wpmi-align-middle {
+		&.wpmi__align-middle {
 			vertical-align: middle;
 		}
 
-		&.wpmi-align-bottom {
+		&.wpmi__align-bottom {
 			vertical-align: bottom;
 		}
 	}

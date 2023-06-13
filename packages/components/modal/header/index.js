@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-export default function Header({ title, premiumSelURL, premiumTitle, tabTitle, domain }) {
+export default function Header({ title, premiumSelURL, premiumTitle, tabTitle }) {
     return <>
         <div class="media-frame-title">
             <h1>{title}</h1>
@@ -16,7 +16,7 @@ export default function Header({ title, premiumSelURL, premiumTitle, tabTitle, d
                     {sprintf(
                         __(
                             '%s',
-                            domain
+                            'wp-menu-icons'
                         ),
                         premiumTitle
                     )}

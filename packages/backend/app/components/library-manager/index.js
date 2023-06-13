@@ -17,12 +17,10 @@ export default function LibraryManager({ show, onClose }) {
 	const [search, setSearch] = useState('')
 
 	return <Modal
-		domain='wp-menu-icons'
 		pluginPrefix={WPMI_PREFIX}
 		show={show}
 		title='Library Manager'
 		onClose={onClose}
-		__experimentalHideHeader
 		premiumSelURL={WPMI_PREMIUM_SELL_URL}
 		premiumTitle='Mega Menu'
 		tabTitle={currentLibrary?.label}
@@ -30,6 +28,7 @@ export default function LibraryManager({ show, onClose }) {
 		toolbarSearchIn={currentLibrary?.label}
 		onChangeToolbar={setSearch}
 		sidebarContent={<Sidebar />}
+		sidebarPosition='left'
 	>
 		{isLoadingIconMap
 			? <Spinner />

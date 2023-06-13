@@ -19,19 +19,19 @@ export default function Sidebar() {
     }, [hasLibraries])
 
     if (!hasLibraries) {
-        return <div class="container-sidebar">
+        return <div class="wpmi__container-sidebar">
             <Spinner />
         </div>
     }
 
-    return <div class="container-sidebar">
-        <div class='container-sidebar__title'>{__('Default', 'wp-menu-icons')}</div>
+    return <div class="wpmi__container-sidebar">
+        <div class='wpmi__container-sidebar__title'>{__('Default', 'wp-menu-icons')}</div>
 
         <ul>
             <LibraryList type='default' />
         </ul>
 
-        <div class='container-sidebar__title'>{__('Uploaded', 'wp-menu-icons')}</div>
+        <div class='wpmi__container-sidebar__title'>{__('Uploaded', 'wp-menu-icons')}</div>
 
         <ul>
             <LibraryList type='uploaded' />

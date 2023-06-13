@@ -62,7 +62,7 @@ class Frontend {
 					foreach ( $wpmi as $key => $value ) {
 
 						if ( ! in_array( $key, array( 'icon', 'color' ) ) && $value != '' ) {
-							$classes[] = "wpmi-{$key}-{$value}";
+							$classes[] = "wpmi__{$key}-{$value}";
 						}
 
 						if ( $key === 'icon' ) {
@@ -84,7 +84,7 @@ class Frontend {
 
 					$style = ' style="' . $size . $color . '"';
 
-					$icon = '<i' . $style . ' class="wpmi-icon ' . join( ' ', array_map( 'esc_attr', $classes ) ) . '"></i>';
+					$icon = '<i' . $style . ' class="wpmi__icon ' . join( ' ', array_map( 'esc_attr', $classes ) ) . '"></i>';
 
 					if ( isset( $wpmi['position'] ) && $wpmi['position'] == 'after' ) {
 						$new_title = $title . $icon;

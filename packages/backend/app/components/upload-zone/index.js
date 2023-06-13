@@ -25,15 +25,15 @@ export default function UploadZone() {
 	};
 
     return <div
-        class="upload-zone attachments"
+        class="wpmi__upload-zone attachments"
         onClick={dropZoneOnClick}
     >
         <DropZone onFilesDrop={handleUpload} />
 
-        <div class="upload-zone__drop-zone">
-            <div class="dashicons dashicons-upload upload-zone__icon"></div>
+        <div class="wpmi__upload-zone__drop-zone">
+            <div class="dashicons dashicons-upload wpmi__upload-zone__icon"></div>
 
-            <span class="upload-zone__info">
+            <span class="wpmi__upload-zone__info">
                 {__(
                     'Drag & Drop to Upload File',
                     'wp-menu-icons'
@@ -46,10 +46,10 @@ export default function UploadZone() {
                 accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
                 onChange={handleUpload}
                 multiple={false}
-                class="upload-zone__input"
+                class="wpmi__upload-zone__input"
             />
 
-            <button className="button button-primary upload-zone__button">
+            <button className="button button-primary wpmi__upload-zone__button">
                 {__('Select archive', 'wp-menu-icons')}
             </button>
         </div>

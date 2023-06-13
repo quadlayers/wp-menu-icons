@@ -21,7 +21,7 @@ const Header = () => {
 		<>
 			<div className="wrap about-wrap full-width-layout">
 				<h1>{WPMI_PLUGIN_NAME}</h1>
-				<p className="about-text">
+				<p className="wpmi__about-text">
 					{sprintf(
 						__(
 							'Thanks for using %s! We will do our best to offer you the best and improved communication experience with your users.'
@@ -29,7 +29,7 @@ const Header = () => {
 						WPMI_PLUGIN_NAME
 					)}
 				</p>
-				<p className="about-text">
+				<p className="wpmi__about-text">
 					<a href={WPMI_PREMIUM_SELL_URL} target="__blank">
 						{__('Premium', 'wp-menu-icons')}
 					</a>{' '}
@@ -60,7 +60,7 @@ const Header = () => {
 								'/assets/backend/img/quadlayers.jpg'
 							)})`,
 						}}
-						className="wp-badge quadlayers__logo"
+						className="wp-badge wpmi__quadlayers__logo"
 					>
 						QuadLayers
 					</div>

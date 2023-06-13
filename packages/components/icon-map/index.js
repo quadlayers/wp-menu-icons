@@ -1,16 +1,17 @@
 import { __ } from '@wordpress/i18n';
 
-export default function IconMap({ iconMap, onChangeIcon, domain }) {
+export default function IconMap({ iconMap, onChangeIcon }) {
 	const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
 
 	const handleClick = icon => {
 		if (onChangeIcon) onChangeIcon(icon)
 	}
 
-	return <div class='icon-map'>
-		<ul tabindex="-1" class="attachments">
+	return <div class='wpmi__icon-map'>
+		<ul tabindex="-1">
 			{iconMap.map((icon, i) => (
 				<li
+					key={icon}
 					tabindex={i}
 					role="checkbox"
 					aria-label={icon}
@@ -30,7 +31,7 @@ export default function IconMap({ iconMap, onChangeIcon, domain }) {
 					<button type="button" class="check" tabindex="-1">
 						<span class="media-modal-icon"></span>
 						<span class="screen-reader-text">
-							{__('Deselect', domain)}
+							{__('Deselect', 'wp-menu-icons')}
 						</span>
 					</button>
 				</li>

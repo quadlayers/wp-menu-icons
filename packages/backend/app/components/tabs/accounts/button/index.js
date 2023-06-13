@@ -9,7 +9,7 @@ const AccountButton = (props) => {
 	return (
 		<a
 			href={href}
-			className={classnames('wp-menu-icons__account-button', className)}
+			className={classnames('wpmi__account-button', className)}
 			target={target}
 			title={title}
 		>

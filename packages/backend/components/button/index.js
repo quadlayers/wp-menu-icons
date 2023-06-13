@@ -14,8 +14,8 @@ const Button = ({
 	return (
 		<TagName
 			className={classnames(
-				'wp-menu-icons__button',
-				isSecondary && 'wp-menu-icons__button--secondary',
+				'wpmi__button',
+				isSecondary && 'wpmi__button--secondary',
 				className
 			)}
 			href={href}

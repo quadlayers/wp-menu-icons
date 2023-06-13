@@ -13,13 +13,12 @@ import Body from "./body";
 
 const Modal = ({
 	children,
-	domain,
 	pluginPrefix,
 	show,
 	title,
 	onClose,
 	className,
-	__experimentalHideHeader = false,
+	__experimentalHideHeader = true,
 	premiumSelURL,
 	premiumTitle,
 	tabTitle,
@@ -27,6 +26,7 @@ const Modal = ({
 	toolbarSearchIn,
 	onChangeToolbar,
 	sidebarContent,
+	sidebarPosition = 'right',
 	footerContent
 }) => {
 	const ref = useRef();	
@@ -61,7 +61,7 @@ const Modal = ({
 			onRequestClose={onClose}
 			shouldCloseOnClickOutside={false}
 			className={classnames(
-				"__modal media-modal wp-core-ui upload-php",
+				"wpmi__modal media-modal wp-core-ui upload-php",
 				className
 			)}
 			__experimentalHideHeader={__experimentalHideHeader}
@@ -74,14 +74,13 @@ const Modal = ({
 				>
 					<span class="media-modal-icon">
 						<span class="screen-reader-text">
-							{__('Close media panel', domain)}
+							{__('Close media panel', 'wp-menu-icons')}
 						</span>
 					</span>
 				</button>
 
 				<div class="media-frame mode-select wp-core-ui hide-menu">
 					<Header
-						domain={domain}
 						title={title}
 						tabTitle={tabTitle}
 						premiumSelURL={premiumSelURL}
@@ -89,11 +88,11 @@ const Modal = ({
 					/>
 
 					<Body
-						domain={domain}
 						toolbar={toolbar}
 						onChangeToolbar={onChangeToolbar}
 						toolbarSearchIn={toolbarSearchIn}
 						sidebarContent={sidebarContent}
+						sidebarPosition={sidebarPosition}
 					>
 						{ children }
 					</Body>
