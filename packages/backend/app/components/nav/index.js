@@ -25,7 +25,7 @@ function Nav() {
 				{tabs.map(({ label, name }, index) => {
 					return (
 						<li
-							key={index}
+							key={name}
 							className="wpmi__nav-tab-li"
 							onClick={(e) => {
 								e.preventDefault();

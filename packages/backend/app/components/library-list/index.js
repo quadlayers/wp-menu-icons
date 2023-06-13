@@ -22,6 +22,7 @@ export default function LibraryList({ type }) {
 
     return filterLibraries().map(library =>
         <li
+            key={library.name}
             class={`wpmi__container-sidebar__item ${isSelected(library.name) && 'wpmi__container-sidebar__item--active'}`}
             onClick={() => setCurrentLibraryName(library.name)}
         >

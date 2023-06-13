@@ -21,7 +21,6 @@ export default function LibraryManager({ show, onClose }) {
 		show={show}
 		title='Library Manager'
 		onClose={onClose}
-		__experimentalHideHeader
 		premiumSelURL={WPMI_PREMIUM_SELL_URL}
 		premiumTitle='Mega Menu'
 		tabTitle={currentLibrary?.label}

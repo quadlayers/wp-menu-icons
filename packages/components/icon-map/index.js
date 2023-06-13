@@ -11,6 +11,7 @@ export default function IconMap({ iconMap, onChangeIcon }) {
 		<ul tabindex="-1">
 			{iconMap.map((icon, i) => (
 				<li
+					key={icon}
 					tabindex={i}
 					role="checkbox"
 					aria-label={icon}
