@@ -117,7 +117,6 @@ const App = () => {
 			onChangeToolbar={setSearch}
 			sidebarContent={<Sidebar { ...sidebarProps } />}
 			footerContent={<Footer { ...footerProps } />}
-			__experimentalHideHeader
 		>
 			{isResolvingCurrentLibrary && isLoadingIconMap
 				? <Spinner />

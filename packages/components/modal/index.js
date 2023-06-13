@@ -18,7 +18,7 @@ const Modal = ({
 	title,
 	onClose,
 	className,
-	__experimentalHideHeader = false,
+	__experimentalHideHeader = true,
 	premiumSelURL,
 	premiumTitle,
 	tabTitle,
