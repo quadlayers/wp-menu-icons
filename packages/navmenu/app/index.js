@@ -2,10 +2,10 @@ import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 
 //import { Modal } from '@wpmi/components';
-import Modal from '../../components/components/modal';
+import Modal from '../../components/modal';
 import { useCurrentLibrary, useCurrentLibraryIconMap } from '../../store/helpers';
 import Sidebar from './components/sidebar';
-import IconMap from '../../components/components/icon-map';
+import IconMap from '../../components/icon-map';
 import Footer from './components/footer';
 
 const { WPMI_PLUGIN_NAME, WPMI_PREFIX, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;

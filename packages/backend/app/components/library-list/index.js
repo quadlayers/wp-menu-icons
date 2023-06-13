@@ -22,7 +22,7 @@ export default function LibraryList({ type }) {
 
     return filterLibraries().map(library =>
         <li
-            class={`container-sidebar__item ${isSelected(library.name) && 'container-sidebar__item--active'}`}
+            class={`wpmi__container-sidebar__item ${isSelected(library.name) && 'wpmi__container-sidebar__item--active'}`}
             onClick={() => setCurrentLibraryName(library.name)}
         >
             <span class="dashicons dashicons-star-filled" /> {library.label}

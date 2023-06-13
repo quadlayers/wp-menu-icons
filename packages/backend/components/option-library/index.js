@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 
 export function OptionLibrary ({ label, onChange, checked, disabled }) {
-    return <div className={`option-library ${disabled && 'option-library--disabled'}`}>
+    return <div className={`wpmi__option-library ${disabled && 'wpmi__option-library--disabled'}`}>
         <input
             type="checkbox"
             checked={checked}

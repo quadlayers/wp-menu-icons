@@ -26,7 +26,7 @@ function Nav() {
 					return (
 						<li
 							key={index}
-							className="nav-tab-li"
+							className="wpmi__nav-tab-li"
 							onClick={(e) => {
 								e.preventDefault();
 								e.stopPropagation();

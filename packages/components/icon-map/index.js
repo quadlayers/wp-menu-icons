@@ -7,7 +7,7 @@ export default function IconMap({ iconMap, onChangeIcon }) {
 		if (onChangeIcon) onChangeIcon(icon)
 	}
 
-	return <div class='icon-map'>
+	return <div class='wpmi__icon-map'>
 		<ul tabindex="-1" class="attachments">
 			{iconMap.map((icon, i) => (
 				<li

@@ -22,7 +22,7 @@ import {
 const Content = () => {
 	return (
 		<div className="wrap about-wrap full-width-layout">
-			<div className="has-2-columns is-wider-left">
+			<div className="has-2-columns wpmi__is-wider-left">
 				<div className="column">
 					<div className="welcome-header">
 						<h1>
@@ -32,7 +32,7 @@ const Content = () => {
 								v{WPMI_PLUGIN_VERSION}{' '}
 							</span>
 						</h1>
-						<div className="about-text">
+						<div className="wpmi__about-text">
 							<p>
 								{sprintf(
 									__(
@@ -45,7 +45,7 @@ const Content = () => {
 						</div>
 					</div>
 					<hr />
-					<div className="feature-section">
+					<div className="wpmi__feature-section">
 						<h3>{__('Premium', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -60,7 +60,7 @@ const Content = () => {
 							{__('Purchase Now', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="feature-section">
+					<div className="wpmi__feature-section">
 						<h3>{__('Demo', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -79,7 +79,7 @@ const Content = () => {
 							{__('View demo', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="feature-section">
+					<div className="wpmi__feature-section">
 						<h3>{__('Support', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -98,7 +98,7 @@ const Content = () => {
 							{__('Submit ticket', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="feature-section">
+					<div className="wpmi__feature-section">
 						<h3>{__('Comunnity', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(

@@ -1,6 +1,6 @@
 
 
-.container-sidebar__item {
+.wpmi__container-sidebar__item {
     padding-left: 20%;
     height: 40px;
     margin: 5px 0;
@@ -13,21 +13,21 @@
     align-items: center;
 }
 
-.container-sidebar__item span {
+.wpmi__container-sidebar__item span {
     margin-right: 10px;
 }
 
-.container-sidebar__item--active {
+.wpmi__container-sidebar__item--active {
     color: #5396ff;
     background-color: #ebf2ff;
 }
 
-.container-sidebar__item .dashicons-trash {
+.wpmi__container-sidebar__item .dashicons-trash {
     color: red !important;
 }
 
-.container-sidebar__item .dashicons-trash,
-.container-sidebar__item .dashicons-upload {
+.wpmi__container-sidebar__item .dashicons-trash,
+.wpmi__container-sidebar__item .dashicons-upload {
     margin-right: 45px;
     margin-left: auto;
 }
