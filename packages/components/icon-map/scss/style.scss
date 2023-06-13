@@ -1,25 +1,23 @@
 .wpmi__icon-map {
-	.attachment {
-		.thumbnail {
+	.thumbnail {
+		vertical-align: middle;
+		text-align: center;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 0px;
+			height: 100%;
 			vertical-align: middle;
+		}
+
+		>i {
 			text-align: center;
-
-			&:before {
-				content: '';
-				display: inline-block;
-				width: 0px;
-				height: 100%;
-				vertical-align: middle;
-			}
-
-			>i {
-				text-align: center;
-				font-size: 3vw;
-				display: inline-block;
-				vertical-align: middle;
-				height: auto;
-				width: auto;
-			}
+			font-size: 3vw;
+			display: inline-block;
+			vertical-align: middle;
+			height: auto;
+			width: auto;
 		}
 	}
 }

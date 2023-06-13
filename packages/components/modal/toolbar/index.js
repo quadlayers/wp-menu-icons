@@ -1,9 +1,9 @@
 import { __ } from '@wordpress/i18n';
 
-export default function Toolbar({ searchIn, onChange }) {
+export default function Toolbar({ searchIn, onChange, sidebarPosition }) {
 	const handleSearchChange = e => onChange(e.target.value)
 
-    return <div class="media-toolbar">
+    return <div class={`media-toolbar wpmi__modal__sidebar--${sidebarPosition}`}>
         <div class="media-toolbar-secondary">
             <p>
                 <em>

@@ -29,6 +29,7 @@ export default function LibraryManager({ show, onClose }) {
 		toolbarSearchIn={currentLibrary?.label}
 		onChangeToolbar={setSearch}
 		sidebarContent={<Sidebar />}
+		sidebarPosition='left'
 	>
 		{isLoadingIconMap
 			? <Spinner />

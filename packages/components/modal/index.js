@@ -26,6 +26,7 @@ const Modal = ({
 	toolbarSearchIn,
 	onChangeToolbar,
 	sidebarContent,
+	sidebarPosition = 'right',
 	footerContent
 }) => {
 	const ref = useRef();	
@@ -91,6 +92,7 @@ const Modal = ({
 						onChangeToolbar={onChangeToolbar}
 						toolbarSearchIn={toolbarSearchIn}
 						sidebarContent={sidebarContent}
+						sidebarPosition={sidebarPosition}
 					>
 						{ children }
 					</Body>
