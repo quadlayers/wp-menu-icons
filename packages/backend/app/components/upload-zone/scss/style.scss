@@ -1,11 +1,11 @@
-.container-drop-zone {
+.upload-zone {
 	border-radius: 25px;
 	cursor: pointer;
 	background-color: white;
 	top: 0
 }
 
-.drop-zone {
+.upload-zone__drop-zone {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -16,18 +16,22 @@
 	color: grey;
 }
 
-.drop-zone__icon {
+.upload-zone__icon {
 	font-size: 124px;
 	width: auto;
 	height: auto;
 	margin-bottom: 15px;
 }
 
-.drop-zone__info {
+.upload-zone__info {
 	font-size: 16px;
 }
 
-.drop-zone__button {
+.upload-zone__input {
+	display: none;
+}
+
+.upload-zone__button {
 	width: 70%;
 	margin-top: 25px !important;
 	color: white;
