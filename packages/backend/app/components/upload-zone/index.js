@@ -11,7 +11,8 @@ export default function UploadZone() {
 
 	const { uploadLibrary } = useLibraries();
 
-	const handleUpload = async (files) => {
+	const handleUpload = async (e) => {
+        const { files } = e.target
 		const file = files[0];
 
 		const body = new FormData();
@@ -24,15 +25,15 @@ export default function UploadZone() {
 	};
 
     return <div
-        class="container-drop-zone attachments"
+        class="upload-zone attachments"
         onClick={dropZoneOnClick}
     >
         <DropZone onFilesDrop={handleUpload} />
 
-        <div class="drop-zone">
-            <div class="dashicons dashicons-upload drop-zone__icon"></div>
+        <div class="upload-zone__drop-zone">
+            <div class="dashicons dashicons-upload upload-zone__icon"></div>
 
-            <span class="drop-zone__info">
+            <span class="upload-zone__info">
                 {__(
                     'Drag & Drop to Upload File',
                     'wp-menu-icons'
@@ -43,14 +44,12 @@ export default function UploadZone() {
                 ref={inputRef}
                 type="file"
                 accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
-                onChange={(e) =>
-                    handleUpload(e.target.files)
-                }
+                onChange={handleUpload}
                 multiple={false}
-                style={{ display: 'none' }}
+                class="upload-zone__input"
             />
 
-            <button className="button button-primary drop-zone__button">
+            <button className="button button-primary upload-zone__button">
                 {__('Select archive', 'wp-menu-icons')}
             </button>
         </div>
