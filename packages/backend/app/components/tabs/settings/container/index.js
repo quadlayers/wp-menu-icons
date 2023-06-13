@@ -12,11 +12,11 @@ import { usePrevious } from '@wordpress/compose';
  * Internal dependencies
  */
 import { useSettingsEntities, useLibraries } from '@wpmi/store';
-import { Modal, Spinner } from '@wpmi/components';
+import { Spinner } from '@wpmi/components';
 
 import { Container } from '../../../../../components/container';
 import { OptionLibrary } from '../../../../../components/option-library';
-import ManagerLibraries from '../../../manager-libraries';
+import LibraryManager from '../../../library-manager';
 
 const Settings = () => {
 	const { settings, hasResolvedSettings, saveSettings, setSettings } =
@@ -124,16 +124,10 @@ const Settings = () => {
 				{__('Manager Libraries', 'wp-menu-icons')}
 			</button>
 
-			<Modal
-				title='Manager Libraries'
-				show={ show }
-				onClose={ onClose }
-				__experimentalHideHeader
-			>
-				<ManagerLibraries
-					onClose={ onClose }
-				/>
-			</Modal>
+			<LibraryManager
+				show={show}
+				onClose={onClose}
+			/>
 		</Container>
 	);
 };

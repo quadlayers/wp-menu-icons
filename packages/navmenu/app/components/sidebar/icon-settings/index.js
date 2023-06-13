@@ -1,9 +1,10 @@
+import { __ } from '@wordpress/i18n'
 import { ColorPicker } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+;
 
 const { WPMI_PREFIX } = wpmi_navmenu;
 
-export default function IconSettings({ settings, setSettings }) {
+export default function IconSettings({ settings, onChangeSettings }) {
 	const handleSettingsChange = (e) => {
 		const { name, value } = e.target;
 
@@ -12,10 +13,10 @@ export default function IconSettings({ settings, setSettings }) {
 			[name]: value,
 		};
 
-		setSettings(newSettings);
+		onChangeSettings(newSettings);
 	};
 
-	const setColor = (value) => setSettings({ ...settings, color: value.hex });
+	const setColor = (value) => onChangeSettings({ ...settings, color: value.hex });
 
 	return (
 		<div class="attachment-info">

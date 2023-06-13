@@ -125,6 +125,8 @@ export const useCurrentLibraryIconMap = () => {
 		return getCurrentLibrary();
 	}, []);
 
+	const filterIcons = search => iconMap.filter((icon) => icon.includes(search))
+
 	useEffect(() => {
 		if (currentLibrary) {
 			setIsLoadingIconMap(true);
@@ -141,6 +143,7 @@ export const useCurrentLibraryIconMap = () => {
 	return {
 		iconMap,
 		isLoadingIconMap,
+		filterIcons
 	};
 };
 

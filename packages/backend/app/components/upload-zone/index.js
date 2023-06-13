@@ -2,9 +2,9 @@ import { __ } from '@wordpress/i18n';
 import { useRef } from '@wordpress/element';
 import { DropZone } from '@wordpress/components';
 
-import { useLibraries, useCurrentLibrary } from '../../../../store/helpers';
+import { useLibraries } from '../../../../store/helpers';
 
-export default function UploadZone({ selectedLibrary }) {
+export default function UploadZone() {
 	const inputRef = useRef(null);
 
 	const dropZoneOnClick = () => inputRef.current?.click();
@@ -20,11 +20,11 @@ export default function UploadZone({ selectedLibrary }) {
 		const headers = new Headers();
 		headers.append('Content-Type', file.type);
 
-		await uploadLibrary({ body, headers });
+		await uploadLibrary({ body, headers });        
 	};
 
     return <div
-        class="container-drop-zone"
+        class="container-drop-zone attachments"
         onClick={dropZoneOnClick}
     >
         <DropZone onFilesDrop={handleUpload} />

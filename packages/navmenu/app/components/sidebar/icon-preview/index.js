@@ -1,5 +1,5 @@
 export default function IconPreview({ icon, settings }) {
-    return <div class="attachment-info">
+    return <div class="icon-preview attachment-info">
         <div class="thumbnail thumbnail-image">
             <i class={ icon }></i>
         </div>

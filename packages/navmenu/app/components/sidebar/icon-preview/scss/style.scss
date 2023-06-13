@@ -1,0 +1,29 @@
+.icon-preview {
+	.thumbnail {
+		width: 60px;
+		height: 60px;
+		background-color: #fff;
+		vertical-align: middle;
+		text-align: center;
+
+		>i {
+			font-size: 2em;
+			position: relative;
+			left: -1px;
+			text-align: center;
+			font-size: 3vw;
+			display: inline-block;
+			vertical-align: middle;
+			height: auto;
+			width: auto;
+		}
+
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 0px;
+			height: 100%;
+			vertical-align: middle;
+		}
+	}
+}

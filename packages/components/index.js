@@ -1,3 +1,3 @@
-export {default as Modal} from './modal'
-export {default as Spinner} from './spinner'
-export {default as IconMap} from './icon-map'
+export {default as Modal} from './components/modal'
+export {default as Spinner} from './components/spinner'
+export {default as IconMap} from './components/icon-map'
