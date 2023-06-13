@@ -1,10 +1,12 @@
+import { useMemo } from "@wordpress/element"
+
 import { useCurrentLibrary, useLibraries } from "../../../../store/helpers"
 
 export default function LibraryList({ type }) {
     const { currentLibrary, setCurrentLibraryName } = useCurrentLibrary()
     const { libraries, deleteLibrary } = useLibraries()
 
-    const filterLibraries = () => libraries.filter(library => library.type === type || !type)
+    const filteredLibraries = useMemo(() => libraries.filter(library => library.type === type || !type), [libraries, type])
 
     const isSelected = name => name === currentLibrary?.name
 
@@ -20,7 +22,7 @@ export default function LibraryList({ type }) {
         }
     }
 
-    return filterLibraries().map(library =>
+    return filteredLibraries.map(library =>
         <li
             key={library.name}
             class={`wpmi__container-sidebar__item ${isSelected(library.name) && 'wpmi__container-sidebar__item--active'}`}
