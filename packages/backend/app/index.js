@@ -1,11 +1,13 @@
+import { EditorSnackbars } from '@wordpress/editor';
+
 /**
  * Internal dependencies
  */
 
-import { AppTabSwitcher } from "./components/tabs";
-import { AppProvider } from "./provider";
-import { AppStructure } from "./structure";
-import { useAppSlotContext } from "./structure/provider";
+import { AppTabSwitcher } from './components/tabs';
+import { AppProvider } from './provider';
+import { AppStructure } from './structure';
+import { useAppSlotContext } from './structure/provider';
 
 export const App = () => {
 	return (
@@ -15,10 +17,11 @@ export const App = () => {
 					<AppTabSwitcher />
 				</AppStructure>
 			</AppProvider>
+			<EditorSnackbars />
 		</>
 	);
 };
 
 export { AppTabSwitcher, AppProvider, AppStructure, useAppSlotContext };
 
-export * from "./components";
+export * from './components';

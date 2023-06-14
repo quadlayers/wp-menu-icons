@@ -4,7 +4,7 @@ namespace QuadLayers\WPMI\Entities\Libraries;
 
 abstract class Entity_Base {
 
-	protected $folder_path = 'wp-menu-icons-pro/icons-library';
+	protected $folder_path = 'wp-menu-icons-pro';
 	protected $baseurl;
 	protected $basedir;
 	public $type = 'default';

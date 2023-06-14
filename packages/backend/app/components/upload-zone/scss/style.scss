@@ -1,8 +1,14 @@
+
 .wpmi__upload-zone {
-	border-radius: 25px;
-	cursor: pointer;
-	background-color: white;
-	top: 0
+	border-radius: 25px !important;
+    cursor: pointer !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    max-width: 600px;
+    margin: auto!important;
 }
 
 .wpmi__upload-zone__drop-zone {

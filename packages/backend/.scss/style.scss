@@ -10,3 +10,11 @@
 	display: flex;
 	gap    : 0.5em;
 }
+//EditorSnackbars
+.components-editor-notices__snackbar {
+	bottom: 40px;
+	padding-left: 16px;
+	padding-right: 16px;
+	position: fixed;
+	z-index: 999999;
+}

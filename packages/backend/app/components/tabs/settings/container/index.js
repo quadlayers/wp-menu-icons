@@ -14,7 +14,7 @@ import { usePrevious } from '@wordpress/compose';
 import { useSettingsEntities, useLibraries } from '@wpmi/store';
 import { Spinner } from '@wpmi/components';
 
-import { Container } from '../../../../../components/container';
+import { Wrap } from '../../../../../components/wrap';
 import { OptionLibrary } from '../../../../../components/option-library';
 import LibraryManager from '../../../library-manager';
 
@@ -22,9 +22,9 @@ const Settings = () => {
 	const { settings, hasResolvedSettings, saveSettings, setSettings } =
 		useSettingsEntities();
 
-	const { libraries, hasResolvedLibraries } = useLibraries()
+	const { libraries, hasResolvedLibraries } = useLibraries();
 
-	const [show, setShow] = useState(false)
+	const [show, setShow] = useState(false);
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -50,85 +50,98 @@ const Settings = () => {
 		});
 	};
 
-	const submitSettings = e => {
+	const submitSettings = (e) => {
 		e.preventDefault();
 		setIsLoading(true);
 
-		saveSettings(settings).then(() => setIsLoading(false))
+		saveSettings(settings).then(() => setIsLoading(false));
 	};
 
-	const filterLibraries = type => libraries.filter(library => library.type === type)
+	const filterLibraries = (type) =>
+		libraries.filter((library) => library.type === type);
 
-	const onClose = () => setShow(false)
+	const onClose = () => setShow(false);
 
-	const isActive= library => !!settings.active_libraries?.includes(library.name)
+	const isActive = (library) =>
+		!!settings.active_libraries?.includes(library.name);
 
 	if (!hasResolvedSettings && !hasResolvedLibraries) {
 		return <Spinner />;
 	}
 
 	return (
-		<Container>
-			{__('Enable Libraries', 'wp-menu-icons')}
+		<Wrap>
 			<form onSubmit={submitSettings}>
-				{__('Default', 'wp-menu-icons')}
-				{filterLibraries('default').map((library) =>
-					<OptionLibrary
-						key={library.name}
-						label={library.label}
-						disabled={!library.is_loaded}
-						checked={isActive(library)}
-						onChange={() =>
-							togleActiveLibraries(library.name)
-						}
-					/>
-				)}
-				{filterLibraries('uploaded').length !== 0 &&
-					<>
-						{__('Customize', 'wp-menu-icons')}
-						{filterLibraries('uploaded').map((library) =>
-							<OptionLibrary
-								key={library.name}
-								label={library.label}
-								disabled={!library.is_loaded}
-								checked={isActive(library)}
-								onChange={() =>
-									togleActiveLibraries(library.name)
-								}
-							/>
-						)}
-					</>
-				}
+				<table class="form-table widefat striped">
+					<tbody>
+						<tr>
+							<td colSpan={100}>
+								<table>
+									<th>
+										{__(
+											'Activate Libraries',
+											'wp-menu-icons'
+										)}
+									</th>
+									<td>
+										{libraries.map((library) => (
+											<>
+												<OptionLibrary
+													key={library.name}
+													label={library.label}
+													type={library.type}
+													disabled={
+														!library.is_loaded
+													}
+													checked={isActive(library)}
+													onChange={() =>
+														togleActiveLibraries(
+															library.name
+														)
+													}
+												/>
+											</>
+										))}
+										<span class="description">
+											{__(
+												'Uncheck to disable libraries in navigation menu.',
+												'wp-menu-icons'
+											)}
+										</span>
+									</td>
+								</table>
+							</td>
+						</tr>
+						<tr colSpan={3}>
+							<td>
+								<button
+									disabled={!isModified}
+									type="submit"
+									className="button button-primary secondary"
+								>
+									{__('Save', 'wp-menu-icons')}
+								</button>
 
-				<span className="spinner"></span>
-				<button
-					disabled={!isModified}
-					type="submit"
-					className="button button-primary secondary"
-				>
-					{__('Save', 'wp-menu-icons')}
-				</button>
-				{isLoading && (
-					<span
-						style={{ visibility: 'visible' }}
-						className="spinner"
-					/>
-				)}
+								<button
+									style={{ marginLeft: '10px' }}
+									className="button button-primary secondary"
+									onClick={() => setShow(true)}
+								>
+									{__('Libraries Manager', 'wp-menu-icons')}
+								</button>
+								{isLoading && (
+									<span
+										style={{ visibility: 'visible' }}
+										className="spinner"
+									/>
+								)}
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</form>
-
-			<button
-				type="submit"
-				className="button button-primary secondary"
-				onClick={() => setShow(true)}
-			>
-				{__('Manager Libraries', 'wp-menu-icons')}
-			</button>
-
-			<LibraryManager
-				show={show}
-				onClose={onClose}
-			/>
-		</Container>
+			<LibraryManager show={show} onClose={onClose} />
+		</Wrap>
 	);
 };
 

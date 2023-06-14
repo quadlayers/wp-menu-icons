@@ -24,7 +24,7 @@ export default function Body({ children, toolbar, onChangeToolbar, toolbarSearch
                         />
                     }
 
-                    <div class={`attachments test wpmi__modal__sidebar--${sidebarPosition}`}>
+                    <div class={`attachments wpmi__modal__sidebar--${sidebarPosition}`}>
                         { children }
                     </div>
 

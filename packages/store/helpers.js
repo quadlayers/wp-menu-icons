@@ -86,7 +86,7 @@ export const getIcons = async (library) => {
 	if (library.iconmap) {
 		return library.iconmap.split(',');
 	}
-	
+
 	if (library.json_file_url) {
 		const response = await fetch(
 			new Request(library.json_file_url, { cache: 'no-store' })
@@ -97,7 +97,7 @@ export const getIcons = async (library) => {
 		}
 
 		const data = await response.json();
-		const { prefix } = library
+		const { prefix } = library;
 
 		if (data.IcoMoonType) {
 			const icons = data.icons.map(
@@ -125,7 +125,8 @@ export const useCurrentLibraryIconMap = () => {
 		return getCurrentLibrary();
 	}, []);
 
-	const filterIcons = search => iconMap.filter((icon) => icon.includes(search))
+	const filterIcons = (search) =>
+		iconMap.filter((icon) => icon.includes(search));
 
 	useEffect(() => {
 		if (currentLibrary) {
@@ -143,7 +144,7 @@ export const useCurrentLibraryIconMap = () => {
 	return {
 		iconMap,
 		isLoadingIconMap,
-		filterIcons
+		filterIcons,
 	};
 };
 
@@ -181,7 +182,6 @@ export const useCurrentLibrary = () => {
 		isResolvingCurrentLibrary,
 		hasResolvedCurrentLibrary,
 	} = useSelect((select) => {
-
 		const {
 			getCurrentLibraryName,
 			getLibraries,
@@ -199,7 +199,7 @@ export const useCurrentLibrary = () => {
 			(library) => library.name == currentLibraryName
 		);
 
-		if (currentLibrary) {
+		if (currentLibrary?.is_loaded) {
 			const { stylesheet_file_url } = currentLibrary;
 
 			const url = stylesheet_file_url || '';

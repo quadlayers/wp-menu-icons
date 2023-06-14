@@ -1,33 +1,28 @@
-
-
 .wpmi__container-sidebar__item {
-    padding-left: 20%;
-    height: 40px;
-    margin: 5px 0;
+    padding: 0 10px;
     font-weight: bold;
-    color: grey;
     cursor: pointer;
-    width: 90%;
-    border-radius: 10px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-}
+    width: auto;
+    height: 36px;
+	span {
+		margin-right: 10px;
+	}
 
-.wpmi__container-sidebar__item span {
-    margin-right: 10px;
-}
+	&.is-active {
+		color: #444;
+		background-color: rgba(0,0,0,0.05);
+	}
 
-.wpmi__container-sidebar__item--active {
-    color: #5396ff;
-    background-color: #ebf2ff;
-}
-
-.wpmi__container-sidebar__item .dashicons-trash {
-    color: red !important;
-}
-
-.wpmi__container-sidebar__item .dashicons-trash,
-.wpmi__container-sidebar__item .dashicons-upload {
-    margin-right: 45px;
-    margin-left: auto;
+	> i {
+		&:last-of-type {
+			margin-left: auto;
+		}
+		&:first-of-type {
+			margin-left: 0;
+			margin-right: 10px;
+		}
+	}
 }

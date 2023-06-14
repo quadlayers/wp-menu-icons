@@ -28,8 +28,8 @@ const Content = () => {
 						<h1>
 							{WPMI_PLUGIN_NAME}
 							<span style={{ fontSize: '24px', color: '#555' }}>
-								{' '}
-								v{WPMI_PLUGIN_VERSION}{' '}
+
+								v{WPMI_PLUGIN_VERSION}
 							</span>
 						</h1>
 						<div className="wpmi__about-text">

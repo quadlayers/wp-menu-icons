@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useRef } from '@wordpress/element';
 import { DropZone } from '@wordpress/components';
 
-import { useLibraries } from '../../../../store/helpers';
+import { useLibraries } from '@wpmi/store';
 
 export default function UploadZone() {
 	const inputRef = useRef(null);
@@ -12,7 +12,7 @@ export default function UploadZone() {
 	const { uploadLibrary } = useLibraries();
 
 	const handleUpload = async (e) => {
-        const { files } = e.target
+		const { files } = e.target;
 		const file = files[0];
 
 		const body = new FormData();
@@ -21,37 +21,33 @@ export default function UploadZone() {
 		const headers = new Headers();
 		headers.append('Content-Type', file.type);
 
-		await uploadLibrary({ body, headers });        
+		await uploadLibrary({ body, headers });
 	};
 
-    return <div
-        class="wpmi__upload-zone attachments"
-        onClick={dropZoneOnClick}
-    >
-        <DropZone onFilesDrop={handleUpload} />
+	return (
+		<div class="attachments wpmi__upload-zone" onClick={dropZoneOnClick}>
+			<DropZone onFilesDrop={handleUpload} />
 
-        <div class="wpmi__upload-zone__drop-zone">
-            <div class="dashicons dashicons-upload wpmi__upload-zone__icon"></div>
+			<div class="wpmi__upload-zone__drop-zone">
+				<i class="dashicons dashicons-upload wpmi__upload-zone__icon" />
 
-            <span class="wpmi__upload-zone__info">
-                {__(
-                    'Drag & Drop to Upload File',
-                    'wp-menu-icons'
-                )}
-            </span>
+				<span class="wpmi__upload-zone__info">
+					{__('Drag & Drop to Upload File', 'wp-menu-icons')}
+				</span>
 
-            <input
-                ref={inputRef}
-                type="file"
-                accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
-                onChange={handleUpload}
-                multiple={false}
-                class="wpmi__upload-zone__input"
-            />
+				<input
+					ref={inputRef}
+					type="file"
+					accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
+					onChange={handleUpload}
+					multiple={false}
+					class="wpmi__upload-zone__input"
+				/>
 
-            <button className="button button-primary wpmi__upload-zone__button">
-                {__('Select archive', 'wp-menu-icons')}
-            </button>
-        </div>
-    </div>
+				<button className="button button-primary wpmi__upload-zone__button">
+					{__('Select archive', 'wp-menu-icons')}
+				</button>
+			</div>
+		</div>
+	);
 }

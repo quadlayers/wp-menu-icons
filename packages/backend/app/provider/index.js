@@ -87,7 +87,7 @@ const AppProvider = ({ children }) => {
 
 	useEffect(() => {
 		const wp_nav = Array.from(
-			document.querySelectorAll('#toplevel_page_qligg > ul > li')
+			document.querySelectorAll('#toplevel_page_wpmi > ul > li')
 		);
 		const currentTab =
 			state.currentTab[0].toUpperCase() +
