@@ -29,7 +29,7 @@ export const uploadLibrary =
 			registry
 				.dispatch(noticesStore)
 				.createSuccessNotice(
-					sprintf(__('%s: %s'), response.code, response.message),
+					sprintf('%s: %s', response.code, response.message),
 					{ type: 'snackbar' }
 				);
 			return false;
@@ -45,7 +45,7 @@ export const uploadLibrary =
 			...libraries[i],
 			json_file_url: newLibrary.json_file_url,
 			stylesheet_file_url: newLibrary.stylesheet_file_url,
-			is_loaded: true
+			is_loaded: true,
 		};
 
 		dispatch.setLibraries([...libraries]);
@@ -75,7 +75,7 @@ export const deleteLibrary =
 			registry
 				.dispatch(noticesStore)
 				.createSuccessNotice(
-					sprintf(__('%s: %s'), response.code, response.message),
+					sprintf('%s: %s', response.code, response.message),
 					{ type: 'snackbar' }
 				);
 			return false;
@@ -90,7 +90,7 @@ export const deleteLibrary =
 			// stylesheet_file_url: false,
 			stylesheet_file_url: false,
 			json_url: false,
-			is_loaded: false
+			is_loaded: false,
 		};
 
 		dispatch.setLibraries([...libraries]);
@@ -98,7 +98,10 @@ export const deleteLibrary =
 		registry
 			.dispatch(noticesStore)
 			.createSuccessNotice(
-				sprintf(__('%s succesfully deleted!'), libraries[i].label),
+				sprintf(
+					__('%s succesfully deleted!', 'wp-menu-icons'),
+					libraries[i].label
+				),
 				{ type: 'snackbar' }
 			);
 
