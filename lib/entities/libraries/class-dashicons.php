@@ -3,9 +3,9 @@
 namespace QuadLayers\WPMI\Entities\Libraries;
 
 use QuadLayers\WPMI\Entities\Libraries\Entity_Base;
-use QuadLayers\WPMI\Entities\Libraries\Entity_Interface;
+use QuadLayers\WPMI\Entities\Libraries\Library_Interface;
 
-class Dashicons extends Entity_Base implements Entity_Interface {
+class Dashicons extends Entity_Base implements Library_Interface {
 
 	public function __construct() {
 		$this->name                = 'dashicons';

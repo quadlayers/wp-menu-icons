@@ -2,6 +2,6 @@
 
 namespace QuadLayers\WPMI\Entities\Libraries;
 
-interface Entity_Interface {
+interface Library_Interface {
 
 }

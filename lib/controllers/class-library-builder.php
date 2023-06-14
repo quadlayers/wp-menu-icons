@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Entities\Libraries\Entity_Interface;
+use QuadLayers\WPMI\Entities\Libraries\Library_Interface;
 
 class Library_Builder {
 	protected $libraries = [];
@@ -11,7 +11,7 @@ class Library_Builder {
 		add_filter( 'upload_mimes', [ $this, 'upload_mimes' ] );
 	}
 
-	public function add_library( Entity_Interface $library ) {
+	public function add_library( Library_Interface $library ) {
 		$this->libraries[ $library->name ] = $library;
 		return $this;
 	}

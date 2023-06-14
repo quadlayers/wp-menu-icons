@@ -3,9 +3,9 @@
 namespace QuadLayers\WPMI\Entities\Libraries;
 
 use QuadLayers\WPMI\Entities\Libraries\Entity_Base;
-use QuadLayers\WPMI\Entities\Libraries\Entity_Interface;
+use QuadLayers\WPMI\Entities\Libraries\Library_Interface;
 
-class Foundation extends Entity_Base implements Entity_Interface {
+class Foundation extends Entity_Base implements Library_Interface {
 
 	public function __construct() {
 		$this->name                = 'foundation';

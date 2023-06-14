@@ -43,9 +43,7 @@ class Routes_Library {
 		new Settings_Get();
 		new Settings_Post();
 		new Settings_Delete();
-
 		new Libraries_Get();
-
 		new Navmenu_Get();
 	}
 

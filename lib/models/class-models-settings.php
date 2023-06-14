@@ -23,10 +23,9 @@ class Models_Settings extends Models_Base {
 	 * @return array
 	 */
 	public function get_args() {
-		$default_libraries_names = \QuadLayers\WPMI\Models\Models_Libraries::get_libraries_names();
-		$default_libraries_names = array_keys( $default_libraries_names );
+		$models_libraries = Models_Libraries::instance();
 		return array(
-			'active_libraries' => $default_libraries_names,
+			'active_libraries' => array_keys($models_libraries->get_libraries()),
 		);
 	}
 

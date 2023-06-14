@@ -10,7 +10,6 @@ use QuadLayers\WPMI\Controllers\Library_Builder;
  */
 class Models_Libraries {
 	protected static $_instance;
-
 	protected $models_settings;
 	protected $libraries = array();
 	/**
@@ -46,23 +45,25 @@ class Models_Libraries {
 	}
 
 
-	public function get_libraries( $library = null ) {
+	public function get_libraries( $name = null ) {
 
-		$registered_libraries = $this->get_builder_libraries( $library );
+		$libraries = $this->get_builder_libraries( $name );
 
-		if ( isset( $registered_libraries->name ) ) {
-			return $registered_libraries;
+		if ( isset( $libraries->name ) ) {
+			return $libraries;
 		}
 
-		// TODO: make compatibility
-		$registered_libraries = apply_filters( 'wp_menu_icons_register_icons', $registered_libraries );
+		$libraries = apply_filters( 'wp_menu_icons_register_libraries', $libraries );
 
-		return $registered_libraries;
+		if ( has_filter( 'wp_menu_icons_register_icons' ) ) {
+			_deprecated_hook( 'wp_menu_icons_register_icons', '4.0.0', 'wp_menu_icons_register_libraries' );
+		}
+
+		return $libraries;
 	}
 
-	public static function get_libraries_names() {
-		$self      = new self();
-		$libraries = $self->get_libraries();
+	public function get_libraries_names() {
+		$libraries = $this->get_libraries();
 		$names     = array();
 		foreach ( $libraries as $library ) {
 			$names[ $library->name ] = $library->name;
