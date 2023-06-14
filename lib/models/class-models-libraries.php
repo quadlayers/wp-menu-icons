@@ -22,7 +22,7 @@ class Models_Libraries {
 		$this->models_settings = new Models_Settings();
 		$this->builder         = new Library_Builder();
 
-		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\DashIcons() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Dashicons() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elegant_Icons() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elusive() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontawesome() );
