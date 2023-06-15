@@ -45,7 +45,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 					),
 					WPMI_PLUGIN_NAME
 				),
-				'notice_description' => esc_html__( 'Could you please give it a 5-star rating on WordPress?. Your feedback will boost our motivation and help us promote and continue to improve this product.', 'wp-menu-icons' ),
+				'notice_description' => esc_html__( 'Could you please give it a 5-star rating on WordPress? Your feedback boosts our motivation, helps us promote, and continues to improve this product. Your support matters!', 'wp-menu-icons' ),
 				'notice_link'        => WPMI_PROMOTE_REVIEW_URL,
 				'notice_link_label'  => esc_html__(
 					'Yes, of course!',
