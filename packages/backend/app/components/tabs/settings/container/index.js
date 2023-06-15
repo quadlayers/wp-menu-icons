@@ -57,9 +57,6 @@ const Settings = () => {
 		saveSettings(settings).then(() => setIsLoading(false));
 	};
 
-	const filterLibraries = (type) =>
-		libraries.filter((library) => library.type === type);
-
 	const onClose = () => setShow(false);
 
 	const isActive = (library) =>
@@ -85,22 +82,18 @@ const Settings = () => {
 									</th>
 									<td>
 										{libraries.map((library) => (
-											<>
-												<OptionLibrary
-													key={library.name}
-													label={library.label}
-													type={library.type}
-													disabled={
-														!library.is_loaded
-													}
-													checked={isActive(library)}
-													onChange={() =>
-														togleActiveLibraries(
-															library.name
-														)
-													}
-												/>
-											</>
+											<OptionLibrary
+												key={library.name}
+												label={library.label}
+												type={library.type}
+												disabled={!library.is_loaded}
+												checked={isActive(library)}
+												onChange={() =>
+													togleActiveLibraries(
+														library.name
+													)
+												}
+											/>
 										))}
 										<span class="description">
 											{__(
@@ -125,7 +118,10 @@ const Settings = () => {
 								<button
 									style={{ marginLeft: '10px' }}
 									className="button button-primary secondary"
-									onClick={() => setShow(true)}
+									onClick={(e) => {
+										e.preventDefault();
+										setShow(true);
+									}}
 								>
 									{__('Libraries Manager', 'wp-menu-icons')}
 								</button>

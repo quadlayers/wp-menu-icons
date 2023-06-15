@@ -30,11 +30,11 @@ define( 'WPMI_DB_KEY', '_menu_item_wpmi' );
 define( 'WPMI_WORDPRESS_URL', 'https://wordpress.org/plugins/wp-menu-icons/' );
 define( 'WPMI_REVIEW_URL', 'https://wordpress.org/support/plugin/wp-menu-icons/reviews/?filter=5#new-post' );
 define( 'WPMI_DEMO_URL', 'https://quadlayers.com/demo/wp-menu-icons/?utm_source=wpmi_admin' );
-define( 'WPMI_DOCUMENTATION_URL', 'https://quadlayers.com/portfolio/wp-menu-icons/?utm_source=wpmi_admin' );
+define( 'WPMI_DOCUMENTATION_URL', 'https://quadlayers.com/documentation/wp-menu-icons/?utm_source=wpmi_admin' );
 define( 'WPMI_SUPPORT_URL', 'https://quadlayers.com/account/support/?utm_source=wpmi_admin' );
 define( 'WPMI_GROUP_URL', 'https://www.facebook.com/groups/quadlayers' );
 define( 'WPMI_DEVELOPER', false );
-define( 'WPMI_PREMIUM_SELL_URL', 'https://quadmenu.com/?utm_source=wpmi_admin' );
+define( 'WPMI_PREMIUM_SELL_URL', 'https://quadlayers.com/portfolio/wp-menu-icons/?utm_source=wpmi_admin' );
 /**
  * Load composer autoload
  */

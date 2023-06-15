@@ -18,6 +18,8 @@ class Backend {
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
+		add_action( 'admin_head', array( __CLASS__, 'add_premium_js' ) );
+		add_action( 'admin_footer', array( __CLASS__, 'add_premium_css' ) );
 	}
 
 	public function register_scripts() {
@@ -184,6 +186,47 @@ class Backend {
 
 	public static function get_menu_slug() {
 		return self::$menu_slug;
+	}
+
+	public static function add_premium_js() {
+		?>
+			<script>
+				var WPMI_IS_PREMIUM = false;
+			</script>
+		<?php
+	}
+
+	public static function add_premium_css() {
+		?>
+			<style>
+				.wpmi__premium-field {
+					opacity: 0.5;
+					pointer-events: none;
+				}
+				.wpmi__premium-field input,
+				.wpmi__premium-field textarea,
+				.wpmi__premium-field select {
+					background-color: #eee;
+				}
+				.wpmi__premium-badge::before {
+					content: "PRO";
+					display: inline-block;
+					font-size: 10px;
+					color: #ffffff;
+					background-color: #f57c00;
+					border-radius: 3px;
+					width: 30px;
+					height: 15px;
+					line-height: 15px;
+					text-align: center;
+					margin-right: 5px;
+					vertical-align: middle;
+				}
+				.wpmi__premium-hide {
+					display: none;
+				}
+			</style>
+		<?php
 	}
 
 	public static function instance() {

@@ -27,6 +27,8 @@ class Models_Libraries {
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontawesome() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Foundation() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Themify() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Icomoon() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontello() );
 	}
 
 	public function add_library( $library ) {

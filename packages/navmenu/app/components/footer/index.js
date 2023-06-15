@@ -76,25 +76,26 @@ export default function Footer({ settings, onSave, onRemove }) {
 		onRemove();
 	};
 
-    return <div class="media-toolbar">
-        <div class="media-toolbar-secondary"></div>
+	return (
+		<>
+			<div class="media-toolbar-secondary"></div>
+			<div class="media-toolbar-primary search-form">
+				<button
+					type="button"
+					class="button media-button button-large button-primary media-button-select save"
+					onClick={save}
+				>
+					{__('Save', 'wp-menu-icons')}
+				</button>
 
-        <div class="media-toolbar-primary search-form">
-            <button
-                type="button"
-                class="button media-button button-large button-primary media-button-select save"
-                onClick={save}
-            >
-                {__('Save', 'wp-menu-icons')}
-            </button>
-
-            <button
-                type="button"
-                class="button media-button button-large button-secondary remove"
-                onClick={remove}
-            >
-                {__('Remove', 'wp-menu-icons')}
-            </button>
-        </div>
-    </div>
+				<button
+					type="button"
+					class="button media-button button-large button-secondary remove"
+					onClick={remove}
+				>
+					{__('Remove', 'wp-menu-icons')}
+				</button>
+			</div>
+		</>
+	);
 }

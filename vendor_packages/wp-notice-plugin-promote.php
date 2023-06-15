@@ -12,16 +12,16 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	/**
 	 * Notice premium sell
 	 */
-	define( 'WPMI_PROMOTE_PREMIUM_SELL_SLUG', 'quadmenu-pro' );
-	define( 'WPMI_PROMOTE_PREMIUM_SELL_NAME', 'QuadMenu PRO' );
-	define( 'WPMI_PROMOTE_PREMIUM_INSTALL_URL', 'https://quadmenu.com/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_PREMIUM_SELL_SLUG', 'wp-menu-cions-pro' );
+	define( 'WPMI_PROMOTE_PREMIUM_SELL_NAME', 'WP Menu Icons PRO' );
+	define( 'WPMI_PROMOTE_PREMIUM_INSTALL_URL', WPMI_PREMIUM_SELL_URL );
 	define( 'WPMI_PROMOTE_PREMIUM_SELL_URL', WPMI_PREMIUM_SELL_URL );
 	/**
 	 * Notice cross sell 1
 	 */
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_SLUG', 'wp-whatsapp-chat' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_NAME', 'Social Chat' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION', esc_html__( 'Social Chat allows your users to start a conversation from your website directly to your WhatsApp phone number with one click.', 'wp-menu-icons' ) );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_SLUG', 'quadmenu' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_NAME', 'QuadMenu' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION', esc_html__( 'The best responsive mega menu is designed for developers, offering customizable menu layouts and drag & drop fields for creating megamenus.', 'wp-menu-icons' ) );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_URL', 'https://quadlayers.com/product/whatsapp-chat/?utm_source=wpmi_admin' );
 	/**
 	 * Notice cross sell 2
@@ -58,19 +58,19 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 				),
 			),
 			array(
-				'plugin_slug'        => WPMI_PROMOTE_PREMIUM_SELL_SLUG,
-				'plugin_install_link'   => WPMI_PROMOTE_PREMIUM_INSTALL_URL,
-				'plugin_install_label'  => esc_html__(
+				'plugin_slug'          => WPMI_PROMOTE_PREMIUM_SELL_SLUG,
+				'plugin_install_link'  => WPMI_PROMOTE_PREMIUM_INSTALL_URL,
+				'plugin_install_label' => esc_html__(
 					'Purchase Now',
 					'wp-menu-icons'
 				),
-				'notice_delay'       => MONTH_IN_SECONDS,
-				'notice_logo'        => WPMI_PROMOTE_LOGO_SRC,
-				'notice_title'       => esc_html__(
+				'notice_delay'         => MONTH_IN_SECONDS,
+				'notice_logo'          => WPMI_PROMOTE_LOGO_SRC,
+				'notice_title'         => esc_html__(
 					'Hello! We have a special gift!',
 					'wp-menu-icons'
 				),
-				'notice_description' => sprintf(
+				'notice_description'   => sprintf(
 					esc_html__(
 						'Today we want to make you a special gift. Using the coupon code %1$s before the next 48 hours you can get a 20 percent discount on the premium version of the %2$s plugin.',
 						'wp-menu-icons'
@@ -78,8 +78,8 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 					'ADMINPANEL20%',
 					WPMI_PROMOTE_PREMIUM_SELL_NAME
 				),
-				'notice_more_link'   => WPMI_PROMOTE_PREMIUM_SELL_URL,
-				'notice_more_label'  => esc_html__(
+				'notice_more_link'     => WPMI_PROMOTE_PREMIUM_SELL_URL,
+				'notice_more_label'    => esc_html__(
 					'More info!',
 					'wp-menu-icons'
 				),

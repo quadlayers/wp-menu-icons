@@ -18,7 +18,7 @@ The menu of the site can be so simplest as a list of links without indentation o
 
 But most developers fight to provide more complex and more features in their mega menu plugins and forgot about the users that only need a very simple function that doesn't come in the default WordPress menu.
 
-That's the reason why we've created WP Menu Icons, a plugin that doesn't presume to be the best WordPress Mega Menu plugin, but does what it has to do: gives you the ability to include icons into your WordPress menu.
+That's the reason why we've created WP Menu Icons, a plugin that doesn't presume to be the best WordPress Premium plugin, but does what it has to do: gives you the ability to include icons into your WordPress menu.
 
 == Icons ==
 

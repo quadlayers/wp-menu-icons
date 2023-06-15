@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import { useMemo } from '@wordpress/element';
 
 import { useCurrentLibrary, useLibraries } from '@wpmi/store';
@@ -25,12 +26,16 @@ export default function LibraryList({ type }) {
 		}
 	};
 
+	const isUploaded = type === 'uploaded';
+
 	return filteredLibraries.map((library) => (
 		<li
 			key={library.name}
-			class={`wpmi__container-sidebar__item ${
-				isSelected(library.name) && 'is-active'
-			}`}
+			className={classnames(
+				'wpmi__container-sidebar__item',
+				isSelected(library.name) && 'is-active',
+				isUploaded && 'wpmi__premium-badge'
+			)}
 			onClick={() => setCurrentLibraryName(library.name)}
 		>
 			<i class="dashicons dashicons-star-filled" />

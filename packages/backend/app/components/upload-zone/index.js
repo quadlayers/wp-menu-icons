@@ -25,7 +25,7 @@ export default function UploadZone() {
 	};
 
 	return (
-		<div class="attachments wpmi__upload-zone" onClick={dropZoneOnClick}>
+		<div class="attachments wpmi__upload-zone wpmi__premium-field" onClick={dropZoneOnClick}>
 			<DropZone onFilesDrop={handleUpload} />
 
 			<div class="wpmi__upload-zone__drop-zone">

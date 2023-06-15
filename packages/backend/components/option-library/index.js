@@ -1,11 +1,17 @@
+import classnames from 'classnames';
+
 import { __ } from '@wordpress/i18n';
 
 export function OptionLibrary({ label, onChange, checked, disabled, type }) {
+	const isUploaded = type === 'uploaded';
+
 	return (
 		<div
-			className={`wpmi__option-library ${
-				disabled && 'wpmi__option-library--disabled'
-			}`}
+			className={classnames(
+				'wpmi__option-library',
+				disabled && 'wpmi__option-library--disabled',
+				isUploaded && 'wpmi__premium-badge'
+			)}
 		>
 			<input
 				type="checkbox"
@@ -14,8 +20,8 @@ export function OptionLibrary({ label, onChange, checked, disabled, type }) {
 				disabled={disabled}
 			/>
 			<span className="description">{label}</span>
-			{type === 'uploaded' && (
-				<i className="dashicons dashicons-upload" />
+			{isUploaded && (
+				<i className="dashicons dashicons-upload wpmi__premium-hide" />
 			)}
 		</div>
 	);

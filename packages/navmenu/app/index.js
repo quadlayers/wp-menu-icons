@@ -108,7 +108,7 @@ const App = () => {
 			show={show}
 			onClose={onClose}
 			premiumSelURL={WPMI_PREMIUM_SELL_URL}
-			premiumTitle="Mega Menu"
+			premiumTitle="Premium"
 			tabTitle={currentLibrary?.label}
 			toolbar
 			toolbarSearchIn={currentLibrary?.label}
