@@ -2,11 +2,13 @@
 
 namespace QuadLayers\WPMI\Models;
 
-use QuadLayers\WPMI\Models\Models_Base as Models_Base;
+use QuadLayers\WPMI\Models\Base;
+use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 /**
  * Models_Setting Class
  */
-class Models_Settings extends Models_Base {
+class Settings extends Base {
+	protected static $instance;
 
 	/**
 	 * Table name
@@ -25,7 +27,7 @@ class Models_Settings extends Models_Base {
 	public function get_args() {
 		$models_libraries = Models_Libraries::instance();
 		return array(
-			'active_libraries' => array_keys($models_libraries->get_libraries()),
+			'active_libraries' => array_keys( $models_libraries->get_libraries() ),
 		);
 	}
 
@@ -56,5 +58,12 @@ class Models_Settings extends Models_Base {
 	 */
 	public function delete_table() {
 		$this->delete_all();
+	}
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 }

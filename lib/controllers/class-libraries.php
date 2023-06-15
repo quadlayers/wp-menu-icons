@@ -2,8 +2,8 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Models_Libraries as Model_Libraries;
-use QuadLayers\WPMI\Models\Models_Settings;
+use QuadLayers\WPMI\Models\Libraries as Model_Libraries;
+use QuadLayers\WPMI\Models\Settings as Models_Settings;
 
 class Libraries {
 

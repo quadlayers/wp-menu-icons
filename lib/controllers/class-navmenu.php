@@ -2,9 +2,9 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Models_Libraries as Models_Libraries;
+use QuadLayers\WPMI\Models\Libraries as Models_Libraries;
 use QuadLayers\WPMI\Controllers\Libraries;
-use QuadLayers\WPMI\Models\Models_Navmenu;
+use QuadLayers\WPMI\Models\Navmenu as Models_Navmenu;
 
 class Navmenu {
 
@@ -55,9 +55,9 @@ class Navmenu {
 				$menu_font = sanitize_key( $_POST['wpmi_font'] );
 
 				if ( $menu_id > 0 ) {
-					$menu_model = new Models_Navmenu();
+					$models_menu = Models_Navmenu::instance();
 
-					$menu_model->save( $menu_id, $menu_font );
+					$models_menu->save( $menu_id, $menu_font );
 				}
 			}
 		}

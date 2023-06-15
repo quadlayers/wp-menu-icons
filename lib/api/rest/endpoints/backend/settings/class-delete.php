@@ -3,16 +3,16 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use \QuadLayers\WPMI\Models\Models_Settings;
+use QuadLayers\WPMI\Models\Settings as Models_Settings;
 
 class Delete extends Base {
 	protected static $route_path = 'settings';
 
 	public function callback( \WP_REST_Request $request ) {
 		try {
-			$setting_model = new Models_Settings();
+			$models_settings = Models_Settings::instance();
 
-			$settings = $setting_model->delete_table();
+			$settings = $models_settings->delete_table();
 
 			return $this->handle_response( $settings );
 		} catch ( \Throwable $error ) {

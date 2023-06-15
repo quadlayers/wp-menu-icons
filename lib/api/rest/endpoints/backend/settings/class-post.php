@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Settings;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use \QuadLayers\WPMI\Models\Models_Settings;
+use QuadLayers\WPMI\Models\Settings as Models_Settings;
 
 class Post extends Base {
 	protected static $route_path = 'settings';
@@ -17,9 +17,9 @@ class Post extends Base {
 				throw new \Exception( esc_html__( 'Body is not setted', 'wp-menu-icons' ), 400 );
 			}
 
-			$setting_model = new Models_Settings();
+			$models_settings = Models_Settings::instance();
 
-			$status = $setting_model->save( $body );
+			$status = $models_settings->save( $body );
 
 			return $this->handle_response( $status );
 		} catch ( \Throwable $error ) {

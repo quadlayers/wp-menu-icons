@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Navmenu;
 
 use QuadLayers\WPMI\Api\Rest\Endpoints\Backend\Base;
-use QuadLayers\WPMI\Models\Models_Navmenu;
+use QuadLayers\WPMI\Models\Navmenu as Models_Navmenu;
 
 class Get extends Base {
 	protected static $route_path = 'navmenu';
@@ -11,9 +11,9 @@ class Get extends Base {
 	public function callback( \WP_REST_Request $request ) {
 		$menu_id = $request->get_param( 'id' );
 
-		$menu_model = new Models_Navmenu();
+		$models_menu = Models_Navmenu::instance();
 
-		$library_name = $menu_model->get( $menu_id );
+		$library_name = $models_menu->get( $menu_id );
 
 		return $this->handle_response( $library_name );
 	}

@@ -2,7 +2,7 @@
 
 namespace QuadLayers\WPMI\Controllers;
 
-use QuadLayers\WPMI\Models\Models_Settings;
+use QuadLayers\WPMI\Models\Settings as Models_Settings;
 
 use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
@@ -28,7 +28,7 @@ class Backend {
 		$backend    = include WPMI_PLUGIN_DIR . 'build/backend/js/index.asset.php';
 		$navmenu    = include WPMI_PLUGIN_DIR . 'build/navmenu/js/index.asset.php';
 
-		$models_settings = new Models_Settings();
+		$models_settings = Models_Settings::instance();
 
 		wp_register_script(
 			'wpmi-components',

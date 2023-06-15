@@ -3,9 +3,10 @@
 namespace QuadLayers\WPMI\Models;
 
 /**
- * Models_Setting Class
+ * Models_Navmenu Class
  */
-class Models_Navmenu {
+class Navmenu {
+	protected static $instance;
 
 	/**
 	 * Table name
@@ -57,5 +58,12 @@ class Models_Navmenu {
 	 */
 	public function delete_table( $menu_id ) {
 		return delete_term_meta( $menu_id, $this->table );
+	}
+
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 }
