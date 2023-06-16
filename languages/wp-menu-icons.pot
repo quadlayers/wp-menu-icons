@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-15T15:03:56+00:00\n"
+"POT-Creation-Date: 2023-06-16T14:01:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.0\n"
 "X-Domain: wp-menu-icons\n"
@@ -127,7 +127,7 @@ msgid "Demo"
 msgstr ""
 
 #: build/backend/js/index.js:2
-msgid "Hi! We are Quadlayers, we are expanding our products portfolio, according to social trends!  So… enjoy our first version of %s. We are developing new features"
+msgid "Hello! We are Quadlayers, and we're currently enhancing our WP Menu Icons product. We're expanding its features to provide you with an even better experience. Stay tuned for the updates!"
 msgstr ""
 
 #: build/backend/js/index.js:2
