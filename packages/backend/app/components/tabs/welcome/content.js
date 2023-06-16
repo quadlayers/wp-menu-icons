@@ -27,16 +27,13 @@ const Content = () => {
 					<div className="welcome-header">
 						<h1>
 							{WPMI_PLUGIN_NAME}
-							<span style={{ fontSize: '24px', color: '#555' }}>
-
-								v{WPMI_PLUGIN_VERSION}
-							</span>
+							<span style={{ fontSize: '24px', color: '#555' }}> v{WPMI_PLUGIN_VERSION}</span>
 						</h1>
-						<div className="wpmi__about-text">
+						<div className="about-description">
 							<p>
 								{sprintf(
 									__(
-										'Hi! We are Quadlayers, we are expanding our products portfolio, according to social trends!  So… enjoy our first version of %s. We are developing new features',
+										'Hello! We are Quadlayers, and we\'re currently enhancing our WP Menu Icons product. We\'re expanding its features to provide you with an even better experience. Stay tuned for the updates!',
 										'wp-menu-icons'
 									),
 									WPMI_PLUGIN_NAME
@@ -45,7 +42,7 @@ const Content = () => {
 						</div>
 					</div>
 					<hr />
-					<div className="wpmi__feature-section">
+					<div className="feature-section">
 						<h3>{__('Premium', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -60,7 +57,7 @@ const Content = () => {
 							{__('Purchase Now', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="wpmi__feature-section">
+					<div className="feature-section">
 						<h3>{__('Demo', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -79,7 +76,7 @@ const Content = () => {
 							{__('View demo', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="wpmi__feature-section">
+					<div className="feature-section">
 						<h3>{__('Support', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -98,7 +95,7 @@ const Content = () => {
 							{__('Submit ticket', 'wp-menu-icons')}
 						</Button>
 					</div>
-					<div className="wpmi__feature-section">
+					<div className="feature-section">
 						<h3>{__('Comunnity', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(

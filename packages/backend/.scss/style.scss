@@ -2,14 +2,15 @@
 	max-width: 100% !important;
 }
 
-.wpmi__feature-section {
+.feature-section {
 	margin: 15px 0;
 }
 
-.wpmi__about-text {
-	display: flex;
-	gap    : 0.5em;
+.about-text {
+    display: flex;
+    gap: 0.5em;
 }
+
 //EditorSnackbars
 .components-editor-notices__snackbar {
 	bottom: 40px;

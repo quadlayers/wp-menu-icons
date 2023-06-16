@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
 
-export default function Footer({ settings, onSave, onRemove }) {
+export default function Footer({ settings, prevSettings, onSave, onRemove }) {
+
 	const save = (e) => {
 		e.preventDefault();
 
@@ -37,7 +38,7 @@ export default function Footer({ settings, onSave, onRemove }) {
 
 		i.className = 'menu-item-wpmi_icon ' + settings.icon;
 
-		plus.before(i);
+		plus.after(i);
 
 		onSave();
 	};
@@ -84,6 +85,7 @@ export default function Footer({ settings, onSave, onRemove }) {
 					type="button"
 					class="button media-button button-large button-primary media-button-select save"
 					onClick={save}
+					disabled={settings.icon === prevSettings.icon}
 				>
 					{__('Save', 'wp-menu-icons')}
 				</button>

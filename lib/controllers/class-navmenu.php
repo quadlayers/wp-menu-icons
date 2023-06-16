@@ -159,10 +159,10 @@ class Navmenu {
 	public function nav_menu_item_custom_title( $menu_item_id, $item, $depth, $args ) {
 		?>
 		<span class="menu-item-wpmi_open">
+			<i class="menu-item-wpmi_plus dashicons dashicons-plus"></i>
 			<?php if ( ! empty( $item->wpmi->icon ) ) : ?>
 				<i class="menu-item-wpmi_icon <?php echo esc_attr( $item->wpmi->icon ); ?>"></i>
 			<?php endif; ?>
-			<i class="menu-item-wpmi_plus dashicons dashicons-plus"></i>
 		</span>
 	<?php
 	}

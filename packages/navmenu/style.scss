@@ -27,7 +27,7 @@
 					top           : 0;
 					bottom        : 0;
 					left          : 0;
-					opacity       : 0.5;
+					// opacity       : 0.5;
 					text-align    : center;
 				}
 
@@ -37,9 +37,16 @@
 					margin        : 2px 0 0 0;
 				}
 
+				>i.menu-item-wpmi_icon,
+				>i.menu-item-wpmi_plus {
+					&::before {
+						background-color: #f6f7f7;
+					}
+				}
+
 				>i.menu-item-wpmi_icon+i.menu-item-wpmi_plus {
-					opacity: 0;
-					@include transform(scale(0.5));
+					// opacity: 0;
+					// @include transform(scale(0.5));
 				}
 
 				&:hover {

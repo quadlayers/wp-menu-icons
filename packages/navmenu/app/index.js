@@ -15,6 +15,10 @@ const App = () => {
 	const [show, setShow] = useState(false);
 	const [search, setSearch] = useState('');
 	const [settings, setSettings] = useState({});
+	const [prevSettings, setPrevSettings] = useState({});
+
+	const setIcon = (icon) => setSettings({ ...settings, icon });
+	const onClose = () => setShow(false);
 
 	const setup = () => {
 		const nodes = document.querySelectorAll('.menu-item-wpmi_open');
@@ -54,10 +58,6 @@ const App = () => {
 		}
 	};
 
-	const setIcon = (icon) => setSettings({ ...settings, icon });
-
-	const onClose = () => setShow(false);
-
 	const openModal = (node) => {
 		const id = node.id.split('-')[2];
 
@@ -83,8 +83,8 @@ const App = () => {
 			color,
 			id,
 		};
-
 		setSettings(_settings);
+		setPrevSettings(_settings);
 		setShow(true);
 	};
 
@@ -95,6 +95,7 @@ const App = () => {
 
 	const footerProps = {
 		settings,
+		prevSettings,
 		onSave: onClose,
 		onRemove: onClose,
 	};
@@ -119,7 +120,11 @@ const App = () => {
 			{isResolvingCurrentLibrary && isLoadingIconMap ? (
 				<Spinner />
 			) : iconMap.length > 0 ? (
-				<IconMap iconMap={filterIcons(search)} onChangeIcon={setIcon} />
+				<IconMap
+					iconMap={filterIcons(search)}
+					onChangeIcon={setIcon}
+					icon={settings.icon}
+				/>
 			) : (
 				__('The library does not contain icons', 'wp-menu-icons')
 			)}

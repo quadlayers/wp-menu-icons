@@ -20,15 +20,15 @@ const Header = () => {
 	return (
 		<div className="wrap about-wrap full-width-layout">
 			<h1>{WPMI_PLUGIN_NAME}</h1>
-			<p className="wpmi__about-text">
+			<p className="about-text">
 				{sprintf(
 					__(
-						'Thanks for using %s! We will do our best to offer you the best and improved communication experience with your users.'
+						'Thanks for using %s! We will do our absolute best to support you and fix all the issues.'
 					),
 					WPMI_PLUGIN_NAME
 				)}
 			</p>
-			<p className="wpmi__about-text">
+			<p className="about-text">
 				<a href={WPMI_PREMIUM_SELL_URL} target="__blank">
 					{__('Premium', 'wp-menu-icons')}
 				</a>
