@@ -15,7 +15,6 @@ class Libraries {
 		add_action(
 			'init',
 			function () {
-				// TODO: only register active libraries
 
 				$models_libraries = Model_Libraries::instance();
 
