@@ -24,14 +24,11 @@ class Libraries {
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontawesome() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Foundation() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Themify() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Icomoon() );
-		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontello() );
+		// $this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Icomoon() );
+		// $this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontello() );
 	}
 
-	/*
-	Allow SVG file upload
-	*/
-	function upload_mimes( $mimes = array() ) {
+	public function upload_mimes( $mimes = array() ) {
 		if ( current_user_can( 'edit_theme_options' ) ) {
 			$mimes['zip'] = 'application/zip';
 			$mimes['gz']  = 'application/x-gzip';

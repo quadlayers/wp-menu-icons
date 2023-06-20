@@ -9,10 +9,10 @@ if ( class_exists( 'QuadLayers\\WP_Plugin_Table_Links\\Load' ) ) {
 				'url'    => admin_url( 'nav-menus.php' ),
 				'target' => '_self',
 			),
-			array(
-				'text' => esc_html__( 'Premium', 'wp-menu-icons' ),
-				'url'  => WPMI_PREMIUM_SELL_URL,
-			),
+			// array(
+			// 	'text' => esc_html__( 'Premium', 'wp-menu-icons' ),
+			// 	'url'  => WPMI_PREMIUM_SELL_URL,
+			// ),
 			array(
 				'place' => 'row_meta',
 				'text'  => esc_html__( 'Support', 'wp-menu-icons' ),

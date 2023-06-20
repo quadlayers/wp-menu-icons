@@ -30,7 +30,7 @@ export default function Sidebar() {
 			<ul>
 				<LibraryList type="default" />
 			</ul>
-			<h3>{__('Upload', 'wp-menu-icons')}</h3>
+			{/* <h3>{__('Upload', 'wp-menu-icons')}</h3> */}
 			<ul>
 				<LibraryList type="uploaded" />
 			</ul>

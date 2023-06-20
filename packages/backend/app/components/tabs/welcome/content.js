@@ -42,7 +42,7 @@ const Content = () => {
 						</div>
 					</div>
 					<hr />
-					<div className="feature-section">
+					{/* <div className="feature-section">
 						<h3>{__('Premium', 'wp-menu-icons')}</h3>
 						<p>
 							{sprintf(
@@ -56,7 +56,7 @@ const Content = () => {
 						<Button href={WPMI_PREMIUM_SELL_URL} target="_blank">
 							{__('Purchase Now', 'wp-menu-icons')}
 						</Button>
-					</div>
+					</div> */}
 					<div className="feature-section">
 						<h3>{__('Demo', 'wp-menu-icons')}</h3>
 						<p>
