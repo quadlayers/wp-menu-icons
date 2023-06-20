@@ -116,7 +116,7 @@ const Content = () => {
 					</div>
 				</div>
 				<div className="column">
-					<img src={getPluginURL('/assets/backend/img/mobile.png')} />
+					<img src={getPluginURL('/assets/backend/img/wp-menu-icons-1.jpeg')} />
 				</div>
 			</div>
 		</div>

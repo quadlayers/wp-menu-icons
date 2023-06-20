@@ -6,7 +6,7 @@ if ( class_exists( 'QuadLayers\\WP_Plugin_Table_Links\\Load' ) ) {
 		array(
 			array(
 				'text'   => esc_html__( 'Settings', 'wp-menu-icons' ),
-				'url'    => admin_url( 'nav-menus.php' ),
+				'url'    => admin_url( 'admin.php?page=wp-menu-icons' ),
 				'target' => '_self',
 			),
 			// array(
