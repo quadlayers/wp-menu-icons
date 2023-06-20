@@ -5,7 +5,7 @@ Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, 
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 6.2
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,7 +34,7 @@ After installation go to Appearance > Menus and include your wordpress menu icon
 
 == Changelog ==
 
-= 3.1.0 =
+= 3.1.1 =
 
 * New icon libraries active setting
 * New modal developed in react
