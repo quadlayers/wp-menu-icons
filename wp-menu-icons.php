@@ -4,14 +4,14 @@
  * Plugin Name:             WP Menu Icons
  * Plugin URI:              https://quadlayers.com/portfolio/wp-menu-icons/
  * Description:             Add icons to your menu items.
- * Version:                 3.0.2
+ * Version:                 3.1.0
  * Text Domain:             wp-menu-icons
  * Author:                  QuadLayers
  * Author URI:              https://quadlayers.com
  * License:                 GPLv3
  * Domain Path:             /languages
  * Request at least:        4.7.0
- * Tested up to:            6.1
+ * Tested up to:            6.2
  * Requires PHP:            5.6
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WPMI_PLUGIN_NAME', 'WP Menu Icons' );
-define( 'WPMI_PLUGIN_VERSION', '3.0.2' );
+define( 'WPMI_PLUGIN_VERSION', '3.1.0' );
 define( 'WPMI_PLUGIN_FILE', __FILE__ );
 define( 'WPMI_PLUGIN_DIR', __DIR__ . DIRECTORY_SEPARATOR );
 define( 'WPMI_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
