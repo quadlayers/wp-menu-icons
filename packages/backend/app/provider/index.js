@@ -17,6 +17,7 @@ import {
 
 import Welcome from '../components/tabs/welcome';
 import Settings from '../components/tabs/settings';
+import Premium from '../components/tabs/premium';
 import { useBrowserParams } from './helpers';
 
 const { tabParam, setBrowserTabParam } = useBrowserParams();
@@ -62,6 +63,11 @@ const AppProvider = ({ children }) => {
 			name: 'settings',
 			href: 'settings',
 			content: Settings,
+		},
+		{
+			label: __('Premium', 'wp-menu-icons'),
+			name: 'premium',
+			content: Premium,
 		},
 	]);
 

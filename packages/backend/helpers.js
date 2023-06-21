@@ -20,6 +20,7 @@ export const WPMI_DOCUMENTATION_URL = wpmi_backend.WPMI_DOCUMENTATION_URL;
 export const WPMI_GROUP_URL = wpmi_backend.WPMI_GROUP_URL;
 export const WPMI_DEVELOPER = wpmi_backend.WPMI_DEVELOPER;
 export const WPMI_SETTING_MODEL = wpmi_backend.WPMI_SETTING_MODEL;
+export const WPMI_PURCHASE_URL = 'https://purcharseexample.com';
 
 /**
  * Handle the response from the apiFetch
