@@ -11,9 +11,9 @@ class Get extends Base {
 	public function callback( \WP_REST_Request $request ) {
 		$menu_id = $request->get_param( 'id' );
 
-		$models_menu = Models_Navmenu::instance();
+		$models_navmenu = Models_Navmenu::instance();
 
-		$library_name = $models_menu->get( $menu_id );
+		$library_name = $models_navmenu->get( $menu_id );
 
 		return $this->handle_response( $library_name );
 	}

@@ -4,6 +4,7 @@ namespace QuadLayers\WPMI\Controllers;
 
 use QuadLayers\WPMI\Models\Libraries as Model_Libraries;
 use QuadLayers\WPMI\Models\Settings as Models_Settings;
+use QuadLayers\WPMI\Models\Navmenu as Models_Navmenu;
 
 class Libraries {
 
@@ -63,16 +64,18 @@ class Libraries {
 			return false;
 		}
 
-		$menu_library = get_term_meta( $menu_id, WPMI_DB_KEY, true );
+		$models_navmenu = Models_Navmenu::instance();
 
-		if ( ! $menu_library ) {
+		$library_name = $models_navmenu->get( $menu_id );
+
+		if ( ! $library_name ) {
 			return false;
 		}
 
 		$active_libraries = self::get_active_libraries();
 
 		foreach ( $active_libraries as $name => $library ) {
-			if ( $name === $menu_library ) {
+			if ( $name === $library_name ) {
 				return $library;
 			}
 		}

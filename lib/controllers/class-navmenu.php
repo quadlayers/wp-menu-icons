@@ -55,9 +55,9 @@ class Navmenu {
 				$menu_font = sanitize_key( $_POST['wpmi_font'] );
 
 				if ( $menu_id > 0 ) {
-					$models_menu = Models_Navmenu::instance();
+					$models_navmenu = Models_Navmenu::instance();
 
-					$models_menu->save( $menu_id, $menu_font );
+					$models_navmenu->save( $menu_id, $menu_font );
 				}
 			}
 		}
