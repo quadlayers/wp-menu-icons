@@ -9,15 +9,21 @@ abstract class Base implements Route_Interface {
 	protected static $route_path = null;
 
 	public function __construct() {
-		register_rest_route(
-			Routes_Library::get_namespace(),
-			static::get_rest_route(),
-			array(
-				'args'                => static::get_rest_args(),
-				'methods'             => static::get_rest_method(),
-				'callback'            => array( $this, 'callback' ),
-				'permission_callback' => array( $this, 'get_rest_permission' ),
-			)
+
+		add_action(
+			'rest_api_init',
+			function() {
+				register_rest_route(
+					Routes_Library::get_namespace(),
+					static::get_rest_route(),
+					array(
+						'args'                => static::get_rest_args(),
+						'methods'             => static::get_rest_method(),
+						'callback'            => array( $this, 'callback' ),
+						'permission_callback' => array( $this, 'get_rest_permission' ),
+					)
+				);
+			}
 		);
 
 		Routes_Library::instance()->register( $this );
