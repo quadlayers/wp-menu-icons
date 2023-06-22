@@ -24,7 +24,7 @@ export default function LibraryManager({ show, onClose }) {
 			title={__('Libraries Manager', 'wp-menu-icons')}
 			onClose={onClose}
 			premiumSelURL={WPMI_PREMIUM_SELL_URL}
-			// premiumTitle="Premium"
+			premiumTitle="Premium"
 			tabTitle={currentLibrary?.label}
 			toolbar={iconMap.length > 0}
 			toolbarSearchIn={currentLibrary?.label}
@@ -41,7 +41,7 @@ export default function LibraryManager({ show, onClose }) {
 									marginTop: 19,
 								}}
 							>
-								{/* {createInterpolateElement(
+								{createInterpolateElement(
 									__(
 										'Help us to boost this plugin and <a>enjoy Premium benefits!</a>',
 										'wp-menu-icons'
@@ -54,7 +54,7 @@ export default function LibraryManager({ show, onClose }) {
 												rel="noopener noreferrer"
 											/>
 										),
-									} */}
+									}
 								)}
 							</div>
 						)}

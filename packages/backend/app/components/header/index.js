@@ -29,10 +29,10 @@ const Header = () => {
 				)}
 			</p>
 			<p className="about-text">
-				{/* <a href={WPMI_PREMIUM_SELL_URL} target="__blank">
+				<a href={WPMI_PREMIUM_SELL_URL} target="__blank">
 					{__('Premium', 'wp-menu-icons')}
 				</a>
-				| */}
+				|
 				<a href={WPMI_DEMO_URL} target="__blank">
 					{__('Demo', 'wp-menu-icons')}
 				</a>

@@ -24,8 +24,8 @@ class Libraries {
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontawesome() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Foundation() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Themify() );
-		// $this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Icomoon() );
-		// $this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontello() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Icomoon() );
+		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Fontello() );
 	}
 
 	public function upload_mimes( $mimes = array() ) {
