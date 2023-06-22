@@ -10,7 +10,7 @@ import Nav from '../../nav';
 import { useAppSlotContext } from '../../../structure/provider';
 import { WPMI_PURCHASE_URL, WPMI_DEMO_URL } from '../../../../helpers';
 import { getPluginURL } from '../../../../helpers';
-import Button from '../../../../components/button';
+import { Button } from '../../../../components/button';
 
 const Premium = () => {
 	const { Fill } = useAppSlotContext();

@@ -3,7 +3,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import Button from '../../../../components/button';
+import { Button } from '../../../../components/button';
 
 /**
  * Internal dependencies
@@ -27,13 +27,16 @@ const Content = () => {
 					<div className="welcome-header">
 						<h1>
 							{WPMI_PLUGIN_NAME}
-							<span style={{ fontSize: '24px', color: '#555' }}> v{WPMI_PLUGIN_VERSION}</span>
+							<span style={{ fontSize: '24px', color: '#555' }}>
+								{' '}
+								v{WPMI_PLUGIN_VERSION}
+							</span>
 						</h1>
 						<div className="about-description">
 							<p>
 								{sprintf(
 									__(
-										'Hello! We are Quadlayers, and we\'re currently enhancing our WP Menu Icons product. We\'re expanding its features to provide you with an even better experience. Stay tuned for the updates!',
+										"Hello! We are Quadlayers, and we're currently enhancing our WP Menu Icons product. We're expanding its features to provide you with an even better experience. Stay tuned for the updates!",
 										'wp-menu-icons'
 									),
 									WPMI_PLUGIN_NAME
@@ -116,7 +119,11 @@ const Content = () => {
 					</div>
 				</div>
 				<div className="column">
-					<img src={getPluginURL('/assets/backend/img/wp-menu-icons-1.jpeg')} />
+					<img
+						src={getPluginURL(
+							'/assets/backend/img/wp-menu-icons-1.jpeg'
+						)}
+					/>
 				</div>
 			</div>
 		</div>
