@@ -8,6 +8,7 @@ use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
 class Backend {
 
+
 	protected static $instance;
 	protected static $menu_slug = 'wp-menu-icons';
 
@@ -126,7 +127,7 @@ class Backend {
 	}
 
 	public function get_endpoints() {
-		$route_library   = Routes_Library::instance();
+	   $route_library    = Routes_Library::instance();
 		$endpoints       = $route_library->get_routes();
 		$endpoints_array = array();
 
@@ -137,7 +138,6 @@ class Backend {
 			if ( ! isset( $endpoints_array[ $endpoint_key ] ) ) {
 
 				$endpoints_array[ $endpoint_key ] = $endpoint::get_rest_path();
-
 			}
 		}
 
@@ -158,7 +158,7 @@ class Backend {
 	}
 
 	function add_menu() {
-		$menu_slug = self::get_menu_slug();
+	   $menu_slug = self::get_menu_slug();
 		add_menu_page(
 			WPMI_PLUGIN_NAME,
 			WPMI_PLUGIN_NAME,
@@ -182,51 +182,61 @@ class Backend {
 			"{$menu_slug}&tab=settings",
 			'__return_null'
 		);
+		add_submenu_page(
+			$menu_slug,
+			esc_html__( 'Premium', 'wp-menu-icons' ),
+			esc_html__( 'Premium', 'wp-menu-icons' ),
+			'manage_options',
+			"{$menu_slug}&tab=premium",
+			'__return_null'
+		);
 	}
 
 	public static function get_menu_slug() {
 		return self::$menu_slug;
 	}
 
-	public static function add_premium_js() {
-		?>
-			<script>
-				var WPMI_IS_PREMIUM = false;
-			</script>
-		<?php
+	public static function add_premium_js() {       ?>
+		<script>
+			var WPMI_IS_PREMIUM = false;
+		</script>
+	<?php
 	}
 
 	public static function add_premium_css() {
 		?>
-			<style>
-				.wpmi__premium-field {
-					opacity: 0.5;
-					pointer-events: none;
-				}
-				.wpmi__premium-field input,
-				.wpmi__premium-field textarea,
-				.wpmi__premium-field select {
-					background-color: #eee;
-				}
-				.wpmi__premium-badge::before {
-					content: "PRO";
-					display: inline-block;
-					font-size: 10px;
-					color: #ffffff;
-					background-color: #f57c00;
-					border-radius: 3px;
-					width: 30px;
-					height: 15px;
-					line-height: 15px;
-					text-align: center;
-					margin-right: 5px;
-					vertical-align: middle;
-				}
-				.wpmi__premium-hide {
-					display: none;
-				}
-			</style>
-		<?php
+		<style>
+			.wpmi__premium-field {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+
+			.wpmi__premium-field input,
+			.wpmi__premium-field textarea,
+			.wpmi__premium-field select {
+				background-color: #eee;
+			}
+
+			.wpmi__premium-badge::before {
+				content: "PRO";
+				display: inline-block;
+				font-size: 10px;
+				color: #ffffff;
+				background-color: #f57c00;
+				border-radius: 3px;
+				width: 30px;
+				height: 15px;
+				line-height: 15px;
+				text-align: center;
+				margin-right: 5px;
+				vertical-align: middle;
+			}
+
+			.wpmi__premium-hide {
+				display: none;
+			}
+		</style>
+<?php
 	}
 
 	public static function instance() {

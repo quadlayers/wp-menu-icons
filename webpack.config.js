@@ -83,8 +83,8 @@ module.exports = [
 		output: {
 			filename: '[name].js',
 			path: path.resolve(__dirname, 'build/backend/js/'),
-			// library: ['wpmi', 'backend'],
-			// libraryTarget: 'window',
+			library: ['wpmi', 'backend'],
+			libraryTarget: 'window',
 		},
 		optimization: {
 			minimize: isProduction,
@@ -289,7 +289,11 @@ module.exports = [
 	{
 		...config,
 		entry: {
-			index: path.resolve(__dirname, 'packages', './components/style.scss'),
+			index: path.resolve(
+				__dirname,
+				'packages',
+				'./components/style.scss'
+			),
 		},
 		output: {
 			filename: '[name].js',

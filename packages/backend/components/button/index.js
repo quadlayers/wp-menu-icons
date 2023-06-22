@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-const Button = ({
+export const Button = ({
 	isSecondary,
 	href,
 	title,
@@ -26,5 +26,3 @@ const Button = ({
 		</TagName>
 	);
 };
-
-export default Button;

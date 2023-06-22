@@ -3,7 +3,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import Button from '../../../../components/button';
+import { Button } from '../../../../components/button';
 
 /**
  * Internal dependencies
