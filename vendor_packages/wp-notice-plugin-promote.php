@@ -4,7 +4,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	/**
 	 *  Promote constants
 	 */
-	define( 'WPMI_PROMOTE_LOGO_SRC', plugins_url( '/assets/backend/img/logo.jpg', WPMI_PLUGIN_FILE ) );
+	define( 'WPMI_PROMOTE_LOGO_SRC', plugins_url( '/assets/backend/img/logo.png', WPMI_PLUGIN_FILE ) );
 	/**
 	 * Notice review
 	 */
@@ -22,7 +22,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_SLUG', 'quadmenu' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_NAME', 'QuadMenu' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION', esc_html__( 'The best responsive mega menu is designed for developers, offering customizable menu layouts and drag & drop fields for creating megamenus.', 'wp-menu-icons' ) );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_URL', 'https://quadlayers.com/product/whatsapp-chat/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_URL', 'https://quadmenu.com/?utm_source=wpmi_admin' );
 	/**
 	 * Notice cross sell 2
 	 */
