@@ -18,14 +18,14 @@ export default function Sidebar() {
 
 	if (!hasLibraries) {
 		return (
-			<div class="wpmi__container-sidebar">
+			<div className="wpmi__container-sidebar">
 				<Spinner />
 			</div>
 		);
 	}
 
 	return (
-		<div class="wpmi__container-sidebar">
+		<div className="wpmi__container-sidebar">
 			<h3>{__('Default', 'wp-menu-icons')}</h3>
 			<ul>
 				<LibraryList type="default" />

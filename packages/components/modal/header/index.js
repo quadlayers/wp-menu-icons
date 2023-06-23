@@ -8,21 +8,21 @@ export default function Header({
 }) {
 	return (
 		<>
-			<div class="media-frame-title">
+			<div className="media-frame-title">
 				<h1>{title}</h1>
 			</div>
 
-			<div class="media-frame-router">
-				<div class="media-router">
+			<div className="media-frame-router">
+				<div className="media-router">
 					<a
 						href={premiumSelURL}
-						class="media-menu-item"
+						className="media-menu-item"
 						target="_blank"
 					>
 						{premiumTitle}
 					</a>
 
-					<a href="#" class="media-menu-item active">
+					<a href="#" className="media-menu-item active">
 						{tabTitle}
 					</a>
 				</div>

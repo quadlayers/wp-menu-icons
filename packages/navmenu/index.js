@@ -21,7 +21,11 @@ onDocumentLoaded(() => {
 		`posttype-${WPMI_PREFIX}-themes`
 	);
 
-	render(<App />, container);
+	if (container) {
+		render(<App />, container);
+	}
 
-	if (metabox_container) render(<MetaBox />, metabox_container);
+	if (metabox_container) {
+		render(<MetaBox />, metabox_container);
+	}
 });

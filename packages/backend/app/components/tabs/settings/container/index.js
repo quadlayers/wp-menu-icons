@@ -69,7 +69,7 @@ const Settings = () => {
 	return (
 		<Wrap>
 			<form onSubmit={submitSettings}>
-				<table class="form-table widefat striped">
+				<table className="form-table widefat striped">
 					<tbody>
 						<tr>
 							<td colSpan={100}>
@@ -95,7 +95,7 @@ const Settings = () => {
 												}
 											/>
 										))}
-										<span class="description">
+										<span className="description">
 											{__(
 												'Uncheck to disable libraries in navigation menu.',
 												'wp-menu-icons'

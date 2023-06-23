@@ -1,13 +1,13 @@
 export default function IconPreview({ icon, settings }) {
-    return <div class="wpmi__icon-preview attachment-info">
-        <div class="thumbnail thumbnail-image">
-            <i class={ icon }></i>
+    return <div className="wpmi__icon-preview attachment-info">
+        <div className="thumbnail thumbnail-image">
+            <i className={ icon }></i>
         </div>
 
-        <div class="details">
-            <div class="filename">{ icon }</div>
-            <div class="uploaded">{ settings.align }</div>
-            <div class="file-size">{ settings.size } <em>(em)</em></div>
+        <div className="details">
+            <div className="filename">{ icon }</div>
+            <div className="uploaded">{ settings.align }</div>
+            <div className="file-size">{ settings.size } <em>(em)</em></div>
         </div>
     </div>
 }

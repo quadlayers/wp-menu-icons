@@ -10,7 +10,7 @@ export default function IconMap({ iconMap, onChangeIcon, icon: currentIcon }) {
 	};
 
 	return (
-		<div class="wpmi__icon-map">
+		<div className="wpmi__icon-map">
 			<ul tabindex="-1">
 				{iconMap.map((icon, i) => (
 					<li
@@ -20,22 +20,22 @@ export default function IconMap({ iconMap, onChangeIcon, icon: currentIcon }) {
 						aria-label={icon}
 						aria-checked="false"
 						data-id={i}
-						class={classnames(
+						className={classnames(
 							'attachment save-ready',
 							'icon _' + formatClassIcon(icon),
 							formatClassIcon(icon) === currentIcon && 'selected'
 						)}
 						onClick={() => handleClick(icon)}
 					>
-						<div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
-							<div class="thumbnail">
-								<i class={icon}></i>
+						<div className="attachment-preview js--select-attachment type-image subtype-jpeg landscape">
+							<div className="thumbnail">
+								<i className={icon}></i>
 							</div>
 						</div>
 
-						<button type="button" class="check" tabindex="-1">
-							<span class="media-modal-icon"></span>
-							<span class="screen-reader-text">
+						<button type="button" className="check" tabindex="-1">
+							<span className="media-modal-icon"></span>
+							<span className="screen-reader-text">
 								{__('Deselect', 'wp-menu-icons')}
 							</span>
 						</button>

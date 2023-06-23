@@ -3,8 +3,8 @@ import { __ } from '@wordpress/i18n';
 export default function Toolbar({ searchIn, onChange, sidebarPosition }) {
 	const handleSearchChange = e => onChange(e.target.value)
 
-    return <div class={`media-toolbar wpmi__modal__sidebar--${sidebarPosition}`}>
-        <div class="media-toolbar-secondary">
+    return <div className={`media-toolbar wpmi__modal__sidebar--${sidebarPosition}`}>
+        <div className="media-toolbar-secondary">
             <p>
                 <em>
                     {sprintf(
@@ -18,12 +18,12 @@ export default function Toolbar({ searchIn, onChange, sidebarPosition }) {
             </p>
         </div>
 
-        <div class="media-toolbar-primary search-form">
+        <div className="media-toolbar-primary search-form">
             <input
                 type="search"
                 placeholder="Search..."
                 id="media-search-input"
-                class="search"
+                className="search"
                 onChange={handleSearchChange}
             />
         </div>

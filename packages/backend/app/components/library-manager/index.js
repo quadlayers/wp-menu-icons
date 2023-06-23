@@ -33,7 +33,7 @@ export default function LibraryManager({ show, onClose }) {
 			sidebarPosition="left"
 			footerContent={
 				<>
-					<div class="media-toolbar-secondary">
+					<div className="media-toolbar-secondary">
 						{window?.WPMI_IS_PREMIUM === false && (
 							<div
 								style={{
@@ -59,11 +59,11 @@ export default function LibraryManager({ show, onClose }) {
 							</div>
 						)}
 					</div>
-					<div class="media-toolbar-primary search-form">
+					<div className="media-toolbar-primary search-form">
 						<button
 							disabled={true}
 							type="button"
-							class="button media-button button-large button-primary media-button-select save"
+							className="button media-button button-large button-primary media-button-select save"
 							// onClick={save}
 						>
 							{__('Delete', 'wp-menu-icons')}

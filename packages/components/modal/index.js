@@ -29,7 +29,7 @@ const Modal = ({
 	sidebarPosition = 'right',
 	footerContent
 }) => {
-	const ref = useRef();	
+	const ref = useRef();
 
 	useEffect(() => {
 		const handleMouseClick = (e) => {
@@ -69,17 +69,17 @@ const Modal = ({
 			<div id={pluginPrefix + '_modal'}>
 				<button
 					type="button"
-					class="media-modal-close close"
+					className="media-modal-close close"
 					onClick={onClose}
 				>
-					<span class="media-modal-icon">
-						<span class="screen-reader-text">
+					<span className="media-modal-icon">
+						<span className="screen-reader-text">
 							{__('Close media panel', 'wp-menu-icons')}
 						</span>
 					</span>
 				</button>
 
-				<div class="media-frame mode-select wp-core-ui hide-menu">
+				<div className="media-frame mode-select wp-core-ui hide-menu">
 					<Header
 						title={title}
 						tabTitle={tabTitle}
@@ -96,7 +96,7 @@ const Modal = ({
 					>
 						{ children }
 					</Body>
-					
+
 					<Footer>
 						{ footerContent }
 					</Footer>

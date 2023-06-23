@@ -38,11 +38,11 @@ export default function LibraryList({ type }) {
 			)}
 			onClick={() => setCurrentLibraryName(library.name)}
 		>
-			<i class="dashicons dashicons-star-filled" />
+			<i className="dashicons dashicons-star-filled" />
 			{library.label}
 			{type === 'uploaded' && (
 				<i
-					class={`dashicons dashicons-${iconAction(library)}`}
+					className={`dashicons dashicons-${iconAction(library)}`}
 					onClick={(e) => handleDelete(e, library)}
 				/>
 			)}

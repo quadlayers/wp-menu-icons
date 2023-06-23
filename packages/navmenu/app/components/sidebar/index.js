@@ -9,14 +9,14 @@ export default function Sidebar({ settings, onChangeSettings }) {
     return <>
         <div
             tabindex="0"
-            class="attachment-details save-ready"
+            className="attachment-details save-ready"
         >
             <h2>
                 {__('Icon', 'wp-menu-icons')}
-                <span class="settings-save-status">
-                    <span class="spinner"></span>
+                <span className="settings-save-status">
+                    <span className="spinner"></span>
 
-                    <span class="saved">
+                    <span className="saved">
                         {__(
                             'Saved',
                             'wp-menu-icons'

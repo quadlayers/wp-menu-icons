@@ -19,14 +19,14 @@ export default function IconSettings({ settings, onChangeSettings }) {
 	const setColor = (value) => onChangeSettings({ ...settings, color: value.hex });
 
 	return (
-		<div class="attachment-info">
+		<div className="attachment-info">
 			<form>
-				<label class="setting">
+				<label className="setting">
 					<span>{__('Hide Label', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-label'}
-						class={WPMI_PREFIX + '-input'}
+						className={WPMI_PREFIX + '-input'}
 						name="label"
 						onChange={handleSettingsChange}
 						value={settings.label}
@@ -36,12 +36,12 @@ export default function IconSettings({ settings, onChangeSettings }) {
 					</select>
 				</label>
 
-				<label class="setting">
+				<label className="setting">
 					<span>{__('Position', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-position'}
-						class={WPMI_PREFIX + '-input'}
+						className={WPMI_PREFIX + '-input'}
 						name="position"
 						onChange={handleSettingsChange}
 						value={settings.position}
@@ -55,12 +55,12 @@ export default function IconSettings({ settings, onChangeSettings }) {
 					</select>
 				</label>
 
-				<label class="setting">
+				<label className="setting">
 					<span>{__('Vertical Align', 'wp-menu-icons')}</span>
 
 					<select
 						id={WPMI_PREFIX + '-input-align'}
-						class={WPMI_PREFIX + '-input'}
+						className={WPMI_PREFIX + '-input'}
 						name="align"
 						onChange={handleSettingsChange}
 						value={settings.align}
@@ -71,14 +71,14 @@ export default function IconSettings({ settings, onChangeSettings }) {
 					</select>
 				</label>
 
-				<label class="setting">
+				<label className="setting">
 					<span>
 						{__('Size', 'wp-menu-icons')} <em>(em)</em>
 					</span>
 
 					<input
 						id={WPMI_PREFIX + '-input-size'}
-						class={WPMI_PREFIX + '-input'}
+						className={WPMI_PREFIX + '-input'}
 						name="size"
 						type="number"
 						min="0.1"
@@ -93,8 +93,8 @@ export default function IconSettings({ settings, onChangeSettings }) {
 					onChangeComplete={setColor}
 				/>
 
-				<label class="wpmi-color-picker">
-					<span class="container"></span>
+				<label className="wpmi-color-picker">
+					<span className="container"></span>
 				</label>
 			</form>
 		</div>

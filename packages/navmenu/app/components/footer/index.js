@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import { __ } from '@wordpress/i18n';
 
 export default function Footer({ settings, prevSettings, onSave, onRemove }) {
@@ -79,20 +80,20 @@ export default function Footer({ settings, prevSettings, onSave, onRemove }) {
 
 	return (
 		<>
-			<div class="media-toolbar-secondary"></div>
-			<div class="media-toolbar-primary search-form">
+			<div className="media-toolbar-secondary"></div>
+			<div className="media-toolbar-primary search-form">
 				<button
 					type="button"
-					class="button media-button button-large button-primary media-button-select save"
+					className="button media-button button-large button-primary media-button-select save"
 					onClick={save}
-					disabled={settings.icon === prevSettings.icon}
+					disabled={isEqual(settings, prevSettings)}
 				>
 					{__('Save', 'wp-menu-icons')}
 				</button>
 
 				<button
 					type="button"
-					class="button media-button button-large button-secondary remove"
+					className="button media-button button-large button-secondary remove"
 					onClick={remove}
 				>
 					{__('Remove', 'wp-menu-icons')}

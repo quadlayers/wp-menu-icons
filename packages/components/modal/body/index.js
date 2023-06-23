@@ -4,18 +4,18 @@ import Sidebar from "../sidebar";
 import Toolbar from "../toolbar";
 
 export default function Body({ children, toolbar, onChangeToolbar, toolbarSearchIn, sidebarContent, sidebarPosition }) {
-    return <div class="media-modal-content">
-        <div class="media-frame mode-select wp-core-ui">
-            <div class="media-frame-menu">
-                <div class="media-menu">
-                    <a href="#" class="media-menu-item active">
+    return <div className="media-modal-content">
+        <div className="media-frame mode-select wp-core-ui">
+            <div className="media-frame-menu">
+                <div className="media-menu">
+                    <a href="#" className="media-menu-item active">
                         {__('Featured Image', 'wp-menu-icons')}
                     </a>
                 </div>
             </div>
 
-            <div class="media-frame-content" data-columns="8">
-                <div class="attachments-browser">
+            <div className="media-frame-content" data-columns="8">
+                <div className="attachments-browser">
                     {toolbar &&
                         <Toolbar
                             onChange={onChangeToolbar}
@@ -24,7 +24,7 @@ export default function Body({ children, toolbar, onChangeToolbar, toolbarSearch
                         />
                     }
 
-                    <div class={`attachments wpmi__modal__sidebar--${sidebarPosition}`}>
+                    <div className={`attachments wpmi__modal__sidebar--${sidebarPosition}`}>
                         { children }
                     </div>
 

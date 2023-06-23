@@ -1,20 +1,26 @@
+import classNames from 'classnames';
+
 import { __ } from '@wordpress/i18n';
 import { useEffect } from '@wordpress/element';
 
 import { Spinner } from '@wpmi/components';
 
-import { useLibraries, useCurrentLibrary, useSettingsEntities } from '@wpmi/store';
+import {
+	useLibraries,
+	useCurrentLibrary,
+	useSettingsEntities,
+} from '@wpmi/store';
 
-const { WPMI_PREFIX } = wpmi_navmenu
+const { WPMI_PREFIX } = wpmi_navmenu;
 
-const menuEdit = document.querySelector('.menu-edit')
+const menuEdit = document.querySelector('.menu-edit');
 
 const inputMenuFont = document.createElement('input');
 inputMenuFont.type = 'hidden';
 inputMenuFont.id = 'wpmi_font';
 inputMenuFont.name = 'wpmi_font';
 
-if (menuEdit) menuEdit.append(inputMenuFont)
+if (menuEdit) menuEdit.append(inputMenuFont);
 
 export default function MetaBox() {
 	const {
@@ -30,7 +36,10 @@ export default function MetaBox() {
 
 	const handleOptionChange = (e) => setCurrentLibraryName(e.target.value);
 
-	const activeLibraries = () => libraries.filter(library => settings.active_libraries.includes(library.name))
+	const activeLibraries = () =>
+		libraries.filter((library) =>
+			settings.active_libraries.includes(library.name)
+		);
 
 	useEffect(() => {
 		if (currentLibrary) inputMenuFont.value = currentLibraryName;
@@ -47,30 +56,37 @@ export default function MetaBox() {
 	return (
 		<div
 			id={`tabs-panel-${WPMI_PREFIX}-themes`}
-			class="tabs-panel tabs-panel-active"
+			className="tabs-panel tabs-panel-active"
 		>
 			<ul
 				id={WPMI_PREFIX + '-themes-checklist'}
-				class="categorychecklist form-no-clear"
+				className="categorychecklist form-no-clear"
 			>
-				{activeLibraries().map((library) => (
-					<li
-						key={library.name}
-					>
-						<label class="menu-item-title">
-							<input
-								type="radio"
-								class={WPMI_PREFIX + '-item-checkbox'}
-								name={WPMI_PREFIX + '_font'}
-								disabled={!library.is_loaded}
-								value={library.name}
-								checked={library.name === currentLibraryName}
-								onChange={handleOptionChange}
-							/>
-							{library.label}
-						</label>
-					</li>
-				))}
+				{activeLibraries().map(({ name, label, type, is_loaded }) => {
+					const isUploaded = type === 'uploaded';
+
+					return (
+						<li key={name}>
+							<label
+								className={classNames(
+									'menu-item-title',
+									isUploaded && 'wpmi__premium-badge'
+								)}
+							>
+								<input
+									type="radio"
+									className={WPMI_PREFIX + '-item-checkbox'}
+									name={WPMI_PREFIX + '_font'}
+									disabled={!is_loaded}
+									value={name}
+									checked={name === currentLibraryName}
+									onChange={handleOptionChange}
+								/>
+								{label}
+							</label>
+						</li>
+					);
+				})}
 			</ul>
 		</div>
 	);
