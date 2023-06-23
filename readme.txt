@@ -9,28 +9,45 @@ Stable tag: 3.1.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-WP Menu Icons allows you to add icons to your items WordPress menu.
+WP Menu Icons allows you to add icons to your WordPress menu items.
 
 == Description ==
-[Documentation](https://quadlayers.com/portfolio/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/) | [Github](https://github.com/quadlayers/wp-menu-icons)
+[Premium](https://quadlayers.com/portfolio/wp-menu-icons/) | [Documentation](https://quadlayers.com/portfolio/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/) | [Github](https://github.com/quadlayers/wp-menu-icons)
 
-The menu of the site can be so simplest as a list of links without indentation or the complex place in a site.
+The site's menu can be as simple as a list of links without indentation, or as complex as a major feature within the site.
 
-But most developers fight to provide more complex and more features in their mega menu plugins and forgot about the users that only need a very simple function that doesn't come in the default WordPress menu.
+However, many developers strive to provide more complex features in their mega menu plugins, often overlooking users who only need a very basic function that isn't included in the default WordPress menu.
 
-That's the reason why we've created WP Menu Icons, a plugin that doesn't presume to be the best WordPress Premium plugin, but does what it has to do: gives you the ability to include icons into your WordPress menu.
+This is why we created WP Menu Icons, a plugin that doesn't claim to be the best premium WordPress plugin, but does what it's designed to do: it gives you the ability to incorporate icons into your WordPress menu.
 
-== Icons ==
+== WP Menu Icons PRO ==
+
+The premium version of the WP Menu Icons plugin offers you some important extra features that allow full control of the menu icons customization process.
+
+Features included:
+
+> * Ability to upload icons from IcoMoon
+> * Ability to upload icons from Fontello
+> * More features coming soon
+
+== Icons Libraries ==
+
+> * Dashicons
+> * Elegant Icons
+> * Elusive
+> * FontAwsome
+> * Foundation
+> * Themify
 
 == Screenshots ==
 
 == Installation ==
 
-1. Go to the Plugins page in WordPress
-1. Search for "WP Menu Icons"
-1. Click "Install"
+1. Go to the Plugins page in WordPress.
+2. Search for "WP Menu Icons."
+3. Click "Install."
 
-After installation go to Appearance > Menus and include your wordpress menu icons.
+After installation, go to Appearance > Menus and add your WordPress menu icons.
 
 == Changelog ==
 
