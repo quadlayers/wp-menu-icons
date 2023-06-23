@@ -17,6 +17,7 @@ import {
 
 import Welcome from '../components/tabs/welcome';
 import Settings from '../components/tabs/settings';
+import Suggestions from '../components/tabs/suggestions';
 import Premium from '../components/tabs/premium';
 import { useBrowserParams } from './helpers';
 
@@ -68,6 +69,12 @@ const AppProvider = ({ children }) => {
 			label: __('Premium', 'wp-menu-icons'),
 			name: 'premium',
 			content: Premium,
+		},
+		{
+			label: __('Suggestions', 'wp-menu-icons'),
+			name: 'suggestions',
+			href: 'suggestions',
+			content: Suggestions,
 		},
 	]);
 

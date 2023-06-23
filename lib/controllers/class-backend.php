@@ -8,7 +8,6 @@ use QuadLayers\WPMI\Api\Rest\Routes_Library as Routes_Library;
 
 class Backend {
 
-
 	protected static $instance;
 	protected static $menu_slug = 'wp-menu-icons';
 
@@ -145,6 +144,7 @@ class Backend {
 	}
 
 	public function enqueue_scripts() {
+
 		if ( ! isset( $_GET['page'] ) || $_GET['page'] !== self::get_menu_slug() ) {
 			return;
 		}
@@ -157,7 +157,7 @@ class Backend {
 		wp_enqueue_style( 'wpmi-navmenu' );
 	}
 
-	function add_menu() {
+	public function add_menu() {
 	   $menu_slug = self::get_menu_slug();
 		add_menu_page(
 			WPMI_PLUGIN_NAME,
@@ -190,13 +190,22 @@ class Backend {
 			"{$menu_slug}&tab=premium",
 			'__return_null'
 		);
+		add_submenu_page(
+			$menu_slug,
+			esc_html__( 'Suggestions', 'wp-menu-icons' ),
+			esc_html__( 'Suggestions', 'wp-menu-icons' ),
+			'manage_options',
+			"{$menu_slug}&tab=suggestions",
+			'__return_null'
+		);
 	}
 
 	public static function get_menu_slug() {
 		return self::$menu_slug;
 	}
 
-	public static function add_premium_js() {       ?>
+	public static function add_premium_js() {
+		?>
 		<script>
 			var WPMI_IS_PREMIUM = false;
 		</script>

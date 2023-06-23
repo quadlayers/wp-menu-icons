@@ -22,7 +22,7 @@ import {
 const Content = () => {
 	return (
 		<div className="wrap about-wrap full-width-layout">
-			<div className="has-2-columns wpmi__is-wider-left">
+			<div className="has-2-columns is-wider-left">
 				<div className="column">
 					<div className="welcome-header">
 						<h1>

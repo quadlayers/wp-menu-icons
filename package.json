@@ -84,5 +84,8 @@
 		"webpack": "^5.82.0",
 		"webpack-remove-empty-scripts": "^0.8.4",
 		"zip-a-folder": "^1.1.5"
+	},
+	"dependencies": {
+		"wp-plugin-suggestions": "^1.1.0"
 	}
 }
