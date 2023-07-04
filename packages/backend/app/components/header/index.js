@@ -19,26 +19,26 @@ import {
 const Header = () => {
 	return (
 		<div className="wrap about-wrap full-width-layout">
-			<h1>{WPMI_PLUGIN_NAME}</h1>
+			<h1>{ WPMI_PLUGIN_NAME }</h1>
 			<p className="about-text">
-				{sprintf(
+				{ sprintf(
 					__(
 						'Thanks for using %s! We will do our absolute best to support you and fix all the issues.'
 					),
 					WPMI_PLUGIN_NAME
-				)}
+				) }
 			</p>
 			<p className="about-text">
-				<a href={WPMI_PREMIUM_SELL_URL} target="__blank">
-					{__('Premium', 'wp-menu-icons')}
+				<a href={ WPMI_PREMIUM_SELL_URL } target="__blank">
+					{ __( 'Premium', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href={WPMI_DEMO_URL} target="__blank">
-					{__('Demo', 'wp-menu-icons')}
+				<a href={ WPMI_DEMO_URL } target="__blank">
+					{ __( 'Demo', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href={WPMI_DOCUMENTATION_URL} target="__blank">
-					{__('Documentation', 'wp-menu-icons')}
+				<a href={ WPMI_DOCUMENTATION_URL } target="__blank">
+					{ __( 'Documentation', 'wp-menu-icons' ) }
 				</a>
 			</p>
 			<a
@@ -47,11 +47,11 @@ const Header = () => {
 				rel="noreferrer"
 			>
 				<div
-					style={{
-						backgroundImage: `url(${getPluginURL(
+					style={ {
+						backgroundImage: `url(${ getPluginURL(
 							'/assets/backend/img/quadlayers.jpg'
-						)})`,
-					}}
+						) })`,
+					} }
 					className="wp-badge wpmi__quadlayers__logo"
 				>
 					QuadLayers

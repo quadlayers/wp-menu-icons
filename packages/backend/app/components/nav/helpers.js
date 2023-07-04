@@ -4,20 +4,20 @@
  * @param {string} currentTab
  */
 
-export const activeSubmenuItems = (currentTab) => {
+export const activeSubmenuItems = ( currentTab ) => {
 	const menu = Array.from(
-		document.querySelector('#toplevel_page_wp-menu-icons .wp-submenu')
+		document.querySelector( '#toplevel_page_wp-menu-icons .wp-submenu' )
 			.children
 	);
 	// capitalize the first letter of the string
 	const CapitalizedFirstLetterString =
-		currentTab[0].toUpperCase() + currentTab.slice(1).toLowerCase();
+		currentTab[ 0 ].toUpperCase() + currentTab.slice( 1 ).toLowerCase();
 
-	menu.forEach((nav) => {
-		if (nav.innerText.trim() === CapitalizedFirstLetterString) {
-			nav.classList.add('current');
+	menu.forEach( ( nav ) => {
+		if ( nav.innerText.trim() === CapitalizedFirstLetterString ) {
+			nav.classList.add( 'current' );
 		} else {
-			nav.classList.remove('current');
+			nav.classList.remove( 'current' );
 		}
-	});
+	} );
 };

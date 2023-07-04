@@ -1,1 +1,1 @@
-export const formatClassIcon = (icon) => icon.trim().replace(/ /g, '_');
+export const formatClassIcon = ( icon ) => icon.trim().replace( / /g, '_' );

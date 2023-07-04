@@ -24,119 +24,122 @@ const Settings = () => {
 
 	const { libraries, hasResolvedLibraries } = useLibraries();
 
-	const [show, setShow] = useState(false);
+	const [ show, setShow ] = useState( false );
 
-	const [isLoading, setIsLoading] = useState(false);
+	const [ isLoading, setIsLoading ] = useState( false );
 
-	const prevSettings = usePrevious(settings);
+	const prevSettings = usePrevious( settings );
 
-	const isModified = !isEqual(settings, prevSettings);
+	const isModified = ! isEqual( settings, prevSettings );
 
-	const togleActiveLibraries = (libraryName) => {
-		const isIncluded = settings.active_libraries?.includes(libraryName);
+	const togleActiveLibraries = ( libraryName ) => {
+		const isIncluded = settings.active_libraries?.includes( libraryName );
 		let newArray = [];
 
-		if (isIncluded) {
+		if ( isIncluded ) {
 			newArray = settings.active_libraries?.filter(
-				(library) => library !== libraryName
+				( library ) => library !== libraryName
 			);
 		} else {
-			newArray = [...settings.active_libraries, libraryName];
+			newArray = [ ...settings.active_libraries, libraryName ];
 		}
 
-		setSettings({
+		setSettings( {
 			...settings,
 			active_libraries: newArray,
-		});
+		} );
 	};
 
-	const submitSettings = (e) => {
+	const submitSettings = ( e ) => {
 		e.preventDefault();
-		setIsLoading(true);
+		setIsLoading( true );
 
-		saveSettings(settings).then(() => setIsLoading(false));
+		saveSettings( settings ).then( () => setIsLoading( false ) );
 	};
 
-	const onClose = () => setShow(false);
+	const onClose = () => setShow( false );
 
-	const isActive = (library) =>
-		!!settings.active_libraries?.includes(library.name);
+	const isActive = ( library ) =>
+		!! settings.active_libraries?.includes( library.name );
 
-	if (!hasResolvedSettings && !hasResolvedLibraries) {
+	if ( ! hasResolvedSettings && ! hasResolvedLibraries ) {
 		return <Spinner />;
 	}
 
 	return (
 		<Wrap>
-			<form onSubmit={submitSettings}>
+			<form onSubmit={ submitSettings }>
 				<table className="form-table widefat striped">
 					<tbody>
 						<tr>
-							<td colSpan={100}>
+							<td colSpan={ 100 }>
 								<table>
 									<th>
-										{__(
+										{ __(
 											'Activate Libraries',
 											'wp-menu-icons'
-										)}
+										) }
 									</th>
 									<td>
-										{libraries.map((library) => (
+										{ libraries.map( ( library ) => (
 											<OptionLibrary
-												key={library.name}
-												label={library.label}
-												type={library.type}
-												disabled={!library.is_loaded}
-												checked={isActive(library)}
-												onChange={() =>
+												key={ library.name }
+												label={ library.label }
+												type={ library.type }
+												disabled={ ! library.is_loaded }
+												checked={ isActive( library ) }
+												onChange={ () =>
 													togleActiveLibraries(
 														library.name
 													)
 												}
 											/>
-										))}
+										) ) }
 										<span className="description">
-											{__(
+											{ __(
 												'Uncheck to disable libraries in navigation menu.',
 												'wp-menu-icons'
-											)}
+											) }
 										</span>
 									</td>
 								</table>
 							</td>
 						</tr>
-						<tr colSpan={3}>
+						<tr colSpan={ 3 }>
 							<td>
 								<button
-									disabled={!isModified}
+									disabled={ ! isModified }
 									type="submit"
 									className="button button-primary secondary"
 								>
-									{__('Save', 'wp-menu-icons')}
+									{ __( 'Save', 'wp-menu-icons' ) }
 								</button>
 
 								<button
-									style={{ marginLeft: '10px' }}
+									style={ { marginLeft: '10px' } }
 									className="button button-primary secondary"
-									onClick={(e) => {
+									onClick={ ( e ) => {
 										e.preventDefault();
-										setShow(true);
-									}}
+										setShow( true );
+									} }
 								>
-									{__('Libraries Manager', 'wp-menu-icons')}
+									{ __(
+										'Libraries Manager',
+										'wp-menu-icons'
+									) }
 								</button>
-								{isLoading && (
+								{ isLoading && (
 									<span
-										style={{ visibility: 'visible' }}
+										style={ { visibility: 'visible' } }
 										className="spinner"
 									/>
-								)}
+								) }
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
-			<LibraryManager show={show} onClose={onClose} />
+			<LibraryManager show={ show } onClose={ onClose } />
 		</Wrap>
 	);
 };

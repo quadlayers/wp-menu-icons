@@ -1,7 +1,7 @@
-export default function Footer({ children }) {
+export default function Footer( { children } ) {
 	return (
 		<div className="media-frame-toolbar">
-			<div className="media-toolbar">{children}</div>
+			<div className="media-toolbar">{ children }</div>
 		</div>
 	);
 }

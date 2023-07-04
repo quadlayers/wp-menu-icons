@@ -1,7 +1,7 @@
 import { INITIAL_STATE } from './constants';
 
-export default function reducer(state = INITIAL_STATE, action) {
-	switch (action.type) {
+export default function reducer( state = INITIAL_STATE, action ) {
+	switch ( action.type ) {
 		case 'SET_LIBRARIES':
 			return { ...state, libraries: action.payload };
 

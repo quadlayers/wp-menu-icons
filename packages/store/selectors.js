@@ -1,18 +1,20 @@
-export const getLibraries = (state) => {
+export const getLibraries = ( state ) => {
 	return state.libraries;
 };
 
-export const getCurrentLibraryName = (state) => {
+export const getCurrentLibraryName = ( state ) => {
 	return state.currentLibraryName;
 };
 
-export const getCurrentLibrary = state => {
-	const { libraries, currentLibraryName } = state
-	const currentLibrary = libraries.find(library => library.name == currentLibraryName)
+export const getCurrentLibrary = ( state ) => {
+	const { libraries, currentLibraryName } = state;
+	const currentLibrary = libraries.find(
+		( library ) => library.name === currentLibraryName
+	);
 
-	return currentLibrary
-}
+	return currentLibrary;
+};
 
-export const getSettings = (state) => {
+export const getSettings = ( state ) => {
 	return state.settings;
 };

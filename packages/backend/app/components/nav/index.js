@@ -1,53 +1,53 @@
-import classnames from "classnames";
+import classnames from 'classnames';
 
 /**
  * WordPress dependencies
  */
 
-import { useEffect } from "@wordpress/element";
+import { useEffect } from '@wordpress/element';
 /**
  * Internal dependencies
  */
 
-import { useAppContext } from "../../provider";
-import { activeSubmenuItems } from "./helpers";
+import { useAppContext } from '../../provider';
+import { activeSubmenuItems } from './helpers';
 
 function Nav() {
 	const { currentTab, setCurrentTab, tabs } = useAppContext();
 
-	useEffect(() => {
-		activeSubmenuItems(currentTab);
-	}, [currentTab]);
+	useEffect( () => {
+		activeSubmenuItems( currentTab );
+	}, [ currentTab ] );
 
 	return (
 		<div className="wrap about-wrap full-width-layout">
 			<ul className="nav-tab-wrapper">
-				{tabs.map(({ label, name }, index) => {
+				{ tabs.map( ( { label, name } ) => {
 					return (
 						<li
-							key={name}
+							key={ name }
 							className="wpmi__nav-tab-li"
-							onClick={(e) => {
+							onClick={ ( e ) => {
 								e.preventDefault();
 								e.stopPropagation();
-								setCurrentTab(name);
-							}}
+								setCurrentTab( name );
+							} }
 						>
 							<a
 								href="#"
-								className={classnames(
-									"nav-tab",
-									currentTab === name && "nav-tab-active"
-								)}
-								onClick={(e) => {
+								className={ classnames(
+									'nav-tab',
+									currentTab === name && 'nav-tab-active'
+								) }
+								onClick={ ( e ) => {
 									e.preventDefault();
-								}}
+								} }
 							>
-								{label}
+								{ label }
 							</a>
 						</li>
 					);
-				})}
+				} ) }
 			</ul>
 		</div>
 	);

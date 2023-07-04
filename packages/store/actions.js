@@ -2,12 +2,11 @@ import { __, sprintf } from '@wordpress/i18n';
 import { store as noticesStore } from '@wordpress/notices';
 import {
 	fetchRestApiDeleteLibrary,
-	fetchRestApiLibraries,
 	fetchRestApiLibrariesUpload,
 	fetchRestApiSettings,
 } from './helpers';
 
-export const setLibraries = (libraries) => {
+export const setLibraries = ( libraries ) => {
 	return {
 		type: 'SET_LIBRARIES',
 		payload: libraries,
@@ -15,44 +14,43 @@ export const setLibraries = (libraries) => {
 };
 
 export const uploadLibrary =
-	({ body, headers }) =>
-	async ({ registry, dispatch, select, resolveSelect }) => {
-		const libraries = select.getLibraries();
-
-		const response = await fetchRestApiLibrariesUpload({
+	( { body, headers } ) =>
+	async ( { registry, dispatch, select } ) => {
+		const response = await fetchRestApiLibrariesUpload( {
 			method: 'POST',
 			body,
 			headers,
-		});
+		} );
 
-		if (response?.code || response?.code === 0) {
+		if ( response?.code || response?.code === 0 ) {
 			registry
-				.dispatch(noticesStore)
+				.dispatch( noticesStore )
 				.createSuccessNotice(
-					sprintf('%s: %s', response.code, response.message),
+					sprintf( '%1$s: %2$s', response.code, response.message ),
 					{ type: 'snackbar' }
 				);
 			return false;
 		}
+		const libraries = select.getLibraries();
 
 		const newLibrary = response;
 
 		const i = libraries.findIndex(
-			(library) => library.name === newLibrary.name
+			( library ) => library.name === newLibrary.name
 		);
 
-		libraries[i] = {
-			...libraries[i],
+		libraries[ i ] = {
+			...libraries[ i ],
 			json_file_url: newLibrary.json_file_url,
 			stylesheet_file_url: newLibrary.stylesheet_file_url,
 			is_loaded: true,
 		};
 
-		dispatch.setLibraries([...libraries]);
-		dispatch.setCurrentLibraryName(newLibrary.name);
+		dispatch.setLibraries( [ ...libraries ] );
+		dispatch.setCurrentLibraryName( newLibrary.name );
 
 		registry
-			.dispatch(noticesStore)
+			.dispatch( noticesStore )
 			.createSuccessNotice(
 				__(
 					'The library has been created successfully.',
@@ -65,59 +63,58 @@ export const uploadLibrary =
 	};
 
 export const deleteLibrary =
-	(libraryName) =>
-	async ({ registry, dispatch, select, resolveSelect }) => {
-		const libraries = select.getLibraries();
+	( libraryName ) =>
+	async ( { registry, dispatch, select } ) => {
+		const response = await fetchRestApiDeleteLibrary( libraryName );
 
-		const response = await fetchRestApiDeleteLibrary(libraryName);
-
-		if (response?.code) {
+		if ( response?.code ) {
 			registry
-				.dispatch(noticesStore)
+				.dispatch( noticesStore )
 				.createSuccessNotice(
-					sprintf('%s: %s', response.code, response.message),
+					sprintf( '%1$s: %2$s', response.code, response.message ),
 					{ type: 'snackbar' }
 				);
 			return false;
 		}
+		const libraries = select.getLibraries();
 
 		const i = libraries.findIndex(
-			(library) => library.name === libraryName
+			( library ) => library.name === libraryName
 		);
 
-		libraries[i] = {
-			...libraries[i],
+		libraries[ i ] = {
+			...libraries[ i ],
 			// stylesheet_file_url: false,
 			stylesheet_file_url: false,
 			json_url: false,
 			is_loaded: false,
 		};
 
-		dispatch.setLibraries([...libraries]);
+		dispatch.setLibraries( [ ...libraries ] );
 
 		registry
-			.dispatch(noticesStore)
+			.dispatch( noticesStore )
 			.createSuccessNotice(
 				sprintf(
-					__('%s succesfully deleted!', 'wp-menu-icons'),
-					libraries[i].label
+					__( '%s succesfully deleted!', 'wp-menu-icons' ),
+					libraries[ i ].label
 				),
 				{ type: 'snackbar' }
 			);
 
-		dispatch.setCurrentLibraryName(libraryName);
+		dispatch.setCurrentLibraryName( libraryName );
 
 		return true;
 	};
 
-export const setCurrentLibraryName = (libraryName) => {
+export const setCurrentLibraryName = ( libraryName ) => {
 	return {
 		type: 'SET_CURRENT_LIBRARY_NAME',
 		payload: libraryName,
 	};
 };
 
-export const setSettings = (settings) => {
+export const setSettings = ( settings ) => {
 	return {
 		type: 'SET_SETTINGS',
 		payload: settings,
@@ -125,32 +122,32 @@ export const setSettings = (settings) => {
 };
 
 export const saveSettings =
-	(settings) =>
-	async ({ registry, dispatch }) => {
-		const response = await fetchRestApiSettings({
+	( settings ) =>
+	async ( { registry, dispatch } ) => {
+		const response = await fetchRestApiSettings( {
 			method: 'POST',
 			data: settings,
-		});
+		} );
 
-		if (response?.code) {
+		if ( response?.code ) {
 			registry
-				.dispatch(noticesStore)
+				.dispatch( noticesStore )
 				.createSuccessNotice(
-					sprintf('%s: %s', response.code, response.message),
+					sprintf( '%1$s: %2$s', response.code, response.message ),
 					{ type: 'snackbar' }
 				);
 			return false;
 		}
 
-		dispatch.setSettings({
+		dispatch.setSettings( {
 			...settings,
-		});
+		} );
 
 		registry
-			.dispatch(noticesStore)
-			.createSuccessNotice(__('Settings saved.', 'wp-menu-icons'), {
+			.dispatch( noticesStore )
+			.createSuccessNotice( __( 'Settings saved.', 'wp-menu-icons' ), {
 				type: 'snackbar',
-			});
+			} );
 
 		return true;
 	};

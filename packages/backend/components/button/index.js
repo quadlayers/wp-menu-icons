@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-export const Button = ({
+export const Button = ( {
 	isSecondary,
 	href,
 	title,
@@ -8,21 +8,21 @@ export const Button = ({
 	tagName = 'a',
 	className,
 	children,
-}) => {
+} ) => {
 	const TagName = tagName;
 
 	return (
 		<TagName
-			className={classnames(
+			className={ classnames(
 				'wpmi__button',
 				isSecondary && 'wpmi__button--secondary',
 				className
-			)}
-			href={href}
-			target={target}
-			title={title}
+			) }
+			href={ href }
+			target={ target }
+			title={ title }
 		>
-			{children}
+			{ children }
 		</TagName>
 	);
 };

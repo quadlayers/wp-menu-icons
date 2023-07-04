@@ -1,29 +1,28 @@
-import { __ } from '@wordpress/i18n';
-
-export default function Header({
+export default function Header( {
 	title,
 	premiumSelURL,
 	premiumTitle,
 	tabTitle,
-}) {
+} ) {
 	return (
 		<>
 			<div className="media-frame-title">
-				<h1>{title}</h1>
+				<h1>{ title }</h1>
 			</div>
 
 			<div className="media-frame-router">
 				<div className="media-router">
 					<a
-						href={premiumSelURL}
+						href={ premiumSelURL }
 						className="media-menu-item"
 						target="_blank"
+						rel="noreferrer"
 					>
-						{premiumTitle}
+						{ premiumTitle }
 					</a>
 
 					<a href="#" className="media-menu-item active">
-						{tabTitle}
+						{ tabTitle }
 					</a>
 				</div>
 			</div>

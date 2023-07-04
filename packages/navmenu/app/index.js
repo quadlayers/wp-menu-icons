@@ -1,10 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect } from '@wordpress/element';
 import { useCurrentLibrary, useCurrentLibraryIconMap } from '@wpmi/store';
-import { Modal, IconMap } from '@wpmi/components';
+import { Modal, IconMap, Spinner } from '@wpmi/components';
 import Sidebar from './components/sidebar';
 import Footer from './components/footer';
 
+// eslint-disable-next-line
 const { WPMI_PLUGIN_NAME, WPMI_PREFIX, WPMI_PREMIUM_SELL_URL } = wpmi_navmenu;
 
 const App = () => {
@@ -12,67 +13,67 @@ const App = () => {
 	const { iconMap, isLoadingIconMap, filterIcons } =
 		useCurrentLibraryIconMap();
 
-	const [show, setShow] = useState(false);
-	const [search, setSearch] = useState('');
-	const [settings, setSettings] = useState({});
-	const [prevSettings, setPrevSettings] = useState({});
+	const [ show, setShow ] = useState( false );
+	const [ search, setSearch ] = useState( '' );
+	const [ settings, setSettings ] = useState( {} );
+	const [ prevSettings, setPrevSettings ] = useState( {} );
 
-	const setIcon = (icon) => setSettings({ ...settings, icon });
-	const onClose = () => setShow(false);
+	const setIcon = ( icon ) => setSettings( { ...settings, icon } );
+	const onClose = () => setShow( false );
 
 	const setup = () => {
-		const nodes = document.querySelectorAll('.menu-item-wpmi_open');
+		const nodes = document.querySelectorAll( '.menu-item-wpmi_open' );
 
-		nodes.forEach((node) =>
-			node.addEventListener('click', (e) => {
+		nodes.forEach( ( node ) =>
+			node.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
 
-				const li = e.target.closest('li');
+				const li = e.target.closest( 'li' );
 
-				if (li) openModal(li);
-			})
+				if ( li ) openModal( li );
+			} )
 		);
 
-		const ul = document.getElementById('menu-to-edit');
+		const ul = document.getElementById( 'menu-to-edit' );
 
-		if (ul) {
-			const observer = new MutationObserver((mutationsList, observer) => {
-				for (let mutation of mutationsList) {
-					if (mutation.type === 'childList') {
-						for (let node of mutation.addedNodes) {
+		if ( ul ) {
+			const observer = new MutationObserver( ( mutationsList ) => {
+				for ( const mutation of mutationsList ) {
+					if ( mutation.type === 'childList' ) {
+						for ( const node of mutation.addedNodes ) {
 							const iconNode = node.querySelector(
 								'.menu-item-wpmi_open'
 							);
 
-							iconNode.addEventListener('click', (e) => {
+							iconNode.addEventListener( 'click', ( e ) => {
 								e.preventDefault();
 
-								openModal(node);
-							});
+								openModal( node );
+							} );
 						}
 					}
 				}
-			});
+			} );
 
-			observer.observe(ul, { childList: true });
+			observer.observe( ul, { childList: true } );
 		}
 	};
 
-	const openModal = (node) => {
-		const id = node.id.split('-')[2];
+	const openModal = ( node ) => {
+		const id = node.id.split( '-' )[ 2 ];
 
 		const settingsNode = document.getElementById(
 			'menu-item-settings-' + id
 		);
 
-		const label = settingsNode.querySelector('#wpmi-input-label').value;
+		const label = settingsNode.querySelector( '#wpmi-input-label' ).value;
 		const position = settingsNode.querySelector(
 			'#wpmi-input-position'
 		).value;
-		const align = settingsNode.querySelector('#wpmi-input-align').value;
-		const size = settingsNode.querySelector('#wpmi-input-size').value;
-		const icon = settingsNode.querySelector('#wpmi-input-icon').value;
-		const color = settingsNode.querySelector('#wpmi-input-color').value;
+		const align = settingsNode.querySelector( '#wpmi-input-align' ).value;
+		const size = settingsNode.querySelector( '#wpmi-input-size' ).value;
+		const icon = settingsNode.querySelector( '#wpmi-input-icon' ).value;
+		const color = settingsNode.querySelector( '#wpmi-input-color' ).value;
 
 		const _settings = {
 			label,
@@ -83,9 +84,9 @@ const App = () => {
 			color,
 			id,
 		};
-		setSettings(_settings);
-		setPrevSettings(_settings);
-		setShow(true);
+		setSettings( _settings );
+		setPrevSettings( _settings );
+		setShow( true );
 	};
 
 	const sidebarProps = {
@@ -100,34 +101,34 @@ const App = () => {
 		onRemove: onClose,
 	};
 
-	useEffect(setup, []);
+	useEffect( setup, [] );
 
 	return (
 		<Modal
-			title={WPMI_PLUGIN_NAME}
-			pluginPrefix={WPMI_PREFIX}
-			show={show}
-			onClose={onClose}
-			premiumSelURL={WPMI_PREMIUM_SELL_URL}
+			title={ WPMI_PLUGIN_NAME }
+			pluginPrefix={ WPMI_PREFIX }
+			show={ show }
+			onClose={ onClose }
+			premiumSelURL={ WPMI_PREMIUM_SELL_URL }
 			premiumTitle="Premium"
-			tabTitle={currentLibrary?.label}
+			tabTitle={ currentLibrary?.label }
 			toolbar
-			toolbarSearchIn={currentLibrary?.label}
-			onChangeToolbar={setSearch}
-			sidebarContent={<Sidebar {...sidebarProps} />}
-			footerContent={<Footer {...footerProps} />}
+			toolbarSearchIn={ currentLibrary?.label }
+			onChangeToolbar={ setSearch }
+			sidebarContent={ <Sidebar { ...sidebarProps } /> }
+			footerContent={ <Footer { ...footerProps } /> }
 		>
-			{isResolvingCurrentLibrary && isLoadingIconMap ? (
+			{ isResolvingCurrentLibrary && isLoadingIconMap ? (
 				<Spinner />
 			) : iconMap.length > 0 ? (
 				<IconMap
-					iconMap={filterIcons(search)}
-					onChangeIcon={setIcon}
-					icon={settings.icon}
+					iconMap={ filterIcons( search ) }
+					onChangeIcon={ setIcon }
+					icon={ settings.icon }
 				/>
 			) : (
-				__('The library does not contain icons', 'wp-menu-icons')
-			)}
+				__( 'The library does not contain icons', 'wp-menu-icons' )
+			) }
 		</Modal>
 	);
 };

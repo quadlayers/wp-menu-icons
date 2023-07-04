@@ -2,67 +2,62 @@
  * WordPress dependencies
  */
 
-import {
-	useContext,
-	createContext,
-	useRef,
-	useCallback,
-} from '@wordpress/element';
+import { useContext, createContext, useRef, useMemo } from '@wordpress/element';
 
 import { SlotFillProvider, createSlotFill } from '@wordpress/components';
 
 import { useInstanceId } from '@wordpress/compose';
 
-const AppSlotContext = createContext({
+const AppSlotContext = createContext( {
 	Slot: {
-		Header: ({ children }) => children || null,
-		Footer: ({ children }) => children || null,
-		Content: ({ children }) => children || null,
-		Aside: ({ children }) => children || null,
-		Navigation: ({ children }) => children || null,
+		Header: ( { children } ) => children || null,
+		Footer: ( { children } ) => children || null,
+		Content: ( { children } ) => children || null,
+		Aside: ( { children } ) => children || null,
+		Navigation: ( { children } ) => children || null,
 	},
 	Fill: {
-		Header: ({ children }) => children || null,
-		Footer: ({ children }) => children || null,
-		Content: ({ children }) => children || null,
-		Aside: ({ children }) => children || null,
-		Navigation: ({ children }) => children || null,
+		Header: ( { children } ) => children || null,
+		Footer: ( { children } ) => children || null,
+		Content: ( { children } ) => children || null,
+		Aside: ( { children } ) => children || null,
+		Navigation: ( { children } ) => children || null,
 	},
-});
+} );
 
 const useAppSlotContext = () => {
-	return useContext(AppSlotContext);
+	return useContext( AppSlotContext );
 };
 
-const AppSlotProvider = (props) => {
+const AppSlotProvider = ( props ) => {
 	const containerRef = useRef();
 	const { children } = props;
 
-	const instanceId = useInstanceId(AppSlotProvider);
-	const slotName = `wp-menu-icons.admin.Control.Slot.${instanceId}`;
+	const instanceId = useInstanceId( AppSlotProvider );
+	const slotName = `wp-menu-icons.admin.Control.Slot.${ instanceId }`;
 
 	const Slot = {};
 	const Fill = {};
 
-	const { Fill: FillHeader, Slot: SlotHeader } = useCallback(
-		createSlotFill(`${slotName}.header`),
-		[slotName]
+	const { Fill: FillHeader, Slot: SlotHeader } = useMemo(
+		() => createSlotFill( `${ slotName }.header` ),
+		[ slotName ]
 	);
-	const { Fill: FillNavigation, Slot: SlotNavigation } = useCallback(
-		createSlotFill(`${slotName}.navigation`),
-		[slotName]
+	const { Fill: FillNavigation, Slot: SlotNavigation } = useMemo(
+		() => createSlotFill( `${ slotName }.navigation` ),
+		[ slotName ]
 	);
-	const { Fill: FillContent, Slot: SlotContent } = useCallback(
-		createSlotFill(`${slotName}content`),
-		[slotName]
+	const { Fill: FillContent, Slot: SlotContent } = useMemo(
+		() => createSlotFill( `${ slotName }content` ),
+		[ slotName ]
 	);
-	const { Fill: FillAside, Slot: SlotAside } = useCallback(
-		createSlotFill(`${slotName}.aside`),
-		[slotName]
+	const { Fill: FillAside, Slot: SlotAside } = useMemo(
+		() => createSlotFill( `${ slotName }.aside` ),
+		[ slotName ]
 	);
-	const { Fill: FillFooter, Slot: SlotFooter } = useCallback(
-		createSlotFill(`${slotName}.footer`),
-		[slotName]
+	const { Fill: FillFooter, Slot: SlotFooter } = useMemo(
+		() => createSlotFill( `${ slotName }.footer` ),
+		[ slotName ]
 	);
 
 	Slot.Header = SlotHeader;
@@ -83,13 +78,13 @@ const AppSlotProvider = (props) => {
 	return (
 		<SlotFillProvider>
 			<AppSlotContext.Provider
-				value={{
+				value={ {
 					Slot,
 					Fill,
 					containerRef,
-				}}
+				} }
 			>
-				{children}
+				{ children }
 			</AppSlotContext.Provider>
 		</SlotFillProvider>
 	);

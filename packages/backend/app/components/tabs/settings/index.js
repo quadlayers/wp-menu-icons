@@ -2,10 +2,10 @@
  * Internal dependencies
  */
 
-import Header from "../../header";
-import Nav from "../../nav";
-import { useAppSlotContext } from "../../../structure/provider";
-import Container from "./container";
+import Header from '../../header';
+import Nav from '../../nav';
+import { useAppSlotContext } from '../../../structure/provider';
+import Container from './container';
 
 const Settings = () => {
 	const { Fill } = useAppSlotContext();

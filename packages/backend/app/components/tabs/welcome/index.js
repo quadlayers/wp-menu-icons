@@ -1,13 +1,13 @@
-import Header from "../../header";
-import Nav from "../../nav";
+import Header from '../../header';
+import Nav from '../../nav';
 
 /**
  * Internal dependencies
  */
 
-import { useAppSlotContext } from "../../../structure/provider";
+import { useAppSlotContext } from '../../../structure/provider';
 
-import Content from "./content";
+import Content from './content';
 
 const Welcome = () => {
 	const { Fill } = useAppSlotContext();

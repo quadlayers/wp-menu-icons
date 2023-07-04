@@ -9,7 +9,7 @@ export * from './app';
 export * from './components';
 export * from './helpers';
 
-onDocumentLoaded(() => {
-	const target = document.getElementById('wpbody-content');
-	render(<App />, target);
-});
+onDocumentLoaded( () => {
+	const target = document.getElementById( 'wpbody-content' );
+	render( <App />, target );
+} );

@@ -9,23 +9,24 @@ import MetaBox from './metabox';
 
 import { onDocumentLoaded } from './helpers';
 
+// eslint-disable-next-line
 const { WPMI_PREFIX } = wpmi_navmenu;
 
-onDocumentLoaded(() => {
-	const container = document.createElement('div');
-	const body = document.querySelector('body');
+onDocumentLoaded( () => {
+	const app = document.createElement( 'div' );
+	const body = document.querySelector( 'body' );
 
-	body.append(container);
+	body.append( app );
 
-	const metabox_container = document.getElementById(
-		`posttype-${WPMI_PREFIX}-themes`
+	const metabox = document.getElementById(
+		`posttype-${ WPMI_PREFIX }-themes`
 	);
 
-	if (container) {
-		render(<App />, container);
+	if ( app ) {
+		render( <App />, app );
 	}
 
-	if (metabox_container) {
-		render(<MetaBox />, metabox_container);
+	if ( metabox ) {
+		render( <MetaBox />, metabox );
 	}
-});
+} );
