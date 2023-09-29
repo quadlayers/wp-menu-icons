@@ -29,7 +29,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_SLUG', 'insta-gallery' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_NAME', 'Instagram Feed Gallery' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Instagram Feed Gallery is the most user-friendly Instagram plugin for WordPress. It was built to simplify the integration, to reduce time to have sites updated and to be on track with social media that shows best growing indicators.', 'wp-menu-icons' ) );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/portfolio/instagram-feed/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/products/instagram-feed/?utm_source=wpmi_admin' );
 
 	new \QuadLayers\WP_Notice_Plugin_Promote\Load(
 		WPMI_PLUGIN_FILE,

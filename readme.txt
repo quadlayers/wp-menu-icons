@@ -1,18 +1,18 @@
 == WP Menu Icons ===
 Contributors: quadlayers
-Donate link: https://quadlayers.com/portfolio/wp-menu-icons/
+Donate link: https://quadlayers.com/products/wp-menu-icons/
 Tags: wordpress menu, wp menu, wordpress menu icons, wp menu icons, menu icons, megamenu, mega menu
 Requires at least: 4.7
 Requires PHP: 5.6
 Tested up to: 6.3
-Stable tag: 3.1.6
+Stable tag: 3.1.7
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 WP Menu Icons allows you to add icons to your WordPress menu items.
 
 == Description ==
-[Premium](https://quadlayers.com/portfolio/wp-menu-icons/) | [Documentation](https://quadlayers.com/portfolio/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/) | [Github](https://github.com/quadlayers/wp-menu-icons)
+[Premium](https://quadlayers.com/products/wp-menu-icons/) | [Documentation](https://quadlayers.com/products/wp-menu-icons/) | [QuadMenu](https://wordpress.org/plugins/quadmenu) | [Community](https://www.facebook.com/groups/quadlayers/) | [Github](https://github.com/quadlayers/wp-menu-icons)
 
 The site's menu can be as simple as a list of links without indentation, or as complex as a major feature within the site.
 
@@ -50,6 +50,9 @@ Features included:
 After installation, go to Appearance > Menus and add your WordPress menu icons.
 
 == Changelog ==
+
+= 3.1.7 =
+* Update portfolio link
 
 = 3.1.6 =
 * WordPress compatibility

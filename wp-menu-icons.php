@@ -2,9 +2,9 @@
 
 /**
  * Plugin Name:             WP Menu Icons
- * Plugin URI:              https://quadlayers.com/portfolio/wp-menu-icons/
+ * Plugin URI:              https://quadlayers.com/products/wp-menu-icons/
  * Description:             Add icons to your menu items.
- * Version:                 3.1.6
+ * Version:                 3.1.7
  * Text Domain:             wp-menu-icons
  * Author:                  QuadLayers
  * Author URI:              https://quadlayers.com
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WPMI_PLUGIN_NAME', 'WP Menu Icons' );
-define( 'WPMI_PLUGIN_VERSION', '3.1.6' );
+define( 'WPMI_PLUGIN_VERSION', '3.1.7' );
 define( 'WPMI_PLUGIN_FILE', __FILE__ );
 define( 'WPMI_PLUGIN_DIR', __DIR__ . DIRECTORY_SEPARATOR );
 define( 'WPMI_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -34,7 +34,7 @@ define( 'WPMI_DOCUMENTATION_URL', 'https://quadlayers.com/documentation/wp-menu-
 define( 'WPMI_SUPPORT_URL', 'https://quadlayers.com/account/support/?utm_source=wpmi_admin' );
 define( 'WPMI_GROUP_URL', 'https://www.facebook.com/groups/quadlayers' );
 define( 'WPMI_DEVELOPER', false );
-define( 'WPMI_PREMIUM_SELL_URL', 'https://quadlayers.com/portfolio/wp-menu-icons/?utm_source=wpmi_admin' );
+define( 'WPMI_PREMIUM_SELL_URL', 'https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_admin' );
 /**
  * Load composer autoload
  */
