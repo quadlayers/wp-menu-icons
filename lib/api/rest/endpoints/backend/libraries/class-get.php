@@ -18,14 +18,14 @@ class Get extends Base {
 			if ( ! $name ) {
 				$libraries = $models_libraries->get_libraries();
 				if ( ! $libraries ) {
-					throw new \Exception( esc_html__( 'Libraries not found.', 'wp-menu-icons' ), 404 );
+					throw new \Exception( esc_html__( 'No libraries found.', 'wp-menu-icons' ), 404 );
 				}
 				return $this->handle_response( (array) $libraries );
 			}
 
 			$library = $models_libraries->get_libraries( $name );
 			if ( ! $library ) {
-				throw new \Exception( sprintf( esc_html__( 'Library %s not found.', 'wp-menu-icons' ), $name ), 404 );
+				throw new \Exception( sprintf( esc_html__( 'The library %s was not found.', 'wp-menu-icons' ), $name ), 404 );
 			}
 			return $this->handle_response( get_object_vars( $library ) );
 		} catch ( \Throwable $error ) {

@@ -14,7 +14,7 @@ class Post extends Base {
 			$body = json_decode( $request->get_body(), true );
 
 			if ( ! isset( $body['active_libraries'] ) ) {
-				throw new \Exception( esc_html__( 'Body is not setted', 'wp-menu-icons' ), 400 );
+				throw new \Exception( esc_html__( 'Body is not set.', 'wp-menu-icons' ), 400 );
 			}
 
 			$models_settings = Models_Settings::instance();

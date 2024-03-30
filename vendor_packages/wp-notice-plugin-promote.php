@@ -28,7 +28,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	 */
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_SLUG', 'insta-gallery' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_NAME', 'Instagram Feed Gallery' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Instagram Feed Gallery is the most user-friendly Instagram plugin for WordPress. It was built to simplify the integration, to reduce time to have sites updated and to be on track with social media that shows best growing indicators.', 'wp-menu-icons' ) );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Instagram Feed Gallery is a user-friendly WordPress plugin. It simplifies integration, speeds up site updates, and aligns with the rapidly evolving social media landscape.', 'wp-menu-icons' ) );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/products/instagram-feed-gallery/?utm_source=wpmi_admin' );
 
 	new \QuadLayers\WP_Notice_Plugin_Promote\Load(
@@ -72,10 +72,11 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 				),
 				'notice_description'   => sprintf(
 					esc_html__(
-						'Today we want to make you a special gift. Using the coupon code %1$s before the next 48 hours you can get a 20 percent discount on the premium version of the %2$s plugin.',
+						'Today we have a special gift for you. Use the coupon code %1$s within the next 48 hours to receive a %2$s discount on the premium version of the %3$s plugin.',
 						'wp-menu-icons'
 					),
 					'ADMINPANEL20%',
+					'20%',
 					WPMI_PROMOTE_PREMIUM_SELL_NAME
 				),
 				'notice_more_link'     => WPMI_PROMOTE_PREMIUM_SELL_URL,

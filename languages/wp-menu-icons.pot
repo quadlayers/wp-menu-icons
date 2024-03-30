@@ -1,0 +1,324 @@
+# Copyright (C) 2024 QuadLayers
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Menu Icons 3.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-menu-icons\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-03-30T11:04:56+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: wp-menu-icons\n"
+
+#. Plugin Name of the plugin
+msgid "WP Menu Icons"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://quadlayers.com/products/wp-menu-icons/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Add icons to your menu items."
+msgstr ""
+
+#. Author of the plugin
+msgid "QuadLayers"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://quadlayers.com"
+msgstr ""
+
+#: lib/api/rest/endpoints/backend/libraries/class-get.php:21
+msgid "No libraries found."
+msgstr ""
+
+#: lib/api/rest/endpoints/backend/libraries/class-get.php:28
+msgid "The library %s was not found."
+msgstr ""
+
+#: lib/api/rest/endpoints/backend/settings/class-post.php:17
+msgid "Body is not set"
+msgstr ""
+
+#: lib/controllers/class-backend.php:171
+#: lib/controllers/class-backend.php:172
+#: build/backend/js/index.js:46
+msgid "Welcome"
+msgstr ""
+
+#: lib/controllers/class-backend.php:179
+#: lib/controllers/class-backend.php:180
+#: vendor_packages/wp-plugin-table-links.php:8
+#: build/backend/js/index.js:46
+msgid "Settings"
+msgstr ""
+
+#: lib/controllers/class-backend.php:187
+#: lib/controllers/class-backend.php:188
+#: vendor_packages/wp-plugin-table-links.php:13
+#: build/backend/js/index.js:46
+msgid "Premium"
+msgstr ""
+
+#: lib/controllers/class-backend.php:195
+#: lib/controllers/class-backend.php:196
+#: build/backend/js/index.js:46
+msgid "Suggestions"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:24
+msgid "The best responsive mega menu is designed for developers, offering customizable menu layouts and drag & drop fields for creating megamenus."
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:31
+msgid "Instagram Feed Gallery is a user-friendly WordPress plugin. It simplifies integration, speeds up site updates, and aligns with the rapidly evolving social media landscape."
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:42
+msgid "Hello! Thank you for choosing the %s plugin!"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:48
+msgid "Could you please give it a 5-star rating on WordPress? Your feedback boosts our motivation, helps us promote, and continues to improve this product. Your support matters!"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:50
+msgid "Yes, of course!"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:55
+msgid "Report a bug"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:63
+#: build/backend/js/index.js:46
+msgid "Purchase Now"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:69
+msgid "Hello! We have a special gift!"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:74
+msgid "Today we have a special gift for you. Use the coupon code %1$s within the next 48 hours to receive a %2$s discount on the premium version of the %3$s plugin."
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:83
+#: vendor_packages/wp-notice-plugin-promote.php:101
+#: vendor_packages/wp-notice-plugin-promote.php:119
+msgid "More info!"
+msgstr ""
+
+#: vendor_packages/wp-notice-plugin-promote.php:93
+#: vendor_packages/wp-notice-plugin-promote.php:111
+msgid "Hello! We want to invite you to try our %s plugin!"
+msgstr ""
+
+#: vendor_packages/wp-plugin-table-links.php:18
+#: build/backend/js/index.js:46
+msgid "Support"
+msgstr ""
+
+#: vendor_packages/wp-plugin-table-links.php:23
+#: build/backend/js/index.js:46
+msgid "Documentation"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Demo"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Hello! We are Quadlayers, and we're currently enhancing our %s product. We're expanding its features to provide you with an even better experience. Stay tuned for the updates!"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Thank you for choosing our %s plugin for WordPress! Here you can see our demo and test the features we offer in the premium version."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "View demo"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "If you have any doubt or you find any issue don't hesitate to contact us through our ticket system or join our community to meet other %s users."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Submit ticket"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Comunnity"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "If you want to get in touch with other %s users or be aware of our promotional discounts join our community now."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Join our community"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Drag & Drop to Upload File"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Select archive"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Default"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Libraries Manager"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Help us to boost this plugin and <a>enjoy Premium benefits!</a>"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Delete"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Activate Libraries"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Uncheck to disable libraries in navigation menu."
+msgstr ""
+
+#: build/backend/js/index.js:46
+#: build/navmenu/js/index.js:2
+msgid "Save"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Unlock the capabilities of WP Menu Icons PRO, which allows you to upload your own custom icon libraries."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "IcoMoon"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "The premium version allows you to seamlessly integrates with the IcoMoon app, enabling you to upload their custom icon sets directly in to your site."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "IcoMoon is a versatile icon management tool that provides a collection of vector icons and a platform to generate custom icon fonts or SVG sprites. It allows users to choose from thousands of free icons or import their own designs, and then convert them into scalable vector graphics or icon fonts."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "IcoMoon's icon fonts are resolution-independent, ensuring sharp display on high-resolution screens, and offer the advantage of being smaller in file size compared to traditional image files. The tool is highly appreciated by web designers and developers for its user-friendly interface, customization options, and for improving the efficiency of their design workflow."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Fontello"
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "The premium version also allows you to upload Fontello fonts, enabling you to upload their custom icon sets directly in to your site."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "Fontello is a free online tool that allows you to combine icons from different sets, convert them into web fonts or vector graphics, and customize them to suit their needs."
+msgstr ""
+
+#: build/backend/js/index.js:46
+msgid "It offers a wide range of icons from various collections, including Font Awesome, Entypo, and Typicons, among others. Users can select the icons they need, adjust their sizes, and download them in various formats such as SVG, EOT, TTF, WOFF, or as a CSS file. Fontello is particularly useful for web developers and designers as it simplifies the process of using vector images in web design, making it easier to create responsive and visually appealing websites."
+msgstr ""
+
+#: build/components/js/index.js:2
+msgid "Search in %s"
+msgstr ""
+
+#: build/components/js/index.js:2
+msgid "Featured Image"
+msgstr ""
+
+#: build/components/js/index.js:2
+msgid "Close media panel"
+msgstr ""
+
+#: build/components/js/index.js:2
+msgid "Loading…"
+msgstr ""
+
+#: build/components/js/index.js:2
+msgid "Deselect"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Hide Label"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "No"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Yes"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Position"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Before"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "After"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Vertical Align"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Size"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Icon"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Saved"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "Remove"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "The library does not contain icons"
+msgstr ""
+
+#: build/navmenu/js/index.js:2
+msgid "There are no active libraries."
+msgstr ""
+
+#: build/store/js/index.js:1
+msgid "The library has been created successfully."
+msgstr ""
+
+#: build/store/js/index.js:1
+msgid "%s succesfully deleted!"
+msgstr ""
+
+#: build/store/js/index.js:1
+msgid "Settings saved."
+msgstr ""
