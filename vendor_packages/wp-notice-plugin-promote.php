@@ -19,17 +19,19 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	/**
 	 * Notice cross sell 1
 	 */
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_SLUG', 'quadmenu' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_NAME', 'QuadMenu' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION', esc_html__( 'The best responsive mega menu is designed for developers, offering customizable menu layouts and drag & drop fields for creating megamenus.', 'wp-menu-icons' ) );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_URL', 'https://quadmenu.com/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_SLUG', 'ai-copilot' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_NAME', 'AI Copilot' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION', esc_html__( 'Boost your productivity in WordPress content creation with AI-driven tools, automated content generation, and enhanced editor utilities.', 'wp-menu-icons' ) );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_URL', 'https://quadlayers.com/products/ai-copilot/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_1_LOGO_SRC', plugins_url( '/assets/backend/img/ai-copilot.png', WPMI_PLUGIN_FILE ) );
 	/**
 	 * Notice cross sell 2
 	 */
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_SLUG', 'insta-gallery' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_NAME', 'Instagram Feed Gallery' );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Instagram Feed Gallery is a user-friendly WordPress plugin. It simplifies integration, speeds up site updates, and aligns with the rapidly evolving social media landscape.', 'wp-menu-icons' ) );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/products/instagram-feed-gallery/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_SLUG', 'wp-whatsapp-chat' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_NAME', 'Social Chat' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Social Chat allows your users to start a conversation from your website directly to your WhatsApp phone number with one click.', 'wp-menu-icons' ) );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/product/whatsapp-chat/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_LOGO_SRC', plugins_url( '/assets/backend/img/wp-whatsapp-chat.jpeg', WPMI_PLUGIN_FILE ) );
 
 	new \QuadLayers\WP_Notice_Plugin_Promote\Load(
 		WPMI_PLUGIN_FILE,
@@ -88,7 +90,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 			array(
 				'plugin_slug'        => WPMI_PROMOTE_CROSS_INSTALL_1_SLUG,
 				'notice_delay'       => MONTH_IN_SECONDS * 4,
-				'notice_logo'        => WPMI_PROMOTE_LOGO_SRC,
+				'notice_logo'        => WPMI_PROMOTE_CROSS_INSTALL_1_LOGO_SRC,
 				'notice_title'       => sprintf(
 					esc_html__(
 						'Hello! We want to invite you to try our %s plugin!',
@@ -106,7 +108,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 			array(
 				'plugin_slug'        => WPMI_PROMOTE_CROSS_INSTALL_2_SLUG,
 				'notice_delay'       => MONTH_IN_SECONDS * 6,
-				'notice_logo'        => WPMI_PROMOTE_LOGO_SRC,
+				'notice_logo'        => WPMI_PROMOTE_CROSS_INSTALL_2_LOGO_SRC,
 				'notice_title'       => sprintf(
 					esc_html__(
 						'Hello! We want to invite you to try our %s plugin!',
