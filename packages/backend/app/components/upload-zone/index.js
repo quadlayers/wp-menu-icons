@@ -11,8 +11,7 @@ export default function UploadZone() {
 
 	const { uploadLibrary } = useLibraries();
 
-	const handleUpload = async ( e ) => {
-		const { files } = e.target;
+	const uploadFile = async ( files ) => {
 		const file = files[ 0 ];
 
 		const body = new FormData();
@@ -23,6 +22,12 @@ export default function UploadZone() {
 
 		await uploadLibrary( { body, headers } );
 	};
+
+	const handleChange = e => {
+		const { files } = e.target
+
+		uploadFile(files)
+	}
 
 	return (
 		<div
@@ -37,7 +42,7 @@ export default function UploadZone() {
 				}
 			} }
 		>
-			<DropZone onFilesDrop={ handleUpload } />
+			<DropZone onFilesDrop={ uploadFile } />
 
 			<div className="wpmi__upload-zone__drop-zone">
 				<i className="dashicons dashicons-upload wpmi__upload-zone__icon" />
@@ -50,7 +55,7 @@ export default function UploadZone() {
 					ref={ inputRef }
 					type="file"
 					accept="zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
-					onChange={ handleUpload }
+					onChange={ handleChange }
 					multiple={ false }
 					className="wpmi__upload-zone__input"
 				/>
