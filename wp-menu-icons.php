@@ -10,7 +10,7 @@
  * Author URI:              https://quadlayers.com
  * License:                 GPLv3
  * Domain Path:             /languages
- * Request at least:        4.7.0
+ * Request at least:        4.7
  * Tested up to:            6.5
  * Requires PHP:            5.6
  */
