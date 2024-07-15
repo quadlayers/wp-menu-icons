@@ -46,11 +46,14 @@ class Backend {
 			true
 		);
 
+		global $wp_version;
+
 		wp_localize_script(
 			'wpmi-store',
 			'wpmi_store',
 			array(
 				'WPMI_REST_ROUTES' => $this->get_endpoints(),
+				'WP_VERSION' => $wp_version,
 			)
 		);
 
