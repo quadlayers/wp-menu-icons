@@ -3,7 +3,9 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { STORE_NAME } from './constants';
 // eslint-disable-next-line
-const { WPMI_REST_ROUTES } = wpmi_store;
+export const { WPMI_REST_ROUTES, WP_VERSION } = wpmi_store;
+
+export const FIRST_WP_VERSION_WITH_THUNK_SUPPORT = '6.0'
 /**
  * Handle the response from the apiFetch
  *
@@ -263,3 +265,73 @@ export function useSettingsEntities() {
 		setSettings,
 	};
 }
+
+export const isVersionLessThan = (currentVersion, targetVersion) => {
+    const currentParts = currentVersion.split('.').map(Number);
+    const targetParts = targetVersion.split('.').map(Number);
+
+    for (let i = 0; i < targetParts.length; i++) {
+        if (currentParts[i] < targetParts[i]) {
+            return true;
+        }
+		
+		if (currentParts[i] > targetParts[i]) {
+            return false;
+        }
+    }
+
+    return false;
+};
+
+const createThunkArgs = (instance, registry) => {
+	const thunkArgs = {
+		registry,
+		get dispatch() {
+			return Object.assign(
+				( action ) => instance.store.dispatch( action ),
+				instance.getActions()
+			);
+		},
+		get select() {
+			return Object.assign(
+				( selector ) =>
+					selector( instance.store.__unstableOriginalGetState() ),
+				instance.getSelectors()
+			);
+		},
+		get resolveSelect() {
+			return instance.getResolveSelectors();
+		},
+	};
+
+	return thunkArgs
+}
+
+const createThunkMiddleware = ( thunkArgs, next ) => ( action ) => {
+	if ( typeof action === 'function' ) {
+		return action( thunkArgs );
+	}
+
+	return next( action );
+};
+
+export const applyThunkMiddleware = (store) => {
+    const originalInstantiate = store.instantiate;
+
+    store.instantiate = (registry) => {
+        const instance = originalInstantiate(registry);
+
+        if (!instance.store || !instance.store.dispatch) {
+            throw new Error(__('The created instance does not contain a valid store.', 'insta-gallery'));
+        }
+
+        const dispatch = instance.store.dispatch;
+        const thunkArgs = createThunkArgs(instance, registry);
+
+        instance.store.dispatch = createThunkMiddleware(thunkArgs, dispatch);
+
+        return instance;
+    };
+
+    return store;
+};
