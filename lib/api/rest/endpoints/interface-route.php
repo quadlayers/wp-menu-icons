@@ -3,7 +3,7 @@
 namespace QuadLayers\WPMI\Api\Rest\Endpoints;
 
 interface Route {
-	public function callback( \WP_REST_Request $request);
+	public function callback( \WP_REST_Request $request );
 
 	public static function get_name();
 

@@ -23,11 +23,11 @@ export default function UploadZone() {
 		await uploadLibrary( { body, headers } );
 	};
 
-	const handleChange = e => {
-		const { files } = e.target
+	const handleChange = ( e ) => {
+		const { files } = e.target;
 
-		uploadFile(files)
-	}
+		uploadFile( files );
+	};
 
 	return (
 		<div

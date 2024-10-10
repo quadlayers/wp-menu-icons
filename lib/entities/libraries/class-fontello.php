@@ -13,5 +13,4 @@ class Fontello extends Library_Base implements Library_Interface {
 		$this->label = 'Fontello';
 		parent::__construct();
 	}
-
 }

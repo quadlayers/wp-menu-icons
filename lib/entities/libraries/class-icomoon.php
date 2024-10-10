@@ -13,5 +13,4 @@ class Icomoon extends Library_Base implements Library_Interface {
 		$this->label = 'Icomoon';
 		parent::__construct();
 	}
-
 }

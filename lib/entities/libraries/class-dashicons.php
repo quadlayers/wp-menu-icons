@@ -22,5 +22,4 @@ class Dashicons extends Library_Base implements Library_Interface {
 	public function get_style_name() {
 		return $this->name;
 	}
-
 }

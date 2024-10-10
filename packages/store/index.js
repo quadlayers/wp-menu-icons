@@ -11,7 +11,12 @@ import * as selectors from './selectors';
 import * as actions from './actions';
 import * as resolvers from './resolvers';
 import reducer from './reducer';
-import { applyThunkMiddleware, FIRST_WP_VERSION_WITH_THUNK_SUPPORT, isVersionLessThan, WP_VERSION } from './helpers';
+import {
+	applyThunkMiddleware,
+	FIRST_WP_VERSION_WITH_THUNK_SUPPORT,
+	isVersionLessThan,
+	WP_VERSION,
+} from './helpers';
 
 const store = createReduxStore( STORE_NAME, {
 	reducer,
@@ -22,8 +27,8 @@ const store = createReduxStore( STORE_NAME, {
 
 register(
 	// Compatibility: <6.0
-	isVersionLessThan(WP_VERSION, FIRST_WP_VERSION_WITH_THUNK_SUPPORT)
-		? applyThunkMiddleware(store)
+	isVersionLessThan( WP_VERSION, FIRST_WP_VERSION_WITH_THUNK_SUPPORT )
+		? applyThunkMiddleware( store )
 		: store
 );
 

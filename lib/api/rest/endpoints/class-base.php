@@ -12,7 +12,7 @@ abstract class Base implements Route_Interface {
 
 		add_action(
 			'rest_api_init',
-			function() {
+			function () {
 				register_rest_route(
 					Routes_Library::get_namespace(),
 					static::get_rest_route(),
@@ -77,6 +77,5 @@ abstract class Base implements Route_Interface {
 		$rest_path = self::get_rest_path();
 
 		return get_rest_url( $blog_id, $rest_path );
-
 	}
 }

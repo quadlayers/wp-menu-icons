@@ -17,7 +17,7 @@ class Libraries {
 	public $builder;
 
 	private function __construct() {
-		add_filter( 'upload_mimes', [ $this, 'upload_mimes' ] );
+		add_filter( 'upload_mimes', array( $this, 'upload_mimes' ) );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Dashicons() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elegant_Icons() );
 		$this->add_library( new \QuadLayers\WPMI\Entities\Libraries\Elusive() );

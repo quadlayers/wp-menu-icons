@@ -41,7 +41,7 @@ const App = () => {
 				for ( const mutation of mutationsList ) {
 					if ( mutation.type === 'childList' ) {
 						for ( const node of mutation.addedNodes ) {
-							if (node.nodeName.toLowerCase() === 'li') {
+							if ( node.nodeName.toLowerCase() === 'li' ) {
 								const iconNode = node.querySelector(
 									'.menu-item-wpmi_open'
 								);

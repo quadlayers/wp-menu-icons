@@ -39,5 +39,4 @@ class Menu_Item_Custom_Fields_Walker extends \Walker_Nav_Menu_Edit {
 
 		return ob_get_clean();
 	}
-
 }

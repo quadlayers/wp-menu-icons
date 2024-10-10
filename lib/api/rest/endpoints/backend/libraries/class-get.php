@@ -44,7 +44,7 @@ class Get extends Base {
 	public static function get_rest_args() {
 		return array(
 			'library' => array(
-				'validate_callback' => function( $param ) {
+				'validate_callback' => function ( $param ) {
 					return gettype( $param ) === 'string' && strlen( $param ) > 0;
 				},
 			),

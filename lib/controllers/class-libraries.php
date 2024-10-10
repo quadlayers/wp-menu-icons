@@ -26,7 +26,6 @@ class Libraries {
 				}
 			}
 		);
-
 	}
 
 	public static function get_active_libraries() {
@@ -89,5 +88,4 @@ class Libraries {
 		}
 		return self::$instance;
 	}
-
 }

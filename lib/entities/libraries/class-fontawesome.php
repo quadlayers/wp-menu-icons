@@ -23,5 +23,4 @@ class Fontawesome extends Library_Base implements Library_Interface {
 	public function get_folder_path() {
 		return WPMI_PLUGIN_DIR . '/assets/icon-library/defaults';
 	}
-
 }

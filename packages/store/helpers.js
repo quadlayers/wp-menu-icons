@@ -5,7 +5,7 @@ import { STORE_NAME } from './constants';
 // eslint-disable-next-line
 export const { WPMI_REST_ROUTES, WP_VERSION } = wpmi_store;
 
-export const FIRST_WP_VERSION_WITH_THUNK_SUPPORT = '6.0'
+export const FIRST_WP_VERSION_WITH_THUNK_SUPPORT = '6.0';
 /**
  * Handle the response from the apiFetch
  *
@@ -266,24 +266,24 @@ export function useSettingsEntities() {
 	};
 }
 
-export const isVersionLessThan = (currentVersion, targetVersion) => {
-    const currentParts = currentVersion.split('.').map(Number);
-    const targetParts = targetVersion.split('.').map(Number);
+export const isVersionLessThan = ( currentVersion, targetVersion ) => {
+	const currentParts = currentVersion.split( '.' ).map( Number );
+	const targetParts = targetVersion.split( '.' ).map( Number );
 
-    for (let i = 0; i < targetParts.length; i++) {
-        if (currentParts[i] < targetParts[i]) {
-            return true;
-        }
-		
-		if (currentParts[i] > targetParts[i]) {
-            return false;
-        }
-    }
+	for ( let i = 0; i < targetParts.length; i++ ) {
+		if ( currentParts[ i ] < targetParts[ i ] ) {
+			return true;
+		}
 
-    return false;
+		if ( currentParts[ i ] > targetParts[ i ] ) {
+			return false;
+		}
+	}
+
+	return false;
 };
 
-const createThunkArgs = (instance, registry) => {
+const createThunkArgs = ( instance, registry ) => {
 	const thunkArgs = {
 		registry,
 		get dispatch() {
@@ -304,8 +304,8 @@ const createThunkArgs = (instance, registry) => {
 		},
 	};
 
-	return thunkArgs
-}
+	return thunkArgs;
+};
 
 const createThunkMiddleware = ( thunkArgs, next ) => ( action ) => {
 	if ( typeof action === 'function' ) {
@@ -315,23 +315,28 @@ const createThunkMiddleware = ( thunkArgs, next ) => ( action ) => {
 	return next( action );
 };
 
-export const applyThunkMiddleware = (store) => {
-    const originalInstantiate = store.instantiate;
+export const applyThunkMiddleware = ( store ) => {
+	const originalInstantiate = store.instantiate;
 
-    store.instantiate = (registry) => {
-        const instance = originalInstantiate(registry);
+	store.instantiate = ( registry ) => {
+		const instance = originalInstantiate( registry );
 
-        if (!instance.store || !instance.store.dispatch) {
-            throw new Error(__('The created instance does not contain a valid store.', 'insta-gallery'));
-        }
+		if ( ! instance.store || ! instance.store.dispatch ) {
+			throw new Error(
+				__(
+					'The created instance does not contain a valid store.',
+					'insta-gallery'
+				)
+			);
+		}
 
-        const dispatch = instance.store.dispatch;
-        const thunkArgs = createThunkArgs(instance, registry);
+		const dispatch = instance.store.dispatch;
+		const thunkArgs = createThunkArgs( instance, registry );
 
-        instance.store.dispatch = createThunkMiddleware(thunkArgs, dispatch);
+		instance.store.dispatch = createThunkMiddleware( thunkArgs, dispatch );
 
-        return instance;
-    };
+		return instance;
+	};
 
-    return store;
+	return store;
 };

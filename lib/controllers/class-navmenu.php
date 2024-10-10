@@ -137,7 +137,8 @@ class Navmenu {
 		add_meta_box( WPMI_PREFIX . '_metabox', WPMI_PLUGIN_NAME, array( $this, 'metabox' ), 'nav-menus', 'side', 'high' );
 	}
 
-	public function metabox() {         ?>
+	public function metabox() {
+		?>
 		<div id="posttype-<?php echo esc_attr( WPMI_PREFIX ); ?>-themes" class="posttypediv">
 		</div>
 	<?php
