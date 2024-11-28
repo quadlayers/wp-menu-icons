@@ -30,7 +30,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_SLUG', 'wp-whatsapp-chat' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_NAME', 'Social Chat' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION', esc_html__( 'Social Chat allows your users to start a conversation from your website directly to your WhatsApp phone number with one click.', 'wp-menu-icons' ) );
-	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/product/whatsapp-chat/?utm_source=wpmi_admin' );
+	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_URL', 'https://quadlayers.com/products/whatsapp-chat/?utm_source=wpmi_admin' );
 	define( 'WPMI_PROMOTE_CROSS_INSTALL_2_LOGO_SRC', plugins_url( '/assets/backend/img/wp-whatsapp-chat.jpeg', WPMI_PLUGIN_FILE ) );
 
 	new \QuadLayers\WP_Notice_Plugin_Promote\Load(
