@@ -38,21 +38,15 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 		array(
 			array(
 				'type'               => 'ranking',
-				'notice_delay'       => MONTH_IN_SECONDS,
+				'notice_delay'       => 0,
 				'notice_logo'        => WPMI_PROMOTE_LOGO_SRC,
-				'notice_title'       => sprintf(
-					esc_html__(
-						'Hello! Thank you for choosing the %s plugin!',
-						'wp-menu-icons'
-					),
-					WPMI_PLUGIN_NAME
+				'notice_description' => sprintf(
+								esc_html__( 'Hello! %2$s We\'ve spent countless hours developing this free plugin for you and would really appreciate it if you could drop us a quick rating. Your feedback is extremely valuable to us. %3$s It helps us to get better. Thanks for using %1$s.', 'wp-whatsapp-chat' ),
+								'<b>'.WPMI_PLUGIN_NAME.'</b>',
+								'<span style="font-size: 16px;">🙂</span>',
+								'<br>'
 				),
-				'notice_description' => esc_html__( 'Could you please give it a 5-star rating on WordPress? Your feedback boosts our motivation, helps us promote, and continues to improve this product. Your support matters!', 'wp-menu-icons' ),
 				'notice_link'        => WPMI_PROMOTE_REVIEW_URL,
-				'notice_link_label'  => esc_html__(
-					'Yes, of course!',
-					'wp-menu-icons'
-				),
 				'notice_more_link'   => WPMI_SUPPORT_URL,
 				'notice_more_label'  => esc_html__(
 					'Report a bug',
@@ -60,19 +54,19 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 				),
 			),
 			array(
-				'plugin_slug'          => WPMI_PROMOTE_PREMIUM_SELL_SLUG,
-				'plugin_install_link'  => WPMI_PROMOTE_PREMIUM_INSTALL_URL,
-				'plugin_install_label' => esc_html__(
+				'plugin_slug'        => WPMI_PROMOTE_PREMIUM_SELL_SLUG,
+				'plugin_install_link'   => WPMI_PROMOTE_PREMIUM_INSTALL_URL,
+				'plugin_install_label'  => esc_html__(
 					'Purchase Now',
 					'wp-menu-icons'
 				),
-				'notice_delay'         => MONTH_IN_SECONDS,
-				'notice_logo'          => WPMI_PROMOTE_LOGO_SRC,
-				'notice_title'         => esc_html__(
+				'notice_delay'       => WEEK_IN_SECONDS,
+				'notice_logo'        => WPMI_PROMOTE_LOGO_SRC,
+				'notice_title'       => esc_html__(
 					'Hello! We have a special gift!',
 					'wp-menu-icons'
 				),
-				'notice_description'   => sprintf(
+				'notice_description' => sprintf(
 					esc_html__(
 						'Today we have a special gift for you. Use the coupon code %1$s within the next 48 hours to receive a %2$s discount on the premium version of the %3$s plugin.',
 						'wp-menu-icons'
@@ -81,15 +75,11 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 					'20%',
 					WPMI_PROMOTE_PREMIUM_SELL_NAME
 				),
-				'notice_more_link'     => WPMI_PROMOTE_PREMIUM_SELL_URL,
-				'notice_more_label'    => esc_html__(
-					'More info!',
-					'wp-menu-icons'
-				),
+				'notice_more_link'   => WPMI_PROMOTE_PREMIUM_SELL_URL,
 			),
 			array(
 				'plugin_slug'        => WPMI_PROMOTE_CROSS_INSTALL_1_SLUG,
-				'notice_delay'       => MONTH_IN_SECONDS * 4,
+				'notice_delay'       => MONTH_IN_SECONDS * 3,
 				'notice_logo'        => WPMI_PROMOTE_CROSS_INSTALL_1_LOGO_SRC,
 				'notice_title'       => sprintf(
 					esc_html__(
@@ -99,11 +89,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 					WPMI_PROMOTE_CROSS_INSTALL_1_NAME
 				),
 				'notice_description' => WPMI_PROMOTE_CROSS_INSTALL_1_DESCRIPTION,
-				'notice_more_link'   => WPMI_PROMOTE_CROSS_INSTALL_1_URL,
-				'notice_more_label'  => esc_html__(
-					'More info!',
-					'wp-menu-icons'
-				),
+				'notice_more_link'   => WPMI_PROMOTE_CROSS_INSTALL_1_URL
 			),
 			array(
 				'plugin_slug'        => WPMI_PROMOTE_CROSS_INSTALL_2_SLUG,
@@ -117,11 +103,7 @@ if ( class_exists( 'QuadLayers\\WP_Notice_Plugin_Promote\\Load' ) ) {
 					WPMI_PROMOTE_CROSS_INSTALL_2_NAME
 				),
 				'notice_description' => WPMI_PROMOTE_CROSS_INSTALL_2_DESCRIPTION,
-				'notice_more_link'   => WPMI_PROMOTE_CROSS_INSTALL_2_URL,
-				'notice_more_label'  => esc_html__(
-					'More info!',
-					'wp-menu-icons'
-				),
+				'notice_more_link'   => WPMI_PROMOTE_CROSS_INSTALL_2_URL
 			),
 		)
 	);

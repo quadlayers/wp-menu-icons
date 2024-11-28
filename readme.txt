@@ -4,8 +4,8 @@ Donate link: https://quadlayers.com/products/wp-menu-icons/
 Tags: menu, megamenu, mega menu, menu icons, menu icons
 Requires at least: 4.7
 Requires PHP: 5.6
-Tested up to: 6.6
-Stable tag: 3.2.7
+Tested up to: 6.7
+Stable tag: 3.2.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,6 +50,9 @@ Features included:
 After installation, go to Appearance > Menus and add your WordPress menu icons.
 
 == Changelog ==
+
+= 3.2.8 =
+* WordPress compatibility
 
 = 3.2.7 =
 * Fix Update dependencies
