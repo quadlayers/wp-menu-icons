@@ -99,7 +99,7 @@ const Content = () => {
 						</Button>
 					</div>
 					<div className="feature-section">
-						<h3>{ __( 'Comunnity', 'wp-menu-icons' ) }</h3>
+						<h3>{ __( 'Community', 'wp-menu-icons' ) }</h3>
 						<p>
 							{ sprintf(
 								__(
