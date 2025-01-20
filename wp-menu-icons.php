@@ -38,7 +38,7 @@ define( 'WPMI_PREMIUM_SELL_URL', 'https://quadlayers.com/products/wp-menu-icons/
 /**
  * Load composer autoload
  */
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload_packages.php';
 /**
  * Load vendor_packages packages
  */
