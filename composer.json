@@ -16,13 +16,15 @@
 		"allow-plugins": {
 			"quadlayers/wp-autoload": true,
 			"automattic/jetpack-composer-plugin": true,
-			"dealerdirect/phpcodesniffer-composer-installer": true
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"automattic/jetpack-autoloader": true
 		}
 	},
 	"require": {
 		"php": ">=7.1.0",
-		"automattic/jetpack-composer-plugin": "*",
-		"automattic/jetpack-assets": "*",
+		"automattic/jetpack-autoloader": "^5.0.1",
+		"automattic/jetpack-composer-plugin": "^4.0.0",
+		"automattic/jetpack-assets": "^4.0.3",
 		"quadlayers/wp-dashboard-widget-news": "*",
 		"quadlayers/wp-notice-plugin-required": "*",
 		"quadlayers/wp-notice-plugin-promote": "*",
@@ -35,19 +37,11 @@
 			"lib/"
 		]
 	},
-	"autoload-dev": {
-		"exclude-from-classmap": [
-			"lib/"
-		]
-	},
 	"extra": {
 		"quadlayers/wp-autoload": {
 			"QuadLayers\\WPMI": "lib/"
 		},
 		"wp-plugin-slug": "wp-menu-icons"
-	},
-	"require-dev": {
-		"quadlayers/wp-autoload": "*"
 	},
 	"scripts": {}
 }
