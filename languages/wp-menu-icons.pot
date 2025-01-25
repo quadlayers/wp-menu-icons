@@ -1,36 +1,41 @@
-# Copyright (C) 2024 QuadLayers
+# Copyright (C) 2025 QuadLayers
 # This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Menu Icons 3.2.4\n"
+"Project-Id-Version: WP Menu Icons 3.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-menu-icons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-16T15:52:04+00:00\n"
+"POT-Creation-Date: 2025-01-24T08:38:37+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wp-menu-icons\n"
 
 #. Plugin Name of the plugin
+#: wp-menu-icons.php
 msgid "WP Menu Icons"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: wp-menu-icons.php
 msgid "https://quadlayers.com/products/wp-menu-icons/"
 msgstr ""
 
 #. Description of the plugin
+#: wp-menu-icons.php
 msgid "Add icons to your menu items."
 msgstr ""
 
 #. Author of the plugin
+#: wp-menu-icons.php
 msgid "QuadLayers"
 msgstr ""
 
 #. Author URI of the plugin
+#: wp-menu-icons.php
 msgid "https://quadlayers.com"
 msgstr ""
 
@@ -80,43 +85,25 @@ msgstr ""
 msgid "Social Chat allows your users to start a conversation from your website directly to your WhatsApp phone number with one click."
 msgstr ""
 
-#: vendor_packages/wp-notice-plugin-promote.php:44
-msgid "Hello! Thank you for choosing the %s plugin!"
-msgstr ""
-
-#: vendor_packages/wp-notice-plugin-promote.php:50
-msgid "Could you please give it a 5-star rating on WordPress? Your feedback boosts our motivation, helps us promote, and continues to improve this product. Your support matters!"
-msgstr ""
-
-#: vendor_packages/wp-notice-plugin-promote.php:52
-msgid "Yes, of course!"
-msgstr ""
-
-#: vendor_packages/wp-notice-plugin-promote.php:57
+#: vendor_packages/wp-notice-plugin-promote.php:51
 msgid "Report a bug"
 msgstr ""
 
-#: vendor_packages/wp-notice-plugin-promote.php:65
+#: vendor_packages/wp-notice-plugin-promote.php:59
 #: build/backend/js/index.js:46
 msgid "Purchase Now"
 msgstr ""
 
-#: vendor_packages/wp-notice-plugin-promote.php:71
+#: vendor_packages/wp-notice-plugin-promote.php:65
 msgid "Hello! We have a special gift!"
 msgstr ""
 
-#: vendor_packages/wp-notice-plugin-promote.php:76
+#: vendor_packages/wp-notice-plugin-promote.php:70
 msgid "Today we have a special gift for you. Use the coupon code %1$s within the next 48 hours to receive a %2$s discount on the premium version of the %3$s plugin."
 msgstr ""
 
 #: vendor_packages/wp-notice-plugin-promote.php:85
-#: vendor_packages/wp-notice-plugin-promote.php:103
-#: vendor_packages/wp-notice-plugin-promote.php:121
-msgid "More info!"
-msgstr ""
-
-#: vendor_packages/wp-notice-plugin-promote.php:95
-#: vendor_packages/wp-notice-plugin-promote.php:113
+#: vendor_packages/wp-notice-plugin-promote.php:99
 msgid "Hello! We want to invite you to try our %s plugin!"
 msgstr ""
 
@@ -155,7 +142,7 @@ msgid "Submit ticket"
 msgstr ""
 
 #: build/backend/js/index.js:46
-msgid "Comunnity"
+msgid "Community"
 msgstr ""
 
 #: build/backend/js/index.js:46
