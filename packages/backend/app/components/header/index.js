@@ -10,9 +10,6 @@ import { __, sprintf } from '@wordpress/i18n';
 
 import {
 	WPMI_PLUGIN_NAME,
-	WPMI_PREMIUM_SELL_URL,
-	WPMI_DEMO_URL,
-	WPMI_DOCUMENTATION_URL,
 	getPluginURL,
 } from '../../../helpers';
 
@@ -29,20 +26,20 @@ const Header = () => {
 				) }
 			</p>
 			<p className="about-text">
-				<a href={ WPMI_PREMIUM_SELL_URL } target="__blank">
+				<a href="https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=premium_upgrade&utm_content=premium_link" target="__blank">
 					{ __( 'Premium', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href={ WPMI_DEMO_URL } target="__blank">
+				<a href="https://quadlayers.com/demo/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=demo&utm_content=demo_link" target="__blank">
 					{ __( 'Demo', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href={ WPMI_DOCUMENTATION_URL } target="__blank">
+				<a href="https://quadlayers.com/documentation/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=documentation&utm_content=documentation_link" target="__blank">
 					{ __( 'Documentation', 'wp-menu-icons' ) }
 				</a>
 			</p>
 			<a
-				href="https://quadlayers.com/?utm_source=wpmi_admin"
+				href="https://quadlayers.com/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=branding&utm_content=header_logo"
 				target="_blank"
 				rel="noreferrer"
 			>

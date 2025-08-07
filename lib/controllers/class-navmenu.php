@@ -100,7 +100,7 @@ class Navmenu {
 			array(
 				'WPMI_PREFIX'           => WPMI_PREFIX,
 				'WPMI_PLUGIN_NAME'      => WPMI_PLUGIN_NAME,
-				'WPMI_PREMIUM_SELL_URL' => WPMI_PREMIUM_SELL_URL,
+				'WPMI_PREMIUM_SELL_URL' => 'https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_modal&utm_campaign=premium_upgrade&utm_content=premium_link',
 				'nonce'                 => wp_create_nonce( 'wpmi' ),
 			)
 		);

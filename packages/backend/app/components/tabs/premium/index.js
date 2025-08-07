@@ -9,8 +9,6 @@ import Header from '../../header';
 import Nav from '../../nav';
 import { useAppSlotContext } from '../../../structure/provider';
 import {
-	WPMI_PREMIUM_SELL_URL,
-	WPMI_DEMO_URL,
 	getPluginURL,
 } from '../../../../helpers';
 import { Button } from '../../../../components/button';
@@ -40,14 +38,14 @@ const Premium = () => {
 								</div>
 								<br />
 								<Button
-									href={ WPMI_PREMIUM_SELL_URL }
+									href="https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_tab&utm_campaign=premium_upgrade&utm_content=purchase_button"
 									target="_blank"
 								>
 									{ __( 'Purchase Now', 'wp-menu-icons' ) }
 								</Button>
 								<Button
 									isSecondary
-									href={ WPMI_DEMO_URL }
+									href="https://quadlayers.com/demo/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_tab&utm_campaign=demo&utm_content=demo_button"
 									target="_blank"
 								>
 									{ __( 'View demo', 'wp-menu-icons' ) }
