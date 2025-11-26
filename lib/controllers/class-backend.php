@@ -19,7 +19,7 @@ class Backend {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_action( 'admin_head', array( __CLASS__, 'add_premium_js' ) );
-		add_action( 'admin_footer', array( __CLASS__, 'add_premium_css' ) );
+		add_action( 'admin_footer', array( __CLASS__, 'add_premium_style' ) );
 	}
 
 	public function register_scripts() {
@@ -211,7 +211,7 @@ class Backend {
 	<?php
 	}
 
-	public static function add_premium_css() {
+	public static function add_premium_style() {
 		?>
 		<style>
 			.wpmi__premium-field {
