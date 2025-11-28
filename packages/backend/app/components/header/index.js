@@ -8,10 +8,7 @@ import { __, sprintf } from '@wordpress/i18n';
  * Internal dependencies
  */
 
-import {
-	WPMI_PLUGIN_NAME,
-	getPluginURL,
-} from '../../../helpers';
+import { WPMI_PLUGIN_NAME, getPluginURL } from '../../../helpers';
 
 const Header = () => {
 	return (
@@ -26,15 +23,24 @@ const Header = () => {
 				) }
 			</p>
 			<p className="about-text">
-				<a href="https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=premium_upgrade&utm_content=premium_link" target="__blank">
+				<a
+					href="https://quadlayers.com/products/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=premium_upgrade&utm_content=premium_link"
+					target="__blank"
+				>
 					{ __( 'Premium', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href="https://quadlayers.com/demo/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=demo&utm_content=demo_link" target="__blank">
+				<a
+					href="https://quadlayers.com/demo/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=demo&utm_content=demo_link"
+					target="__blank"
+				>
 					{ __( 'Demo', 'wp-menu-icons' ) }
 				</a>
 				|
-				<a href="https://quadlayers.com/documentation/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=documentation&utm_content=documentation_link" target="__blank">
+				<a
+					href="https://quadlayers.com/documentation/wp-menu-icons/?utm_source=wpmi_plugin&utm_medium=admin_header&utm_campaign=documentation&utm_content=documentation_link"
+					target="__blank"
+				>
 					{ __( 'Documentation', 'wp-menu-icons' ) }
 				</a>
 			</p>

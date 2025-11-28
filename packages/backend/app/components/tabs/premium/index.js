@@ -8,9 +8,7 @@ import { __ } from '@wordpress/i18n';
 import Header from '../../header';
 import Nav from '../../nav';
 import { useAppSlotContext } from '../../../structure/provider';
-import {
-	getPluginURL,
-} from '../../../../helpers';
+import { getPluginURL } from '../../../../helpers';
 import { Button } from '../../../../components/button';
 
 const Premium = () => {
