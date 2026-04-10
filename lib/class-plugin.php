@@ -13,7 +13,7 @@ final class Plugin {
 		/**
 		 * Load plugin textdomain.
 		 */
-		add_action( 'init', array( $this, 'load_textdomain' ) );
+		add_action( 'init', array( $this, 'load_textdomain' ), 1 );
 
 		Routes_Library::instance();
 
@@ -26,7 +26,7 @@ final class Plugin {
 	}
 
 	public function load_textdomain() {
-		load_plugin_textdomain( 'wp-menu-icons', false, WPMI_PLUGIN_DIR . '/languages/' );
+		load_plugin_textdomain( 'wp-menu-icons', false, dirname( WPMI_PLUGIN_BASENAME ) . '/languages' );
 	}
 
 	public static function instance() {
